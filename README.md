@@ -18,9 +18,9 @@ Built with Astro, hosted free on GitHub Pages, served at feliciali.com.
 
 ### Phase 1 — Domain and access
 
-- [ ] Locate the Squarespace account holding feliciali.com
-- [ ] Confirm auto-renew is on and a valid card is on file (expires 2026-10-20)
-- [ ] Leave Wix — nameservers move to Squarespace at the end of the project
+- [x] Locate the Squarespace account holding feliciali.com
+- [x] Confirm auto-renew is on and a valid card is on file (expires 2026-10-20)
+- [ ] Leave Wix — nameservers move to Squarespace at the end of the project (confirmed still on `ns8.wixdns.net` / `ns9.wixdns.net` as of 2026-09-08 — left alone on purpose until Phase 3)
 
 ### Phase 2 — Build
 
