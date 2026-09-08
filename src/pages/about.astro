@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="About">
+	<section class="container">
+		<h1 data-reveal>About</h1>
+		<div class="prose" data-reveal>
+			<p>
+				PLACEHOLDER — replace with Felicia's real bio: background, design
+				philosophy, and the path from craft to senior product design.
+			</p>
+		</div>
+	</section>
+</BaseLayout>
+
+<style>
+	section {
+		padding-block: var(--space-16);
+		max-width: 42rem;
+	}
+
+	.prose {
+		color: var(--color-ink-muted);
+		line-height: 1.75;
+	}
+</style>

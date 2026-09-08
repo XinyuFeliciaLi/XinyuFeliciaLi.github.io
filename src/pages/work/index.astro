@@ -1,0 +1,89 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const caseStudies = (await getCollection('case-studies')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout title="Work">
+	<section class="container">
+		<h1 data-reveal>Work</h1>
+		<ul class="grid">
+			{
+				caseStudies.map((study) => (
+					<li data-reveal>
+						<a class="card card-hover" href={`/work/${study.id}/`}>
+							<span class="card__client">{study.data.client}</span>
+							<span class="card__title">{study.data.title}</span>
+							<p class="card__summary">{study.data.summary}</p>
+							<ul class="card__tags">
+								{study.data.tags.map((tag) => (
+									<li>{tag}</li>
+								))}
+							</ul>
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</section>
+</BaseLayout>
+
+<style>
+	section {
+		padding-block: var(--space-16);
+	}
+
+	.grid {
+		list-style: none;
+		margin: var(--space-8) 0 0;
+		padding: 0;
+		display: grid;
+		gap: var(--space-6);
+		grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+	}
+
+	.card {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-2);
+		padding: var(--space-8);
+		background: var(--color-surface);
+		border: 1px solid var(--color-line);
+		border-radius: var(--radius-lg);
+		text-decoration: none;
+	}
+
+	.card__client {
+		color: var(--color-terracotta);
+		font-size: var(--text-sm);
+		font-weight: 600;
+	}
+
+	.card__title {
+		font-family: var(--font-heading);
+		font-size: var(--text-xl);
+	}
+
+	.card__summary {
+		color: var(--color-ink-muted);
+		margin: 0;
+	}
+
+	.card__tags {
+		list-style: none;
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-2);
+		margin: var(--space-2) 0 0;
+		padding: 0;
+		font-size: var(--text-xs);
+		color: var(--color-ink-muted);
+	}
+
+	.card__tags li {
+		padding: var(--space-1) var(--space-3);
+		border: 1px solid var(--color-line);
+		border-radius: var(--radius-full);
+	}
+</style>

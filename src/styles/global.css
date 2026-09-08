@@ -1,0 +1,141 @@
+@import './tokens.css';
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	color-scheme: light;
+}
+
+body {
+	margin: 0;
+	background: var(--color-cream);
+	color: var(--color-ink);
+	font-family: var(--font-body);
+	font-size: var(--text-base);
+	line-height: 1.6;
+	-webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+	font-family: var(--font-heading);
+	line-height: 1.15;
+	margin: 0 0 var(--space-4);
+}
+
+p {
+	margin: 0 0 var(--space-4);
+}
+
+a {
+	color: inherit;
+}
+
+img,
+video {
+	max-width: 100%;
+	display: block;
+}
+
+.container {
+	width: 100%;
+	max-width: 72rem;
+	margin-inline: auto;
+	padding-inline: var(--space-6);
+}
+
+/* Hero moment — the one place display type and a slower reveal are used together */
+.hero-title {
+	font-family: var(--font-display);
+	font-size: clamp(var(--text-4xl), 8vw, var(--text-5xl));
+}
+
+/* Scroll reveals: elements start hidden, [data-revealed] is added by ScrollReveal.astro's
+   IntersectionObserver. Reduced-motion viewers skip straight to the visible end state. */
+[data-reveal] {
+	opacity: 0;
+	transform: translateY(24px);
+	transition: opacity var(--duration-long) var(--ease-emphasized),
+		transform var(--duration-long) var(--ease-emphasized);
+}
+
+[data-reveal][data-revealed] {
+	opacity: 1;
+	transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	[data-reveal] {
+		opacity: 1;
+		transform: none;
+		transition: none;
+	}
+}
+
+/* Hover micro-interactions */
+.link-underline {
+	position: relative;
+	text-decoration: none;
+}
+
+.link-underline::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	bottom: -2px;
+	width: 100%;
+	height: 1px;
+	background: currentColor;
+	transform: scaleX(0);
+	transform-origin: left;
+	transition: transform var(--duration-medium) var(--ease-standard);
+}
+
+.link-underline:hover::after,
+.link-underline:focus-visible::after {
+	transform: scaleX(1);
+}
+
+.card-hover {
+	transition: transform var(--duration-medium) var(--ease-standard),
+		box-shadow var(--duration-medium) var(--ease-standard);
+}
+
+.card-hover:hover {
+	transform: translateY(-4px);
+	box-shadow: 0 12px 32px -12px rgb(43 33 27 / 0.25);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.card-hover:hover {
+		transform: none;
+	}
+}
+
+/* Astro View Transitions — page fade, skipped for reduced-motion viewers */
+@media not (prefers-reduced-motion: reduce) {
+	::view-transition-old(root) {
+		animation: fade-out var(--duration-medium) var(--ease-standard);
+	}
+	::view-transition-new(root) {
+		animation: fade-in var(--duration-medium) var(--ease-standard);
+	}
+}
+
+@keyframes fade-out {
+	to {
+		opacity: 0;
+	}
+}
+
+@keyframes fade-in {
+	from {
+		opacity: 0;
+	}
+}

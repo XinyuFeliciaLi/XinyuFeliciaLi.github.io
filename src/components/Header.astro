@@ -1,0 +1,56 @@
+---
+const nav = [
+	{ href: '/', label: 'Home' },
+	{ href: '/work/', label: 'Work' },
+	{ href: '/about/', label: 'About' },
+	{ href: '/contact/', label: 'Contact' },
+];
+---
+
+<header class="site-header">
+	<div class="container site-header__inner">
+		<a href="/" class="site-header__mark">Felicia Li</a>
+		<nav aria-label="Primary">
+			<ul class="site-header__nav">
+				{
+					nav.map((item) => (
+						<li>
+							<a href={item.href} class="link-underline">
+								{item.label}
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</nav>
+	</div>
+</header>
+
+<style>
+	.site-header {
+		padding-block: var(--space-6);
+		border-bottom: 1px solid var(--color-line);
+	}
+
+	.site-header__inner {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--space-6);
+	}
+
+	.site-header__mark {
+		font-family: var(--font-heading);
+		font-size: var(--text-lg);
+		font-weight: 600;
+		text-decoration: none;
+	}
+
+	.site-header__nav {
+		list-style: none;
+		display: flex;
+		gap: var(--space-8);
+		margin: 0;
+		padding: 0;
+	}
+</style>

@@ -1,0 +1,32 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+	<div class="container site-footer__inner">
+		<p>&copy; {year} Felicia Li. Product design, UX/UI.</p>
+		<a class="link-underline" href="mailto:hello@feliciali.com">hello@feliciali.com</a>
+	</div>
+</footer>
+
+<style>
+	.site-footer {
+		border-top: 1px solid var(--color-line);
+		margin-top: var(--space-24);
+	}
+
+	.site-footer__inner {
+		padding-block: var(--space-8);
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--space-4);
+		color: var(--color-ink-muted);
+		font-size: var(--text-sm);
+	}
+
+	.site-footer p {
+		margin: 0;
+	}
+</style>

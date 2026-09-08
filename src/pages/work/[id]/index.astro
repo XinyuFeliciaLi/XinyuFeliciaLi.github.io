@@ -1,0 +1,71 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+	const caseStudies = await getCollection('case-studies');
+	return caseStudies.map((study) => ({
+		params: { id: study.id },
+		props: { study },
+	}));
+}
+
+const { study } = Astro.props;
+const { Content } = await render(study);
+---
+
+<BaseLayout title={study.data.title} description={study.data.summary}>
+	<article class="container">
+		<header data-reveal>
+			<p class="eyebrow">{study.data.client} · {study.data.year}</p>
+			<h1>{study.data.title}</h1>
+			<dl class="meta">
+				<div>
+					<dt>Role</dt>
+					<dd>{study.data.role}</dd>
+				</div>
+			</dl>
+		</header>
+		<div class="prose" data-reveal>
+			<Content />
+		</div>
+	</article>
+</BaseLayout>
+
+<style>
+	article {
+		padding-block: var(--space-16);
+		max-width: 42rem;
+	}
+
+	.eyebrow {
+		color: var(--color-terracotta);
+		font-weight: 600;
+		font-size: var(--text-sm);
+		margin: 0 0 var(--space-2);
+	}
+
+	.meta {
+		display: flex;
+		gap: var(--space-8);
+		margin: var(--space-6) 0 0;
+		padding-top: var(--space-6);
+		border-top: 1px solid var(--color-line);
+	}
+
+	.meta dt {
+		font-size: var(--text-xs);
+		color: var(--color-ink-muted);
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+	}
+
+	.meta dd {
+		margin: 0;
+	}
+
+	.prose {
+		margin-top: var(--space-12);
+		line-height: 1.75;
+	}
+</style>
