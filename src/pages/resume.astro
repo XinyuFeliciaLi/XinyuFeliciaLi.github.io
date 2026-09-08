@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Resume">
+	<section class="container">
+		<h1 data-reveal>Resume</h1>
+		<div class="placeholder" data-reveal>
+			<p>PLACEHOLDER — drop the resume/portfolio JPG(s) into public/resume/ and render them here as an image (or an image per page, if it's multi-page).</p>
+		</div>
+	</section>
+</BaseLayout>
+
+<style>
+	section {
+		padding-block: var(--space-16);
+	}
+
+	.placeholder {
+		background: var(--color-card);
+		border-radius: var(--radius-lg);
+		padding: var(--space-16);
+		color: var(--color-ink-muted);
+		max-width: 42rem;
+	}
+
+	.placeholder p {
+		margin: 0;
+	}
+</style>

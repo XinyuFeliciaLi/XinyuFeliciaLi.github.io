@@ -6,6 +6,7 @@ const caseStudies = defineCollection({
 	schema: z.object({
 		title: z.string(),
 		client: z.string(),
+		status: z.string(),
 		summary: z.string(),
 		role: z.string(),
 		year: z.string(),
@@ -15,4 +16,14 @@ const caseStudies = defineCollection({
 	}),
 });
 
-export const collections = { 'case-studies': caseStudies };
+const playground = defineCollection({
+	loader: glob({ pattern: '**/*.md', base: './src/content/playground' }),
+	schema: z.object({
+		title: z.string(),
+		summary: z.string(),
+		order: z.number(),
+		draft: z.boolean().default(false),
+	}),
+});
+
+export const collections = { 'case-studies': caseStudies, playground };

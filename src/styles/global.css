@@ -12,8 +12,8 @@ html {
 
 body {
 	margin: 0;
-	background: var(--color-cream);
-	color: var(--color-ink);
+	background: var(--color-page);
+	color: var(--color-ink-soft);
 	font-family: var(--font-body);
 	font-size: var(--text-base);
 	line-height: 1.6;
@@ -109,7 +109,7 @@ video {
 
 .card-hover:hover {
 	transform: translateY(-4px);
-	box-shadow: 0 12px 32px -12px rgb(43 33 27 / 0.25);
+	box-shadow: 0 12px 32px -12px rgb(41 41 41 / 0.25);
 }
 
 @media (prefers-reduced-motion: reduce) {

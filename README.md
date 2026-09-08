@@ -28,14 +28,17 @@ Built with Astro, hosted free on GitHub Pages, served at feliciali.com.
 - [x] Clone locally
 - [x] Confirm Node and npm are installed
 - [x] Scaffold Astro
-- [x] Port the design system: Jost + Danfo, cream/terracotta palette, Material 3 spacing — see [src/styles/tokens.css](src/styles/tokens.css)
-- [x] Build the five page layouts — Home, Work index, Case study detail, About, Contact
+- [x] Port the design system from Figma ([NZCCJJITy1aAd8bQ4GZkvg](https://www.figma.com/design/NZCCJJITy1aAd8bQ4GZkvg/Portfolio-Web)): Poppins sitewide, grayscale surfaces + one blue accent (`#3d83c4`), Material 3 spacing — see [src/styles/tokens.css](src/styles/tokens.css). Supersedes the earlier Jost+Danfo/cream-terracotta guess from before the Figma was shared.
+- [x] Build the page layouts, matching the Figma's actual nav — Home, Projects (top 4 featured), Playground (smaller/faster pieces), About, Resume (JPG portfolio). No separate Contact page; Figma has none.
 - [x] Add motion: scroll reveals, page transitions, hover micro-interactions, hero moment — see "Motion and media" below
-- [x] Move case studies in as markdown (placeholder copy, pending real content) — see [src/content/case-studies/](src/content/case-studies/)
-  - [ ] AI2U voice and text input redesign (AlterStaff) — replace placeholder copy
-  - [ ] Children's Museum of Pittsburgh interactive storytelling toolkit — replace placeholder copy
-  - [ ] Nonprofit volunteer engagement platform (anonymized) — replace placeholder copy
-- [ ] Replace placeholder About bio and contact email with real copy
+- [x] Move case studies in as markdown (placeholder copy, pending real content) — see [src/content/case-studies/](src/content/case-studies/) and [src/content/playground/](src/content/playground/)
+  - [ ] Web Design — Fortune Kids — replace placeholder copy
+  - [ ] Voice and text input for ai platform — AlterStaff (AI2U) — replace placeholder copy
+  - [ ] Design Snapshots — AlterStaff — replace placeholder copy
+  - [ ] Children's museum — CMP — replace placeholder copy
+  - [ ] 6 Playground items (HUA, Dreamville Mart, MonoMon MR, Graphic Design Snapshots, UXR Instagram, UI Collections) — replace placeholder one-liners
+  - [ ] Nonprofit volunteer engagement platform (anonymized) — not in the Figma's top 4, kept as `draft: true` in [src/content/case-studies/nonprofit-volunteer-platform.md](src/content/case-studies/nonprofit-volunteer-platform.md) pending a decision on where it lives
+- [ ] Replace placeholder About bio, the 6 "Key Strength" reason cards on Home (unfilled in the Figma too), and the Resume page's JPG(s)
 
 ### Phase 3 — Ship
 

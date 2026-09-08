@@ -1,29 +1,32 @@
-/* Design tokens — cream/terracotta palette, Jost + Danfo type, Material 3 spacing scale */
+/* Design tokens — pulled from Figma (NZCCJJITy1aAd8bQ4GZkvg), Poppins sitewide, Material 3 spacing scale */
 :root {
-	/* Color */
-	--color-cream: #faf3e8;
-	--color-cream-dim: #f0e6d6;
-	--color-terracotta: #c1613c;
-	--color-terracotta-dark: #a34d2c;
-	--color-ink: #2b211b;
-	--color-ink-muted: #6b5d52;
-	--color-line: #e2d5c3;
-	--color-surface: #ffffff;
+	/* Color — grayscale surfaces + single blue accent, as designed */
+	--color-page: #bfbfbf;
+	--color-surface: #ebebeb;
+	--color-surface-alt: #f3f3f3;
+	--color-card: #e1e1e1;
+	--color-accent: #3d83c4;
+	--color-ink: #292929;
+	--color-ink-soft: #343434;
+	--color-ink-muted: #474747;
+	--color-ink-faint: rgb(71 71 71 / 0.8);
+	--color-line: rgb(13 13 13 / 0.05);
+	--color-pill: rgb(217 217 217 / 0.4);
 
-	/* Type */
-	--font-display: 'Danfo', var(--font-heading);
-	--font-heading: 'Jost', system-ui, sans-serif;
-	--font-body: 'Jost', system-ui, sans-serif;
+	/* Type — Poppins across the whole site */
+	--font-display: 'Poppins', system-ui, sans-serif;
+	--font-heading: 'Poppins', system-ui, sans-serif;
+	--font-body: 'Poppins', system-ui, sans-serif;
 
 	--text-xs: 0.75rem;
 	--text-sm: 0.875rem;
 	--text-base: 1rem;
 	--text-lg: 1.125rem;
-	--text-xl: 1.5rem;
-	--text-2xl: 2rem;
-	--text-3xl: 2.75rem;
-	--text-4xl: 4rem;
-	--text-5xl: 5.5rem;
+	--text-xl: 1.375rem;
+	--text-2xl: 1.75rem;
+	--text-3xl: 2.25rem;
+	--text-4xl: 2.75rem;
+	--text-5xl: 3.5rem;
 
 	/* Spacing — Material 3 4dp grid */
 	--space-1: 0.25rem;
@@ -39,11 +42,12 @@
 	--space-20: 5rem;
 	--space-24: 6rem;
 
-	/* Shape — Material 3 corner scale */
+	/* Shape — cards ~24px, the big content panels use a much larger radius in Figma */
 	--radius-sm: 8px;
-	--radius-md: 12px;
-	--radius-lg: 16px;
-	--radius-xl: 28px;
+	--radius-md: 16px;
+	--radius-lg: 24px;
+	--radius-xl: 32px;
+	--radius-panel: 48px;
 	--radius-full: 999px;
 
 	/* Motion */

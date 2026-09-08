@@ -17,7 +17,7 @@ const { Content } = await render(study);
 <BaseLayout title={study.data.title} description={study.data.summary}>
 	<article class="container">
 		<header data-reveal>
-			<p class="eyebrow">{study.data.client} · {study.data.year}</p>
+			<p class="eyebrow">{study.data.client} · {study.data.status} · {study.data.year}</p>
 			<h1>{study.data.title}</h1>
 			<dl class="meta">
 				<div>
@@ -39,7 +39,7 @@ const { Content } = await render(study);
 	}
 
 	.eyebrow {
-		color: var(--color-terracotta);
+		color: var(--color-accent);
 		font-weight: 600;
 		font-size: var(--text-sm);
 		margin: 0 0 var(--space-2);

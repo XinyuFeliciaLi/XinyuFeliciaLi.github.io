@@ -2,74 +2,258 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const caseStudies = (await getCollection('case-studies')).sort((a, b) => a.data.order - b.data.order);
+const featured = (await getCollection('case-studies', ({ data }) => !data.draft)).sort(
+	(a, b) => a.data.order - b.data.order
+);
+
+const playgroundItems = (await getCollection('playground', ({ data }) => !data.draft)).sort(
+	(a, b) => a.data.order - b.data.order
+);
+
+// PLACEHOLDER — the Figma itself has these as unfilled "Reason 1" / one-sentence-description
+// placeholders across all six cards. Replace with your real key strengths.
+const reasons = Array.from({ length: 6 }, (_, i) => ({
+	title: `Reason ${i + 1}`,
+	description: 'One sentence description of the project one sentence description.',
+}));
 ---
 
 <BaseLayout title="Home">
 	<section class="hero container">
-		<h1 class="hero-title" data-reveal>Felicia Li designs products people trust on the first try.</h1>
-		<p class="hero-sub" data-reveal>Senior product designer — UX/UI, systems, and the occasional pixel loop.</p>
+		<h1 class="hero-title" data-reveal>Hey! I&rsquo;m Felicia</h1>
+		<p class="hero-sub" data-reveal>
+			A <strong>product designer</strong> who turns ideas into products
+		</p>
+		<p class="hero-tagline" data-reveal>Designing AI and B2C products - Previously at AlterStaff &middot; CMU Alum</p>
 	</section>
 
-	<section class="container work-preview">
-		<h2 data-reveal>Selected work</h2>
-		<ul class="work-list">
+	<section class="container featured">
+		<ul class="featured__grid">
 			{
-				caseStudies.map((study) => (
+				featured.map((study) => (
 					<li data-reveal>
-						<a class="work-card card-hover" href={`/work/${study.id}/`}>
-							<span class="work-card__client">{study.data.client}</span>
-							<span class="work-card__title">{study.data.title}</span>
+						<a class="project-card card-hover" href={`/projects/${study.id}/`}>
+							<div class="project-card__image" />
+							<div class="project-card__body">
+								<span class="project-card__title">{study.data.title}</span>
+								<span class="project-card__meta">
+									{study.data.client} · {study.data.status} · {study.data.year}
+								</span>
+								<p class="project-card__summary">{study.data.summary}</p>
+							</div>
 						</a>
 					</li>
 				))
 			}
 		</ul>
 	</section>
+
+	<section class="container key-strength">
+		<p class="pill" data-reveal>Why Me?</p>
+		<h2 data-reveal>My Key Strength</h2>
+		<ul class="reason-grid">
+			{
+				reasons.map((reason) => (
+					<li class="reason-card" data-reveal>
+						<span class="reason-card__mark" aria-hidden="true" />
+						<span class="reason-card__title">{reason.title}</span>
+						<p class="reason-card__description">{reason.description}</p>
+					</li>
+				))
+			}
+		</ul>
+	</section>
+
+	<section class="container related">
+		<p class="pill" data-reveal>More Fun Projects !</p>
+		<h2 data-reveal>Related Projects</h2>
+		<ul class="related-grid">
+			{
+				playgroundItems.map((item) => (
+					<li class="related-card card-hover" data-reveal>
+						<div class="related-card__image" />
+						<span class="related-card__title">{item.data.title}</span>
+						<p class="related-card__summary">{item.data.summary}</p>
+					</li>
+				))
+			}
+		</ul>
+		<a class="link-underline see-more" href="/playground/">See all Playground projects</a>
+	</section>
 </BaseLayout>
 
 <style>
 	.hero {
 		padding-block: var(--space-24) var(--space-16);
+		max-width: 44rem;
 	}
 
 	.hero-sub {
-		max-width: 40ch;
-		color: var(--color-ink-muted);
+		font-size: var(--text-2xl);
+		font-weight: 400;
+	}
+
+	.hero-sub strong {
+		color: var(--color-accent);
+		font-weight: 700;
+		text-transform: capitalize;
+	}
+
+	.hero-tagline {
+		color: var(--color-ink-faint);
 		font-size: var(--text-lg);
 	}
 
-	.work-preview {
+	section {
 		padding-block: var(--space-16);
 	}
 
-	.work-list {
+	.pill {
+		display: inline-block;
+		margin: 0 auto var(--space-4);
+		padding: var(--space-1) var(--space-4);
+		background: var(--color-pill);
+		border-radius: var(--radius-full);
+		font-weight: 600;
+		font-size: var(--text-base);
+		color: var(--color-ink-muted);
+	}
+
+	.key-strength,
+	.related {
+		text-align: center;
+	}
+
+	.key-strength h2,
+	.related h2 {
+		font-weight: 700;
+		font-size: var(--text-3xl);
+		margin-bottom: var(--space-10);
+	}
+
+	.featured__grid {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		gap: var(--space-10);
+		grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+	}
+
+	.project-card {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-6);
+		text-decoration: none;
+		color: var(--color-ink-soft);
+	}
+
+	.project-card__image {
+		background: var(--color-card);
+		border-radius: var(--radius-lg);
+		aspect-ratio: 16 / 9;
+	}
+
+	.project-card__body {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-2);
+	}
+
+	.project-card__title {
+		font-family: var(--font-heading);
+		font-weight: 700;
+		font-size: var(--text-xl);
+	}
+
+	.project-card__meta {
+		font-weight: 500;
+		font-size: var(--text-sm);
+		color: var(--color-ink-muted);
+	}
+
+	.project-card__summary {
+		color: var(--color-ink-muted);
+		margin: 0;
+	}
+
+	.reason-grid {
 		list-style: none;
 		margin: 0;
 		padding: 0;
 		display: grid;
 		gap: var(--space-6);
+		grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+		text-align: left;
 	}
 
-	.work-card {
+	.reason-card {
+		position: relative;
+		background: var(--color-card);
+		border-radius: var(--radius-lg);
+		padding: var(--space-6);
+	}
+
+	.reason-card__mark {
+		display: block;
+		width: var(--space-6);
+		height: var(--space-6);
+		background: var(--color-accent);
+		opacity: 0.74;
+		border-radius: var(--radius-sm);
+		margin-bottom: var(--space-3);
+	}
+
+	.reason-card__title {
+		display: block;
+		font-family: var(--font-heading);
+		font-weight: 500;
+		margin-bottom: var(--space-2);
+	}
+
+	.reason-card__description {
+		font-size: var(--text-sm);
+		color: var(--color-ink-muted);
+		margin: 0;
+	}
+
+	.related-grid {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		gap: var(--space-8);
+		grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+		text-align: left;
+	}
+
+	.related-card {
 		display: flex;
 		flex-direction: column;
-		gap: var(--space-2);
-		padding: var(--space-8);
-		background: var(--color-surface);
-		border: 1px solid var(--color-line);
-		border-radius: var(--radius-lg);
-		text-decoration: none;
+		gap: var(--space-3);
 	}
 
-	.work-card__client {
-		color: var(--color-terracotta);
-		font-size: var(--text-sm);
-		font-weight: 600;
+	.related-card__image {
+		background: var(--color-card);
+		border-radius: var(--radius-md);
+		aspect-ratio: 4 / 3;
 	}
 
-	.work-card__title {
+	.related-card__title {
 		font-family: var(--font-heading);
-		font-size: var(--text-xl);
+		font-weight: 700;
+		font-size: var(--text-lg);
+	}
+
+	.related-card__summary {
+		color: var(--color-ink-muted);
+		font-size: var(--text-sm);
+		margin: 0;
+	}
+
+	.see-more {
+		display: inline-block;
+		margin-top: var(--space-10);
+		font-weight: 600;
 	}
 </style>

@@ -1,0 +1,70 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const items = (await getCollection('playground', ({ data }) => !data.draft)).sort(
+	(a, b) => a.data.order - b.data.order
+);
+---
+
+<BaseLayout title="Playground">
+	<section class="container">
+		<h1 data-reveal>Playground</h1>
+		<p class="lede" data-reveal>Smaller, faster, weirder — the fun projects that don't need a full case study.</p>
+		<ul class="grid">
+			{
+				items.map((item) => (
+					<li class="card card-hover" data-reveal>
+						<div class="card__image" />
+						<span class="card__title">{item.data.title}</span>
+						<p class="card__summary">{item.data.summary}</p>
+					</li>
+				))
+			}
+		</ul>
+	</section>
+</BaseLayout>
+
+<style>
+	section {
+		padding-block: var(--space-16);
+	}
+
+	.lede {
+		color: var(--color-ink-muted);
+		max-width: 40ch;
+	}
+
+	.grid {
+		list-style: none;
+		margin: var(--space-8) 0 0;
+		padding: 0;
+		display: grid;
+		gap: var(--space-8);
+		grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+	}
+
+	.card {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-3);
+	}
+
+	.card__image {
+		background: var(--color-card);
+		border-radius: var(--radius-lg);
+		aspect-ratio: 4 / 3;
+	}
+
+	.card__title {
+		font-family: var(--font-heading);
+		font-weight: 700;
+		font-size: var(--text-lg);
+	}
+
+	.card__summary {
+		color: var(--color-ink-muted);
+		font-size: var(--text-sm);
+		margin: 0;
+	}
+</style>

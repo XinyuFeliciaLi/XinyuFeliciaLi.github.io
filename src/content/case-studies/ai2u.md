@@ -1,11 +1,12 @@
 ---
-title: 'Voice and text input redesign'
-client: 'AI2U (AlterStaff)'
+title: 'Voice and text input for ai platform'
+client: 'AlterStaff'
+status: 'Shipped'
 summary: 'PLACEHOLDER — replace with the real case study summary before shipping.'
 role: 'PLACEHOLDER — your role on the project'
-year: 'PLACEHOLDER'
+year: '2025'
 tags: ['product design', 'voice UX', 'conversational input']
-order: 1
+order: 2
 ---
 
 ## TODO
