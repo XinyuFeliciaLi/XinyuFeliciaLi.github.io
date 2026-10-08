@@ -1,0 +1,23 @@
+/* Measured desktop card layouts: preserve copy and type size while balancing line counts. */
+@media (min-width: 60.001rem) {
+	.case--ai2u-voice-chat [data-card-group="54% drop in internal tickets"] { column-gap: 16px; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr); }
+	.case--ai2u-voice-chat [data-card-group="54% drop in internal tickets"] > .block-col > .block-card { padding-inline: 16px; }
+	.case--ai2u-voice-chat [data-card-group="Cross-team initiation is its own skill"] { column-gap: 16px; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+	.case--ai2u-voice-chat [data-card-group="Cross-team initiation is its own skill"] > .block-col > .block-card { padding-inline: 24px; }
+	.case--childrens-museum [data-card-group="How to communicate with a client"] { column-gap: 16px; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); }
+	.case--childrens-museum [data-card-group="How to communicate with a client"] > .block-col > .block-card { padding-inline: 20px; }
+	.case--dreamville-mart [data-card-group="Completed Playable Build"] { column-gap: 16px; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+	.case--dreamville-mart [data-card-group="Completed Playable Build"] > .block-col > .block-card { padding-inline: 16px; }
+	.case--dreamville-mart [data-card-group="Structure the Player Journey"] { column-gap: 16px; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr); }
+	.case--dreamville-mart [data-card-group="Structure the Player Journey"] > .block-col > .block-card { padding-inline: 28px; }
+	.case--fortune-kid [data-card-group="Evolving direction"] { column-gap: 16px; grid-template-columns: minmax(0, 0.925fr) minmax(0, 0.925fr) minmax(0, 1.15fr); }
+	.case--fortune-kid [data-card-group="Evolving direction"] > .block-col > .block-card { padding-inline: 20px; }
+	.case--hua [data-card-group="AI-Assisted Development"] { column-gap: 16px; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); }
+	.case--hua [data-card-group="AI-Assisted Development"] > .block-col > .block-card { padding-inline: 20px; }
+	.case--hua [data-card-group="Product Direction"] { column-gap: 16px; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr); }
+	.case--hua [data-card-group="Product Direction"] > .block-col > .block-card { padding-inline: 20px; }
+	.case--monomon-mr [data-card-group="GDC 2024 Showcase"] { column-gap: 20px; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); }
+	.case--monomon-mr [data-card-group="GDC 2024 Showcase"] > .block-col > .block-card { padding-inline: 28px; }
+	.case--monomon-mr [data-card-group="Agile Delivery"] { column-gap: 16px; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.925fr) minmax(0, 0.925fr); }
+	.case--monomon-mr [data-card-group="Agile Delivery"] > .block-col > .block-card { padding-inline: 24px; }
+}

@@ -1,1556 +1,1557 @@
 {
-	"title": "HUA: Pocket Harmonica",
-	"sections": [
-		{
-			"id": "30:2166",
-			"name": "Project Introduction / HUA",
-			"items": [
-				{
-					"t": "title",
-					"runs": [
-						{
-							"s": "HUA: Pocket Harmonica"
-						}
-					]
-				},
-				{
-					"t": "p",
-					"runs": [
-						{
-							"s": "A mobile rhythm experience that translates the mechanics of playing a harmonica into an approachable digital interaction."
-						}
-					]
-				},
-				{
-					"t": "card",
-					"items": [
-						{
-							"t": "row",
-							"cols": [
-								{
-									"w": 100,
-									"items": [
-										{
-											"t": "h4",
-											"runs": [
-												{
-													"s": "Role"
-												}
-											]
-										},
-										{
-											"t": "small",
-											"runs": [
-												{
-													"s": "UX/UI Designer"
-												}
-											]
-										}
-									]
-								},
-								{
-									"w": 100,
-									"items": [
-										{
-											"t": "h4",
-											"runs": [
-												{
-													"s": "Deliverable"
-												}
-											]
-										},
-										{
-											"t": "small",
-											"runs": [
-												{
-													"s": "Mobile App"
-												}
-											]
-										}
-									]
-								},
-								{
-									"w": 85,
-									"items": [
-										{
-											"t": "h4",
-											"runs": [
-												{
-													"s": "Status"
-												}
-											]
-										},
-										{
-											"t": "small",
-											"runs": [
-												{
-													"s": "Shipped\nQ3 2026"
-												}
-											]
-										}
-									]
-								},
-								{
-									"w": 106,
-									"items": [
-										{
-											"t": "h4",
-											"runs": [
-												{
-													"s": "Tools"
-												}
-											]
-										},
-										{
-											"t": "small",
-											"runs": [
-												{
-													"s": "Figma, Illustrator, Unity, VS Code, Claude Cowork"
-												}
-											]
-										}
-									]
-								},
-								{
-									"w": 130,
-									"items": [
-										{
-											"t": "h4",
-											"runs": [
-												{
-													"s": "Collaborators"
-												}
-											]
-										},
-										{
-											"t": "small",
-											"runs": [
-												{
-													"s": "Team of 3: Producer, Artist, Developer"
-												}
-											]
-										}
-									]
-								}
-							]
-						}
-					]
-				}
-			]
-		},
-		{
-			"id": "30:2209",
-			"name": "Impact / HUA",
-			"items": [
-				{
-					"t": "h2",
-					"runs": [
-						{
-							"s": "Highlights"
-						}
-					]
-				},
-				{
-					"t": "p",
-					"runs": [
-						{
-							"s": "HUA shipped as a bilingual mobile experience across iOS and Android, with the final UI implemented in Unity and support for English and Simplified Chinese."
-						}
-					]
-				},
-				{
-					"t": "row",
-					"cols": [
-						{
-							"w": 363,
-							"items": [
-								{
-									"t": "card",
-									"items": [
-										{
-											"t": "stat",
-											"runs": [
-												{
-													"s": "9.5/10"
-												}
-											],
-											"center": 1
-										},
-										{
-											"t": "label",
-											"runs": [
-												{
-													"s": "TapTap rating"
-												}
-											],
-											"center": 1
-										}
-									],
-									"center": 1
-								}
-							]
-						},
-						{
-							"w": 363,
-							"items": [
-								{
-									"t": "card",
-									"items": [
-										{
-											"t": "stat",
-											"runs": [
-												{
-													"s": "3K+"
-												}
-											],
-											"center": 1
-										},
-										{
-											"t": "label",
-											"runs": [
-												{
-													"s": "TapTap followers"
-												}
-											],
-											"center": 1
-										}
-									],
-									"center": 1
-								}
-							]
-						}
-					]
-				}
-			]
-		},
-		{
-			"id": "30:2249",
-			"name": "Overview",
-			"items": [
-				{
-					"t": "eyebrow",
-					"runs": [
-						{
-							"s": "Overview"
-						}
-					]
-				},
-				{
-					"t": "h2",
-					"runs": [
-						{
-							"s": "Challenge"
-						}
-					]
-				},
-				{
-					"t": "p",
-					"runs": [
-						{
-							"s": "HUA began with a childhood memory of learning harmonica in elementary school. We set out to turn that experience into a mobile rhythm game."
-						}
-					]
-				},
-				{
-					"t": "h2",
-					"runs": [
-						{
-							"s": "My Responsibilities"
-						}
-					]
-				},
-				{
-					"t": "row",
-					"cols": [
-						{
-							"w": 362,
-							"items": [
-								{
-									"t": "card",
-									"items": [
-										{
-											"t": "h4",
-											"runs": [
-												{
-													"s": "UX/UI Design"
-												}
-											],
-											"center": 1
-										},
-										{
-											"t": "small",
-											"runs": [
-												{
-													"s": "Owned the experience from interaction exploration through final visual design."
-												}
-											],
-											"center": 1
-										}
-									],
-									"center": 1
-								}
-							]
-						},
-						{
-							"w": 362,
-							"items": [
-								{
-									"t": "card",
-									"items": [
-										{
-											"t": "h4",
-											"runs": [
-												{
-													"s": "UI Implementation"
-												}
-											],
-											"center": 1
-										},
-										{
-											"t": "small",
-											"runs": [
-												{
-													"s": "Implemented and organized all final UI assets in Unity"
-												}
-											],
-											"center": 1
-										}
-									],
-									"center": 1
-								}
-							]
-						}
-					]
-				},
-				{
-					"t": "row",
-					"cols": [
-						{
-							"w": 362,
-							"items": [
-								{
-									"t": "card",
-									"items": [
-										{
-											"t": "h4",
-											"runs": [
-												{
-													"s": "AI-Assisted Development"
-												}
-											],
-											"center": 1
-										},
-										{
-											"t": "small",
-											"runs": [
-												{
-													"s": "Used Claude to implement selected UI interactions and troubleshoot issues alongside developers."
-												}
-											],
-											"center": 1
-										}
-									],
-									"center": 1
-								}
-							]
-						},
-						{
-							"w": 362,
-							"items": [
-								{
-									"t": "card",
-									"items": [
-										{
-											"t": "h4",
-											"runs": [
-												{
-													"s": "Localization"
-												}
-											],
-											"center": 1
-										},
-										{
-											"t": "small",
-											"runs": [
-												{
-													"s": "Set up and manage English and Simplified Chinese localization."
-												}
-											],
-											"center": 1
-										}
-									],
-									"center": 1
-								}
-							]
-						}
-					]
-				}
-			]
-		},
-		{
-			"id": "30:2298",
-			"name": "Product Design Process",
-			"items": [
-				{
-					"t": "card",
-					"band": 1,
-					"items": [
-						{
-							"t": "label",
-							"runs": [
-								{
-									"s": "Product Design Process"
-								}
-							]
-						},
-						{
-							"t": "h3",
-							"runs": [
-								{
-									"s": "Overall Process"
-								}
-							]
-						},
-						{
-							"t": "card",
-							"items": [
-								{
-									"t": "row",
-									"cols": [
-										{
-											"w": 100,
-											"items": [
-												{
-													"t": "card",
-													"items": [
-														{
-															"t": "caption",
-															"runs": [
-																{
-																	"s": "Concept\nAlignment"
-																}
-															],
-															"center": 1
-														}
-													],
-													"center": 1
-												}
-											]
-										},
-										{
-											"w": 9,
-											"items": [
-												{
-													"t": "img",
-													"src": "hua/001.png",
-													"w": 10,
-													"h": 7,
-													"alt": ""
-												}
-											]
-										},
-										{
-											"w": 112,
-											"items": [
-												{
-													"t": "card",
-													"items": [
-														{
-															"t": "caption",
-															"runs": [
-																{
-																	"s": "Interaction\nExploration"
-																}
-															],
-															"center": 1
-														}
-													],
-													"center": 1
-												}
-											]
-										},
-										{
-											"w": 9,
-											"items": [
-												{
-													"t": "img",
-													"src": "hua/002.png",
-													"w": 10,
-													"h": 7,
-													"alt": ""
-												}
-											]
-										},
-										{
-											"w": 65,
-											"items": [
-												{
-													"t": "card",
-													"items": [
-														{
-															"t": "caption",
-															"runs": [
-																{
-																	"s": "Design"
-																}
-															],
-															"center": 1
-														}
-													],
-													"center": 1
-												}
-											]
-										},
-										{
-											"w": 9,
-											"items": [
-												{
-													"t": "img",
-													"src": "hua/003.png",
-													"w": 10,
-													"h": 7,
-													"alt": ""
-												}
-											]
-										},
-										{
-											"w": 108,
-											"items": [
-												{
-													"t": "card",
-													"items": [
-														{
-															"t": "caption",
-															"runs": [
-																{
-																	"s": "Implementation"
-																}
-															],
-															"center": 1
-														}
-													],
-													"center": 1
-												}
-											]
-										},
-										{
-											"w": 9,
-											"items": [
-												{
-													"t": "img",
-													"src": "hua/004.png",
-													"w": 10,
-													"h": 7,
-													"alt": ""
-												}
-											]
-										},
-										{
-											"w": 86,
-											"items": [
-												{
-													"t": "card",
-													"items": [
-														{
-															"t": "caption",
-															"runs": [
-																{
-																	"s": "Playtesting"
-																}
-															],
-															"center": 1
-														}
-													],
-													"center": 1
-												}
-											]
-										},
-										{
-											"w": 9,
-											"items": [
-												{
-													"t": "img",
-													"src": "hua/005.png",
-													"w": 10,
-													"h": 7,
-													"alt": ""
-												}
-											]
-										},
-										{
-											"w": 64,
-											"items": [
-												{
-													"t": "card",
-													"items": [
-														{
-															"t": "caption",
-															"runs": [
-																{
-																	"s": "Iterate"
-																}
-															],
-															"center": 1
-														}
-													],
-													"center": 1
-												}
-											]
-										},
-										{
-											"w": 9,
-											"items": [
-												{
-													"t": "img",
-													"src": "hua/006.png",
-													"w": 10,
-													"h": 7,
-													"alt": ""
-												}
-											]
-										},
-										{
-											"w": 74,
-											"items": [
-												{
-													"t": "card",
-													"items": [
-														{
-															"t": "caption",
-															"runs": [
-																{
-																	"s": "Deliver"
-																}
-															],
-															"center": 1
-														}
-													],
-													"center": 1
-												}
-											]
-										}
-									]
-								}
-							]
-						},
-						{
-							"t": "h2",
-							"runs": [
-								{
-									"s": "Design to Implementation"
-								}
-							]
-						},
-						{
-							"t": "p",
-							"runs": [
-								{
-									"s": "Design and implementation happened in parallel, allowing me to iterate on UI and interactions directly in Unity."
-								}
-							]
-						},
-						{
-							"t": "card",
-							"items": [
-								{
-									"t": "row",
-									"cols": [
-										{
-											"w": 132,
-											"items": [
-												{
-													"t": "card",
-													"items": [
-														{
-															"t": "caption",
-															"runs": [
-																{
-																	"s": "Figma Design"
-																}
-															],
-															"center": 1
-														}
-													],
-													"center": 1
-												}
-											]
-										},
-										{
-											"w": 9,
-											"items": [
-												{
-													"t": "img",
-													"src": "hua/007.png",
-													"w": 10,
-													"h": 7,
-													"alt": ""
-												}
-											]
-										},
-										{
-											"w": 168,
-											"items": [
-												{
-													"t": "card",
-													"items": [
-														{
-															"t": "caption",
-															"runs": [
-																{
-																	"s": "Unity Implementation"
-																}
-															],
-															"center": 1
-														}
-													],
-													"center": 1
-												}
-											]
-										},
-										{
-											"w": 9,
-											"items": [
-												{
-													"t": "img",
-													"src": "hua/008.png",
-													"w": 10,
-													"h": 7,
-													"alt": ""
-												}
-											]
-										},
-										{
-											"w": 211,
-											"items": [
-												{
-													"t": "card",
-													"items": [
-														{
-															"t": "caption",
-															"runs": [
-																{
-																	"s": "AI-Assisted Interaction\nDevelopment"
-																}
-															],
-															"center": 1
-														}
-													],
-													"center": 1
-												}
-											]
-										},
-										{
-											"w": 9,
-											"items": [
-												{
-													"t": "img",
-													"src": "hua/009.png",
-													"w": 10,
-													"h": 7,
-													"alt": ""
-												}
-											]
-										},
-										{
-											"w": 128,
-											"items": [
-												{
-													"t": "card",
-													"items": [
-														{
-															"t": "caption",
-															"runs": [
-																{
-																	"s": "Test & Debug"
-																}
-															],
-															"center": 1
-														}
-													],
-													"center": 1
-												}
-											]
-										}
-									]
-								}
-							]
-						}
-					]
-				}
-			]
-		},
-		{
-			"id": "30:2351",
-			"name": "Understand",
-			"items": [
-				{
-					"t": "eyebrow",
-					"runs": [
-						{
-							"s": "Understand"
-						}
-					]
-				},
-				{
-					"t": "h2",
-					"runs": [
-						{
-							"s": "Project Direction Alignment"
-						}
-					]
-				},
-				{
-					"t": "p",
-					"runs": [
-						{
-							"s": "The Producer established HUA’s concept and childhood-inspired backstory. From there, we aligned on the product direction and scope:"
-						}
-					]
-				},
-				{
-					"t": "row",
-					"cols": [
-						{
-							"w": 239,
-							"items": [
-								{
-									"t": "card",
-									"items": [
-										{
-											"t": "img",
-											"src": "hua/010.png",
-											"w": 191,
-											"h": 45,
-											"alt": "Project Direction Alignment"
-										},
-										{
-											"t": "h4",
-											"runs": [
-												{
-													"s": "Product Direction"
-												}
-											]
-										},
-										{
-											"t": "small",
-											"runs": [
-												{
-													"s": "Design for ages 4+ while preserving the feel of playing a real harmonica"
-												}
-											]
-										}
-									]
-								}
-							]
-						},
-						{
-							"w": 239,
-							"items": [
-								{
-									"t": "card",
-									"items": [
-										{
-											"t": "img",
-											"src": "hua/011.png",
-											"w": 191,
-											"h": 45,
-											"alt": "Product Direction"
-										},
-										{
-											"t": "h4",
-											"runs": [
-												{
-													"s": "Core Experience"
-												}
-											]
-										},
-										{
-											"t": "small",
-											"runs": [
-												{
-													"s": "Follow rhythm cues and play songs using harmonica-inspired controls"
-												}
-											]
-										}
-									]
-								}
-							]
-						},
-						{
-							"w": 239,
-							"items": [
-								{
-									"t": "card",
-									"items": [
-										{
-											"t": "img",
-											"src": "hua/012.png",
-											"w": 191,
-											"h": 45,
-											"alt": "Core Experience"
-										},
-										{
-											"t": "h4",
-											"runs": [
-												{
-													"s": "Project Scope"
-												}
-											]
-										},
-										{
-											"t": "small",
-											"runs": [
-												{
-													"s": "Design and deliver the experience within a three-person, part-time team"
-												}
-											]
-										}
-									]
-								}
-							]
-						}
-					]
-				}
-			]
-		},
-		{
-			"id": "30:2392",
-			"name": "Design",
-			"items": [
-				{
-					"t": "eyebrow",
-					"runs": [
-						{
-							"s": "Interaction Exploration"
-						}
-					]
-				},
-				{
-					"t": "h2",
-					"runs": [
-						{
-							"s": "Early-Stage Low-Fidelity Prototype"
-						}
-					]
-				},
-				{
-					"t": "p",
-					"runs": [
-						{
-							"s": "I explored two interaction directions in Figma and tested the prototypes on a mobile device to understand how the harmonica mechanics translated to touch."
-						}
-					]
-				},
-				{
-					"t": "card",
-					"items": [
-						{
-							"t": "row",
-							"cols": [
-								{
-									"w": 277,
-									"items": [
-										{
-											"t": "img",
-											"src": "hua/013.png",
-											"w": 276,
-											"h": 144,
-											"alt": "Early-Stage Low-Fidelity Prototype"
-										},
-										{
-											"t": "h4",
-											"runs": [
-												{
-													"s": "01 · Pitch-Based Controls"
-												}
-											]
-										},
-										{
-											"t": "caption",
-											"runs": [
-												{
-													"s": "Grouped notes by pitch into four columns for a more compact control layout"
-												}
-											]
-										}
-									]
-								},
-								{
-									"w": 277,
-									"items": [
-										{
-											"t": "img",
-											"src": "hua/014.png",
-											"w": 276,
-											"h": 144,
-											"alt": "01 · Pitch-Based Controls"
-										},
-										{
-											"t": "h4",
-											"runs": [
-												{
-													"s": "02 · Harmonica-Shaped Controls"
-												}
-											]
-										},
-										{
-											"t": "caption",
-											"runs": [
-												{
-													"s": "Arranged all notes across to more closely mirror a physical harmonica"
-												}
-											]
-										}
-									]
-								}
-							]
-						}
-					]
-				},
-				{
-					"t": "h2",
-					"runs": [
-						{
-							"s": "Iterated Wireframe"
-						}
-					]
-				},
-				{
-					"t": "p",
-					"runs": [
-						{
-							"s": "Internal Playtesting showed the initial concepts created small touch targets, and made the mechanics difficult to understand."
-						}
-					]
-				},
-				{
-					"t": "card",
-					"items": [
-						{
-							"t": "img",
-							"src": "hua/015.png",
-							"w": 516,
-							"h": 269,
-							"alt": "Iterated Wireframe",
-							"center": 1
-						},
-						{
-							"t": "h4",
-							"runs": [
-								{
-									"s": "Action"
-								}
-							]
-						},
-						{
-							"t": "small",
-							"list": "ol",
-							"lines": [
-								[
-									{
-										"s": "Simplified Controls: ",
-										"b": 1
-									},
-									{
-										"s": "Moved blow and draw to a single toggle button"
-									}
-								],
-								[
-									{
-										"s": "Reduced Visual Weight: Removed the harmonica-shaped interface"
-									}
-								],
-								[
-									{
-										"s": "Simplified Mechanics: Reduced two rows of notes to one for easier play"
-									}
-								]
-							]
-						}
-					]
-				},
-				{
-					"t": "eyebrow",
-					"runs": [
-						{
-							"s": "Design"
-						}
-					]
-				},
-				{
-					"t": "h2",
-					"runs": [
-						{
-							"s": "High-fidelity Interface"
-						}
-					]
-				},
-				{
-					"t": "p",
-					"runs": [
-						{
-							"s": "Developed a minimal visual system using restrained color, rounded controls, and localization-friendly typography."
-						}
-					]
-				},
-				{
-					"t": "img",
-					"src": "hua/016.png",
-					"w": 749,
-					"h": 444,
-					"alt": "High-fidelity Interface"
-				}
-			]
-		},
-		{
-			"id": "30:2447",
-			"name": "Usability Test & Iteration",
-			"items": [
-				{
-					"t": "eyebrow",
-					"runs": [
-						{
-							"s": "Experience Evaluation"
-						}
-					]
-				},
-				{
-					"t": "h2",
-					"runs": [
-						{
-							"s": "Playtesting & Iteration"
-						}
-					]
-				},
-				{
-					"t": "p",
-					"runs": [
-						{
-							"s": "Playtesting with roughly 20 external players helped surface recurring usability issues before release."
-						}
-					]
-				},
-				{
-					"t": "h3",
-					"runs": [
-						{
-							"s": "Game Guidance"
-						}
-					]
-				},
-				{
-					"t": "img",
-					"src": "hua/017.png",
-					"w": 749,
-					"h": 212,
-					"alt": "Game Guidance"
-				},
-				{
-					"t": "card",
-					"items": [
-						{
-							"t": "row",
-							"cols": [
-								{
-									"w": 293,
-									"items": [
-										{
-											"t": "h4",
-											"runs": [
-												{
-													"s": "User feel"
-												}
-											]
-										},
-										{
-											"t": "p",
-											"runs": [
-												{
-													"s": "Players were unsure how the game worked and what they could do. "
-												}
-											]
-										}
-									]
-								},
-								{
-									"w": 291,
-									"items": [
-										{
-											"t": "h4",
-											"runs": [
-												{
-													"s": "Action"
-												}
-											]
-										},
-										{
-											"t": "p",
-											"runs": [
-												{
-													"s": "Added an optional in-game help guide accessible from each screen. Illustrated tutorials explain key controls and flows."
-												}
-											]
-										}
-									]
-								}
-							]
-						}
-					]
-				},
-				{
-					"t": "h3",
-					"runs": [
-						{
-							"s": "Touch Targets "
-						}
-					]
-				},
-				{
-					"t": "img",
-					"src": "hua/018.png",
-					"w": 749,
-					"h": 212,
-					"alt": "Touch Targets"
-				},
-				{
-					"t": "card",
-					"items": [
-						{
-							"t": "row",
-							"cols": [
-								{
-									"w": 293,
-									"items": [
-										{
-											"t": "h4",
-											"runs": [
-												{
-													"s": "User feel"
-												}
-											]
-										},
-										{
-											"t": "p",
-											"runs": [
-												{
-													"s": "Buttons were difficult to tap accurately during rhythm gameplay."
-												}
-											]
-										}
-									]
-								},
-								{
-									"w": 291,
-									"items": [
-										{
-											"t": "h4",
-											"runs": [
-												{
-													"s": "Action"
-												}
-											]
-										},
-										{
-											"t": "p",
-											"runs": [
-												{
-													"s": "Reviewed mobile safe areas and increased button sizes for easier interaction."
-												}
-											]
-										}
-									]
-								}
-							]
-						}
-					]
-				}
-			]
-		},
-		{
-			"id": "30:2524",
-			"name": "Final Design / HUA",
-			"items": [
-				{
-					"t": "eyebrow",
-					"runs": [
-						{
-							"s": "Experience Design"
-						}
-					]
-				},
-				{
-					"t": "h2",
-					"runs": [
-						{
-							"s": "Final Design"
-						}
-					]
-				},
-				{
-					"t": "card",
-					"items": [
-						{
-							"t": "img",
-							"src": "hua/019.png",
-							"w": 713,
-							"h": 315,
-							"alt": "Final Design"
-						},
-						{
-							"t": "h3",
-							"runs": [
-								{
-									"s": "Gameplay Screen"
-								}
-							],
-							"center": 1
-						},
-						{
-							"t": "p",
-							"runs": [
-								{
-									"s": "Combines descending rhythm cues with blow/draw and harmonica-hole controls for the core playing experience."
-								}
-							],
-							"center": 1
-						}
-					],
-					"center": 1
-				},
-				{
-					"t": "card",
-					"items": [
-						{
-							"t": "img",
-							"src": "hua/020.png",
-							"w": 713,
-							"h": 315,
-							"alt": "Gameplay Screen"
-						},
-						{
-							"t": "h3",
-							"runs": [
-								{
-									"s": "Main Screen · Song Playback"
-								}
-							],
-							"center": 1
-						},
-						{
-							"t": "p",
-							"runs": [
-								{
-									"s": "Brings the player’s recording into the 3D scene, where the boy performs the song users created."
-								}
-							],
-							"center": 1
-						}
-					],
-					"center": 1
-				},
-				{
-					"t": "card",
-					"items": [
-						{
-							"t": "img",
-							"src": "hua/021.png",
-							"w": 713,
-							"h": 315,
-							"alt": "Main Screen · Song Playback"
-						},
-						{
-							"t": "h3",
-							"runs": [
-								{
-									"s": "Main Screen · Song Library"
-								}
-							],
-							"center": 1
-						},
-						{
-							"t": "p",
-							"runs": [
-								{
-									"s": "Shows available and locked songs alongside options to create or import custom songs."
-								}
-							],
-							"center": 1
-						}
-					],
-					"center": 1
-				}
-			]
-		},
-		{
-			"id": "30:2536",
-			"name": "Impact / HUA",
-			"items": [
-				{
-					"t": "eyebrow",
-					"runs": [
-						{
-							"s": "Launch & Reception"
-						}
-					]
-				},
-				{
-					"t": "h2",
-					"runs": [
-						{
-							"s": "Outcomes"
-						}
-					]
-				},
-				{
-					"t": "p",
-					"runs": [
-						{
-							"s": "HUA shipped as a bilingual mobile experience across iOS and Android, with the final UI implemented in Unity and support for English and Simplified Chinese."
-						}
-					]
-				},
-				{
-					"t": "row",
-					"cols": [
-						{
-							"w": 363,
-							"items": [
-								{
-									"t": "card",
-									"items": [
-										{
-											"t": "stat",
-											"runs": [
-												{
-													"s": "9.5/10"
-												}
-											],
-											"center": 1
-										},
-										{
-											"t": "label",
-											"runs": [
-												{
-													"s": "TapTap rating"
-												}
-											],
-											"center": 1
-										}
-									],
-									"center": 1
-								}
-							]
-						},
-						{
-							"w": 363,
-							"items": [
-								{
-									"t": "card",
-									"items": [
-										{
-											"t": "stat",
-											"runs": [
-												{
-													"s": "3K+"
-												}
-											],
-											"center": 1
-										},
-										{
-											"t": "label",
-											"runs": [
-												{
-													"s": "TapTap followers"
-												}
-											],
-											"center": 1
-										}
-									],
-									"center": 1
-								}
-							]
-						}
-					]
-				}
-			]
-		},
-		{
-			"id": "30:2570",
-			"name": "Check Out the Product / HUA",
-			"items": [
-				{
-					"t": "card",
-					"band": 1,
-					"items": [
-						{
-							"t": "h2",
-							"runs": [
-								{
-									"s": "Check Out the Product"
-								}
-							]
-						},
-						{
-							"t": "row",
-							"cols": [
-								{
-									"w": 136,
-									"items": [
-										{
-											"t": "card",
-											"items": [
-												{
-													"t": "row",
-													"cols": [
-														{
-															"w": 22,
-															"items": [
-																{
-																	"t": "img",
-																	"src": "hua/022.png",
-																	"w": 22,
-																	"h": 22,
-																	"alt": ""
-																}
-															]
-														},
-														{
-															"w": 69,
-															"items": [
-																{
-																	"t": "small",
-																	"runs": [
-																		{
-																			"s": "App Store",
-																			"href": "https://apps.apple.com/us/app/hua-pocket-harmonica/id6808189960"
-																		}
-																	]
-																}
-															]
-														}
-													]
-												}
-											]
-										}
-									]
-								},
-								{
-									"w": 136,
-									"items": [
-										{
-											"t": "img",
-											"src": "hua/023.png",
-											"w": 136,
-											"h": 38,
-											"alt": "Check Out the Product"
-										}
-									]
-								}
-							]
-						}
-					]
-				}
-			]
-		}
-	]
+ "title": "HUA: Pocket Harmonica",
+ "sections": [
+  {
+   "id": "30:2166",
+   "name": "Project Introduction / HUA",
+   "items": [
+    {
+     "t": "title",
+     "runs": [
+      {
+       "s": "HUA: Pocket Harmonica"
+      }
+     ]
+    },
+    {
+     "t": "p",
+     "runs": [
+      {
+       "s": "A mobile rhythm experience that translates the mechanics of playing a harmonica into an approachable digital interaction."
+      }
+     ]
+    },
+    {
+     "t": "card",
+     "items": [
+      {
+       "t": "row",
+       "cols": [
+        {
+         "w": 100,
+         "items": [
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "Role"
+            }
+           ]
+          },
+          {
+           "t": "small",
+           "runs": [
+            {
+             "s": "UX/UI Designer"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "w": 100,
+         "items": [
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "Deliverable"
+            }
+           ]
+          },
+          {
+           "t": "small",
+           "runs": [
+            {
+             "s": "Mobile App"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "w": 85,
+         "items": [
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "Status"
+            }
+           ]
+          },
+          {
+           "t": "small",
+           "runs": [
+            {
+             "s": "Shipped\nQ3 2026"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "w": 106,
+         "items": [
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "Tools"
+            }
+           ]
+          },
+          {
+           "t": "small",
+           "runs": [
+            {
+             "s": "Figma, Illustrator, Unity, VS Code, Claude Cowork"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "w": 130,
+         "items": [
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "Collaborators"
+            }
+           ]
+          },
+          {
+           "t": "small",
+           "runs": [
+            {
+             "s": "Team of 3: Producer, Artist, Developer"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "30:2209",
+   "name": "Impact / HUA",
+   "items": [
+    {
+     "t": "h2",
+     "runs": [
+      {
+       "s": "Highlights"
+      }
+     ]
+    },
+    {
+     "t": "p",
+     "runs": [
+      {
+       "s": "HUA shipped as a bilingual mobile experience across iOS and Android, with the final UI implemented in Unity and support for English and Simplified Chinese."
+      }
+     ]
+    },
+    {
+     "t": "row",
+     "cols": [
+      {
+       "w": 363,
+       "items": [
+        {
+         "t": "card",
+         "items": [
+          {
+           "t": "stat",
+           "runs": [
+            {
+             "s": "9.5/10"
+            }
+           ],
+           "center": 1
+          },
+          {
+           "t": "label",
+           "runs": [
+            {
+             "s": "TapTap rating"
+            }
+           ],
+           "center": 1
+          }
+         ],
+         "center": 1
+        }
+       ]
+      },
+      {
+       "w": 363,
+       "items": [
+        {
+         "t": "card",
+         "items": [
+          {
+           "t": "stat",
+           "runs": [
+            {
+             "s": "3K+"
+            }
+           ],
+           "center": 1
+          },
+          {
+           "t": "label",
+           "runs": [
+            {
+             "s": "TapTap followers"
+            }
+           ],
+           "center": 1
+          }
+         ],
+         "center": 1
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "30:2249",
+   "name": "Overview",
+   "items": [
+    {
+     "t": "eyebrow",
+     "runs": [
+      {
+       "s": "Overview"
+      }
+     ]
+    },
+    {
+     "t": "h2",
+     "runs": [
+      {
+       "s": "Challenge"
+      }
+     ]
+    },
+    {
+     "t": "p",
+     "runs": [
+      {
+       "s": "HUA began with a childhood memory of learning harmonica in elementary school. We set out to turn that experience into a mobile rhythm game."
+      }
+     ]
+    },
+    {
+     "t": "h2",
+     "runs": [
+      {
+       "s": "My Responsibilities"
+      }
+     ]
+    },
+    {
+     "t": "row",
+     "cols": [
+      {
+       "w": 362,
+       "items": [
+        {
+         "t": "card",
+         "items": [
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "UX/UI Design"
+            }
+           ],
+           "center": 1
+          },
+          {
+           "t": "small",
+           "runs": [
+            {
+             "s": "Owned the experience from interaction exploration through final visual design."
+            }
+           ],
+           "center": 1
+          }
+         ],
+         "center": 1
+        }
+       ]
+      },
+      {
+       "w": 362,
+       "items": [
+        {
+         "t": "card",
+         "items": [
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "UI Implementation"
+            }
+           ],
+           "center": 1
+          },
+          {
+           "t": "small",
+           "runs": [
+            {
+             "s": "Implemented and organized all final UI assets in Unity"
+            }
+           ],
+           "center": 1
+          }
+         ],
+         "center": 1
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "t": "row",
+     "cols": [
+      {
+       "w": 362,
+       "items": [
+        {
+         "t": "card",
+         "items": [
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "AI-Assisted Development"
+            }
+           ],
+           "center": 1
+          },
+          {
+           "t": "small",
+           "runs": [
+            {
+             "s": "Used Claude to implement selected UI interactions and troubleshoot issues alongside developers."
+            }
+           ],
+           "center": 1
+          }
+         ],
+         "center": 1
+        }
+       ]
+      },
+      {
+       "w": 362,
+       "items": [
+        {
+         "t": "card",
+         "items": [
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "Localization"
+            }
+           ],
+           "center": 1
+          },
+          {
+           "t": "small",
+           "runs": [
+            {
+             "s": "Set up and manage English and Simplified Chinese localization."
+            }
+           ],
+           "center": 1
+          }
+         ],
+         "center": 1
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "30:2298",
+   "name": "Product Design Process",
+   "items": [
+    {
+     "t": "card",
+     "band": 1,
+     "items": [
+      {
+       "t": "eyebrow",
+       "runs": [
+        {
+         "s": "Product Design Process"
+        }
+       ]
+      },
+      {
+       "t": "h3",
+       "runs": [
+        {
+         "s": "Overall Process"
+        }
+       ]
+      },
+      {
+       "t": "card",
+       "items": [
+        {
+         "t": "row",
+         "cols": [
+          {
+           "w": 100,
+           "items": [
+            {
+             "t": "card",
+             "items": [
+              {
+               "t": "caption",
+               "runs": [
+                {
+                 "s": "Concept\nAlignment"
+                }
+               ],
+               "center": 1
+              }
+             ],
+             "center": 1
+            }
+           ]
+          },
+          {
+           "w": 9,
+           "items": [
+            {
+             "t": "img",
+             "src": "hua/001.png",
+             "w": 10,
+             "h": 7,
+             "alt": ""
+            }
+           ]
+          },
+          {
+           "w": 112,
+           "items": [
+            {
+             "t": "card",
+             "items": [
+              {
+               "t": "caption",
+               "runs": [
+                {
+                 "s": "Interaction\nExploration"
+                }
+               ],
+               "center": 1
+              }
+             ],
+             "center": 1
+            }
+           ]
+          },
+          {
+           "w": 9,
+           "items": [
+            {
+             "t": "img",
+             "src": "hua/002.png",
+             "w": 10,
+             "h": 7,
+             "alt": ""
+            }
+           ]
+          },
+          {
+           "w": 65,
+           "items": [
+            {
+             "t": "card",
+             "items": [
+              {
+               "t": "caption",
+               "runs": [
+                {
+                 "s": "Design"
+                }
+               ],
+               "center": 1
+              }
+             ],
+             "center": 1
+            }
+           ]
+          },
+          {
+           "w": 9,
+           "items": [
+            {
+             "t": "img",
+             "src": "hua/003.png",
+             "w": 10,
+             "h": 7,
+             "alt": ""
+            }
+           ]
+          },
+          {
+           "w": 108,
+           "items": [
+            {
+             "t": "card",
+             "items": [
+              {
+               "t": "caption",
+               "runs": [
+                {
+                 "s": "Implementation"
+                }
+               ],
+               "center": 1
+              }
+             ],
+             "center": 1
+            }
+           ]
+          },
+          {
+           "w": 9,
+           "items": [
+            {
+             "t": "img",
+             "src": "hua/004.png",
+             "w": 10,
+             "h": 7,
+             "alt": ""
+            }
+           ]
+          },
+          {
+           "w": 86,
+           "items": [
+            {
+             "t": "card",
+             "items": [
+              {
+               "t": "caption",
+               "runs": [
+                {
+                 "s": "Playtesting"
+                }
+               ],
+               "center": 1
+              }
+             ],
+             "center": 1
+            }
+           ]
+          },
+          {
+           "w": 9,
+           "items": [
+            {
+             "t": "img",
+             "src": "hua/005.png",
+             "w": 10,
+             "h": 7,
+             "alt": ""
+            }
+           ]
+          },
+          {
+           "w": 64,
+           "items": [
+            {
+             "t": "card",
+             "items": [
+              {
+               "t": "caption",
+               "runs": [
+                {
+                 "s": "Iterate"
+                }
+               ],
+               "center": 1
+              }
+             ],
+             "center": 1
+            }
+           ]
+          },
+          {
+           "w": 9,
+           "items": [
+            {
+             "t": "img",
+             "src": "hua/006.png",
+             "w": 10,
+             "h": 7,
+             "alt": ""
+            }
+           ]
+          },
+          {
+           "w": 74,
+           "items": [
+            {
+             "t": "card",
+             "items": [
+              {
+               "t": "caption",
+               "runs": [
+                {
+                 "s": "Deliver"
+                }
+               ],
+               "center": 1
+              }
+             ],
+             "center": 1
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "t": "h2",
+       "runs": [
+        {
+         "s": "Design to Implementation"
+        }
+       ]
+      },
+      {
+       "t": "p",
+       "runs": [
+        {
+         "s": "Design and implementation happened in parallel, allowing me to iterate on UI and interactions directly in Unity."
+        }
+       ]
+      },
+      {
+       "t": "card",
+       "items": [
+        {
+         "t": "row",
+         "cols": [
+          {
+           "w": 132,
+           "items": [
+            {
+             "t": "card",
+             "items": [
+              {
+               "t": "caption",
+               "runs": [
+                {
+                 "s": "Figma Design"
+                }
+               ],
+               "center": 1
+              }
+             ],
+             "center": 1
+            }
+           ]
+          },
+          {
+           "w": 9,
+           "items": [
+            {
+             "t": "img",
+             "src": "hua/007.png",
+             "w": 10,
+             "h": 7,
+             "alt": ""
+            }
+           ]
+          },
+          {
+           "w": 168,
+           "items": [
+            {
+             "t": "card",
+             "items": [
+              {
+               "t": "caption",
+               "runs": [
+                {
+                 "s": "Unity Implementation"
+                }
+               ],
+               "center": 1
+              }
+             ],
+             "center": 1
+            }
+           ]
+          },
+          {
+           "w": 9,
+           "items": [
+            {
+             "t": "img",
+             "src": "hua/008.png",
+             "w": 10,
+             "h": 7,
+             "alt": ""
+            }
+           ]
+          },
+          {
+           "w": 211,
+           "items": [
+            {
+             "t": "card",
+             "items": [
+              {
+               "t": "caption",
+               "runs": [
+                {
+                 "s": "AI-Assisted Interaction\nDevelopment"
+                }
+               ],
+               "center": 1
+              }
+             ],
+             "center": 1
+            }
+           ]
+          },
+          {
+           "w": 9,
+           "items": [
+            {
+             "t": "img",
+             "src": "hua/009.png",
+             "w": 10,
+             "h": 7,
+             "alt": ""
+            }
+           ]
+          },
+          {
+           "w": 128,
+           "items": [
+            {
+             "t": "card",
+             "items": [
+              {
+               "t": "caption",
+               "runs": [
+                {
+                 "s": "Test & Debug"
+                }
+               ],
+               "center": 1
+              }
+             ],
+             "center": 1
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "30:2351",
+   "name": "Understand",
+   "items": [
+    {
+     "t": "eyebrow",
+     "runs": [
+      {
+       "s": "Understand"
+      }
+     ]
+    },
+    {
+     "t": "h2",
+     "runs": [
+      {
+       "s": "Project Direction Alignment"
+      }
+     ]
+    },
+    {
+     "t": "p",
+     "runs": [
+      {
+       "s": "The Producer established HUA’s concept and childhood-inspired backstory. From there, we aligned on the product direction and scope:"
+      }
+     ]
+    },
+    {
+     "t": "row",
+     "cols": [
+      {
+       "w": 239,
+       "items": [
+        {
+         "t": "card",
+         "items": [
+          {
+           "t": "img",
+           "src": "hua/010.png",
+           "w": 191,
+           "h": 45,
+           "alt": "Project Direction Alignment"
+          },
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "Product Direction"
+            }
+           ]
+          },
+          {
+           "t": "small",
+           "runs": [
+            {
+             "s": "Design for ages 4+ while preserving the feel of playing a real harmonica"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "w": 239,
+       "items": [
+        {
+         "t": "card",
+         "items": [
+          {
+           "t": "img",
+           "src": "hua/011.png",
+           "w": 191,
+           "h": 45,
+           "alt": "Product Direction"
+          },
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "Core Experience"
+            }
+           ]
+          },
+          {
+           "t": "small",
+           "runs": [
+            {
+             "s": "Follow rhythm cues and play songs using harmonica-inspired controls"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "w": 239,
+       "items": [
+        {
+         "t": "card",
+         "items": [
+          {
+           "t": "img",
+           "src": "hua/012.png",
+           "w": 191,
+           "h": 45,
+           "alt": "Core Experience"
+          },
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "Project Scope"
+            }
+           ]
+          },
+          {
+           "t": "small",
+           "runs": [
+            {
+             "s": "Design and deliver the experience within a three-person, part-time team"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "30:2392",
+   "name": "Design",
+   "items": [
+    {
+     "t": "eyebrow",
+     "runs": [
+      {
+       "s": "Interaction Exploration"
+      }
+     ]
+    },
+    {
+     "t": "h2",
+     "runs": [
+      {
+       "s": "Early-Stage Low-Fidelity Prototype"
+      }
+     ]
+    },
+    {
+     "t": "p",
+     "runs": [
+      {
+       "s": "I explored two interaction directions in Figma and tested the prototypes on a mobile device to understand how the harmonica mechanics translated to touch."
+      }
+     ]
+    },
+    {
+     "t": "card",
+     "items": [
+      {
+       "t": "row",
+       "cols": [
+        {
+         "w": 277,
+         "items": [
+          {
+           "t": "img",
+           "src": "hua/013.png",
+           "w": 276,
+           "h": 144,
+           "alt": "Early-Stage Low-Fidelity Prototype"
+          },
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "01 · Pitch-Based Controls"
+            }
+           ]
+          },
+          {
+           "t": "caption",
+           "runs": [
+            {
+             "s": "Grouped notes by pitch into four columns for a more compact control layout"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "w": 277,
+         "items": [
+          {
+           "t": "img",
+           "src": "hua/014.png",
+           "w": 276,
+           "h": 144,
+           "alt": "01 · Pitch-Based Controls"
+          },
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "02 · Harmonica-Shaped Controls"
+            }
+           ]
+          },
+          {
+           "t": "caption",
+           "runs": [
+            {
+             "s": "Arranged all notes across to more closely mirror a physical harmonica"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "t": "h2",
+     "runs": [
+      {
+       "s": "Iterated Wireframe"
+      }
+     ]
+    },
+    {
+     "t": "p",
+     "runs": [
+      {
+       "s": "Internal Playtesting showed the initial concepts created small touch targets, and made the mechanics difficult to understand."
+      }
+     ]
+    },
+    {
+     "t": "card",
+     "items": [
+      {
+       "t": "img",
+       "src": "hua/015.png",
+       "w": 516,
+       "h": 269,
+       "alt": "Iterated Wireframe",
+       "center": 1
+      },
+      {
+       "t": "h4",
+       "runs": [
+        {
+         "s": "Action"
+        }
+       ]
+      },
+      {
+       "t": "small",
+       "list": "ol",
+       "lines": [
+        [
+         {
+          "s": "Simplified Controls: ",
+          "b": 1
+         },
+         {
+          "s": "Moved blow and draw to a single toggle button"
+         }
+        ],
+        [
+         {
+          "s": "Reduced Visual Weight: Removed the harmonica-shaped interface"
+         }
+        ],
+        [
+         {
+          "s": "Simplified Mechanics: Reduced two rows of notes to one for easier play"
+         }
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "t": "eyebrow",
+     "runs": [
+      {
+       "s": "Design"
+      }
+     ]
+    },
+    {
+     "t": "h2",
+     "runs": [
+      {
+       "s": "High-fidelity Interface"
+      }
+     ]
+    },
+    {
+     "t": "p",
+     "runs": [
+      {
+       "s": "Developed a minimal visual system using restrained color, rounded controls, and localization-friendly typography."
+      }
+     ]
+    },
+    {
+     "t": "img",
+     "src": "hua/016.png",
+     "w": 749,
+     "h": 444,
+     "alt": "High-fidelity Interface"
+    }
+   ]
+  },
+  {
+   "id": "30:2447",
+   "name": "Usability Test & Iteration",
+   "items": [
+    {
+     "t": "eyebrow",
+     "runs": [
+      {
+       "s": "Experience Evaluation"
+      }
+     ]
+    },
+    {
+     "t": "h2",
+     "runs": [
+      {
+       "s": "Playtesting & Iteration"
+      }
+     ]
+    },
+    {
+     "t": "p",
+     "runs": [
+      {
+       "s": "Playtesting with roughly 20 external players helped surface recurring usability issues before release."
+      }
+     ]
+    },
+    {
+     "t": "h3",
+     "runs": [
+      {
+       "s": "Game Guidance"
+      }
+     ]
+    },
+    {
+     "t": "img",
+     "src": "hua/017.png",
+     "w": 749,
+     "h": 212,
+     "alt": "Game Guidance",
+     "fill": "rgba(240, 240, 245, 0.2)"
+    },
+    {
+     "t": "card",
+     "items": [
+      {
+       "t": "row",
+       "cols": [
+        {
+         "w": 293,
+         "items": [
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "User feel"
+            }
+           ]
+          },
+          {
+           "t": "p",
+           "runs": [
+            {
+             "s": "Players were unsure how the game worked and what they could do. "
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "w": 291,
+         "items": [
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "Action"
+            }
+           ]
+          },
+          {
+           "t": "p",
+           "runs": [
+            {
+             "s": "Added an optional in-game help guide accessible from each screen. Illustrated tutorials explain key controls and flows."
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "t": "h3",
+     "runs": [
+      {
+       "s": "Touch Targets "
+      }
+     ]
+    },
+    {
+     "t": "img",
+     "src": "hua/018.png",
+     "w": 749,
+     "h": 212,
+     "alt": "Touch Targets"
+    },
+    {
+     "t": "card",
+     "items": [
+      {
+       "t": "row",
+       "cols": [
+        {
+         "w": 293,
+         "items": [
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "User feel"
+            }
+           ]
+          },
+          {
+           "t": "p",
+           "runs": [
+            {
+             "s": "Buttons were difficult to tap accurately during rhythm gameplay."
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "w": 291,
+         "items": [
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "Action"
+            }
+           ]
+          },
+          {
+           "t": "p",
+           "runs": [
+            {
+             "s": "Reviewed mobile safe areas and increased button sizes for easier interaction."
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "30:2524",
+   "name": "Final Design / HUA",
+   "items": [
+    {
+     "t": "eyebrow",
+     "runs": [
+      {
+       "s": "FINAL DESIGN"
+      }
+     ]
+    },
+    {
+     "t": "h2",
+     "runs": [
+      {
+       "s": "Experience Walkthrough"
+      }
+     ]
+    },
+    {
+     "t": "card",
+     "items": [
+      {
+       "t": "img",
+       "src": "hua/019.png",
+       "w": 713,
+       "h": 315,
+       "alt": "Final Design"
+      },
+      {
+       "t": "h3",
+       "runs": [
+        {
+         "s": "Gameplay Screen"
+        }
+       ],
+       "center": 1
+      },
+      {
+       "t": "p",
+       "runs": [
+        {
+         "s": "Combines descending rhythm cues with blow/draw and harmonica-hole controls for the core playing experience."
+        }
+       ],
+       "center": 1
+      }
+     ],
+     "center": 1
+    },
+    {
+     "t": "card",
+     "items": [
+      {
+       "t": "img",
+       "src": "hua/020.png",
+       "w": 713,
+       "h": 315,
+       "alt": "Gameplay Screen"
+      },
+      {
+       "t": "h3",
+       "runs": [
+        {
+         "s": "Main Screen · Song Playback"
+        }
+       ],
+       "center": 1
+      },
+      {
+       "t": "p",
+       "runs": [
+        {
+         "s": "Brings the player’s recording into the 3D scene, where the boy performs the song users created."
+        }
+       ],
+       "center": 1
+      }
+     ],
+     "center": 1
+    },
+    {
+     "t": "card",
+     "items": [
+      {
+       "t": "img",
+       "src": "hua/021.png",
+       "w": 713,
+       "h": 315,
+       "alt": "Main Screen · Song Playback"
+      },
+      {
+       "t": "h3",
+       "runs": [
+        {
+         "s": "Main Screen · Song Library"
+        }
+       ],
+       "center": 1
+      },
+      {
+       "t": "p",
+       "runs": [
+        {
+         "s": "Shows available and locked songs alongside options to create or import custom songs."
+        }
+       ],
+       "center": 1
+      }
+     ],
+     "center": 1
+    }
+   ]
+  },
+  {
+   "id": "30:2536",
+   "name": "Impact / HUA",
+   "items": [
+    {
+     "t": "eyebrow",
+     "runs": [
+      {
+       "s": "Launch & Reception"
+      }
+     ]
+    },
+    {
+     "t": "h2",
+     "runs": [
+      {
+       "s": "Outcomes"
+      }
+     ]
+    },
+    {
+     "t": "p",
+     "runs": [
+      {
+       "s": "HUA shipped as a bilingual mobile experience across iOS and Android, with the final UI implemented in Unity and support for English and Simplified Chinese."
+      }
+     ]
+    },
+    {
+     "t": "row",
+     "cols": [
+      {
+       "w": 363,
+       "items": [
+        {
+         "t": "card",
+         "items": [
+          {
+           "t": "stat",
+           "runs": [
+            {
+             "s": "9.5/10"
+            }
+           ],
+           "center": 1
+          },
+          {
+           "t": "label",
+           "runs": [
+            {
+             "s": "TapTap rating"
+            }
+           ],
+           "center": 1
+          }
+         ],
+         "center": 1
+        }
+       ]
+      },
+      {
+       "w": 363,
+       "items": [
+        {
+         "t": "card",
+         "items": [
+          {
+           "t": "stat",
+           "runs": [
+            {
+             "s": "3K+"
+            }
+           ],
+           "center": 1
+          },
+          {
+           "t": "label",
+           "runs": [
+            {
+             "s": "TapTap followers"
+            }
+           ],
+           "center": 1
+          }
+         ],
+         "center": 1
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "30:2570",
+   "name": "Check Out the Product / HUA",
+   "items": [
+    {
+     "t": "card",
+     "band": 1,
+     "items": [
+      {
+       "t": "h2",
+       "runs": [
+        {
+         "s": "Check Out the Product"
+        }
+       ]
+      },
+      {
+       "t": "row",
+       "cols": [
+        {
+         "w": 136,
+         "items": [
+          {
+           "t": "card",
+           "items": [
+            {
+             "t": "row",
+             "cols": [
+              {
+               "w": 22,
+               "items": [
+                {
+                 "t": "img",
+                 "src": "hua/022.png",
+                 "w": 22,
+                 "h": 22,
+                 "alt": ""
+                }
+               ]
+              },
+              {
+               "w": 69,
+               "items": [
+                {
+                 "t": "small",
+                 "runs": [
+                  {
+                   "s": "App Store",
+                   "href": "https://apps.apple.com/us/app/hua-pocket-harmonica/id6808189960"
+                  }
+                 ]
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "w": 136,
+         "items": [
+          {
+           "t": "img",
+           "src": "hua/023.png",
+           "w": 136,
+           "h": 38,
+           "alt": "Check Out the Product"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
 }

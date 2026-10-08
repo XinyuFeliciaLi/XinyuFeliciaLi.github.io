@@ -1,0 +1,15 @@
+---
+import direction from '../assets/illustrations/constraint-direction.svg';
+import budget from '../assets/illustrations/constraint-budget.svg';
+import nda from '../assets/illustrations/constraint-nda.svg';
+interface Props { variant: number }
+const { variant } = Astro.props;
+---
+<span class="block-icon constraint-icon" aria-hidden="true">
+  <img src={(variant === 1 ? budget : direction).src} alt="" />
+  {variant === 2 && <img src={nda.src} alt="" />}
+</span>
+<style>
+  .constraint-icon { display: grid; width: 32px; height: 32px; }
+  .constraint-icon img { grid-area: 1 / 1; }
+</style>
