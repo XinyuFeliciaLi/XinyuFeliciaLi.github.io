@@ -39,6 +39,9 @@ const paths = [
  .journey { display: grid; grid-template-columns: 65px minmax(0, 1fr) 65px; gap: 20px; align-items: center; }
  .endpoint { position: relative; text-align: center; font: 500 12px / 1.6 var(--font-sans); }
  .endpoint span { display: block; }
+ .start::after, .end::before { content: ''; position: absolute; top: 50%; width: 4px; height: 1px; background: var(--color-ink-40); opacity: 0.5; }
+ .start::after { left: 100%; }
+ .end::before { right: 100%; }
  .paths { position: relative; display: grid; gap: 52px; }
  .paths::before, .paths::after { content: ''; position: absolute; top: 58px; bottom: 58px; width: 16px; border: 1px solid var(--color-ink-40); opacity: 0.5; }
  .paths::before { left: -17px; border-right: 0; border-radius: 12px 0 0 12px; }
@@ -59,6 +62,7 @@ const paths = [
   [data-motion-ready][data-visible] .paths::after { transition-delay: 850ms; }
  }
  @media (max-width: 40rem) {
+  .start::after, .end::before { display: none; }
   .research-results { padding: 24px 16px; }
   .journey { grid-template-columns: minmax(0, 1fr); gap: 20px; }
   .endpoint { display: flex; justify-content: center; gap: 4px; }
