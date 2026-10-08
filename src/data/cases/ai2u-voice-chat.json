@@ -29,91 +29,13 @@
      ]
     },
     {
-     "t": "row",
-     "cols": [
+     "t": "card",
+     "items": [
       {
-       "w": 478,
-       "items": [
+       "t": "row",
+       "cols": [
         {
-         "t": "card",
-         "items": [
-          {
-           "t": "h3",
-           "runs": [
-            {
-             "s": "Challenge"
-            }
-           ]
-          },
-          {
-           "t": "p",
-           "list": "ul",
-           "lines": [
-            [
-             {
-              "s": "Both voice and text i"
-             },
-             {
-              "s": "nput modes left users unsure whether the system had registered",
-              "b": 1
-             },
-             {
-              "s": " them:"
-             }
-            ],
-            [
-             {
-              "s": "Voice gave no signal it was listening and no way to fix a bad transcript."
-             }
-            ],
-            [
-             {
-              "s": "Text had no visible send action."
-             }
-            ]
-           ]
-          },
-          {
-           "t": "h3",
-           "runs": [
-            {
-             "s": "Goal"
-            }
-           ]
-          },
-          {
-           "t": "p",
-           "runs": [
-            {
-             "s": "Make voice and text input feel reliable, without changing the underlying system."
-            }
-           ]
-          },
-          {
-           "t": "h3",
-           "runs": [
-            {
-             "s": "Impact"
-            }
-           ]
-          },
-          {
-           "t": "p",
-           "runs": [
-            {
-             "s": "The input system shipped in Q2 2025. Internal tickets on the input feature dropped 54% after launch."
-            }
-           ]
-          }
-         ]
-        }
-       ]
-      },
-      {
-       "w": 257,
-       "items": [
-        {
-         "t": "card",
+         "w": 140,
          "items": [
           {
            "t": "h4",
@@ -130,7 +52,12 @@
              "s": "UX/UI Designer"
             }
            ]
-          },
+          }
+         ]
+        },
+        {
+         "w": 140,
+         "items": [
           {
            "t": "h4",
            "runs": [
@@ -146,7 +73,12 @@
              "s": "Led end-to-end input system design"
             }
            ]
-          },
+          }
+         ]
+        },
+        {
+         "w": 210,
+         "items": [
           {
            "t": "h4",
            "runs": [
@@ -162,7 +94,12 @@
              "s": "10+ Teams: Game Designers, Concept Artists, Marketing Team, Front-End &Back-End Developers"
             }
            ]
-          },
+          }
+         ]
+        },
+        {
+         "w": 100,
+         "items": [
           {
            "t": "h4",
            "runs": [
@@ -178,7 +115,12 @@
              "s": "Q2 2025, Shipped"
             }
            ]
-          },
+          }
+         ]
+        },
+        {
+         "w": 140,
+         "items": [
           {
            "t": "h4",
            "runs": [
@@ -198,6 +140,85 @@
          ]
         }
        ]
+      }
+     ]
+    },
+    {
+     "t": "eyebrow",
+     "runs": [
+      {
+       "s": "Overview"
+      }
+     ]
+    },
+    {
+     "t": "h2",
+     "runs": [
+      {
+       "s": "Challenge"
+      }
+     ]
+    },
+    {
+     "t": "p",
+     "runs": [
+      {
+       "s": "Both voice and text i"
+      },
+      {
+       "s": "nput modes left users unsure whether the system had registered",
+       "b": 1
+      },
+      {
+       "s": " them:"
+      }
+     ]
+    },
+    {
+     "t": "p",
+     "list": "ul",
+     "lines": [
+      [
+       {
+        "s": "Voice gave no signal it was listening and no way to fix a bad transcript."
+       }
+      ],
+      [
+       {
+        "s": "Text had no visible send action."
+       }
+      ]
+     ]
+    },
+    {
+     "t": "h2",
+     "runs": [
+      {
+       "s": "Goal"
+      }
+     ]
+    },
+    {
+     "t": "p",
+     "runs": [
+      {
+       "s": "Make voice and text input feel reliable, without changing the underlying system."
+      }
+     ]
+    },
+    {
+     "t": "h2",
+     "runs": [
+      {
+       "s": "Impact"
+      }
+     ]
+    },
+    {
+     "t": "p",
+     "runs": [
+      {
+       "s": "The input system shipped in Q2 2025. Internal tickets on the input feature dropped 54% after launch."
       }
      ]
     }
@@ -1156,13 +1177,20 @@
    "name": "Final Design",
    "items": [
     {
+     "t": "eyebrow",
+     "runs": [
+      {
+       "s": "FINAL DESIGN"
+      }
+     ]
+    },
+    {
      "t": "h2",
      "runs": [
       {
-       "s": "Final Design"
+       "s": "Experience Walkthrough"
       }
-     ],
-     "blue": 1
+     ]
     },
     {
      "t": "p",

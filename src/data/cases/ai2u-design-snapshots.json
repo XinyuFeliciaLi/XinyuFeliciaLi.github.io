@@ -22,71 +22,13 @@
      ]
     },
     {
-     "t": "row",
-     "cols": [
+     "t": "card",
+     "items": [
       {
-       "w": 489,
-       "items": [
+       "t": "row",
+       "cols": [
         {
-         "t": "card",
-         "items": [
-          {
-           "t": "h3",
-           "runs": [
-            {
-             "s": "Challenge"
-            }
-           ]
-          },
-          {
-           "t": "p",
-           "runs": [
-            {
-             "s": "After early access, feedback from business, game design, and the community left every core screen with an open problem to resolve before V1.0."
-            }
-           ]
-          },
-          {
-           "t": "h3",
-           "runs": [
-            {
-             "s": "Goal"
-            }
-           ]
-          },
-          {
-           "t": "p",
-           "runs": [
-            {
-             "s": "Make every screen legible on its own, so players know what they are looking at, while the interface carries the platform's business goals into launch."
-            }
-           ]
-          },
-          {
-           "t": "h3",
-           "runs": [
-            {
-             "s": "Impact"
-            }
-           ]
-          },
-          {
-           "t": "p",
-           "runs": [
-            {
-             "s": "Owned interaction design across 50+ screens from pre early access through the V1.0 launch, which shipped with an 88% positive Steam rating across 2,000+ reviews."
-            }
-           ]
-          }
-         ]
-        }
-       ]
-      },
-      {
-       "w": 229,
-       "items": [
-        {
-         "t": "card",
+         "w": 140,
          "items": [
           {
            "t": "h4",
@@ -103,7 +45,12 @@
              "s": "UX/UI Designer"
             }
            ]
-          },
+          }
+         ]
+        },
+        {
+         "w": 210,
+         "items": [
           {
            "t": "h4",
            "runs": [
@@ -119,7 +66,12 @@
              "s": "Team of 19: Marketing, Business, Developers, Concept Artists, Game Designers"
             }
            ]
-          },
+          }
+         ]
+        },
+        {
+         "w": 100,
+         "items": [
           {
            "t": "h4",
            "runs": [
@@ -135,7 +87,12 @@
              "s": "2024 - 2026, Shipped"
             }
            ]
-          },
+          }
+         ]
+        },
+        {
+         "w": 140,
+         "items": [
           {
            "t": "h4",
            "runs": [
@@ -155,6 +112,62 @@
          ]
         }
        ]
+      }
+     ]
+    },
+    {
+     "t": "eyebrow",
+     "runs": [
+      {
+       "s": "Overview"
+      }
+     ]
+    },
+    {
+     "t": "h2",
+     "runs": [
+      {
+       "s": "Challenge"
+      }
+     ]
+    },
+    {
+     "t": "p",
+     "runs": [
+      {
+       "s": "After early access, feedback from business, game design, and the community left every core screen with an open problem to resolve before V1.0."
+      }
+     ]
+    },
+    {
+     "t": "h2",
+     "runs": [
+      {
+       "s": "Goal"
+      }
+     ]
+    },
+    {
+     "t": "p",
+     "runs": [
+      {
+       "s": "Make every screen legible on its own, so players know what they are looking at, while the interface carries the platform's business goals into launch."
+      }
+     ]
+    },
+    {
+     "t": "h2",
+     "runs": [
+      {
+       "s": "Impact"
+      }
+     ]
+    },
+    {
+     "t": "p",
+     "runs": [
+      {
+       "s": "Owned interaction design across 50+ screens from pre early access through the V1.0 launch, which shipped with an 88% positive Steam rating across 2,000+ reviews."
       }
      ]
     }

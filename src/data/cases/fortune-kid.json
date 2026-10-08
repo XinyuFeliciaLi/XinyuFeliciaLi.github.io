@@ -22,71 +22,13 @@
      ]
     },
     {
-     "t": "row",
-     "cols": [
+     "t": "card",
+     "items": [
       {
-       "w": 470,
-       "items": [
+       "t": "row",
+       "cols": [
         {
-         "t": "card",
-         "items": [
-          {
-           "t": "h3",
-           "runs": [
-            {
-             "s": "Challenge"
-            }
-           ]
-          },
-          {
-           "t": "p",
-           "runs": [
-            {
-             "s": "The studio’s direction was evolving, but its existing website did not clearly communicate its current focus to investors."
-            }
-           ]
-          },
-          {
-           "t": "h3",
-           "runs": [
-            {
-             "s": "Goal"
-            }
-           ]
-          },
-          {
-           "t": "p",
-           "runs": [
-            {
-             "s": "Create a website that supports investor evaluation and outreach while keeping essential game and player information accessible as the studio evolves."
-            }
-           ]
-          },
-          {
-           "t": "h3",
-           "runs": [
-            {
-             "s": "Outcome"
-            }
-           ]
-          },
-          {
-           "t": "p",
-           "runs": [
-            {
-             "s": "A live website that brings the studio’s direction, products, and progress into one place, with game pages and required player information."
-            }
-           ]
-          }
-         ]
-        }
-       ]
-      },
-      {
-       "w": 263,
-       "items": [
-        {
-         "t": "card",
+         "w": 127,
          "items": [
           {
            "t": "h4",
@@ -103,7 +45,12 @@
              "s": "Web Designer & Front End Builder"
             }
            ]
-          },
+          }
+         ]
+        },
+        {
+         "w": 141,
+         "items": [
           {
            "t": "h4",
            "runs": [
@@ -116,10 +63,15 @@
            "t": "small",
            "runs": [
             {
-             "s": "Research, UX/UI Design, AI Native Development"
+             "s": "UX/UI Design, AI Native Development"
             }
            ]
-          },
+          }
+         ]
+        },
+        {
+         "w": 141,
+         "items": [
           {
            "t": "h4",
            "runs": [
@@ -135,7 +87,12 @@
              "s": "Studio Owner & Community Operations"
             }
            ]
-          },
+          }
+         ]
+        },
+        {
+         "w": 98,
+         "items": [
           {
            "t": "h4",
            "runs": [
@@ -151,7 +108,12 @@
              "s": "2026 · Shipped & Live"
             }
            ]
-          },
+          }
+         ]
+        },
+        {
+         "w": 127,
+         "items": [
           {
            "t": "h4",
            "runs": [
@@ -175,11 +137,84 @@
      ]
     },
     {
-     "t": "img",
+     "t": "eyebrow",
+     "runs": [
+      {
+       "s": "Overview"
+      }
+     ]
+    },
+    {
+     "t": "h2",
+     "runs": [
+      {
+       "s": "Challenge"
+      }
+     ]
+    },
+    {
+     "t": "p",
+     "runs": [
+      {
+       "s": "The studio’s direction was evolving, but its existing website did not clearly communicate its current focus to investors."
+      }
+     ]
+    },
+    {
+     "t": "h2",
+     "runs": [
+      {
+       "s": "Goal"
+      }
+     ]
+    },
+    {
+     "t": "p",
+     "runs": [
+      {
+       "s": "Create a website that supports investor evaluation and outreach while keeping essential game and player information accessible as the studio evolves."
+      }
+     ]
+    },
+    {
+     "t": "h2",
+     "runs": [
+      {
+       "s": "Outcome"
+      }
+     ]
+    },
+    {
+     "t": "p",
+     "runs": [
+      {
+       "s": "A live website that brings the studio’s direction, products, and progress into one place, with game pages and required player information."
+      }
+     ]
+    },
+    {
+     "t": "h2",
+     "runs": [
+      {
+       "s": "Highlights"
+      }
+     ]
+    },
+    {
+     "t": "showreel",
      "src": "fortune-kid/001.png",
      "w": 761,
      "h": 485,
-     "alt": "Tools"
+     "alt": "Fortune Kid studio website landing page"
+    },
+    {
+     "t": "caption",
+     "runs": [
+      {
+       "s": "Website link: Fortune Kid Inc.",
+       "href": "https://fortunekidstudio.com/"
+      }
+     ]
     }
    ]
   },
@@ -292,11 +327,32 @@
        "w": 367,
        "items": [
         {
-         "t": "img",
-         "src": "fortune-kid/003.png",
-         "w": 367,
-         "h": 309,
-         "alt": "Stakeholder Requirements"
+         "t": "card",
+         "center": 1,
+         "items": [
+          {
+           "t": "stakeholder-illustration",
+           "alt": "investor"
+          },
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "Support Investor Evaluation"
+            }
+           ],
+           "center": 1
+          },
+          {
+           "t": "small",
+           "runs": [
+            {
+             "s": "Help potential investors understand and contact the studio."
+            }
+           ],
+           "center": 1
+          }
+         ]
         }
        ]
       },
@@ -305,13 +361,20 @@
        "items": [
         {
          "t": "card",
+         "center": 1,
          "items": [
           {
-           "t": "img",
-           "src": "fortune-kid/004.png",
-           "w": 319,
-           "h": 194,
-           "alt": "Stakeholder Requirements"
+           "t": "stakeholder-illustration",
+           "alt": "publishing"
+          },
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "Meet Publishing Requirements"
+            }
+           ],
+           "center": 1
           },
           {
            "t": "small",
@@ -322,8 +385,7 @@
            ],
            "center": 1
           }
-         ],
-         "center": 1
+         ]
         }
        ]
       }
@@ -521,11 +583,7 @@
      ]
     },
     {
-     "t": "img",
-     "src": "fortune-kid/008.png",
-     "w": 749,
-     "h": 341,
-     "alt": "Competitive Analysis"
+     "t": "competitive-analysis"
     },
     {
      "t": "h3",
@@ -718,7 +776,8 @@
         }
        ]
       }
-     ]
+     ],
+     "fill": "#f7f7f8"
     },
     {
      "t": "h3",
@@ -904,7 +963,7 @@
      "t": "h3",
      "runs": [
       {
-       "s": "Generating Standard Pages"
+       "s": "01. Generating Standard Pages"
       }
      ]
     },
@@ -956,7 +1015,7 @@
      "t": "h3",
      "runs": [
       {
-       "s": "Building Custom Layouts"
+       "s": "02. Building Custom Layouts"
       }
      ]
     },
@@ -1008,7 +1067,7 @@
      "t": "h3",
      "runs": [
       {
-       "s": "Exploring Visual Directions"
+       "s": "03. Exploring Visual Directions"
       }
      ]
     },
@@ -1095,11 +1154,8 @@
      ]
     },
     {
-     "t": "img",
-     "src": "fortune-kid/020.png",
-     "w": 749,
-     "h": 229,
-     "alt": "Creative Direction"
+     "t": "iteration-comparison",
+     "alt": "hero"
     },
     {
      "t": "card",
@@ -1146,14 +1202,6 @@
            "alt": ""
           },
           {
-           "t": "h4",
-           "runs": [
-            {
-             "s": "Action"
-            }
-           ]
-          },
-          {
            "t": "p",
            "runs": [
             {
@@ -1176,11 +1224,8 @@
      ]
     },
     {
-     "t": "img",
-     "src": "fortune-kid/023.png",
-     "w": 749,
-     "h": 229,
-     "alt": "Game Information"
+     "t": "iteration-comparison",
+     "alt": "game"
     },
     {
      "t": "card",
@@ -1227,14 +1272,6 @@
            "alt": ""
           },
           {
-           "t": "h4",
-           "runs": [
-            {
-             "s": "Action"
-            }
-           ]
-          },
-          {
            "t": "p",
            "runs": [
             {
@@ -1255,13 +1292,20 @@
    "name": "Final Design",
    "items": [
     {
+     "t": "eyebrow",
+     "runs": [
+      {
+       "s": "FINAL DESIGN"
+      }
+     ]
+    },
+    {
      "t": "h2",
      "runs": [
       {
-       "s": "Final Design"
+       "s": "Experience Walkthrough"
       }
-     ],
-     "blue": 1
+     ]
     },
     {
      "t": "p",
@@ -1372,13 +1416,20 @@
    "name": "Impact",
    "items": [
     {
+     "t": "eyebrow",
+     "runs": [
+      {
+       "s": "Launch"
+      }
+     ]
+    },
+    {
      "t": "h2",
      "runs": [
       {
        "s": "Impact"
       }
-     ],
-     "blue": 1
+     ]
     },
     {
      "t": "row",

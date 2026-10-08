@@ -3,7 +3,11 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CaseHero from './CaseHero.astro';
 import Blocks from './Blocks.astro';
+import CaseSectionNav from './CaseSectionNav.astro';
 import { caseContent, heroImage, type Block, type CaseEntry } from '../data/cases';
+import '../styles/case-study.css';
+import '../styles/case-study-card-layouts.css';
+import '../styles/case-study-motion.css';
 
 interface Props {
 	entry: CaseEntry;
@@ -18,6 +22,8 @@ const content = caseContent(entry.slug);
 const isHeading = (b?: Block) => b?.t === 'h2' || b?.t === 'h3';
 const startsGroup = (items: Block[], i: number) => {
 	const prev = items[i - 1]?.t;
+	if (items[i].band || items[i - 1]?.band) return true;
+	if (items[i].t === 'h4' && /^0?\d\s*[·|]/.test(items[i].runs?.map((r) => r.s).join('') ?? '')) return true;
 	if (isHeading(items[i])) return prev !== 'eyebrow';
 	// a showcase image / video after a card row is its own block (Fortune Kid's show reel)
 	if (['img', 'video'].includes(items[i].t)) return prev === 'row' || prev === 'card';
@@ -36,12 +42,13 @@ const isFinal = (items: Block[]) =>
 
 <BaseLayout title={content.title} description={entry.cardTitle}>
 	<CaseHero image={heroImage(entry.slug)} alt={entry.heroAlt} />
-	<article class:list={['container container--prose case', `case--${entry.slug}`]}>
+	{entry.slug === 'fortune-kid' && <CaseSectionNav sections={content.sections.filter(s => s.name !== 'How Might We').map(s => ({ id: `section-${s.id.replace(':', '-')}`, label: s.name === 'Refine' ? 'Iteration' : s.name }))} />}
+	<article class:list={['container container--prose case', `case--${entry.slug}`, { 'case--featured': entry.kind === 'project' }]}>
 		{
 			content.sections.map((section) => (
-				<section class:list={['case-section', { 'case-section--final': isFinal(section.items) }]} data-reveal>
+				<section id={`section-${section.id.replace(':', '-')}`} data-figma-node={section.id} class:list={['case-section', { 'case-section--final': isFinal(section.items) }]} data-panel-entrances>
 					{groups(section.items).map((group) => (
-						<div class="case-group">
+						<div class:list={['case-group', { 'case-group--insights': group[0]?.runs?.some((run) => run.s.trim() === 'Key Insights') }]}>
 							<Blocks items={group} />
 						</div>
 					))}
@@ -51,48 +58,40 @@ const isFinal = (items: Block[]) =>
 	</article>
 </BaseLayout>
 
-<style>
-	.case {
-		padding-top: var(--space-12);
+<script>
+	let panelObserver: IntersectionObserver | undefined;
+	const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+	function setupPanelEntrances() {
+		panelObserver?.disconnect();
+		if (reducedMotion.matches || !('IntersectionObserver' in window)) return;
+		const panelSelector = '.block-card, .block-img, .block-video, .block-showreel, .block-col--media-panel, .workflow-canvas, .iteration-comparison, .competitive-analysis';
+		// Animate each outer surface once, without nested card reveals.
+		const panels = [...document.querySelectorAll<HTMLElement>('[data-panel-entrances]')]
+			.flatMap(section => [...section.querySelectorAll<HTMLElement>(panelSelector)])
+			.filter(panel => !panel.parentElement?.closest(panelSelector))
+			.filter(panel => !panel.matches('.block-card--metadata, .block-card--details') && !panel.querySelector('.block-row--metadata'));
+		panelObserver = new IntersectionObserver((entries) => {
+			for (const entry of entries) {
+				if (!entry.isIntersecting) continue;
+				entry.target.setAttribute('data-panel-visible', '');
+				panelObserver?.unobserve(entry.target);
+			}
+		}, { threshold: 0, rootMargin: '0px 0px -120px 0px' });
+		for (const panel of panels) {
+			panel.querySelectorAll<HTMLElement>('.block-img, .workflow-layer, .iteration-image, .competitive-analysis img, .showreel-media').forEach(image => {
+				if (!image.hasAttribute('data-panel-media')) image.style.setProperty('--media-rest-opacity', getComputedStyle(image).opacity);
+				image.setAttribute('data-panel-media', '');
+			});
+			panel.setAttribute('data-panel-motion', '');
+			panelObserver.observe(panel);
+		}
 	}
-
-	/* Figma separates sections with space only (~170px at 1920), no divider lines */
-	.case-section {
-		display: flex;
-		flex-direction: column;
-		gap: var(--space-20);
-		padding-block: var(--space-24);
-	}
-
-	/* a heading and its content: Figma keeps ~16–32px inside a sub-block, ~80px between them */
-	.case-group {
-		display: flex;
-		flex-direction: column;
-		gap: var(--space-5);
-	}
-
-	/* stacked showcase cards (Final Design screens) get Figma's ~44px breathing room */
-	.case-group > :global(.block-card--center + .block-card--center) {
-		margin-top: var(--space-5);
-	}
-
-	/* h4 steps within a sub-block ("Investor Interviews", "01 · Aiming & Targeting") sit ~60px
-	   below the previous step in Figma; directly under a heading they stay tight */
-	.case-group > :global(:not(h2, h3, h4, .t-eyebrow) + h4) {
-		margin-top: var(--space-10);
-	}
-
-	.case--ai2u-design-snapshots :global(.block-card--wide .t-body),
-	.case--ai2u-design-snapshots :global(.block-card--wide .block-list) {
-		font-size: calc(0.875rem * var(--fit-400)); /* Figma 16 − 2 */
-	}
-
-	/* Final Design cards: half the usual card background (tinted cards too) */
-	.case-section--final :global(.block-card:not(.block-card .block-card)) {
-		background: color-mix(in srgb, var(--fill, var(--color-card)) 50%, transparent) !important;
-	}
-
-	.case-section:first-child {
-		padding-top: 0;
-	}
-</style>
+	setupPanelEntrances();
+	document.addEventListener('astro:page-load', setupPanelEntrances);
+	document.addEventListener('astro:before-swap', () => panelObserver?.disconnect());
+	reducedMotion.addEventListener('change', () => {
+		if (!reducedMotion.matches) return;
+		panelObserver?.disconnect();
+		document.querySelectorAll('[data-panel-motion]').forEach((panel) => panel.setAttribute('data-panel-visible', ''));
+	});
+</script>

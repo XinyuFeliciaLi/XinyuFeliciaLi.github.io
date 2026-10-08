@@ -109,7 +109,7 @@ Source of truth: [Portfolio - Web (Final)](https://www.figma.com/design/g3zH06cD
 - **Text is copied word for word.** The only edits are the typo fixes and meta-label wording below. Nothing else is reworded.
 - **Images are exported as-is.** None are added or removed.
 - **Typography and color are unified, not copied.** Figma sets body copy in Jost at many slightly different sizes. The site uses Poppins and the type roles in [src/styles/tokens.css](src/styles/tokens.css) everywhere.
-- **Every case study uses the Fortune Kid section format:** phase eyebrow (Understand / Research / Define / Design / Iterate), then the section heading, then content. Final Design and Impact are headings with no eyebrow. In AI2U and Children's Museum, the phase names were large blue headings in Figma and become eyebrows. The heading that follows the phase becomes the section heading.
+- **Every case study uses the Fortune Kid section format:** phase eyebrow (Understand / Research / Define / Design / Iterate), then the section heading, then content. Final-design sections use the MonomonMR format: FINAL DESIGN eyebrow followed by the Experience Walkthrough heading. Impact is a heading with no eyebrow. In AI2U and Children's Museum, the phase names were large blue headings in Figma and become eyebrows. The heading that follows the phase becomes the section heading.
 
 ### Where content lives
 

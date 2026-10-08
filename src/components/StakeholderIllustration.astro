@@ -1,0 +1,16 @@
+---
+import investor from '../assets/illustrations/investor.svg';
+import publishing from '../assets/illustrations/publishing.svg';
+interface Props { kind: string }
+const { kind } = Astro.props;
+---
+<div class:list={['stakeholder-illustration', { publishing: kind === 'publishing' }]} aria-hidden="true">
+ <img src={kind === 'publishing' ? publishing.src : investor.src} alt="" loading="lazy" />
+ {kind === 'publishing' && <span class="document-block" />}
+</div>
+<style>
+ .stakeholder-illustration { width: 160px; height: 160px; position: relative; justify-self: center; align-self: center; }
+ img { position: absolute; left: 14.27px; top: 16.36px; }
+ .publishing img { left: 13.69px; top: 17.94px; }
+ .document-block { position: absolute; left: 21.33px; top: 31.58px; width: 37.34px; height: 37.33px; background: #373435; border-radius: 3px; }
+</style>

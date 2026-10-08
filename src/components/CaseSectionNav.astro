@@ -1,0 +1,56 @@
+---
+interface Props { sections: { id: string; label: string }[] }
+const { sections } = Astro.props;
+---
+<nav class="case-section-nav" aria-label="Case study sections">
+  {sections.map(({ id, label }) => <a href={`#${id}`}>{label}</a>)}
+</nav>
+<style>
+  .case-section-nav { position: sticky; top: 104px; z-index: 20; display: flex; gap: 4px; width: fit-content; max-width: calc(100% - 24px); overflow-x: auto; margin: 24px auto; padding: 8px; border: 1px solid #25374612; border-radius: 12px; background: rgb(255 255 255 / .96); }
+  a { display: block; padding: 8px 12px; white-space: nowrap; font: 400 12px / 1.5 var(--font-sans); color: var(--color-ink-60); text-decoration: none; border-radius: 6px; }
+  a:hover, a:focus-visible { color: var(--color-ink); background: #f7f7f8; }
+  a[aria-current="location"] { color: var(--color-ink); background: #f7f7f8; font-weight: 500; }
+  :global(.case--fortune-kid .case-section) { scroll-margin-top: 184px; }
+  @media (max-width: 40rem) {
+    .case-section-nav { top: 160px; }
+    :global(.case--fortune-kid .case-section) { scroll-margin-top: 240px; }
+  }
+  @media (min-width: 75rem) {
+    .case-section-nav { position: fixed; top: var(--section-nav-top, 160px); left: max(12px, calc((100vw - 750px) / 2 - 216px)); display: flex; flex-direction: column; width: 144px; max-height: calc(100vh - 200px); margin: 0; padding-block: 0; border: 0; background: transparent; }
+    .case-section-nav[data-outside] { visibility: hidden; pointer-events: none; }
+    :global(.case--fortune-kid .case-section) { scroll-margin-top: 120px; }
+  }
+</style>
+<script>
+  let cleanup: (() => void) | undefined;
+  function setupSectionNav() {
+    cleanup?.();
+    const nav = document.querySelector<HTMLElement>('.case-section-nav');
+    const article = document.querySelector<HTMLElement>('.case--fortune-kid');
+    if (!nav || !article) return;
+    const links = [...nav.querySelectorAll<HTMLAnchorElement>('a')];
+    const targets = links.map(link => document.getElementById(link.hash.slice(1))!);
+    let frame = 0;
+    const update = () => {
+      const bounds = article.getBoundingClientRect();
+      // Begin at the main title, then hold below the site header while scrolling.
+      nav.style.setProperty('--section-nav-top', `${Math.max(160, targets[0].offsetTop - window.scrollY)}px`);
+      nav.toggleAttribute('data-outside', bounds.top > innerHeight * .65 || bounds.bottom < 120);
+      let current = 0;
+      const activationLine = innerWidth <= 640 ? 256 : 200;
+      targets.forEach((section, index) => { if (section.getBoundingClientRect().top <= activationLine) current = index; });
+      links.forEach((link, index) => {
+        if (index === current) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+      });
+    };
+    const onScroll = () => { cancelAnimationFrame(frame); frame = requestAnimationFrame(update); };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    update();
+    cleanup = () => { cancelAnimationFrame(frame); window.removeEventListener('scroll', onScroll); window.removeEventListener('resize', onScroll); };
+  }
+  setupSectionNav();
+  document.addEventListener('astro:page-load', setupSectionNav);
+  document.addEventListener('astro:before-swap', () => cleanup?.());
+</script>

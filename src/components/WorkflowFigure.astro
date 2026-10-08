@@ -1,0 +1,42 @@
+---
+import type { ImageMetadata } from 'astro';
+interface Props { variant: number }
+const { variant } = Astro.props;
+const assets = import.meta.glob<{ default: ImageMetadata }>('../assets/workflows/*.png', { eager: true });
+import prompt from '../assets/workflows/prompt.svg';
+const src = (name: string) => assets[`../assets/workflows/${name}.png`].default.src;
+const height = variant === 1 ? 320 : 314;
+// Map diagram coordinates through object-fit: contain, including its side inset.
+const pipelineWidth = variant === 3 ? 676 : 722;
+const pipelineHeight = variant === 3 ? 237 : 256;
+const sourceHeight = variant === 2 ? 364 : 374;
+const scale = Math.min(pipelineWidth / 1024, pipelineHeight / sourceHeight);
+const pipelineLeft = (variant === 1 ? 16.5 : variant === 2 ? 21.5 : 18.5) + (pipelineWidth - 1024 * scale) / 2;
+const centerX = (x: number, width: number) => pipelineLeft + x * scale - width / 2;
+const aiCenterX = variant === 1 ? 106 : variant === 2 ? 229.5 : 99;
+const aiCenterY = variant === 2 ? (235 + 312) / 2 : (242 + 321) / 2;
+const position = (x: number, y: number, w: number, h: number) => `left:${x / 749 * 100}%;top:${y / height * 100}%;width:${w / 749 * 100}%;height:${h / height * 100}%`;
+const descriptions = [
+ 'Privacy policy requirements, prompt and direction, AI-assisted build, review and refinement, working page.',
+ 'Low-fidelity layout and technical reference, AI-assisted build, review and refinement, working page.',
+ 'Tool requirements, AI-assisted build, review and refinement, functional sandbox.'
+];
+---
+<figure class="workflow-figure">
+ <h4>Workflow</h4>
+ <div class="workflow-canvas" role="img" aria-label={descriptions[variant - 1]} style={`aspect-ratio:749/${height}`}>
+  <img class="workflow-layer" src={src(`pipeline-${variant}`)} alt="" style={variant === 3 ? position(18.5,41.69,676,237) : position(variant === 1 ? 16.5 : 21.5,41.69,722,256)} />
+  <img class="workflow-layer workflow-screen" src={src(`result-${variant}`)} alt="" style={position(variant === 1 ? 409.5 : variant === 2 ? 401.5 : 363.25,variant === 1 ? 40.69 : variant === 2 ? 45.69 : 18.69,329,209)} />
+  {variant === 2 ? <>
+   <img class="workflow-layer workflow-screen" src={src('reference')} alt="" style={position(centerX(96.5,98),11.63,98,67)} />
+   <img class="workflow-layer workflow-screen" src={src('lowfi')} alt="" style={position(centerX(377.5,98),11.63,98,67)} />
+  </> : <img class="workflow-layer workflow-screen" src={src('document')} alt="" style={position(centerX(variant === 1 ? 106 : 99,98),variant === 1 ? 12.45 : 9.45,98,67.923)} />}
+  <img class="workflow-layer workflow-icon" src={prompt.src} alt="" style={position(centerX(aiCenterX,48),41.69 + aiCenterY * scale - 47 / 2,48,47)} />
+ </div>
+</figure>
+<style>
+ .workflow-figure { margin: 20px 0 0; width: 100%; max-width: 749px; align-self: center; display: flex; flex-direction: column; gap: 16px; }
+ .workflow-canvas { position: relative; width: 100%; background: var(--case-fill-workflow); border-radius: 16px; overflow: hidden; }
+ .workflow-layer { position: absolute; object-fit: contain; }
+ .workflow-screen { border-radius: 8px; object-fit: cover; }
+</style>

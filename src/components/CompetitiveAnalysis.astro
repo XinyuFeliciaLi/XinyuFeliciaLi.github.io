@@ -1,0 +1,22 @@
+---
+import { Image } from 'astro:assets';
+import first from '../assets/competitive-analysis/comparison-3.png';
+import second from '../assets/competitive-analysis/comparison-2.png';
+import third from '../assets/competitive-analysis/comparison-1.png';
+const comparisons = [
+ { image: first, x: 58.5, y: 23.69, alt: 'Competitive website analysis: studio vision, content access, and communication gaps' },
+ { image: second, x: 203.5, y: 65.69, alt: 'Competitive website analysis: shipped work, progress, and delivery credibility' },
+ { image: third, x: 387.5, y: 107.69, alt: 'Competitive website analysis: strengths, weaknesses, and takeaways' },
+];
+---
+<figure class="competitive-analysis" aria-label="Competitive website analysis comparisons">
+ <div class="comparison-artwork">
+  {comparisons.map(({image, x, y, alt}) => <Image src={image} alt={alt} loading="lazy" style={`left:${x / 749 * 100}%;top:${y / 341 * 100}%`} />)}
+ </div>
+</figure>
+<style>
+ .competitive-analysis { position: relative; isolation: isolate; width: 100%; aspect-ratio: 749 / 341; margin: 12px 0 0; }
+ .competitive-analysis::before { content: ''; position: absolute; inset: 0; z-index: -1; border-radius: 12px; background: #f7f7f8; }
+ .comparison-artwork { position: absolute; inset: 0; }
+ img { position: absolute; width: 40.454%; height: 61.584%; object-fit: cover; border-radius: 12px; box-shadow: 0 4px 4px rgb(0 0 0 / 0.03); }
+</style>

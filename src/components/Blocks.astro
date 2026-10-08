@@ -5,6 +5,11 @@ import { Image } from 'astro:assets';
 import Runs from './Runs.astro';
 import RollingStat from './RollingStat.astro';
 import VideoPlayer from './VideoPlayer.astro';
+import WorkflowFigure from './WorkflowFigure.astro';
+import StakeholderIllustration from './StakeholderIllustration.astro';
+import CompetitiveAnalysis from './CompetitiveAnalysis.astro';
+import IterationComparison from './IterationComparison.astro';
+import ConstraintIcon from './ConstraintIcon.astro';
 import { blockImage, videoUrl, type Block } from '../data/cases';
 
 interface Props {
@@ -17,6 +22,32 @@ const isIcon = (b: Block) => (b.w ?? 0) <= 48 && (b.h ?? 0) <= 48;
 const mods = (b: Block) => ({ center: b.center, blue: b.blue, muted: b.muted });
 const tint = (b: Block) => (b.color ? `color: ${b.color}` : undefined);
 const wideImage = (b: Block) => b.items?.find((i) => (i.t === 'img' || i.t === 'video') && (i.w ?? 0) > 760)?.w;
+const text = (b?: Block) => b?.runs?.map((r) => r.s).join('').trim() ?? '';
+const isDivider = (b: Block) => /^\.{3,}$/.test(text(b));
+const personaKind = (b: Block) => {
+	const src = b.cols?.[0]?.items[0]?.src;
+	return src === 'childrens-museum/006.png' ? 'faculty' : src === 'childrens-museum/007.png' ? 'audience' : undefined;
+};
+const isMetadata = (b: Block) => b.t === 'row' && !!b.cols?.length && b.cols.every((c) =>
+	c.items.length === 2 && c.items[0].t === 'h4' && c.items[1].t === 'small');
+const isProcess = (b: Block) => b.cols?.some((c) => c.items.length === 1 && c.items[0].t === 'img' && isIcon(c.items[0]));
+const isMediaRow = (b: Block) => b.t === 'row' && b.cols?.length === 2 && b.cols.some((c) => c.items.every((i) => i.t === 'img' || i.t === 'video'));
+const isSplitPanel = (b: Block) => b.items?.length === 1 && isMediaRow(b.items[0]) && b.items[0].cols?.some((c) => c.items.some((i) => i.t === 'card'));
+const cardMods = (b: Block) => ({
+	'block-card--stakeholder': b.items?.[0]?.t === 'stakeholder-illustration',
+	'block-card--tint': b.tint,
+	'block-card--center': b.center,
+	'block-card--band': b.band,
+	'block-card--wide': wideImage(b),
+	'block-card--summary': text(b.items?.[0]) === 'Challenge',
+	'block-card--details': text(b.items?.[0]) === 'Role',
+	'block-card--metadata': b.items?.length === 1 && isMetadata(b.items[0]),
+	'block-card--feature': !b.center && b.items?.[0]?.t === 'img' && b.items[0].h === 44,
+	'block-card--alignment': b.items?.[0]?.t === 'img' && b.items[0].w === 191 && b.items[0].h === 45,
+	'block-card--reflection': !!b.center && b.items?.[0]?.t === 'img' && isIcon(b.items[0]),
+	'block-card--process': b.items?.length === 1 && b.items[0].t === 'row' && isProcess(b.items[0]),
+	'block-card--split': isSplitPanel(b),
+});
 // Videos play once their MP4 is added at src/assets/media/<slug>/<figma-node>.mp4; until then
 // the poster frame from Figma is shown as a still.
 ---
@@ -38,6 +69,12 @@ const wideImage = (b: Block) => b.items?.find((i) => (i.t === 'img' || i.t === '
 			);
 		}
 		switch (b.t) {
+			case 'stakeholder-illustration':
+				return <StakeholderIllustration kind={b.alt ?? 'investor'} />;
+			case 'competitive-analysis':
+				return <CompetitiveAnalysis />;
+			case 'iteration-comparison':
+				return <IterationComparison kind={b.alt ?? 'hero'} />;
 			case 'title':
 				return (
 					<h1 class:list={["t-title", mods(b)]} style={tint(b)}>
@@ -46,7 +83,7 @@ const wideImage = (b: Block) => b.items?.find((i) => (i.t === 'img' || i.t === '
 				);
 			case 'eyebrow':
 				return (
-					<p class:list={["t-eyebrow", mods(b)]} style={tint(b)}>
+					<p class:list={["t-eyebrow", mods(b), { 'iteration-divider': isDivider(b) }]} style={tint(b)}>
 						<Runs runs={b.runs!} />
 					</p>
 				);
@@ -113,27 +150,35 @@ const wideImage = (b: Block) => b.items?.find((i) => (i.t === 'img' || i.t === '
 					</p>
 				);
 			case 'img': {
+				const constraint = ['fortune-kid/005.png', 'fortune-kid/006.png', 'fortune-kid/007.png'].indexOf(b.src ?? '');
+				if (constraint !== -1) return <ConstraintIcon variant={constraint} />;
+				const workflow = ['fortune-kid/017.png', 'fortune-kid/018.png', 'fortune-kid/019.png'].indexOf(b.src ?? '');
+				if (workflow !== -1) return <WorkflowFigure variant={workflow + 1} />;
 				const src = blockImage(b.src!);
 				if (!src) return null;
 				return isIcon(b) ? (
 					<Image class:list={["block-icon", { center: b.center, right: b.right }]} src={src} alt="" width={b.w} height={b.h} loading="lazy" />
 				) : (
 					<Image
-						class:list={["block-img", { center: b.center }]}
+						class:list={["block-img", { center: b.center, 'block-img--backdrop': b.fill }]}
 						src={src}
 						alt={b.alt ?? ''}
 						width={b.w}
 						height={b.h}
 						loading="lazy"
-						style={`width: ${b.w}px`}
+						style={`width: ${b.w}px;${b.fill ? `background: ${b.fill};` : ''}`}
 					/>
 				);
+			}
+			case 'showreel': {
+				const src = blockImage(b.src!);
+				return src ? <div class="block-showreel"><div class="showreel-media"><Image src={src} alt={b.alt ?? ''} width={b.w} height={b.h} loading="lazy" /></div></div> : null;
 			}
 			case 'card':
 				return (
 					<div
-							class:list={['block-card', { 'block-card--tint': b.tint, 'block-card--center': b.center, 'block-card--band': b.band, 'block-card--wide': wideImage(b) }]}
-							style={[b.fill && `--fill: ${b.fill}; background: var(--fill)`, wideImage(b) && `--wide: ${wideImage(b)! + 48}px`].filter(Boolean).join('; ') || undefined}
+							class:list={['block-card', cardMods(b)]}
+							style={[b.fill && `--fill: ${b.fill}`, wideImage(b) && `--wide: ${wideImage(b)! + 93}px`].filter(Boolean).join('; ') || undefined}
 						>
 						<Astro.self items={b.items!} />
 					</div>
@@ -156,11 +201,14 @@ const wideImage = (b: Block) => b.items?.find((i) => (i.t === 'img' || i.t === '
 				const rows = cards ? Math.max(...b.cols!.map((c) => c.items[0].items?.length ?? 1)) : 0;
 				return (
 					<div
-						class:list={['block-row', { 'block-row--aligned': cards }]}
-						style={[`grid-template-columns: ${b.cols!.map((c) => `minmax(0, ${c.w}fr)`).join(' ')}`, cards && `--rows: ${rows}`].filter(Boolean).join('; ')}
+						data-persona={personaKind(b)}
+						data-media-source={b.cols?.flatMap((c) => c.items).find((i) => i.src)?.src}
+						data-card-group={cards ? text(b.cols![0].items[0].items?.find((i) => i.runs)) : undefined}
+						class:list={['block-row', { 'block-row--aligned': cards, 'block-row--metadata': isMetadata(b), 'block-row--process': isProcess(b), 'block-row--media': isMediaRow(b), 'block-row--compact': cards && b.cols!.every((c) => shape(c) === 'label,caption') }]}
+						style={[`--columns: ${b.cols!.map((c) => `minmax(${isProcess(b) ? 'min-content' : '0'}, ${c.w}fr)`).join(' ')}`, cards && `--rows: ${rows}`].filter(Boolean).join('; ')}
 					>
-						{b.cols!.map((c) => (
-							<div class="block-col">
+						{b.cols!.map((c, index) => (
+							<div class:list={['block-col', { 'block-col--media-panel': !personaKind(b) && b.cols!.length === 2 && c.items.length === 1 && ['img', 'video'].includes(c.items[0].t) && (c.items[0].w ?? 0) > 250 && b.cols![1 - index].items.some((i) => !['img', 'video'].includes(i.t)) }]} style={c.items[0]?.w && c.items[0]?.h ? `--media-ratio: ${c.items[0].h / c.items[0].w * 100}%` : undefined}>
 								<Astro.self items={c.items} />
 							</div>
 						))}
@@ -172,277 +220,3 @@ const wideImage = (b: Block) => b.items?.find((i) => (i.t === 'img' || i.t === '
 		}
 	})
 }
-
-<style>
-	h2 {
-		margin-top: var(--space-2);
-	}
-
-	/* eyebrow sits tight above its heading, like the Fortune Kid layout */
-	.t-eyebrow + h2,
-	.t-eyebrow + h3 {
-		margin-top: calc(-1 * var(--space-2));
-	}
-
-	h3:not(:first-child) {
-		margin-top: var(--space-6);
-	}
-
-	/* small uppercase label inside a card (navy, unlike section eyebrows) */
-	.t-label-caps {
-		font: var(--type-eyebrow);
-		text-transform: uppercase;
-		letter-spacing: 0.02em;
-		color: var(--color-ink-80);
-	}
-
-	/* Figma stat numbers ("50+ screens", "93%"): 24px Medium */
-	.t-stat {
-		font: var(--type-subheading);
-		font-size: calc(1.5rem * var(--fit-500)); /* Figma 24 */
-	}
-
-	.block-video {
-		width: 100%;
-	}
-
-	.center {
-		text-align: center;
-	}
-
-	.blue {
-		color: var(--color-blue);
-	}
-
-	/* Figma full-width band: tinted strip across the whole page, content stays in the column */
-	.block-card.block-card--band {
-		margin-block: var(--space-8);
-		margin-inline: calc(50% - 50vw);
-		padding: var(--space-20) calc(50vw - 50%);
-		border-radius: 0;
-		gap: var(--space-4);
-	}
-
-	/* cards inside a band (Impact stats etc.): roomy, content centred vertically, as in Figma */
-	.block-card--band .block-card {
-		min-height: 11rem;
-		padding: var(--space-10) var(--space-6);
-		justify-content: center;
-		gap: var(--space-2);
-	}
-
-	.block-card--band .block-row {
-		align-items: stretch;
-	}
-
-	/* Figma snapshot cards are wider than the reading column (image ~913px); grow to that width,
-	   centred, and never wider than the screen */
-	.block-card.block-card--wide {
-		--card-w: min(calc(100vw - 2 * var(--space-6)), var(--wide));
-		width: var(--card-w);
-		margin-inline: calc((100% - var(--card-w)) / 2);
-	}
-
-	.block-list {
-		margin: 0;
-		padding-left: 1.4em;
-		display: flex;
-		flex-direction: column;
-		gap: var(--space-1);
-	}
-
-	.block-list.center {
-		list-style-position: inside;
-		padding-left: 0;
-	}
-
-	.block-card--center {
-		align-items: center;
-		text-align: center;
-	}
-
-	/* bullets stay left-aligned under a centred card heading, as in Figma */
-	.block-card--center .block-list:not(.center) {
-		align-self: stretch;
-		text-align: left;
-	}
-
-	.block-card--center > .block-img,
-	.block-card--center > .block-icon {
-		align-self: center;
-	}
-
-	/* icon-to-title gap is 1.5× the card gap */
-	.block-card > .block-icon {
-		margin-bottom: calc(var(--space-3) / 2);
-	}
-
-	.muted {
-		color: var(--color-ink-80);
-	}
-
-	/* images keep their Figma size (never stretched), and shrink on narrow screens */
-	/* flex containers would otherwise stretch images to the full column width */
-	.block-img,
-	.block-icon {
-		align-self: flex-start;
-	}
-
-	/* Figma alignment for a single image or icon: centred in its box, or icon pinned top-right */
-	.block-img.center,
-	.block-icon.center {
-		align-self: center;
-	}
-
-	.block-icon.right {
-		align-self: flex-end;
-	}
-
-	.block-img {
-		width: auto;
-		height: auto;
-		max-width: 100%;
-		border-radius: var(--radius-sm);
-	}
-
-	.block-icon {
-		display: inline-block;
-		width: auto;
-		height: auto;
-		max-height: 2.75rem;
-	}
-
-	.block-card {
-		display: flex;
-		flex-direction: column;
-		gap: var(--space-3);
-		padding: var(--space-6);
-		background: var(--color-card);
-		border-radius: var(--radius-md);
-	}
-
-	/* nested boxes, as in Figma: a lighter panel inside a card, white pills one level deeper */
-	.block-card .block-card {
-		padding: var(--space-4);
-		background: var(--color-page);
-		border-radius: var(--radius-md);
-	}
-
-	.block-card .block-card .block-card {
-		padding: 6px 12px;
-		background: #fff;
-		border-radius: 12px;
-		justify-content: center;
-	}
-
-	/* arrows between process steps sit on the steps' centre line */
-	.block-col:has(> .block-icon:only-child) {
-		align-self: center;
-		align-items: center;
-	}
-
-	.block-card--tint {
-		background: var(--color-blue-soft);
-	}
-
-	.block-card :global(h3:not(:first-child)),
-	.block-col :global(h3:not(:first-child)) {
-		margin-top: var(--space-2);
-	}
-
-	/* Challenge / Goal / Impact style stacks inside one card: Figma leaves ~44px between them */
-	.block-card > :not(h3, .t-eyebrow) + h3 {
-		margin-top: var(--space-8);
-	}
-
-	.block-row {
-		display: grid;
-		gap: var(--space-4);
-		align-items: start;
-	}
-
-	.block-col {
-		display: flex;
-		flex-direction: column;
-		gap: var(--space-3);
-		min-width: 0;
-	}
-
-	.block-row > .block-col:has(> .block-card:only-child) {
-		align-self: stretch;
-	}
-
-	.block-col > .block-card:only-child {
-		height: 100%;
-	}
-
-	/* card rows: every card shares the same inner rows (icon / title / text …), so a two-line
-	   title in one card pushes the text down in all of them and everything stays aligned */
-	.block-row--aligned {
-		grid-template-rows: repeat(var(--rows), auto);
-		row-gap: 0;
-	}
-
-	.block-row--aligned > .block-col,
-	.block-row--aligned > .block-col > .block-card {
-		display: grid;
-		grid-row: span var(--rows);
-		grid-template-rows: subgrid;
-		height: auto;
-	}
-
-	.block-row--aligned > .block-col > .block-card {
-		row-gap: var(--space-3);
-		align-items: start;
-	}
-
-	.block-card--band .block-row--aligned > .block-col > .block-card {
-		row-gap: var(--space-2);
-		align-content: center;
-	}
-
-	.block-row--aligned > .block-col > .block-card > .block-img,
-	.block-row--aligned > .block-col > .block-card > .block-icon {
-		justify-self: start;
-		align-self: start;
-	}
-
-	.block-row--aligned > .block-col > .block-card--center > .block-img,
-	.block-row--aligned > .block-col > .block-card--center > .block-icon,
-	.block-row--aligned > .block-col > .block-card > .center {
-		justify-self: center;
-	}
-
-	.block-row--aligned > .block-col > .block-card > .block-icon.right {
-		justify-self: end;
-	}
-
-	/* a small icon and its label read as one line */
-	.block-pair {
-		display: flex;
-		align-items: center;
-		gap: var(--space-3);
-	}
-
-	.block-pair > :global(*) {
-		margin: 0 !important;
-	}
-
-	@media (max-width: 40rem) {
-		.block-row {
-			grid-template-columns: 1fr !important;
-		}
-
-		/* stacked on phones: each card lays out on its own again */
-		.block-row--aligned {
-			grid-template-rows: none;
-			row-gap: var(--space-4);
-		}
-
-		.block-row--aligned > .block-col,
-		.block-row--aligned > .block-col > .block-card {
-			display: flex;
-			grid-row: auto;
-		}
-	}
-</style>
