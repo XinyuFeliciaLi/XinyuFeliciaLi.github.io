@@ -39,15 +39,10 @@
 .case :is(p, li) { overflow-wrap: anywhere; }
 .case .t-title + .t-body { margin-top: 8px; }
 .case .t-eyebrow + :is(h2, h3) { margin-top: -8px; }
-.case .t-eyebrow { letter-spacing: 0.025em; }
-.case--fortune-kid .t-eyebrow { color: var(--color-ink-60); }
-.case-section--final > .case-group:first-child > .t-eyebrow:first-child,
-.case--hua .t-eyebrow,
-.case--soul-seasoned .t-eyebrow,
-.case--dreamville-mart .t-eyebrow,
-.case--monomon-mr .t-eyebrow { color: var(--color-ink-60); }
 .case .blue { color: var(--color-blue); }
 .case .muted { color: var(--color-ink-80); }
+/* All case-study eyebrows use Fortune Kid's quiet neutral treatment. */
+.case .t-eyebrow { letter-spacing: 0.025em; color: var(--color-ink-60); }
 .case .center { text-align: center; }
 .case .t-label-caps {
 	font: var(--type-eyebrow);
