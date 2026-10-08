@@ -11,25 +11,19 @@
 	--type-caption: 400 0.8125rem / 1.65 var(--font-sans);
 	--type-label: 500 0.9375rem / 1.6 var(--font-sans);
 	--type-eyebrow: 500 0.75rem / 1.6 var(--font-sans);
-	--color-card: #f7f7f8;
-	--case-fill-soft: #fafafa;
-	--case-fill-feature: #f7f7f8;
-	--case-fill-showcase: rgb(201 201 199 / 0.055);
-	--case-fill-workflow: #fafafa;
-	--case-fill-stakeholder: #fdfcfc;
-	--case-section-gap: 96px;
-	--case-topic-gap: 64px;
+	--color-card: rgb(247 247 248 / 0.3675);
+	--case-fill-soft: var(--color-card);
+	--case-fill-feature: var(--color-card);
+	--case-fill-showcase: rgb(247 247 248 / 0.35);
+	--case-fill-workflow: rgb(247 247 248 / 0.534375);
+	--case-fill-stakeholder: var(--color-card);
+	--case-section-gap: 200px;
+	--case-topic-gap: 106.6667px;
 	font: var(--type-body);
 	padding-block: 46px 120px;
 }
 
-/* Figma uses a different chapter rhythm for each family of projects. */
-.case--fortune-kid { --case-section-gap: 200px; --case-topic-gap: 106.6667px; }
-.case--ai2u-voice-chat,
-.case--ai2u-design-snapshots { --case-section-gap: 112px; }
-.case--dreamville-mart,
-.case--monomon-mr { --case-section-gap: 80px; --case-topic-gap: 60px; }
-.case--graphic-ui-snapshots { --case-section-gap: 96px; --case-topic-gap: 80px; }
+/* Fortune Kid sets the shared surface palette and chapter rhythm for all nine cases. */
 .case--monomon-mr { --type-title: 600 clamp(1.75rem, 4vw, 2rem) / 1.375 var(--font-sans); }
 
 .case-section,
@@ -130,8 +124,7 @@
 
 /* Overview: three spacious narrative groups, with a quieter column for project facts. */
 .case-section:first-child .block-row:has(> .block-col > .block-card--summary) { gap: 12px; }
-.case--fortune-kid .case-section:first-child .block-row { gap: 16px; }
-.case--ai2u-design-snapshots .case-section:first-child .block-row { gap: 25px; }
+.case .case-section:first-child .block-row { gap: 16px; }
 .case .block-card--summary { gap: 8px; padding: 32px 24px; }
 .case .block-card--summary > h3:not(:first-child) { margin-top: 46px; }
 .case .block-card--details {
@@ -145,7 +138,7 @@
 .case--ai2u-design-snapshots .block-card--details > h4:not(:first-child) { margin-top: 41px; }
 
 /* Compact metadata strips stay readable on tablets instead of retaining five narrow columns. */
-.case .block-card--metadata { padding: 24px; background: rgb(247 247 248 / 0.5); }
+.case .block-card--metadata { padding: 24px; background: rgb(247 247 248 / 0.4025); }
 .case .block-row--metadata { column-gap: 31px; row-gap: 24px; }
 .case .block-row--metadata .block-col { gap: 4px; }
 .case .block-row--metadata h4 { font: 500 1rem / 1.5 var(--font-sans); }
@@ -156,9 +149,9 @@
 .case .block-card--feature { padding: 32px; background: var(--fill, var(--case-fill-feature)); }
 .case .block-card--feature > .block-icon { align-self: flex-end; margin-bottom: 20px; background: #fff; border-radius: 50%; }
 .case .block-row--aligned .block-card--feature > .block-icon { justify-self: end; }
-.case .block-card--alignment { background: #f7f7f8; }
+.case .block-card--alignment { background: var(--color-card); }
 .case .block-card--alignment > .block-img { margin-bottom: 37px; }
-.case .block-card--reflection { padding: 32px 20px; background: var(--fill, #f7f7f8); }
+.case .block-card--reflection { padding: 32px 20px; background: var(--fill, var(--color-card)); }
 .case .block-card--reflection h4 { font: 500 0.9375rem / 1.6 var(--font-sans); }
 .case .block-card--reflection > .t-small { margin-top: 8px; }
 .case .block-card--reflection > .block-icon { margin-bottom: -8px; }
@@ -266,7 +259,7 @@
 	max-width: none;
 	align-self: center;
 	padding: 24px 32px;
-	background: #f7f7f8;
+	background: var(--color-card);
 	gap: 24px;
 }
 .case .block-card--wide > .block-img { align-self: center; }
@@ -274,7 +267,6 @@
 .case .block-card--wide .block-col { gap: 24px; }
 .case .block-card--wide .t-label-caps { font-size: 13px; font-weight: 600; }
 .case .block-card--wide :is(.t-body, .block-list) { font: var(--type-small); }
-.case--ai2u-design-snapshots .case-section:nth-child(2) { --case-topic-gap: 72px; }
 
 /* Process diagrams need compact nodes, not the padded cards used for narrative content. */
 .case .block-card--process { padding: 24px 16px; background: var(--case-fill-workflow); }
@@ -297,21 +289,15 @@
 .case--ai2u-voice-chat .case-group--insights .t-body { font: var(--type-small); color: var(--color-ink-80); }
 .case--ai2u-voice-chat #section-30-1836 .block-row--media .block-list { font: var(--type-small); color: var(--color-ink-80); }
 .case--ai2u-voice-chat #section-30-2027 .block-card--split .block-card > .t-small:first-child { color: var(--color-ink); }
-.case--ai2u-voice-chat #section-30-2074 { --case-topic-gap: 32px; margin-top: 80px; }
 .case--ai2u-voice-chat #section-30-2074 .block-card { display: grid; grid-template-columns: 28px minmax(0, 1fr); padding: 20px; gap: 10px; }
 .case--ai2u-voice-chat #section-30-2074 .block-card > h4 { margin-top: 0; align-self: center; }
 .case--ai2u-voice-chat #section-30-2074 .block-card > .t-caption { grid-column: 1 / -1; color: var(--color-ink-80); }
-.case--ai2u-voice-chat #section-30-2074 .block-col > .block-card + .block-card { background: rgb(132 157 225 / 0.06); }
 .case--ai2u-voice-chat #section-30-2074 .block-col { gap: 16px; }
 .case--ai2u-voice-chat #section-30-2074 .block-col > .block-card + .block-card { margin-top: 0; }
 .case--ai2u-voice-chat #section-30-2074 .block-icon { width: 28px; }
 
-/* Fortune Kid uses its stakeholder surface throughout the neutral bento panels. */
-.case--fortune-kid {
-	--case-fill-stakeholder: rgb(247 247 248 / 0.3675);
-	--case-fill-showcase: rgb(247 247 248 / 0.35);
-}
-.case--fortune-kid .block-card--metadata { --fill: rgb(247 247 248 / 0.4025); }
+/* Shared neutral surfaces retain FK's fill alpha without fading text or screenshots. */
+.case .block-card--metadata { --fill: rgb(247 247 248 / 0.4025); }
 .case--fortune-kid #section-30-4052 .block-row--aligned .block-card > .t-body { font-size: 13px; }
 .case--fortune-kid .block-card:has(> img[alt="Information Architecture"]) > .t-caption {
 	width: 665px;
@@ -328,7 +314,8 @@
 .case--fortune-kid #section-30-4098 .workflow-figure + .block-card { margin-top: 0; }
 .case--fortune-kid #section-30-4202 .block-card h4 { font: 500 0.875rem / 1.6 var(--font-sans); }
 .case--fortune-kid #section-30-4202 .block-card .t-body { font: var(--type-small); }
-.case--fortune-kid :is(.block-icon, .workflow-icon) { opacity: 0.6375; }
+.case :is(.block-icon, .workflow-icon) { opacity: 0.6375; }
+.case:not(.case--fortune-kid) .block-icon { filter: grayscale(1); }
 .case--fortune-kid .block-card > .constraint-icon { opacity: 0.16; margin-bottom: -4px; }
 .case--fortune-kid .block-card > .constraint-icon + h4:not(:first-child) { margin-top: 0; }
 .case--fortune-kid #section-30-4202 .block-icon { filter: grayscale(1); opacity: 0.3915046875; }
@@ -338,11 +325,7 @@
 .case--fortune-kid #section-30-4202 .block-col > .block-icon + h4 { margin-top: 0; }
 .case--fortune-kid #section-30-4202 .block-col > .block-icon + h4 + .t-body { margin-top: 6px; }
 .case--fortune-kid #section-30-3996 .case-group > .t-body + h4 { margin-top: 24px; }
-.case--fortune-kid .case-section:not(.case-section--final) {
-	--color-card: var(--case-fill-stakeholder);
-	--case-fill-workflow: rgb(247 247 248 / 0.534375);
-}
-.case--fortune-kid .case-section:not(.case-section--final) .block-card:not(.block-card--band):not(.block-card--split) {
+.case .case-section:not(.case-section--final) .block-card:not(.block-card--band):not(.block-card--split):not(.block-card--split .block-card):not([data-persona] .block-card) {
 	background: var(--fill, var(--case-fill-stakeholder));
 }
 
@@ -366,8 +349,7 @@
 }
 
 @media (max-width: 40rem) {
-	.case { --case-section-gap: 72px; --case-topic-gap: 48px; padding-block: 32px 72px; }
-	.case--fortune-kid { --case-section-gap: 120px; --case-topic-gap: 80px; }
+	.case { --case-section-gap: 120px; --case-topic-gap: 80px; padding-block: 32px 72px; }
 	.case .block-row { grid-template-columns: minmax(0, 1fr); gap: 24px; }
 	.case .block-row--metadata { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 	.case .block-row--aligned { grid-template-rows: none; }
@@ -382,7 +364,6 @@
 	.case-section--final .case-group > .block-card { padding: 28px 20px; }
 	.case-section--final .block-card > .block-img + :is(h3, p) { margin-top: 16px; }
 	.case--soul-seasoned .case-section--final .block-card > :is(h3, .block-row) { margin-inline: 0; }
-	.case--ai2u-design-snapshots .case-section:nth-child(2) { --case-topic-gap: 64px; }
 	.case .block-row--process { gap: 12px; }
 	.case .block-row--compact { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 	.case .block-row[data-persona] { grid-template-columns: minmax(0, 1fr); gap: 12px; }
