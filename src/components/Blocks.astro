@@ -10,6 +10,7 @@ import StakeholderIllustration from './StakeholderIllustration.astro';
 import CompetitiveAnalysis from './CompetitiveAnalysis.astro';
 import IterationComparison from './IterationComparison.astro';
 import ConstraintIcon from './ConstraintIcon.astro';
+import ResearchResults from './ResearchResults.astro';
 import { blockImage, videoUrl, type Block } from '../data/cases';
 
 interface Props {
@@ -150,6 +151,7 @@ const cardMods = (b: Block) => ({
 					</p>
 				);
 			case 'img': {
+				if (b.src === 'ai2u-voice-chat/007.png') return <ResearchResults />;
 				const constraint = ['fortune-kid/005.png', 'fortune-kid/006.png', 'fortune-kid/007.png'].indexOf(b.src ?? '');
 				if (constraint !== -1) return <ConstraintIcon variant={constraint} />;
 				const workflow = ['fortune-kid/017.png', 'fortune-kid/018.png', 'fortune-kid/019.png'].indexOf(b.src ?? '');

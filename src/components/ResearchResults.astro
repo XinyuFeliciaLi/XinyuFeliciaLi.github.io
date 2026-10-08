@@ -1,0 +1,105 @@
+---
+const paths = [
+ [
+  { title: 'Switch To Voice', issue: 'Mode State Unclear', column: 1 },
+  { title: 'Speak', issue: 'No Listening Feedback', column: 2 },
+  { title: 'Transcript Appears', issue: 'Cannot Fix Mistakes', column: 3 },
+  { title: 'Send Automatically', issue: '', column: 4 },
+ ],
+ [
+  { title: 'Switch To Text', issue: 'Mode State Unclear', column: 1 },
+  { title: 'Type Message', issue: '', column: 2 },
+  { title: 'Send Message', issue: 'No Send Button', column: 4 },
+ ],
+];
+---
+
+<figure class="research-results" aria-label="Research Results: voice and text input journeys" data-research-results>
+ <div class="journey">
+  <div class="endpoint start reveal" style="--delay: 0ms"><span>Approach</span> <span>NPC</span></div>
+  <div class="paths">
+   {paths.map((steps, index) => (
+    <ol class="path" aria-label={index === 0 ? 'Voice input' : 'Text input'}>
+     {steps.map((step) => (
+      <li class:list={['step', 'reveal', { 'long-step': index === 1 && step.column === 2 }]} style={`--column: ${step.column}; --delay: ${step.column * 180}ms`}>
+       <span class="step-title">{step.title}</span>
+       {step.issue && <span class="issue"><span class="dot" aria-hidden="true"></span>{step.issue}</span>}
+      </li>
+     ))}
+    </ol>
+   ))}
+  </div>
+  <div class="endpoint end reveal" style="--delay: 900ms"><span>NPC</span> <span>Responds</span></div>
+ </div>
+ <figcaption><span class="dot" aria-hidden="true"></span>Where confidence broke</figcaption>
+</figure>
+
+<style>
+ .research-results { margin: 12px 0 0; padding: 40px 24px 24px; border-radius: 16px; background: var(--case-fill-stakeholder); color: var(--color-ink); }
+ .journey { display: grid; grid-template-columns: 65px minmax(0, 1fr) 65px; gap: 20px; align-items: center; }
+ .endpoint { position: relative; text-align: center; font: 500 12px / 1.6 var(--font-sans); }
+ .endpoint span { display: block; }
+ .start::after, .end::before { content: '→'; position: absolute; top: 50%; transform: translateY(-50%); width: 16px; color: var(--color-ink-40); }
+ .start::after { left: 100%; }
+ .end::before { right: 100%; }
+ .paths { position: relative; display: grid; gap: 52px; }
+ .paths::before, .paths::after { content: ''; position: absolute; top: 58px; bottom: 58px; width: 16px; border: 1px solid var(--color-ink-40); opacity: 0.5; }
+ .paths::before { left: -17px; border-right: 0; border-radius: 12px 0 0 12px; }
+ .paths::after { right: -17px; border-left: 0; border-radius: 0 12px 12px 0; }
+ .path { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; list-style: none; margin: 0; padding: 0; }
+ .step { position: relative; grid-column: var(--column); min-height: 116px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 9px; padding: 14px 8px; border-radius: 12px; background: rgb(37 55 70 / 0.045); text-align: center; }
+ .step:not(:last-child)::after { content: '→'; position: absolute; left: 100%; width: 16px; top: 50%; transform: translateY(-50%); color: var(--color-ink-40); font-size: 18px; }
+ .long-step::after { width: calc(100% + 32px) !important; background: linear-gradient(var(--color-ink-40), var(--color-ink-40)) left center / calc(100% - 12px) 1px no-repeat; text-align: right; }
+ .step-title { font: 500 12px / 1.6 var(--font-sans); }
+ .issue { font: 400 11px / 1.55 var(--font-sans); color: var(--color-ink-60); }
+ .dot { display: inline-block; flex: 0 0 auto; width: 5px; height: 5px; border-radius: 50%; background: currentColor; margin-right: 5px; vertical-align: middle; }
+ figcaption { display: flex; align-items: center; gap: 4px; margin-top: 28px; font: 400 11px / 1.6 var(--font-sans); color: var(--color-ink-60); }
+ @media (prefers-reduced-motion: no-preference) {
+  [data-motion-ready] .reveal { opacity: 0; transform: translateX(-16px); }
+  [data-motion-ready][data-visible] .reveal { opacity: 1; transform: none; transition: opacity 650ms var(--ease-reveal), transform 650ms var(--ease-reveal); transition-delay: var(--delay); }
+  [data-motion-ready] .paths::before, [data-motion-ready] .paths::after { opacity: 0; }
+  [data-motion-ready][data-visible] .paths::before, [data-motion-ready][data-visible] .paths::after { opacity: 0.5; transition: opacity 650ms; }
+  [data-motion-ready][data-visible] .paths::after { transition-delay: 850ms; }
+ }
+ @media (max-width: 40rem) {
+  .research-results { padding: 24px 16px; }
+  .journey { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .start::after, .end::before { display: none; }
+  .endpoint { display: flex; justify-content: center; gap: 4px; }
+  .paths { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+  .paths::before, .paths::after { display: none; }
+  .path { grid-template-columns: minmax(0, 1fr); grid-template-rows: repeat(4, minmax(100px, auto)); gap: 20px; }
+  .step { grid-column: 1; grid-row: var(--column); min-height: 100px; }
+  .long-step { grid-row: 2 / 4; }
+  .step:not(:last-child)::after { content: '↓'; top: 100%; left: 50%; width: 20px !important; height: 20px; transform: translateX(-50%); background: none; text-align: center; line-height: 20px; }
+ }
+</style>
+
+<script>
+ let observer: IntersectionObserver | undefined;
+ const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
+ function setupResearchResults() {
+  observer?.disconnect();
+  const figures = document.querySelectorAll<HTMLElement>('[data-research-results]');
+  if (preference.matches || !('IntersectionObserver' in window)) {
+   figures.forEach(figure => figure.removeAttribute('data-motion-ready'));
+   return;
+  }
+  observer = new IntersectionObserver(entries => {
+   entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    entry.target.setAttribute('data-visible', '');
+    observer?.unobserve(entry.target);
+   });
+  }, { threshold: 0.15 });
+  figures.forEach(figure => {
+   if (figure.hasAttribute('data-visible')) return;
+   figure.setAttribute('data-motion-ready', '');
+   observer?.observe(figure);
+  });
+ }
+ setupResearchResults();
+ document.addEventListener('astro:page-load', setupResearchResults);
+ document.addEventListener('astro:before-swap', () => observer?.disconnect());
+ preference.addEventListener('change', setupResearchResults);
+</script>
