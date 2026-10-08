@@ -1,38 +1,18 @@
 ---
-// Landing-hero sandbox: the real landing page with the hero swapped for one of six design
+// Landing-hero sandbox: the real landing page with the hero swapped for one of three design
 // directions, picked from a floating switcher (which also sets the palette and full-width option). Not linked from the nav, kept out of search engines.
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HomeSections from '../components/HomeSections.astro';
 import HeroBoard from '../components/sandbox/HeroBoard.astro';
-import HeroDither from '../components/sandbox/HeroDither.astro';
-import HeroDitherLight from '../components/sandbox/HeroDitherLight.astro';
+import HeroSelected from '../components/sandbox/HeroSelected.astro';
 import HeroMorph from '../components/sandbox/HeroMorph.astro';
 
 const directions = [
-	{
-		id: 'acid',
-		label: 'Board · Acid',
-		note: 'The board with acid-style icons, ink outlines and hard shadows on the stickies.',
-	},
-	{
-		id: 'dots',
-		label: 'Board · Dots',
-		note: 'Move across the grid: nearby dots grow into vivid circles, pills and stars, then ease back. Idle dots pulse on their own.',
-	},
+	{ id: 'selected', label: 'Selected work', note: 'A clear introduction paired with real project previews. Hover or focus a card to explore the work.' },
 	{
 		id: 'tune',
-		label: 'Board · Dots (tunable)',
+		label: 'Board · Dots',
 		note: 'Just the hero text on the dots grid, with sliders: how far the cursor reaches, how long dots take to settle, how many react, and how big they grow.',
-	},
-	{
-		id: 'dither',
-		label: 'Retro dither',
-		note: 'A cursor lens dithers the gradients and leaves trails. Click for a ripple.',
-	},
-	{
-		id: 'light',
-		label: 'Dither light',
-		note: 'A calmer dither: one soft light follows the cursor across the whole hero, Bayer-dithered into a few flat tones.',
 	},
 	{
 		id: 'morph',
@@ -59,12 +39,9 @@ const palettes = [
 				aria-labelledby={`tab-${d.id}`}
 				hidden={i !== 0}
 			>
-				{d.id === 'acid' && <HeroBoard variant="acid" />}
-				{d.id === 'dots' && <HeroBoard variant="dots" ambient />}
 				{d.id === 'tune' && <HeroBoard variant="dots" tunable bare ambient />}
-				{d.id === 'dither' && <HeroDither />}
-				{d.id === 'light' && <HeroDitherLight />}
-				{d.id === 'morph' && <HeroMorph />}
+								{d.id === 'morph' && <HeroMorph />}
+				{d.id === 'selected' && <HeroSelected />}
 			</section>
 		))
 	}
@@ -100,15 +77,29 @@ const palettes = [
 				))
 			}
 			<span class="switcher__divider" aria-hidden="true"></span>
+			<label class="nav-picker">Navigation <select data-nav-style aria-label="Navigation style"><option value="glass">Glass pill</option><option value="split">Split capsules</option><option value="editorial">Editorial line</option></select></label>
 			<button type="button" data-bleed-toggle aria-pressed="false">Full width</button>
 		</div>
 	</div>
 </BaseLayout>
 
 <style>
+	.hero :global([data-slider-value]) { display:inline-block; min-width:3ch; text-align:right; font:var(--type-caption); font-weight:600; font-variant-numeric:tabular-nums; color:var(--color-ink); }
+	@media(max-width:40rem) { .hero :global(.board__tune) { grid-template-columns:1fr; } }
+
+	.nav-picker { display:flex; align-items:center; gap:8px; padding:4px 12px; font:var(--type-caption); }
+	.nav-picker select { font:inherit; color:inherit; background:white; border:1px solid var(--color-line); border-radius:8px; padding:4px; }
 	/* Same placement as the landing hero */
 	.hero {
+		width: 100%;
+		margin-inline: auto;
 		padding: var(--space-4) var(--space-4) 0;
+	}
+
+	.hero > :global(*) {
+		width: 100%;
+		margin-inline: auto;
+		min-width: 0;
 	}
 
 	/* "Full width" option: edge to edge, no inset or rounded corners */
@@ -205,8 +196,22 @@ const palettes = [
 	import { PALETTE_EVENT } from '../components/sandbox/shared';
 
 	function initSwitcher() {
+		document.querySelectorAll<HTMLInputElement>('[data-hero] input[type="range"]').forEach((input, index) => {
+			if (input.parentElement?.querySelector('[data-slider-value]')) return;
+			input.id ||= 'sandbox-slider-' + index;
+			const output = document.createElement('output');
+			output.setAttribute('for', input.id);
+			output.dataset.sliderValue = '';
+			const update = () => { output.value = input.value; };
+			update();
+			input.insertAdjacentElement('afterend', output);
+			input.addEventListener('input', update);
+		});
 		const root = document.querySelector<HTMLElement>('[data-switcher]');
 		if (!root) return;
+		root.querySelector<HTMLSelectElement>('[data-nav-style]')?.addEventListener('change', (e) => {
+			document.querySelector<HTMLElement>('.site-header')!.dataset.style = (e.target as HTMLSelectElement).value;
+		});
 		const tabs = [...root.querySelectorAll<HTMLButtonElement>('[data-tab]')];
 		const note = root.querySelector<HTMLElement>('[data-note]')!;
 
@@ -254,7 +259,7 @@ const palettes = [
 			select(tabs[(i + (key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length].dataset.tab!, true);
 		});
 
-		if (location.hash) select(location.hash.slice(1));
+		if (location.hash) select(location.hash === '#dots' ? 'tune' : location.hash.slice(1));
 	}
 
 	document.addEventListener('astro:page-load', initSwitcher);

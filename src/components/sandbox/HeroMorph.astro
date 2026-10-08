@@ -3,15 +3,22 @@
 // (hearts, stars, flowers, circles) near the cursor and shrink back to dots further out. Far cells react later, so moving the mouse sends a wave across the field.
 // A few cells are inked dark and hop around on a slow beat.
 import HeroCopy from './HeroCopy.astro';
+interface Props { controls?: boolean; }
+const { controls = true } = Astro.props;
 ---
 
-<div class="morph" data-morph>
+<div class="morph" data-morph data-controls={controls || undefined}>
 	<canvas class="morph__canvas" data-canvas aria-hidden="true"></canvas>
 	<div class="morph__content">
 		<div class="morph__copy" data-copy>
 			<HeroCopy />
 		</div>
 	</div>
+	{controls && <div class="morph__controls" role="group" aria-label="Form follows timing settings">
+		<label>Background <input type="range" min="0" max="100" value="97" data-setting="background" /></label>
+		<label>Motion speed <input type="range" min="20" max="200" value="100" data-setting="speed" /></label>
+		<label>Shape reach <input type="range" min="20" max="55" value="31" data-setting="reach" /></label>
+	</div>}
 </div>
 
 <style>
@@ -22,7 +29,7 @@ import HeroCopy from './HeroCopy.astro';
 		margin-inline: auto;
 		display: grid;
 		align-items: center;
-		background: #5adba6;
+		background: #fffffe;
 		border-radius: clamp(var(--radius-lg), 4vw, 80px);
 		overflow: hidden;
 	}
@@ -48,17 +55,21 @@ import HeroCopy from './HeroCopy.astro';
 		width: fit-content;
 		max-width: 38rem;
 	}
+	.morph__controls { position: absolute; left: var(--space-6); right: var(--space-6); bottom: var(--space-6); display: flex; flex-wrap: wrap; gap: var(--space-3); }
+	.morph__controls label { display: flex; align-items: center; gap: var(--space-2); padding: var(--space-2) var(--space-3); background: #fff; border: 1px solid var(--color-line); border-radius: var(--radius-sm); font: var(--type-caption); }
+	.morph__controls input { width: 5rem; accent-color: var(--color-ink); }
+	@media (max-width: 40rem) { .morph[data-controls] .morph__content { padding-bottom: 10rem; } }
 </style>
 
 <script>
-	import { onEachPage, reducedMotion, visibleLoop } from './shared';
+	import { currentPalette, onEachPage, reducedMotion, visibleLoop } from './shared';
 
 	const CELL = 72; // grid pitch in CSS px — roomy, so the shapes read as a sparse field
-	// Mint field, white shapes, navy ink
-	const PAL = { bg: '#5adba6', fg: '#ffffff', dark: '#253746' };
+	// Light neutral field with the landing page's Why Me colors
+	
 
 	// m = 0 near the cursor (full shape), 1 far away (a plain dot)
-	type Cell = { x: number; y: number; m: number; v: number; dark: boolean; kind: number; rot: number };
+	type Cell = { x: number; y: number; m: number; v: number; colorIndex: number; kind: number; rot: number };
 
 	onEachPage('[data-morph]', (root) => {
 		const canvas = root.querySelector<HTMLCanvasElement>('[data-canvas]')!;
@@ -75,7 +86,16 @@ import HeroCopy from './HeroCopy.astro';
 
 		const pointer = { x: 0, y: 0, inside: false };
 		const focus = { x: 0, y: 0 };
-		let lastHop = 0;
+		let lastMove = -Infinity;
+		let phase = 0;
+		let lastFrame = 0;
+		const settings = { background: 97, speed: 100, reach: 31 };
+		const onInput = (event: Event) => {
+			const input = event.target as HTMLInputElement;
+			const key = input.dataset.setting as keyof typeof settings;
+			if (key in settings) settings[key] = Number(input.value);
+		};
+		root.addEventListener('input', onInput);
 
 		function resize() {
 			w = root.clientWidth;
@@ -93,7 +113,7 @@ import HeroCopy from './HeroCopy.astro';
 			cells = [];
 			for (let r = 0; r < rows; r++) {
 				for (let c = 0; c < cols; c++) {
-					cells.push({ x: ox + c * CELL, y: oy + r * CELL, m: 1, v: 0, dark: Math.random() < 0.06, kind: Math.floor(Math.random() * 4), rot: (Math.random() - 0.5) * 0.8 });
+					cells.push({ x: ox + c * CELL, y: oy + r * CELL, m: 1, v: 0, colorIndex: (r * 3 + c) % 7, kind: Math.floor(Math.random() * 4), rot: (Math.random() - 0.5) * 0.8 });
 				}
 			}
 			focus.x = w / 2;
@@ -142,8 +162,8 @@ import HeroCopy from './HeroCopy.astro';
 
 		// Near the cursor the cell's shape swells in; far away only the small dot remains
 		function shape(c: Cell, m: number, pop: number) {
-			const dot = CELL * 0.07;
-			const r = CELL * 0.36 * (1 - m) * pop;
+			const dot = CELL * 0.023;
+			const r = CELL * 0.28 * (1 - m) * pop;
 			ctx.save();
 			ctx.translate(c.x, c.y);
 			ctx.rotate(c.rot);
@@ -164,26 +184,22 @@ import HeroCopy from './HeroCopy.astro';
 		function render(now: number) {
 			const still = reducedMotion();
 
-			// Without a pointer, the focus drifts slowly around the middle
-			const tx = pointer.inside ? pointer.x : w / 2 + (still ? 0 : Math.sin(now * 0.0004) * w * 0.22);
-			const ty = pointer.inside ? pointer.y : h / 2 + (still ? 0 : Math.cos(now * 0.00055) * h * 0.18);
-			focus.x += (tx - focus.x) * (still ? 1 : 0.12);
-			focus.y += (ty - focus.y) * (still ? 1 : 0.12);
-
-			// The beat: every ~0.9s one dark cell hops somewhere else
-			if (!still && now - lastHop > 900 && cells.length) {
-				lastHop = now;
-				const darks = cells.filter((c) => c.dark);
-				if (darks.length) darks[Math.floor(Math.random() * darks.length)].dark = false;
-				cells[Math.floor(Math.random() * cells.length)].dark = true;
-			}
-
-			ctx.fillStyle = PAL.bg;
+			const dt = lastFrame ? Math.min(now - lastFrame, 64) : 16;
+			lastFrame = now;
+			if (!still) phase += dt * settings.speed / 100;
+			const interacting = pointer.inside && now - lastMove < 1200;
+			const tx = interacting ? pointer.x : w * (0.5 + Math.sin(phase * 0.0006) * 0.38);
+			const ty = interacting ? pointer.y : h * (0.5 + Math.cos(phase * 0.00085) * 0.34);
+			focus.x += (tx - focus.x) * (still ? 1 : 0.08);
+			focus.y += (ty - focus.y) * (still ? 1 : 0.08);
+			const warmth = (100 - settings.background) / 15;
+			ctx.fillStyle = 'rgb(255, ' + Math.round(255 - 2 * warmth) + ', ' + Math.round(255 - 7 * warmth) + ')';
 			ctx.fillRect(0, 0, w, h);
 
 			const near = Math.min(w, h) * 0.22;
-			const far = Math.max(w, h) * 0.55;
+			const far = Math.max(near + 40, Math.max(w, h) * settings.reach / 100);
 			const groups = new Map<string, Cell[]>();
+			const palette = currentPalette();
 
 			for (const c of cells) {
 				const gap = clearDistance(c.x, c.y);
@@ -200,7 +216,7 @@ import HeroCopy from './HeroCopy.astro';
 					c.v = (c.v + (target - c.m) * k) * 0.8;
 					c.m = Math.min(1.08, Math.max(-0.04, c.m + c.v));
 				}
-				const color = c.dark ? PAL.dark : PAL.fg;
+				const color = palette[c.colorIndex % palette.length];
 				if (!groups.has(color)) groups.set(color, []);
 				groups.get(color)!.push(c);
 			}
@@ -216,6 +232,8 @@ import HeroCopy from './HeroCopy.astro';
 		}
 
 		const onMove = (e: PointerEvent) => {
+			if ((e.target as HTMLElement).closest('.morph__controls')) return;
+			lastMove = performance.now();
 			const rect = root.getBoundingClientRect();
 			Object.assign(pointer, { x: e.clientX - rect.left, y: e.clientY - rect.top, inside: true });
 		};
@@ -232,6 +250,9 @@ import HeroCopy from './HeroCopy.astro';
 		const stop = visibleLoop(root, render);
 
 		return () => {
+			root.removeEventListener('input', onInput);
+			root.removeEventListener('pointermove', onMove);
+			root.removeEventListener('pointerleave', onLeave);
 			ro.disconnect();
 			stop();
 		};

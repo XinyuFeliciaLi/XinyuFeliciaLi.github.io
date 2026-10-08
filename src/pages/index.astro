@@ -1,94 +1,13 @@
 ---
-import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HomeSections from '../components/HomeSections.astro';
-import avatar from '../assets/home/avatar.jpg';
+import HeroMorph from '../components/sandbox/HeroMorph.astro';
 ---
-
 <BaseLayout title="Home">
-	<section class="hero">
-		<div class="hero__panel">
-			<svg class="hero__deco" viewBox="0 0 1871 594" preserveAspectRatio="none" aria-hidden="true">
-				<circle cx="309" cy="189" r="6" fill="#53bc90"></circle>
-				<circle cx="949" cy="509" r="6" fill="#dac8ff"></circle>
-				<path d="M1138 245l4 8 8 4-8 4-4 8-4-8-8-4 8-4z" fill="#ea4f39"></path>
-				<path d="M1554 126l4 8 8 4-8 4-4 8-4-8-8-4 8-4z" fill="#daf69c"></path>
-				<path d="M1785 533l4 8 8 4-8 4-4 8-4-8-8-4 8-4z" fill="#5adba6"></path>
-				<path d="M183 423l5 15 15 5-15 5-5 15-5-15-15-5 15-5z" fill="none" stroke="#ea4f39" stroke-width="1.5"></path>
-				<path d="M1515 486l20-30" stroke="#5adba6" stroke-width="4" stroke-linecap="round"></path>
-			</svg>
-			<div class="hero__content">
-				<p class="hero__hello" data-reveal>
-					Hello
-					<Image src={avatar} alt="Felicia Li" width={32} height={32} class="hero__avatar" />
-					I&rsquo;m Felicia
-				</p>
-				<h1 class="t-display" data-reveal>
-					A product designer<br />who puts people in control of technology
-				</h1>
-				<p class="t-small" data-reveal>
-					Designing and shipping <strong>B2C products</strong> &amp; <strong>AI experiences</strong><br />
-					Previously at AlterStaff &middot; CMU Alum
-				</p>
-			</div>
-		</div>
-	</section>
-
-	<HomeSections />
+  <section class="hero"><HeroMorph controls={false} /></section>
+  <HomeSections />
 </BaseLayout>
-
 <style>
-	.hero {
-		padding: var(--space-4) var(--space-4) 0;
-	}
-
-	/* Figma: 1871 × 594 panel, 25px inset, large rounded corners */
-	.hero__panel {
-		position: relative;
-		max-width: var(--width-hero);
-		min-height: clamp(30rem, 31vw, 37rem);
-		margin-inline: auto;
-		display: grid;
-		align-items: center;
-		background-color: var(--color-surface);
-		background-image: radial-gradient(var(--color-line) 1px, transparent 1px);
-		background-size: 16px 16px;
-		border-radius: clamp(var(--radius-lg), 4vw, 80px);
-		overflow: hidden;
-	}
-
-	.hero__deco {
-		position: absolute;
-		inset: 0;
-		width: 100%;
-		height: 100%;
-		pointer-events: none;
-	}
-
-	.hero__content {
-		position: relative;
-		width: 100%;
-		max-width: calc(var(--width-wide) + 2 * var(--space-6));
-		margin-inline: auto;
-		padding: calc(var(--space-10) + 5rem) var(--space-6) var(--space-12);
-		display: flex;
-		flex-direction: column;
-		gap: var(--space-4);
-	}
-
-	.hero__hello {
-		display: flex;
-		align-items: center;
-		gap: var(--space-2);
-		font: var(--type-body);
-		font-size: calc(1.125rem * var(--fit-400)); /* Figma 18 */
-		margin: 0;
-	}
-
-	.hero__hello :global(.hero__avatar) {
-		width: 2rem;
-		height: 2rem;
-		border-radius: var(--radius-full);
-		object-fit: cover;
-	}
+.hero { width:100%; padding:var(--space-4) var(--space-4) 0; margin-inline:auto; }
+.hero > :global(*) { width:100%; margin-inline:auto; min-width:0; }
 </style>

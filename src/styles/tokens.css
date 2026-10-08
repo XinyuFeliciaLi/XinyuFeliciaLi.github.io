@@ -5,7 +5,7 @@
 	/* Color */
 	--color-page: #ffffff;
 	--color-surface: #e4e6ea; /* cards, panels, hero, nav — a darker grey than the page */
-	--color-card: rgb(228 230 234 / 0.3); /* grey boxes on landing cards + case studies: last number = opacity (0–1) */
+	--color-card: #fdfcfc; /* near-white surfaces for landing cards and case studies */
 	--color-ink: #253746;
 	--color-ink-80: rgb(37 55 70 / 0.8);
 	--color-ink-60: rgb(37 55 70 / 0.6);
