@@ -441,6 +441,14 @@
      ]
     },
     {
+     "t": "h2",
+     "runs": [
+      {
+       "s": "Research Pipeline"
+      }
+     ]
+    },
+    {
      "t": "p",
      "runs": [
       {
@@ -984,7 +992,15 @@
      "t": "eyebrow",
      "runs": [
       {
-       "s": "Usability Test & Iteration"
+       "s": "Iterate"
+      }
+     ]
+    },
+    {
+     "t": "h2",
+     "runs": [
+      {
+       "s": "Refining the Experience before Launch"
       }
      ]
     },
@@ -1335,13 +1351,20 @@
      "band": 1,
      "items": [
       {
+       "t": "eyebrow",
+       "runs": [
+        {
+         "s": "Launch"
+        }
+       ]
+      },
+      {
        "t": "h2",
        "runs": [
         {
          "s": "Impact"
         }
-       ],
-       "blue": 1
+       ]
       },
       {
        "t": "p",
@@ -1379,7 +1402,8 @@
              "center": 1
             }
            ],
-           "center": 1
+           "center": 1,
+           "fill": "#ffffff"
           }
          ]
         },
@@ -1408,7 +1432,8 @@
              "center": 1
             }
            ],
-           "center": 1
+           "center": 1,
+           "fill": "#ffffff"
           }
          ]
         },
@@ -1437,7 +1462,8 @@
              "center": 1
             }
            ],
-           "center": 1
+           "center": 1,
+           "fill": "#ffffff"
           }
          ]
         }
