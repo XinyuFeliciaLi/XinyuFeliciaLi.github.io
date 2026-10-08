@@ -1,0 +1,1101 @@
+{
+	"title": "Monomon MR",
+	"sections": [
+		{
+			"id": "30:3554",
+			"name": "Project Info / Dreamville",
+			"items": [
+				{
+					"t": "title",
+					"runs": [
+						{
+							"s": "Monomon MR"
+						}
+					]
+				},
+				{
+					"t": "p",
+					"runs": [
+						{
+							"s": "Led project delivery and UX/UI design for a 2-player mixed reality (MR) combat experience built around spatial interaction, hand gestures, and shared physical play."
+						}
+					]
+				},
+				{
+					"t": "card",
+					"items": [
+						{
+							"t": "row",
+							"cols": [
+								{
+									"w": 127,
+									"items": [
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Role"
+												}
+											]
+										},
+										{
+											"t": "small",
+											"runs": [
+												{
+													"s": "Project Manager Product Designer"
+												}
+											]
+										}
+									]
+								},
+								{
+									"w": 98,
+									"items": [
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Deliverable"
+												}
+											]
+										},
+										{
+											"t": "small",
+											"runs": [
+												{
+													"s": "Quest 3 · Playable Build"
+												}
+											]
+										}
+									]
+								},
+								{
+									"w": 141,
+									"items": [
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Collaborators"
+												}
+											]
+										},
+										{
+											"t": "small",
+											"runs": [
+												{
+													"s": "Team of 6 · Artists, Developers, Designer"
+												}
+											]
+										}
+									]
+								},
+								{
+									"w": 64,
+									"items": [
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Status"
+												}
+											]
+										},
+										{
+											"t": "small",
+											"runs": [
+												{
+													"s": "4 months · 2024"
+												}
+											]
+										}
+									]
+								},
+								{
+									"w": 127,
+									"items": [
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Tools"
+												}
+											]
+										},
+										{
+											"t": "small",
+											"runs": [
+												{
+													"s": "Figma, Illustrator, Unity, Jira"
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "30:3566",
+			"name": "Highlights / Dreamville",
+			"items": [
+				{
+					"t": "h2",
+					"runs": [
+						{
+							"s": "Highlights"
+						}
+					]
+				},
+				{
+					"t": "video",
+					"src": "monomon-mr/001.png",
+					"w": 750,
+					"h": 422,
+					"video": "monomon-mr/30-3596.mp4",
+					"alt": "Highlights"
+				},
+				{
+					"t": "row",
+					"cols": [
+						{
+							"w": 363,
+							"items": [
+								{
+									"t": "card",
+									"items": [
+										{
+											"t": "h3",
+											"runs": [
+												{
+													"s": "GDC 2024 Showcase"
+												}
+											],
+											"center": 1
+										},
+										{
+											"t": "small",
+											"runs": [
+												{
+													"s": " Demo Showcase at the ETC’s Booth"
+												}
+											],
+											"center": 1
+										}
+									],
+									"center": 1
+								}
+							]
+						},
+						{
+							"w": 363,
+							"items": [
+								{
+									"t": "card",
+									"items": [
+										{
+											"t": "h3",
+											"runs": [
+												{
+													"s": "Shared-Space MR"
+												}
+											],
+											"center": 1
+										},
+										{
+											"t": "small",
+											"runs": [
+												{
+													"s": "Led a 6-person team from concept to a playable Quest 3 build"
+												}
+											],
+											"center": 1
+										}
+									],
+									"center": 1
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "30:3603",
+			"name": "Overview / Dreamville",
+			"items": [
+				{
+					"t": "eyebrow",
+					"runs": [
+						{
+							"s": "Overview"
+						}
+					]
+				},
+				{
+					"t": "h2",
+					"runs": [
+						{
+							"s": "Concept"
+						}
+					]
+				},
+				{
+					"t": "p",
+					"runs": [
+						{
+							"s": "Bring the fantasy of battling monsters into the player’s own environment.\n",
+							"b": 1
+						},
+						{
+							"s": "Mixed reality transforms the surrounding room into part of the game world through physical movement, virtual characters, and spatial interaction."
+						}
+					]
+				},
+				{
+					"t": "h2",
+					"runs": [
+						{
+							"s": "Challenge"
+						}
+					]
+				},
+				{
+					"t": "row",
+					"cols": [
+						{
+							"w": 363,
+							"items": [
+								{
+									"t": "card",
+									"items": [
+										{
+											"t": "img",
+											"src": "monomon-mr/002.png",
+											"w": 44,
+											"h": 44,
+											"alt": "",
+											"right": 1
+										},
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Balancing Ambition With Feasibility"
+												}
+											]
+										},
+										{
+											"t": "small",
+											"runs": [
+												{
+													"s": "Shape an ambitious MR concept around technical constraints, team capacity, and a four-month timeline."
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"w": 363,
+							"items": [
+								{
+									"t": "card",
+									"items": [
+										{
+											"t": "img",
+											"src": "monomon-mr/003.png",
+											"w": 44,
+											"h": 44,
+											"alt": "",
+											"right": 1
+										},
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Structuring for Continuous Iteration"
+												}
+											]
+										},
+										{
+											"t": "small",
+											"runs": [
+												{
+													"s": "Create a structure for the team to prototype, test, learn, and adjust without slowing delivery."
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "30:3639",
+			"name": "Product Delivery & Team Leadership / Monomon MR",
+			"items": [
+				{
+					"t": "eyebrow",
+					"runs": [
+						{
+							"s": "Production"
+						}
+					]
+				},
+				{
+					"t": "h2",
+					"runs": [
+						{
+							"s": "Product Delivery & Team Leadership"
+						}
+					]
+				},
+				{
+					"t": "row",
+					"cols": [
+						{
+							"w": 230,
+							"items": [
+								{
+									"t": "card",
+									"items": [
+										{
+											"t": "img",
+											"src": "monomon-mr/004.png",
+											"w": 44,
+											"h": 44,
+											"alt": "",
+											"right": 1
+										},
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Agile Delivery"
+												}
+											]
+										},
+										{
+											"t": "small",
+											"runs": [
+												{
+													"s": "Ran weekly sprints, retrospectives, and monthly milestones to keep the team aligned and moving."
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"w": 230,
+							"items": [
+								{
+									"t": "card",
+									"items": [
+										{
+											"t": "img",
+											"src": "monomon-mr/005.png",
+											"w": 44,
+											"h": 44,
+											"alt": "",
+											"right": 1
+										},
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Playtest Operations"
+												}
+											]
+										},
+										{
+											"t": "small",
+											"runs": [
+												{
+													"s": "Planned and facilitated playtests, then translated findings into product priorities."
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"w": 230,
+							"items": [
+								{
+									"t": "card",
+									"items": [
+										{
+											"t": "img",
+											"src": "monomon-mr/006.png",
+											"w": 44,
+											"h": 44,
+											"alt": "",
+											"right": 1
+										},
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "External Showcase"
+												}
+											]
+										},
+										{
+											"t": "small",
+											"runs": [
+												{
+													"s": "Drove GDC participation and coordinated the team around a stable demo build."
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"t": "card",
+					"items": [
+						{
+							"t": "h3",
+							"runs": [
+								{
+									"s": "High-Level Roadmap"
+								}
+							]
+						},
+						{
+							"t": "img",
+							"src": "monomon-mr/007.png",
+							"w": 709,
+							"h": 346,
+							"alt": "High-Level Roadmap"
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "30:3690",
+			"name": "Design & Playtest Iteration / Monomon MR",
+			"items": [
+				{
+					"t": "eyebrow",
+					"runs": [
+						{
+							"s": "Experience Design"
+						}
+					]
+				},
+				{
+					"t": "h2",
+					"runs": [
+						{
+							"s": "Design & Iteration"
+						}
+					]
+				},
+				{
+					"t": "p",
+					"runs": [
+						{
+							"s": "Alongside project management, I owned key UX/UI interactions and feedback systems. VFX, 3D, animation, and implementation were owned by my teammates."
+						}
+					]
+				},
+				{
+					"t": "h3",
+					"runs": [
+						{
+							"s": "Overall Process "
+						}
+					]
+				},
+				{
+					"t": "card",
+					"items": [
+						{
+							"t": "row",
+							"cols": [
+								{
+									"w": 94,
+									"items": [
+										{
+											"t": "card",
+											"items": [
+												{
+													"t": "caption",
+													"runs": [
+														{
+															"s": "Understand"
+														}
+													],
+													"center": 1
+												}
+											],
+											"center": 1
+										}
+									]
+								},
+								{
+									"w": 9,
+									"items": [
+										{
+											"t": "img",
+											"src": "monomon-mr/008.png",
+											"w": 10,
+											"h": 7,
+											"alt": ""
+										}
+									]
+								},
+								{
+									"w": 70,
+									"items": [
+										{
+											"t": "card",
+											"items": [
+												{
+													"t": "caption",
+													"runs": [
+														{
+															"s": "Define"
+														}
+													],
+													"center": 1
+												}
+											],
+											"center": 1
+										}
+									]
+								},
+								{
+									"w": 9,
+									"items": [
+										{
+											"t": "img",
+											"src": "monomon-mr/009.png",
+											"w": 10,
+											"h": 7,
+											"alt": ""
+										}
+									]
+								},
+								{
+									"w": 72,
+									"items": [
+										{
+											"t": "card",
+											"items": [
+												{
+													"t": "caption",
+													"runs": [
+														{
+															"s": "Design"
+														}
+													],
+													"center": 1
+												}
+											],
+											"center": 1
+										}
+									]
+								},
+								{
+									"w": 9,
+									"items": [
+										{
+											"t": "img",
+											"src": "monomon-mr/010.png",
+											"w": 10,
+											"h": 7,
+											"alt": ""
+										}
+									]
+								},
+								{
+									"w": 114,
+									"items": [
+										{
+											"t": "card",
+											"items": [
+												{
+													"t": "caption",
+													"runs": [
+														{
+															"s": "Implementation"
+														}
+													],
+													"center": 1
+												}
+											],
+											"center": 1
+										}
+									]
+								},
+								{
+									"w": 9,
+									"items": [
+										{
+											"t": "img",
+											"src": "monomon-mr/011.png",
+											"w": 10,
+											"h": 7,
+											"alt": ""
+										}
+									]
+								},
+								{
+									"w": 74,
+									"items": [
+										{
+											"t": "card",
+											"items": [
+												{
+													"t": "caption",
+													"runs": [
+														{
+															"s": "Playtest"
+														}
+													],
+													"center": 1
+												}
+											],
+											"center": 1
+										}
+									]
+								},
+								{
+									"w": 9,
+									"items": [
+										{
+											"t": "img",
+											"src": "monomon-mr/012.png",
+											"w": 10,
+											"h": 7,
+											"alt": ""
+										}
+									]
+								},
+								{
+									"w": 67,
+									"items": [
+										{
+											"t": "card",
+											"items": [
+												{
+													"t": "caption",
+													"runs": [
+														{
+															"s": "Iterate"
+														}
+													],
+													"center": 1
+												}
+											],
+											"center": 1
+										}
+									]
+								},
+								{
+									"w": 9,
+									"items": [
+										{
+											"t": "img",
+											"src": "monomon-mr/013.png",
+											"w": 10,
+											"h": 7,
+											"alt": ""
+										}
+									]
+								},
+								{
+									"w": 78,
+									"items": [
+										{
+											"t": "card",
+											"items": [
+												{
+													"t": "caption",
+													"runs": [
+														{
+															"s": "Delivery"
+														}
+													],
+													"center": 1
+												}
+											],
+											"center": 1
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"t": "h3",
+					"runs": [
+						{
+							"s": "Playtesting & Iteration"
+						}
+					]
+				},
+				{
+					"t": "p",
+					"runs": [
+						{
+							"s": "Refined the functional build through weekly playthroughs, then validated the experience with public players during two open-house testing days."
+						}
+					]
+				},
+				{
+					"t": "h4",
+					"runs": [
+						{
+							"s": "01 · Aiming & Targeting"
+						}
+					]
+				},
+				{
+					"t": "img",
+					"src": "monomon-mr/014.png",
+					"w": 749,
+					"h": 250,
+					"alt": "01 · Aiming & Targeting"
+				},
+				{
+					"t": "card",
+					"items": [
+						{
+							"t": "row",
+							"cols": [
+								{
+									"w": 293,
+									"items": [
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Player Feel"
+												}
+											]
+										},
+										{
+											"t": "p",
+											"runs": [
+												{
+													"s": "Players struggled to tell where their attacks would land."
+												}
+											]
+										}
+									]
+								},
+								{
+									"w": 291,
+									"items": [
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Design Response"
+												}
+											]
+										},
+										{
+											"t": "p",
+											"runs": [
+												{
+													"s": "Introduced a dynamic cursor and clearer targeting feedback to make aiming more predictable."
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"t": "h4",
+					"runs": [
+						{
+							"s": "02 · Attack Charging"
+						}
+					]
+				},
+				{
+					"t": "img",
+					"src": "monomon-mr/015.png",
+					"w": 749,
+					"h": 250,
+					"alt": "02 · Attack Charging"
+				},
+				{
+					"t": "card",
+					"items": [
+						{
+							"t": "row",
+							"cols": [
+								{
+									"w": 293,
+									"items": [
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Player Feel"
+												}
+											]
+										},
+										{
+											"t": "p",
+											"runs": [
+												{
+													"s": "Players were unsure when an attack was ready."
+												}
+											]
+										}
+									]
+								},
+								{
+									"w": 291,
+									"items": [
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Design Response"
+												}
+											]
+										},
+										{
+											"t": "p",
+											"runs": [
+												{
+													"s": "Added hold-and-charge feedback to communicate progress and attack readiness."
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"t": "h4",
+					"runs": [
+						{
+							"s": "03 · Combat State Feedback"
+						}
+					]
+				},
+				{
+					"t": "img",
+					"src": "monomon-mr/016.png",
+					"w": 749,
+					"h": 250,
+					"alt": "03 · Combat State Feedback"
+				},
+				{
+					"t": "card",
+					"items": [
+						{
+							"t": "row",
+							"cols": [
+								{
+									"w": 293,
+									"items": [
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Player Feel"
+												}
+											]
+										},
+										{
+											"t": "p",
+											"runs": [
+												{
+													"s": "Fast-paced combat made health changes on the UI panel easy to miss."
+												}
+											]
+										}
+									]
+								},
+								{
+									"w": 291,
+									"items": [
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Design Response"
+												}
+											]
+										},
+										{
+											"t": "p",
+											"runs": [
+												{
+													"s": "Used blue and red screen tints to reinforce healing and damage without interrupting gameplay."
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "30:3753",
+			"name": "Final Design / Dreamville",
+			"items": [
+				{
+					"t": "eyebrow",
+					"runs": [
+						{
+							"s": "FINAL DESIGN"
+						}
+					]
+				},
+				{
+					"t": "h2",
+					"runs": [
+						{
+							"s": "Experience Walkthrough"
+						}
+					]
+				},
+				{
+					"t": "p",
+					"runs": [
+						{
+							"s": "A walkthrough of the final UI and interaction flow, incorporating key changes from playtesting and iteration."
+						}
+					]
+				},
+				{
+					"t": "video",
+					"src": "monomon-mr/017.png",
+					"w": 750,
+					"h": 422,
+					"video": "monomon-mr/30-3757.mp4",
+					"alt": "Experience Walkthrough"
+				}
+			]
+		},
+		{
+			"id": "30:3758",
+			"name": "Outcome / Dreamville",
+			"items": [
+				{
+					"t": "eyebrow",
+					"runs": [
+						{
+							"s": "Outcome"
+						}
+					]
+				},
+				{
+					"t": "h2",
+					"runs": [
+						{
+							"s": "Project Impact"
+						}
+					]
+				},
+				{
+					"t": "row",
+					"cols": [
+						{
+							"w": 359,
+							"items": [
+								{
+									"t": "card",
+									"items": [
+										{
+											"t": "img",
+											"src": "monomon-mr/018.png",
+											"w": 44,
+											"h": 44,
+											"alt": "",
+											"right": 1
+										},
+										{
+											"t": "h3",
+											"runs": [
+												{
+													"s": "Cross-Functional Delivery"
+												}
+											]
+										},
+										{
+											"t": "small",
+											"runs": [
+												{
+													"s": "Delivered a playable Quest 3 build in four months with a 6-person team through clear milestones and iterative planning."
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"w": 359,
+							"items": [
+								{
+									"t": "card",
+									"items": [
+										{
+											"t": "img",
+											"src": "monomon-mr/019.png",
+											"w": 44,
+											"h": 44,
+											"alt": "",
+											"right": 1
+										},
+										{
+											"t": "h3",
+											"runs": [
+												{
+													"s": "Playtest-Driven Decisions"
+												}
+											]
+										},
+										{
+											"t": "small",
+											"runs": [
+												{
+													"s": "Turned feedback from playtests, GDC, soft opening, and the ETC tournament into product improvements."
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}

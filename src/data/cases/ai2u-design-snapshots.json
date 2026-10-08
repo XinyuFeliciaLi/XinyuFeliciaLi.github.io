@@ -1,0 +1,938 @@
+{
+ "title": "Design Snapshots: AI-powered platform",
+ "sections": [
+  {
+   "id": "30:4333",
+   "name": "Overview",
+   "items": [
+    {
+     "t": "title",
+     "runs": [
+      {
+       "s": "Design Snapshots: AI-powered platform"
+      }
+     ]
+    },
+    {
+     "t": "p",
+     "runs": [
+      {
+       "s": "This collection highlights my focus on interaction design in AI2U, an AI-powered companion platform. 2D illustrations and 3D assets are created by dedicated Concept and 3D artists."
+      }
+     ]
+    },
+    {
+     "t": "row",
+     "cols": [
+      {
+       "w": 489,
+       "items": [
+        {
+         "t": "card",
+         "items": [
+          {
+           "t": "h3",
+           "runs": [
+            {
+             "s": "Challenge"
+            }
+           ]
+          },
+          {
+           "t": "p",
+           "runs": [
+            {
+             "s": "After early access, feedback from business, game design, and the community left every core screen with an open problem to resolve before V1.0."
+            }
+           ]
+          },
+          {
+           "t": "h3",
+           "runs": [
+            {
+             "s": "Goal"
+            }
+           ]
+          },
+          {
+           "t": "p",
+           "runs": [
+            {
+             "s": "Make every screen legible on its own, so players know what they are looking at, while the interface carries the platform's business goals into launch."
+            }
+           ]
+          },
+          {
+           "t": "h3",
+           "runs": [
+            {
+             "s": "Impact"
+            }
+           ]
+          },
+          {
+           "t": "p",
+           "runs": [
+            {
+             "s": "Owned interaction design across 50+ screens from pre early access through the V1.0 launch, which shipped with an 88% positive Steam rating across 2,000+ reviews."
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "w": 229,
+       "items": [
+        {
+         "t": "card",
+         "items": [
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "Role"
+            }
+           ]
+          },
+          {
+           "t": "small",
+           "runs": [
+            {
+             "s": "UX/UI Designer"
+            }
+           ]
+          },
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "Collaborators"
+            }
+           ]
+          },
+          {
+           "t": "small",
+           "runs": [
+            {
+             "s": "Team of 19: Marketing, Business, Developers, Concept Artists, Game Designers"
+            }
+           ]
+          },
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "Status"
+            }
+           ]
+          },
+          {
+           "t": "small",
+           "runs": [
+            {
+             "s": "2024 - 2026, Shipped"
+            }
+           ]
+          },
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "Tools"
+            }
+           ]
+          },
+          {
+           "t": "small",
+           "runs": [
+            {
+             "s": "Figma, Photoshop, \nIllustrator, Unity"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "30:4351",
+   "name": "Frame 112",
+   "items": [
+    {
+     "t": "eyebrow",
+     "runs": [
+      {
+       "s": "Design Snapshots"
+      }
+     ],
+     "center": 1
+    },
+    {
+     "t": "h3",
+     "runs": [
+      {
+       "s": " Post-Session Summary"
+      }
+     ],
+     "center": 1
+    },
+    {
+     "t": "card",
+     "items": [
+      {
+       "t": "img",
+       "src": "ai2u-design-snapshots/001.png",
+       "w": 913,
+       "h": 313,
+       "alt": "Post-Session Summary"
+      },
+      {
+       "t": "row",
+       "cols": [
+        {
+         "w": 250,
+         "items": [
+          {
+           "t": "label",
+           "runs": [
+            {
+             "s": "Overview"
+            }
+           ]
+          },
+          {
+           "t": "p",
+           "runs": [
+            {
+             "s": "Led the iteration cycle to improve readability and clarity for the post-session summary screen so users could follow the overall experience flow."
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "w": 250,
+         "items": [
+          {
+           "t": "label",
+           "runs": [
+            {
+             "s": "Problem"
+            }
+           ]
+          },
+          {
+           "t": "p",
+           "runs": [
+            {
+             "s": "A lack of visual hierarchy left users unable to tell what the session information meant, and the AI generated overview requires processing time the screen had to design around."
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "w": 250,
+         "items": [
+          {
+           "t": "label",
+           "runs": [
+            {
+             "s": "UX Approach"
+            }
+           ]
+          },
+          {
+           "t": "p",
+           "list": "ul",
+           "lines": [
+            [
+             {
+              "s": "Applied Gestalt grouping and visual hierarchy to organize content into scannable sections"
+             }
+            ],
+            [
+             {
+              "s": "Sequenced the entrance animation so session stats resolve first, giving the AI overview room to process before it lands"
+             }
+            ]
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "t": "h3",
+     "runs": [
+      {
+       "s": "Level Overview"
+      }
+     ],
+     "center": 1
+    },
+    {
+     "t": "card",
+     "items": [
+      {
+       "t": "img",
+       "src": "ai2u-design-snapshots/002.png",
+       "w": 913,
+       "h": 313,
+       "alt": "Level Overview"
+      },
+      {
+       "t": "row",
+       "cols": [
+        {
+         "w": 250,
+         "items": [
+          {
+           "t": "label",
+           "runs": [
+            {
+             "s": "Overview"
+            }
+           ]
+          },
+          {
+           "t": "p",
+           "runs": [
+            {
+             "s": "Led the iteration cycle for the level overview screen, a template reused across all five levels, restructured to hold new features without losing scannability."
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "w": 250,
+         "items": [
+          {
+           "t": "label",
+           "runs": [
+            {
+             "s": "Problem"
+            }
+           ]
+          },
+          {
+           "t": "p",
+           "runs": [
+            {
+             "s": "The screen presented content without visual hierarchy, and incoming requirements added more information to an undifferentiated layout."
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "w": 250,
+         "items": [
+          {
+           "t": "label",
+           "runs": [
+            {
+             "s": "UX Approach"
+            }
+           ]
+          },
+          {
+           "t": "p",
+           "list": "ul",
+           "lines": [
+            [
+             {
+              "s": "Established visual hierarchy to organize existing content"
+             }
+            ],
+            [
+             {
+              "s": "Integrated equip items into the structure"
+             }
+            ]
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "t": "h3",
+     "runs": [
+      {
+       "s": "Shop"
+      }
+     ],
+     "center": 1
+    },
+    {
+     "t": "card",
+     "items": [
+      {
+       "t": "img",
+       "src": "ai2u-design-snapshots/003.png",
+       "w": 913,
+       "h": 313,
+       "alt": "Shop"
+      },
+      {
+       "t": "row",
+       "cols": [
+        {
+         "w": 250,
+         "items": [
+          {
+           "t": "label",
+           "runs": [
+            {
+             "s": "Overview"
+            }
+           ]
+          },
+          {
+           "t": "p",
+           "runs": [
+            {
+             "s": "Led the end-to-end iteration cycle for the shop screens, restructuring the interface around conversion goals."
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "w": 250,
+         "items": [
+          {
+           "t": "label",
+           "runs": [
+            {
+             "s": "Problem"
+            }
+           ]
+          },
+          {
+           "t": "p",
+           "runs": [
+            {
+             "s": "The interface lacked the merchandising structure needed to support conversion focused business goals."
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "w": 250,
+         "items": [
+          {
+           "t": "label",
+           "runs": [
+            {
+             "s": "UX Approach"
+            }
+           ]
+          },
+          {
+           "t": "p",
+           "list": "ul",
+           "lines": [
+            [
+             {
+              "s": "Applied the endowment effect through a try on feature, letting users visualize ownership before purchase"
+             }
+            ],
+            [
+             {
+              "s": "Grouped items by category to support browsing"
+             }
+            ]
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "t": "h3",
+     "runs": [
+      {
+       "s": "AI-NPCs Customization"
+      }
+     ],
+     "center": 1
+    },
+    {
+     "t": "card",
+     "items": [
+      {
+       "t": "img",
+       "src": "ai2u-design-snapshots/004.png",
+       "w": 913,
+       "h": 313,
+       "alt": "AI-NPCs Customization"
+      },
+      {
+       "t": "row",
+       "cols": [
+        {
+         "w": 250,
+         "items": [
+          {
+           "t": "label",
+           "runs": [
+            {
+             "s": "Overview"
+            }
+           ]
+          },
+          {
+           "t": "p",
+           "runs": [
+            {
+             "s": "Led the end-to-end design cycle for the customization panel, where users shape their companion's appearance and AI personality traits before a session."
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "w": 250,
+         "items": [
+          {
+           "t": "label",
+           "runs": [
+            {
+             "s": "Problem"
+            }
+           ]
+          },
+          {
+           "t": "p",
+           "runs": [
+            {
+             "s": "Inconstent interaction patterns increased the learning curve, and personality settings lived in a separate modal, splitting how the companion looks from how it behaves."
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "w": 250,
+         "items": [
+          {
+           "t": "label",
+           "runs": [
+            {
+             "s": "UX Approach"
+            }
+           ]
+          },
+          {
+           "t": "p",
+           "list": "ul",
+           "lines": [
+            [
+             {
+              "s": "Applied a consistency heuristic to align interaction patterns with the shop"
+             }
+            ],
+            [
+             {
+              "s": "Consolidated appearance and personality into one panel so trait changes read against the model in view"
+             }
+            ]
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "t": "h3",
+     "runs": [
+      {
+       "s": "Maze - Game Mechanics"
+      }
+     ],
+     "center": 1
+    },
+    {
+     "t": "card",
+     "items": [
+      {
+       "t": "img",
+       "src": "ai2u-design-snapshots/005.png",
+       "w": 913,
+       "h": 313,
+       "alt": "Maze - Game Mechanics"
+      },
+      {
+       "t": "row",
+       "cols": [
+        {
+         "w": 250,
+         "items": [
+          {
+           "t": "label",
+           "runs": [
+            {
+             "s": "Overview"
+            }
+           ]
+          },
+          {
+           "t": "p",
+           "runs": [
+            {
+             "s": "Led the interaction design cycle for the in-session UI, surfacing affordances for new game mechanics without competing with the 3D environment."
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "w": 250,
+         "items": [
+          {
+           "t": "label",
+           "runs": [
+            {
+             "s": "Problem"
+            }
+           ]
+          },
+          {
+           "t": "p",
+           "runs": [
+            {
+             "s": "The in-session UI gave users no signal of what was available, so they did not know what to use in the maze."
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "w": 250,
+         "items": [
+          {
+           "t": "label",
+           "runs": [
+            {
+             "s": "UX Approach"
+            }
+           ]
+          },
+          {
+           "t": "p",
+           "list": "ul",
+           "lines": [
+            [
+             {
+              "s": "Surfaced the controls and items the new mechanics introduced"
+             }
+            ],
+            [
+             {
+              "s": "Applied minimalist UI principles to keep visual weight low so the 3D scene stayed primary"
+             }
+            ]
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "t": "h3",
+     "runs": [
+      {
+       "s": "Phonograph"
+      }
+     ],
+     "center": 1
+    },
+    {
+     "t": "card",
+     "items": [
+      {
+       "t": "img",
+       "src": "ai2u-design-snapshots/006.png",
+       "w": 910,
+       "h": 313,
+       "alt": "Phonograph"
+      },
+      {
+       "t": "row",
+       "cols": [
+        {
+         "w": 250,
+         "items": [
+          {
+           "t": "label",
+           "runs": [
+            {
+             "s": "Overview"
+            }
+           ]
+          },
+          {
+           "t": "p",
+           "runs": [
+            {
+             "s": "Led the interaction design for the in-app music player from 0 to 1, giving users direct control over ambient audio."
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "w": 250,
+         "items": [
+          {
+           "t": "label",
+           "runs": [
+            {
+             "s": "Problem"
+            }
+           ]
+          },
+          {
+           "t": "p",
+           "runs": [
+            {
+             "s": "Album soundtracks lived on Steam, separate from the environment where users wanted to control playback."
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "w": 250,
+         "items": [
+          {
+           "t": "label",
+           "runs": [
+            {
+             "s": "UX Approach"
+            }
+           ]
+          },
+          {
+           "t": "p",
+           "list": "ul",
+           "lines": [
+            [
+             {
+              "s": "Reused familiar player patterns to reduce learning cost"
+             }
+            ],
+            [
+             {
+              "s": "Applied the platform's design system for visual consistency"
+             }
+            ]
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "30:4363",
+   "name": "Impact",
+   "items": [
+    {
+     "t": "card",
+     "band": 1,
+     "items": [
+      {
+       "t": "h2",
+       "runs": [
+        {
+         "s": "Impact"
+        }
+       ],
+       "blue": 1
+      },
+      {
+       "t": "p",
+       "runs": [
+        {
+         "s": "I owned interaction design for AI2U, an LLM powered platform, from pre-early access through the V1.0 launch. Working with a team across business, engineering, game design, and marketing, I turned incoming requirements into interface decisions and set the patterns the platform still runs on."
+        }
+       ]
+      },
+      {
+       "t": "row",
+       "cols": [
+        {
+         "w": 363,
+         "items": [
+          {
+           "t": "card",
+           "items": [
+            {
+             "t": "stat",
+             "runs": [
+              {
+               "s": "50+ screens"
+              }
+             ],
+             "center": 1
+            },
+            {
+             "t": "small",
+             "runs": [
+              {
+               "s": "Designed the interface across core AI interaction, commerce, and system surfaces."
+              }
+             ],
+             "center": 1
+            }
+           ],
+           "center": 1
+          }
+         ]
+        },
+        {
+         "w": 362,
+         "items": [
+          {
+           "t": "card",
+           "items": [
+            {
+             "t": "stat",
+             "runs": [
+              {
+               "s": "88% positive"
+              }
+             ],
+             "center": 1
+            },
+            {
+             "t": "small",
+             "runs": [
+              {
+               "s": "Rated by players across 2,000+ Steam reviews at the platform's V1.0 launch.\n"
+              }
+             ],
+             "center": 1
+            }
+           ],
+           "center": 1
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "t": "h3",
+     "runs": [
+      {
+       "s": "What I’d learned from these projects"
+      }
+     ]
+    },
+    {
+     "t": "row",
+     "cols": [
+      {
+       "w": 363,
+       "items": [
+        {
+         "t": "card",
+         "items": [
+          {
+           "t": "img",
+           "src": "ai2u-design-snapshots/007.png",
+           "w": 40,
+           "h": 40,
+           "alt": ""
+          },
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "Each team hears a different version of the same screen"
+            }
+           ],
+           "center": 1
+          },
+          {
+           "t": "small",
+           "runs": [
+            {
+             "s": "Engineering read the shop as data and system behavior. Marketing read the same layout as placement and color. I learned to present one design in two rationales, which got decisions approved in a single review instead of a second round."
+            }
+           ],
+           "center": 1
+          }
+         ],
+         "center": 1
+        }
+       ]
+      },
+      {
+       "w": 363,
+       "items": [
+        {
+         "t": "card",
+         "items": [
+          {
+           "t": "img",
+           "src": "ai2u-design-snapshots/008.png",
+           "w": 40,
+           "h": 40,
+           "alt": ""
+          },
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "I'd negotiate scope earlier\n"
+            }
+           ],
+           "center": 1
+          },
+          {
+           "t": "small",
+           "runs": [
+            {
+             "s": "New requests arrived mid cycle with high priority attached, often close to a deadline. I absorbed them into the current sprint. Now I surface the tradeoff at intake, so scope decisions happen before the work starts instead of after."
+            }
+           ],
+           "center": 1
+          }
+         ],
+         "center": 1
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

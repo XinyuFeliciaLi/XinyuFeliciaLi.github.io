@@ -1,0 +1,200 @@
+---
+// Everything on the landing page below the hero: projects, "Why Me?" and related projects.
+// Shared by the home page and the hero sandbox.
+import ProjectCard from './ProjectCard.astro';
+import comingSoon from '../assets/home/card-coming-soon.png';
+import { cases, cardImage, caseHref, hasPage } from '../data/cases';
+
+const projects = cases.filter((c) => c.kind === 'project');
+const related = cases.filter((c) => c.kind === 'playground');
+
+// "Why Me?" — two rows of chips, each row flanked by a round dot, copy and colors as in Figma
+const strengthRows = [
+	{
+		dots: ['#fccfe9', '#53bc90'],
+		chips: [
+			{ label: 'Product Thinking', color: '#5adba6' },
+			{ label: 'Navigating Ambiguity', color: '#daf69c' },
+			{ label: 'Effective Collaborator', color: '#fccfe9' },
+		],
+	},
+	{
+		dots: ['#dac8ff', '#a3d9ff'],
+		chips: [
+			{ label: 'Versatile UX/UI Designer', color: '#a3d9ff' },
+			{ label: 'Ai Native Workflow', color: '#dac8ff' },
+			{ label: 'Detail-Driven in Delivery', color: '#ff894b' },
+		],
+	},
+];
+---
+
+<section class="container projects" aria-label="Projects">
+	<ul class="grid grid--2">
+		{
+			projects.map((c) => (
+				<li data-reveal>
+					<ProjectCard
+						href={hasPage(c.slug) ? caseHref(c) : undefined}
+						image={cardImage(c.slug)}
+						title={c.cardTitle}
+						meta={c.cardMeta}
+						tags={c.tags}
+					/>
+				</li>
+			))
+		}
+	</ul>
+</section>
+
+<section class="container why">
+	<h2 data-reveal>Why Me?</h2>
+	<div class="chips" data-reveal>
+		{
+			strengthRows.map((row) => (
+				<div class="chips__row">
+					<span class="chips__dot" style={`--chip: ${row.dots[0]}`} aria-hidden="true" />
+					<ul>
+						{row.chips.map((c) => (
+							<li style={`--chip: ${c.color}`}>{c.label}</li>
+						))}
+					</ul>
+					<span class="chips__dot" style={`--chip: ${row.dots[1]}`} aria-hidden="true" />
+				</div>
+			))
+		}
+	</div>
+</section>
+
+<section class="container related">
+	<h2 data-reveal>Related Projects</h2>
+	<ul class="grid grid--3">
+		{
+			related.map((c) => (
+				<li data-reveal>
+					<ProjectCard
+						size="sm"
+						href={hasPage(c.slug) ? caseHref(c) : undefined}
+						image={cardImage(c.slug)}
+						title={c.cardTitle}
+						tags={c.tags}
+					/>
+				</li>
+			))
+		}
+		<li data-reveal>
+			<ProjectCard size="sm" image={comingSoon} title="Coming Soon" />
+		</li>
+	</ul>
+</section>
+
+<style>
+	.projects {
+		padding-top: var(--space-12);
+	}
+
+	.grid {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		gap: var(--space-12) var(--space-10);
+	}
+
+	.grid--2 {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.grid--3 {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: var(--space-10) var(--space-8);
+	}
+
+	/* Figma: ~180px between Projects, Why Me? and Related Projects */
+	.why,
+	.related {
+		padding-top: 11.25rem;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: var(--space-8);
+	}
+
+	.related .grid {
+		width: 100%;
+	}
+
+	/* Figma: chips ~45px tall, 14px Medium uppercase, 28px dots at both ends of each row */
+	.chips {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: var(--space-5);
+		width: 100%;
+	}
+
+	.chips__row {
+		display: flex;
+		align-items: center;
+		gap: var(--space-6);
+	}
+
+	.chips__row:nth-child(2) {
+		gap: var(--space-6) var(--space-6);
+		transform: translateX(-1rem);
+	}
+
+	.chips__row ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: var(--space-4) var(--space-6);
+	}
+
+	.chips__row li {
+		font: var(--type-label);
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+		padding: 0.8rem 2.6rem;
+		border-radius: var(--radius-full);
+		background: var(--chip);
+	}
+
+	.chips__dot {
+		flex: none;
+		width: 28px;
+		height: 28px;
+		border-radius: var(--radius-full);
+		background: var(--chip);
+	}
+
+	@media (max-width: 52rem) {
+		.chips__dot {
+			display: none;
+		}
+
+		.chips__row:nth-child(2) {
+			transform: none;
+		}
+
+		.chips__row li {
+			padding: 0.6rem 1.4rem;
+		}
+	}
+
+	@media (max-width: 52rem) {
+		.grid--3 {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@media (max-width: 40rem) {
+		.grid--2,
+		.grid--3 {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

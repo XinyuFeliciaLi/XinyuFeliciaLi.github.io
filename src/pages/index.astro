@@ -1,259 +1,94 @@
 ---
-import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
-
-const featured = (await getCollection('case-studies', ({ data }) => !data.draft)).sort(
-	(a, b) => a.data.order - b.data.order
-);
-
-const playgroundItems = (await getCollection('playground', ({ data }) => !data.draft)).sort(
-	(a, b) => a.data.order - b.data.order
-);
-
-// PLACEHOLDER — the Figma itself has these as unfilled "Reason 1" / one-sentence-description
-// placeholders across all six cards. Replace with your real key strengths.
-const reasons = Array.from({ length: 6 }, (_, i) => ({
-	title: `Reason ${i + 1}`,
-	description: 'One sentence description of the project one sentence description.',
-}));
+import HomeSections from '../components/HomeSections.astro';
+import avatar from '../assets/home/avatar.jpg';
 ---
 
 <BaseLayout title="Home">
-	<section class="hero container">
-		<h1 class="hero-title" data-reveal>Hey! I&rsquo;m Felicia</h1>
-		<p class="hero-sub" data-reveal>
-			A <strong>product designer</strong> who turns ideas into products
-		</p>
-		<p class="hero-tagline" data-reveal>Designing AI and B2C products - Previously at AlterStaff &middot; CMU Alum</p>
+	<section class="hero">
+		<div class="hero__panel">
+			<svg class="hero__deco" viewBox="0 0 1871 594" preserveAspectRatio="none" aria-hidden="true">
+				<circle cx="309" cy="189" r="6" fill="#53bc90"></circle>
+				<circle cx="949" cy="509" r="6" fill="#dac8ff"></circle>
+				<path d="M1138 245l4 8 8 4-8 4-4 8-4-8-8-4 8-4z" fill="#ea4f39"></path>
+				<path d="M1554 126l4 8 8 4-8 4-4 8-4-8-8-4 8-4z" fill="#daf69c"></path>
+				<path d="M1785 533l4 8 8 4-8 4-4 8-4-8-8-4 8-4z" fill="#5adba6"></path>
+				<path d="M183 423l5 15 15 5-15 5-5 15-5-15-15-5 15-5z" fill="none" stroke="#ea4f39" stroke-width="1.5"></path>
+				<path d="M1515 486l20-30" stroke="#5adba6" stroke-width="4" stroke-linecap="round"></path>
+			</svg>
+			<div class="hero__content">
+				<p class="hero__hello" data-reveal>
+					Hello
+					<Image src={avatar} alt="Felicia Li" width={32} height={32} class="hero__avatar" />
+					I&rsquo;m Felicia
+				</p>
+				<h1 class="t-display" data-reveal>
+					A product designer<br />who puts people in control of technology
+				</h1>
+				<p class="t-small" data-reveal>
+					Designing and shipping <strong>B2C products</strong> &amp; <strong>AI experiences</strong><br />
+					Previously at AlterStaff &middot; CMU Alum
+				</p>
+			</div>
+		</div>
 	</section>
 
-	<section class="container featured">
-		<ul class="featured__grid">
-			{
-				featured.map((study) => (
-					<li data-reveal>
-						<a class="project-card card-hover" href={`/projects/${study.id}/`}>
-							<div class="project-card__image" />
-							<div class="project-card__body">
-								<span class="project-card__title">{study.data.title}</span>
-								<span class="project-card__meta">
-									{study.data.client} · {study.data.status} · {study.data.year}
-								</span>
-								<p class="project-card__summary">{study.data.summary}</p>
-							</div>
-						</a>
-					</li>
-				))
-			}
-		</ul>
-	</section>
-
-	<section class="container key-strength">
-		<p class="pill" data-reveal>Why Me?</p>
-		<h2 data-reveal>My Key Strength</h2>
-		<ul class="reason-grid">
-			{
-				reasons.map((reason) => (
-					<li class="reason-card" data-reveal>
-						<span class="reason-card__mark" aria-hidden="true" />
-						<span class="reason-card__title">{reason.title}</span>
-						<p class="reason-card__description">{reason.description}</p>
-					</li>
-				))
-			}
-		</ul>
-	</section>
-
-	<section class="container related">
-		<p class="pill" data-reveal>More Fun Projects !</p>
-		<h2 data-reveal>Related Projects</h2>
-		<ul class="related-grid">
-			{
-				playgroundItems.map((item) => (
-					<li class="related-card card-hover" data-reveal>
-						<div class="related-card__image" />
-						<span class="related-card__title">{item.data.title}</span>
-						<p class="related-card__summary">{item.data.summary}</p>
-					</li>
-				))
-			}
-		</ul>
-		<a class="link-underline see-more" href="/playground/">See all Playground projects</a>
-	</section>
+	<HomeSections />
 </BaseLayout>
 
 <style>
 	.hero {
-		padding-block: var(--space-24) var(--space-16);
-		max-width: 44rem;
+		padding: var(--space-4) var(--space-4) 0;
 	}
 
-	.hero-sub {
-		font-size: var(--text-2xl);
-		font-weight: 400;
-	}
-
-	.hero-sub strong {
-		color: var(--color-accent);
-		font-weight: 700;
-		text-transform: capitalize;
-	}
-
-	.hero-tagline {
-		color: var(--color-ink-faint);
-		font-size: var(--text-lg);
-	}
-
-	section {
-		padding-block: var(--space-16);
-	}
-
-	.pill {
-		display: inline-block;
-		margin: 0 auto var(--space-4);
-		padding: var(--space-1) var(--space-4);
-		background: var(--color-pill);
-		border-radius: var(--radius-full);
-		font-weight: 600;
-		font-size: var(--text-base);
-		color: var(--color-ink-muted);
-	}
-
-	.key-strength,
-	.related {
-		text-align: center;
-	}
-
-	.key-strength h2,
-	.related h2 {
-		font-weight: 700;
-		font-size: var(--text-3xl);
-		margin-bottom: var(--space-10);
-	}
-
-	.featured__grid {
-		list-style: none;
-		margin: 0;
-		padding: 0;
-		display: grid;
-		gap: var(--space-10);
-		grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-	}
-
-	.project-card {
-		display: flex;
-		flex-direction: column;
-		gap: var(--space-6);
-		text-decoration: none;
-		color: var(--color-ink-soft);
-	}
-
-	.project-card__image {
-		background: var(--color-card);
-		border-radius: var(--radius-lg);
-		aspect-ratio: 16 / 9;
-	}
-
-	.project-card__body {
-		display: flex;
-		flex-direction: column;
-		gap: var(--space-2);
-	}
-
-	.project-card__title {
-		font-family: var(--font-heading);
-		font-weight: 700;
-		font-size: var(--text-xl);
-	}
-
-	.project-card__meta {
-		font-weight: 500;
-		font-size: var(--text-sm);
-		color: var(--color-ink-muted);
-	}
-
-	.project-card__summary {
-		color: var(--color-ink-muted);
-		margin: 0;
-	}
-
-	.reason-grid {
-		list-style: none;
-		margin: 0;
-		padding: 0;
-		display: grid;
-		gap: var(--space-6);
-		grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
-		text-align: left;
-	}
-
-	.reason-card {
+	/* Figma: 1871 × 594 panel, 25px inset, large rounded corners */
+	.hero__panel {
 		position: relative;
-		background: var(--color-card);
-		border-radius: var(--radius-lg);
-		padding: var(--space-6);
-	}
-
-	.reason-card__mark {
-		display: block;
-		width: var(--space-6);
-		height: var(--space-6);
-		background: var(--color-accent);
-		opacity: 0.74;
-		border-radius: var(--radius-sm);
-		margin-bottom: var(--space-3);
-	}
-
-	.reason-card__title {
-		display: block;
-		font-family: var(--font-heading);
-		font-weight: 500;
-		margin-bottom: var(--space-2);
-	}
-
-	.reason-card__description {
-		font-size: var(--text-sm);
-		color: var(--color-ink-muted);
-		margin: 0;
-	}
-
-	.related-grid {
-		list-style: none;
-		margin: 0;
-		padding: 0;
+		max-width: var(--width-hero);
+		min-height: clamp(30rem, 31vw, 37rem);
+		margin-inline: auto;
 		display: grid;
-		gap: var(--space-8);
-		grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
-		text-align: left;
+		align-items: center;
+		background-color: var(--color-surface);
+		background-image: radial-gradient(var(--color-line) 1px, transparent 1px);
+		background-size: 16px 16px;
+		border-radius: clamp(var(--radius-lg), 4vw, 80px);
+		overflow: hidden;
 	}
 
-	.related-card {
+	.hero__deco {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		pointer-events: none;
+	}
+
+	.hero__content {
+		position: relative;
+		width: 100%;
+		max-width: calc(var(--width-wide) + 2 * var(--space-6));
+		margin-inline: auto;
+		padding: calc(var(--space-10) + 5rem) var(--space-6) var(--space-12);
 		display: flex;
 		flex-direction: column;
-		gap: var(--space-3);
+		gap: var(--space-4);
 	}
 
-	.related-card__image {
-		background: var(--color-card);
-		border-radius: var(--radius-md);
-		aspect-ratio: 4 / 3;
-	}
-
-	.related-card__title {
-		font-family: var(--font-heading);
-		font-weight: 700;
-		font-size: var(--text-lg);
-	}
-
-	.related-card__summary {
-		color: var(--color-ink-muted);
-		font-size: var(--text-sm);
+	.hero__hello {
+		display: flex;
+		align-items: center;
+		gap: var(--space-2);
+		font: var(--type-body);
+		font-size: calc(1.125rem * var(--fit-400)); /* Figma 18 */
 		margin: 0;
 	}
 
-	.see-more {
-		display: inline-block;
-		margin-top: var(--space-10);
-		font-weight: 600;
+	.hero__hello :global(.hero__avatar) {
+		width: 2rem;
+		height: 2rem;
+		border-radius: var(--radius-full);
+		object-fit: cover;
 	}
 </style>

@@ -1,0 +1,27 @@
+---
+// Inline text runs from Figma: plain, bold, italic, links. Line breaks inside a run are kept.
+import type { Block } from '../data/cases';
+
+interface Props {
+	runs: NonNullable<Block['runs']>;
+}
+
+const { runs } = Astro.props;
+const lines = (s: string) => s.split('\n');
+---
+
+{
+	runs.map((r) => {
+		const parts = lines(r.s).map((line, i) => (
+			<Fragment>
+				{i > 0 && <br />}
+				{line}
+			</Fragment>
+		));
+		let el = <Fragment>{parts}</Fragment>;
+		if (r.b) el = <strong>{el}</strong>;
+		if (r.i) el = <em>{el}</em>;
+		if (r.href) el = <a href={r.href} target="_blank" rel="noopener">{el}</a>;
+		return el;
+	})
+}

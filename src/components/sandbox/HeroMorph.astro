@@ -1,0 +1,239 @@
+---
+// Direction 3 — "form follows timing": a grid of small dots that swell into the dots-board shapes
+// (hearts, stars, flowers, circles) near the cursor and shrink back to dots further out. Far cells react later, so moving the mouse sends a wave across the field.
+// A few cells are inked dark and hop around on a slow beat.
+import HeroCopy from './HeroCopy.astro';
+---
+
+<div class="morph" data-morph>
+	<canvas class="morph__canvas" data-canvas aria-hidden="true"></canvas>
+	<div class="morph__content">
+		<div class="morph__copy" data-copy>
+			<HeroCopy />
+		</div>
+	</div>
+</div>
+
+<style>
+	.morph {
+		position: relative;
+		max-width: var(--width-hero);
+		min-height: clamp(34rem, 35vw, 42rem);
+		margin-inline: auto;
+		display: grid;
+		align-items: center;
+		background: #5adba6;
+		border-radius: clamp(var(--radius-lg), 4vw, 80px);
+		overflow: hidden;
+	}
+
+	.morph__canvas {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	.morph__content {
+		position: relative;
+		width: 100%;
+		max-width: calc(var(--width-wide) + 2 * var(--space-6));
+		margin-inline: auto;
+		padding: calc(var(--space-10) + 5rem) var(--space-6) var(--space-12);
+		pointer-events: none;
+	}
+
+	/* No card: the text sits on the mint, and the grid leaves a clearing around it */
+	.morph__copy {
+		width: fit-content;
+		max-width: 38rem;
+	}
+</style>
+
+<script>
+	import { onEachPage, reducedMotion, visibleLoop } from './shared';
+
+	const CELL = 72; // grid pitch in CSS px — roomy, so the shapes read as a sparse field
+	// Mint field, white shapes, navy ink
+	const PAL = { bg: '#5adba6', fg: '#ffffff', dark: '#253746' };
+
+	// m = 0 near the cursor (full shape), 1 far away (a plain dot)
+	type Cell = { x: number; y: number; m: number; v: number; dark: boolean; kind: number; rot: number };
+
+	onEachPage('[data-morph]', (root) => {
+		const canvas = root.querySelector<HTMLCanvasElement>('[data-canvas]')!;
+		const ctx = canvas.getContext('2d')!;
+		let cells: Cell[] = [];
+		let w = 0;
+		let h = 0;
+
+		const copy = root.querySelector<HTMLElement>('[data-copy]')!;
+		// The text's box in canvas px: no cells inside it, only plain dots in a band around it
+		const clear = { l: 0, t: 0, r: 0, b: 0 };
+		const CLEAR_PAD = 24;
+		const QUIET_PAD = 72;
+
+		const pointer = { x: 0, y: 0, inside: false };
+		const focus = { x: 0, y: 0 };
+		let lastHop = 0;
+
+		function resize() {
+			w = root.clientWidth;
+			h = root.clientHeight;
+			const dpr = Math.min(window.devicePixelRatio || 1, 2);
+			canvas.width = Math.round(w * dpr);
+			canvas.height = Math.round(h * dpr);
+			ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+			// Centre the grid so partial cells bleed evenly off every edge
+			const cols = Math.ceil(w / CELL) + 1;
+			const rows = Math.ceil(h / CELL) + 1;
+			const ox = (w - (cols - 1) * CELL) / 2;
+			const oy = (h - (rows - 1) * CELL) / 2;
+			cells = [];
+			for (let r = 0; r < rows; r++) {
+				for (let c = 0; c < cols; c++) {
+					cells.push({ x: ox + c * CELL, y: oy + r * CELL, m: 1, v: 0, dark: Math.random() < 0.06, kind: Math.floor(Math.random() * 4), rot: (Math.random() - 0.5) * 0.8 });
+				}
+			}
+			focus.x = w / 2;
+			focus.y = h / 2;
+
+			const rootRect = root.getBoundingClientRect();
+			const copyRect = copy.getBoundingClientRect();
+			Object.assign(clear, {
+				l: copyRect.left - rootRect.left,
+				t: copyRect.top - rootRect.top,
+				r: copyRect.right - rootRect.left,
+				b: copyRect.bottom - rootRect.top,
+			});
+		}
+
+		// Distance from a point to the text box (0 inside it)
+		const clearDistance = (x: number, y: number) =>
+			Math.hypot(Math.max(clear.l - x, 0, x - clear.r), Math.max(clear.t - y, 0, y - clear.b));
+
+		// The dots-board shapes, each drawn to fit radius r around the origin
+		function heart(r: number) {
+			const s = r / 14;
+			ctx.moveTo(0, 7 * s);
+			ctx.bezierCurveTo(-15 * s, -3 * s, -7 * s, -15 * s, 0, -6 * s);
+			ctx.bezierCurveTo(7 * s, -15 * s, 15 * s, -3 * s, 0, 7 * s);
+		}
+
+		function star(r: number) {
+			for (let i = 0; i < 8; i++) {
+				const d = i % 2 ? r * 0.42 : r;
+				const a = (i * Math.PI) / 4;
+				ctx.lineTo(Math.cos(a) * d, Math.sin(a) * d);
+			}
+		}
+
+		function flower(r: number) {
+			const p = r * 0.43;
+			for (let i = 0; i < 5; i++) {
+				const a = (i * Math.PI * 2) / 5;
+				const cx = Math.cos(a) * (r - p);
+				const cy = Math.sin(a) * (r - p);
+				ctx.moveTo(cx + p, cy);
+				ctx.arc(cx, cy, p, 0, Math.PI * 2);
+			}
+		}
+
+		// Near the cursor the cell's shape swells in; far away only the small dot remains
+		function shape(c: Cell, m: number, pop: number) {
+			const dot = CELL * 0.07;
+			const r = CELL * 0.36 * (1 - m) * pop;
+			ctx.save();
+			ctx.translate(c.x, c.y);
+			ctx.rotate(c.rot);
+			ctx.beginPath();
+			ctx.moveTo(dot, 0);
+			ctx.arc(0, 0, dot, 0, Math.PI * 2);
+			if (r > dot) {
+				ctx.moveTo(r, 0);
+				if (c.kind === 0) heart(r);
+				else if (c.kind === 1) star(r);
+				else if (c.kind === 2) flower(r);
+				else ctx.arc(0, 0, r * 0.8, 0, Math.PI * 2);
+			}
+			ctx.fill();
+			ctx.restore();
+		}
+
+		function render(now: number) {
+			const still = reducedMotion();
+
+			// Without a pointer, the focus drifts slowly around the middle
+			const tx = pointer.inside ? pointer.x : w / 2 + (still ? 0 : Math.sin(now * 0.0004) * w * 0.22);
+			const ty = pointer.inside ? pointer.y : h / 2 + (still ? 0 : Math.cos(now * 0.00055) * h * 0.18);
+			focus.x += (tx - focus.x) * (still ? 1 : 0.12);
+			focus.y += (ty - focus.y) * (still ? 1 : 0.12);
+
+			// The beat: every ~0.9s one dark cell hops somewhere else
+			if (!still && now - lastHop > 900 && cells.length) {
+				lastHop = now;
+				const darks = cells.filter((c) => c.dark);
+				if (darks.length) darks[Math.floor(Math.random() * darks.length)].dark = false;
+				cells[Math.floor(Math.random() * cells.length)].dark = true;
+			}
+
+			ctx.fillStyle = PAL.bg;
+			ctx.fillRect(0, 0, w, h);
+
+			const near = Math.min(w, h) * 0.22;
+			const far = Math.max(w, h) * 0.55;
+			const groups = new Map<string, Cell[]>();
+
+			for (const c of cells) {
+				const gap = clearDistance(c.x, c.y);
+				if (gap < CLEAR_PAD) continue;
+				const d = Math.hypot(c.x - focus.x, c.y - focus.y);
+				const s = Math.min(1, Math.max(0, (d - near) / (far - near)));
+				// Cells close to the text stay plain dots so the copy never competes with a shape
+				const target = gap < QUIET_PAD ? 1 : s * s * (3 - 2 * s);
+				if (still) {
+					c.m = target;
+				} else {
+					// Springy follow; far cells get a softer spring, so they arrive later
+					const k = 0.09 / (1 + d / 260);
+					c.v = (c.v + (target - c.m) * k) * 0.8;
+					c.m = Math.min(1.08, Math.max(-0.04, c.m + c.v));
+				}
+				const color = c.dark ? PAL.dark : PAL.fg;
+				if (!groups.has(color)) groups.set(color, []);
+				groups.get(color)!.push(c);
+			}
+
+			for (const [color, group] of groups) {
+				ctx.fillStyle = color;
+				for (const c of group) {
+					const m = Math.min(1, Math.max(0, c.m));
+					const pop = 1 + Math.min(0.25, Math.abs(c.v) * 6); // swell while changing
+					shape(c, m, pop);
+				}
+			}
+		}
+
+		const onMove = (e: PointerEvent) => {
+			const rect = root.getBoundingClientRect();
+			Object.assign(pointer, { x: e.clientX - rect.left, y: e.clientY - rect.top, inside: true });
+		};
+		const onLeave = () => {
+			pointer.inside = false;
+		};
+
+		root.addEventListener('pointermove', onMove);
+		root.addEventListener('pointerleave', onLeave);
+
+		const ro = new ResizeObserver(resize);
+		ro.observe(root);
+		resize();
+		const stop = visibleLoop(root, render);
+
+		return () => {
+			ro.disconnect();
+			stop();
+		};
+	});
+</script>

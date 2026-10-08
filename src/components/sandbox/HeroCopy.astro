@@ -1,0 +1,48 @@
+---
+// The landing hero copy, word for word from index.astro, shared by every sandbox direction
+import { Image } from 'astro:assets';
+import avatar from '../../assets/home/avatar.jpg';
+---
+
+<div class="hero-copy">
+	<p class="hero-copy__hello">
+		Hello
+		<Image src={avatar} alt="Felicia Li" width={32} height={32} class="hero-copy__avatar" />
+		I&rsquo;m Felicia
+	</p>
+	<h1 class="t-display">
+		A product designer<br />who puts people in control of technology
+	</h1>
+	<p class="t-small">
+		Designing and shipping <strong>B2C products</strong> &amp; <strong>AI experiences</strong><br />
+		Previously at AlterStaff &middot; CMU Alum
+	</p>
+</div>
+
+<style>
+	.hero-copy {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-4);
+	}
+
+	.hero-copy h1,
+	.hero-copy p {
+		margin: 0;
+	}
+
+	.hero-copy__hello {
+		display: flex;
+		align-items: center;
+		gap: var(--space-2);
+		font: var(--type-body);
+		font-size: 1.125rem;
+	}
+
+	.hero-copy__hello :global(.hero-copy__avatar) {
+		width: 2rem;
+		height: 2rem;
+		border-radius: var(--radius-full);
+		object-fit: cover;
+	}
+</style>

@@ -1,0 +1,1744 @@
+{
+	"title": "Interactive Storytelling: No-Code Event Toolkit",
+	"sections": [
+		{
+			"id": "30:1082",
+			"name": "Overview",
+			"items": [
+				{
+					"t": "title",
+					"runs": [
+						{
+							"s": "Interactive Storytelling: No-Code Event Toolkit"
+						}
+					]
+				},
+				{
+					"t": "p",
+					"runs": [
+						{
+							"s": "Children’s Museum of Pittsburgh sought to expand their offerings by introducing immersive storytelling events in their newly designed space, called the Museum Lab."
+						}
+					]
+				},
+				{
+					"t": "row",
+					"cols": [
+						{
+							"w": 478,
+							"items": [
+								{
+									"t": "card",
+									"items": [
+										{
+											"t": "h3",
+											"runs": [
+												{
+													"s": "Challenge"
+												}
+											]
+										},
+										{
+											"t": "p",
+											"runs": [
+												{
+													"s": "There were"
+												},
+												{
+													"s": " no existing tools or systems",
+													"b": 1
+												},
+												{
+													"s": " specifically designed to host children’s events within the museum's space."
+												}
+											]
+										},
+										{
+											"t": "h3",
+											"runs": [
+												{
+													"s": "Goal"
+												}
+											]
+										},
+										{
+											"t": "p",
+											"runs": [
+												{
+													"s": "The goal was to research, strategize, and design "
+												},
+												{
+													"s": "a beta-version toolkit",
+													"b": 1
+												},
+												{
+													"s": " to help the Children’s Museum of Pittsburgh "
+												},
+												{
+													"s": "create and host interactive storytelling events",
+													"b": 1
+												},
+												{
+													"s": " for 50-100 people at a time."
+												}
+											]
+										},
+										{
+											"t": "h3",
+											"runs": [
+												{
+													"s": "Impact"
+												}
+											]
+										},
+										{
+											"t": "p",
+											"runs": [
+												{
+													"s": "Shipped a beta toolkit that took the Museum Lab from no pipeline to hosting its own interactive storytelling events."
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"w": 257,
+							"items": [
+								{
+									"t": "card",
+									"items": [
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Role"
+												}
+											]
+										},
+										{
+											"t": "small",
+											"runs": [
+												{
+													"s": "​UX Researcher, UX/UI Designer"
+												}
+											]
+										},
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Client"
+												}
+											]
+										},
+										{
+											"t": "small",
+											"runs": [
+												{
+													"s": "Children’s museum of Pittsburgh"
+												}
+											]
+										},
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Collaborators"
+												}
+											]
+										},
+										{
+											"t": "small",
+											"runs": [
+												{
+													"s": "Team of 6: Project Manager, Game Designers, Concept Artists, Narrative Designer, Developer"
+												}
+											]
+										},
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Status"
+												}
+											]
+										},
+										{
+											"t": "small",
+											"runs": [
+												{
+													"s": "Q2 2023, Shipped"
+												}
+											]
+										},
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Tools"
+												}
+											]
+										},
+										{
+											"t": "small",
+											"runs": [
+												{
+													"s": "Figma, Photoshop, Illustrator, \nGoogle Forms, Unity"
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "30:1100",
+			"name": "Understand",
+			"items": [
+				{
+					"t": "eyebrow",
+					"runs": [
+						{
+							"s": "Understand"
+						}
+					]
+				},
+				{
+					"t": "p",
+					"runs": [
+						{
+							"s": "Before starting research process, it is essential to understand and define the constraints and limitations of the project."
+						}
+					]
+				},
+				{
+					"t": "h3",
+					"runs": [
+						{
+							"s": "Space & Tech Limitations"
+						}
+					]
+				},
+				{
+					"t": "p",
+					"runs": [
+						{
+							"s": "Understanding the physical space helped us ensure that the solution is functional and practical within the given constraints."
+						}
+					]
+				},
+				{
+					"t": "img",
+					"src": "childrens-museum/001.png",
+					"w": 751,
+					"h": 136,
+					"alt": "Space & Tech Limitations"
+				},
+				{
+					"t": "h3",
+					"runs": [
+						{
+							"s": "Stakeholders"
+						}
+					]
+				},
+				{
+					"t": "p",
+					"runs": [
+						{
+							"s": "Identifying the right people based on client objectives enable us to focus our research on their needs and make informed design decisions."
+						}
+					]
+				},
+				{
+					"t": "img",
+					"src": "childrens-museum/002.png",
+					"w": 749,
+					"h": 259,
+					"alt": "Stakeholders"
+				}
+			]
+		},
+		{
+			"id": "30:1122",
+			"name": "Research",
+			"items": [
+				{
+					"t": "eyebrow",
+					"runs": [
+						{
+							"s": "Research"
+						}
+					]
+				},
+				{
+					"t": "p",
+					"runs": [
+						{
+							"s": "Before designing a solution, I needed to understand both sides of the experience, the staff creating events and the children experiencing them, so any direction was grounded in real behavior, not assumptions."
+						}
+					]
+				},
+				{
+					"t": "h3",
+					"runs": [
+						{
+							"s": "Research Goals"
+						}
+					]
+				},
+				{
+					"t": "row",
+					"cols": [
+						{
+							"w": 363,
+							"items": [
+								{
+									"t": "card",
+									"fill": "#fbf0f5",
+									"items": [
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Museum Faculty"
+												}
+											],
+											"center": 1,
+											"color": "#ce5990"
+										},
+										{
+											"t": "small",
+											"list": "ol",
+											"lines": [
+												[
+													{
+														"s": "Types of"
+													},
+													{
+														"s": " interactive events ",
+														"b": 1
+													},
+													{
+														"s": "they want to host"
+													}
+												],
+												[
+													{
+														"s": "Understand "
+													},
+													{
+														"s": "frustrations and pain points ",
+														"b": 1
+													}
+												],
+												[
+													{
+														"s": "Explore the existing event hosting "
+													},
+													{
+														"s": "pipeline",
+														"b": 1
+													}
+												]
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"w": 363,
+							"items": [
+								{
+									"t": "card",
+									"fill": "#fff5ee",
+									"items": [
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Audience Member"
+												}
+											],
+											"color": "#fd913d",
+											"center": 1
+										},
+										{
+											"t": "small",
+											"list": "ol",
+											"lines": [
+												[
+													{
+														"s": "Understand which storytelling "
+													},
+													{
+														"s": "methods children",
+														"b": 1
+													},
+													{
+														"s": "preferred",
+														"b": 1
+													}
+												],
+												[
+													{
+														"s": "Understand "
+													},
+													{
+														"s": "how they engaged ",
+														"b": 1
+													},
+													{
+														"s": "with different forms of interaction."
+													}
+												]
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"t": "h3",
+					"runs": [
+						{
+							"s": "Research Methods & Result"
+						}
+					]
+				},
+				{
+					"t": "p",
+					"runs": [
+						{
+							"s": "Over two weeks, we visited a local elementary school to observe and talk with children directly, and interviewed museum faculty to understand the operational side of hosting events."
+						}
+					]
+				},
+				{
+					"t": "row",
+					"cols": [
+						{
+							"w": 362,
+							"items": [
+								{
+									"t": "img",
+									"src": "childrens-museum/003.png",
+									"w": 362,
+									"h": 912,
+									"alt": "Research Methods & Result"
+								}
+							]
+						},
+						{
+							"w": 362,
+							"items": [
+								{
+									"t": "img",
+									"src": "childrens-museum/004.png",
+									"w": 362,
+									"h": 912,
+									"alt": "Research Methods & Result"
+								}
+							]
+						}
+					]
+				},
+				{
+					"t": "card",
+					"band": 1,
+					"items": [
+						{
+							"t": "h3",
+							"runs": [
+								{
+									"s": "Research Insights"
+								}
+							]
+						},
+						{
+							"t": "row",
+							"cols": [
+								{
+									"w": 325,
+									"items": [
+										{
+											"t": "p",
+											"runs": [
+												{
+													"s": "Museum Faculty:",
+													"b": 1
+												},
+												{
+													"s": " \nEvent creator and storyteller"
+												}
+											],
+											"color": "#ce5990"
+										},
+										{
+											"t": "p",
+											"list": "ol",
+											"lines": [
+												[
+													{
+														"s": "There are "
+													},
+													{
+														"s": "no existing pipelines to guide",
+														"b": 1
+													},
+													{
+														"s": " museum faculty in the MuseumLab, making event organization more difficult."
+													}
+												],
+												[
+													{
+														"s": "It’s challenging to "
+													},
+													{
+														"s": "integrate interactive elements",
+														"b": 1
+													},
+													{
+														"s": " due to limited coding knowledge and the desire to avoid costly subscriptions."
+													}
+												]
+											]
+										}
+									]
+								},
+								{
+									"w": 325,
+									"items": [
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Audience Member\nChildren age 3+"
+												}
+											],
+											"color": "#fd913d"
+										},
+										{
+											"t": "p",
+											"list": "ol",
+											"lines": [
+												[
+													{
+														"s": "It’s important to use "
+													},
+													{
+														"s": "storytelling methods that children enjoy",
+														"b": 1
+													},
+													{
+														"s": " to make the experience more fun and enjoyable."
+													}
+												],
+												[
+													{
+														"s": "Allowing children to"
+													},
+													{
+														"s": " make decisions",
+														"b": 1
+													},
+													{
+														"s": " during the storytelling event enhances their engagement and involvement in the narrative."
+													}
+												]
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "30:1225",
+			"name": "Define",
+			"items": [
+				{
+					"t": "eyebrow",
+					"runs": [
+						{
+							"s": "Define"
+						}
+					]
+				},
+				{
+					"t": "h2",
+					"runs": [
+						{
+							"s": "Workshop: Composition Box & Affinity maps"
+						}
+					]
+				},
+				{
+					"t": "p",
+					"runs": [
+						{
+							"s": "We "
+						},
+						{
+							"s": "analyzed interview results",
+							"b": 1
+						},
+						{
+							"s": " into composition box and "
+						},
+						{
+							"s": "affinity map",
+							"b": 1
+						},
+						{
+							"s": " through workshops. This helps us clearly visualize and prioritize key problem, "
+						},
+						{
+							"s": "ensuring we focus on the most impact solution",
+							"b": 1
+						},
+						{
+							"s": " during the problem definition stage"
+						}
+					]
+				},
+				{
+					"t": "img",
+					"src": "childrens-museum/005.png",
+					"w": 751,
+					"h": 338,
+					"alt": "Workshop: Composition Box & Affinity maps"
+				},
+				{
+					"t": "h3",
+					"runs": [
+						{
+							"s": "Stakeholders & Personas"
+						}
+					]
+				},
+				{
+					"t": "p",
+					"runs": [
+						{
+							"s": "Then, I created personas to better understand the diverse needs of each stakeholder. This helped us to ensure the design solutions were tailored to real user behaviors and pain points."
+						}
+					]
+				},
+				{
+					"t": "p",
+					"runs": [
+						{
+							"s": "Museum Faculty: Event creator and storyteller"
+						}
+					],
+					"color": "#ce5990"
+				},
+				{
+					"t": "row",
+					"cols": [
+						{
+							"w": 363,
+							"items": [
+								{
+									"t": "img",
+									"src": "childrens-museum/006.png",
+									"w": 363,
+									"h": 503,
+									"alt": "Stakeholders & Personas"
+								}
+							]
+						},
+						{
+							"w": 364,
+							"items": [
+								{
+									"t": "card",
+									"items": [
+										{
+											"t": "label",
+											"runs": [
+												{
+													"s": "Goals"
+												}
+											]
+										},
+										{
+											"t": "p",
+											"list": "ul",
+											"lines": [
+												[
+													{
+														"s": "Plan and create interactive storytelling content"
+													}
+												],
+												[
+													{
+														"s": "Execute storytelling event"
+													}
+												],
+												[
+													{
+														"s": "Hold audience’s attention"
+													}
+												],
+												[
+													{
+														"s": "Engage large group"
+													}
+												]
+											]
+										},
+										{
+											"t": "label",
+											"runs": [
+												{
+													"s": "Needs"
+												}
+											]
+										},
+										{
+											"t": "p",
+											"list": "ul",
+											"lines": [
+												[
+													{
+														"s": "Adaptable for different books"
+													}
+												],
+												[
+													{
+														"s": "Easy-to-run program"
+													}
+												],
+												[
+													{
+														"s": "Various interactivity options"
+													}
+												]
+											]
+										},
+										{
+											"t": "label",
+											"runs": [
+												{
+													"s": "Challenges"
+												}
+											]
+										},
+										{
+											"t": "p",
+											"list": "ul",
+											"lines": [
+												[
+													{
+														"s": "Limit technological knowledge"
+													}
+												],
+												[
+													{
+														"s": "Manage diverse audience"
+													}
+												],
+												[
+													{
+														"s": "Want to create engaging contents with limitations"
+													}
+												]
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"t": "h4",
+					"runs": [
+						{
+							"s": "Audience Member: Children age 3+"
+						}
+					],
+					"color": "#fd913d"
+				},
+				{
+					"t": "row",
+					"cols": [
+						{
+							"w": 363,
+							"items": [
+								{
+									"t": "img",
+									"src": "childrens-museum/007.png",
+									"w": 363,
+									"h": 441,
+									"alt": "Audience Member: Children age 3+"
+								}
+							]
+						},
+						{
+							"w": 364,
+							"items": [
+								{
+									"t": "card",
+									"items": [
+										{
+											"t": "label",
+											"runs": [
+												{
+													"s": "Goals"
+												}
+											]
+										},
+										{
+											"t": "p",
+											"list": "ul",
+											"lines": [
+												[
+													{
+														"s": "Interact with storyteller"
+													}
+												],
+												[
+													{
+														"s": "Meaningfully contribute to the event"
+													}
+												],
+												[
+													{
+														"s": "Enjoy MuseumLab space with family"
+													}
+												]
+											]
+										},
+										{
+											"t": "label",
+											"runs": [
+												{
+													"s": "Needs"
+												}
+											]
+										},
+										{
+											"t": "p",
+											"list": "ul",
+											"lines": [
+												[
+													{
+														"s": "Short Experience"
+													}
+												],
+												[
+													{
+														"s": "Engaging interactions"
+													}
+												]
+											]
+										},
+										{
+											"t": "label",
+											"runs": [
+												{
+													"s": "Challenges"
+												}
+											]
+										},
+										{
+											"t": "p",
+											"list": "ul",
+											"lines": [
+												[
+													{
+														"s": "Resistant toward traditional reading"
+													}
+												]
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"t": "card",
+					"band": 1,
+					"items": [
+						{
+							"t": "h3",
+							"runs": [
+								{
+									"s": "Problem Statement"
+								}
+							]
+						},
+						{
+							"t": "p",
+							"runs": [
+								{
+									"s": "By developing personas, I gain deeper insights into our stakeholders, which helps the team refines the problem statement to better reflect stakeholders specific needs and challenges"
+								}
+							]
+						},
+						{
+							"t": "card",
+							"items": [
+								{
+									"t": "p",
+									"runs": [
+										{
+											"s": "With no existing"
+										},
+										{
+											"s": " storytelling creating and hosting tool ",
+											"b": 1
+										},
+										{
+											"s": "for CMP, how might we create a user-friendly toolkit that "
+										},
+										{
+											"s": "uses interactive technology",
+											"b": 1
+										},
+										{
+											"s": " to design engaging storytelling experiences for children?"
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "30:1312",
+			"name": "Design",
+			"items": [
+				{
+					"t": "eyebrow",
+					"runs": [
+						{
+							"s": "Design"
+						}
+					]
+				},
+				{
+					"t": "h2",
+					"runs": [
+						{
+							"s": "Designing our approach and strategy"
+						}
+					]
+				},
+				{
+					"t": "p",
+					"runs": [
+						{
+							"s": "With a clear problem statement and client alignment, our team designed a content creation pipeline with four key toolkit components to support the process."
+						}
+					]
+				},
+				{
+					"t": "h3",
+					"runs": [
+						{
+							"s": "Event Creation Pipeline"
+						}
+					]
+				},
+				{
+					"t": "img",
+					"src": "childrens-museum/008.png",
+					"w": 750,
+					"h": 426,
+					"alt": "Event Creation Pipeline"
+				},
+				{
+					"t": "h3",
+					"runs": [
+						{
+							"s": "Digital Tool: Event Creation Workflow"
+						}
+					]
+				},
+				{
+					"t": "p",
+					"list": "ul",
+					"lines": [
+						[
+							{
+								"s": "Focusing on museum staff as the primary users, I mapped their user flow for creating interactive storytelling events. This helped me:"
+							}
+						],
+						[
+							{
+								"s": "Consider the digital interface as a whole"
+							}
+						],
+						[
+							{
+								"s": "Align with the physical prototype team on sensor and input choices to design the right interface"
+							}
+						]
+					]
+				},
+				{
+					"t": "img",
+					"src": "childrens-museum/009.png",
+					"w": 749,
+					"h": 472,
+					"alt": "Digital Tool: Event Creation Workflow"
+				},
+				{
+					"t": "p",
+					"runs": [
+						{
+							"s": "The reason we shaped the experience this way:"
+						}
+					]
+				},
+				{
+					"t": "row",
+					"cols": [
+						{
+							"w": 233,
+							"items": [
+								{
+									"t": "card",
+									"fill": "#f3f8fd",
+									"items": [
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "01"
+												}
+											],
+											"center": 1
+										},
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Limitation"
+												}
+											],
+											"center": 1
+										},
+										{
+											"t": "small",
+											"runs": [
+												{
+													"s": "The Museum Lab space is only guaranteed to have a speaker and projector, so the majority of interactions depend on that equipment."
+												}
+											],
+											"center": 1
+										}
+									],
+									"center": 1
+								}
+							]
+						},
+						{
+							"w": 233,
+							"items": [
+								{
+									"t": "card",
+									"fill": "#f3f8fd",
+									"items": [
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "02"
+												}
+											],
+											"center": 1
+										},
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Target Audience's Interest"
+												}
+											],
+											"center": 1
+										},
+										{
+											"t": "small",
+											"runs": [
+												{
+													"s": "We chose the interaction type that interested children the most, and tried to fit it within the space we had.\n"
+												}
+											],
+											"center": 1
+										}
+									],
+									"center": 1
+								}
+							]
+						},
+						{
+							"w": 233,
+							"items": [
+								{
+									"t": "card",
+									"fill": "#f3f8fd",
+									"items": [
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "03"
+												}
+											],
+											"center": 1
+										},
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Optional Add-On"
+												}
+											],
+											"center": 1
+										},
+										{
+											"t": "small",
+											"runs": [
+												{
+													"s": "For event creators who have the extra budget and time to build physical props, they can create more fun projects.\n"
+												}
+											],
+											"center": 1
+										}
+									],
+									"center": 1
+								}
+							]
+						}
+					]
+				},
+				{
+					"t": "h3",
+					"runs": [
+						{
+							"s": "Iteration & Usability Tests"
+						}
+					]
+				},
+				{
+					"t": "p",
+					"runs": [
+						{
+							"s": "Then, we run usability tests between each major iteration to gather feedback and continuously refine the user experience"
+						}
+					]
+				},
+				{
+					"t": "img",
+					"src": "childrens-museum/010.png",
+					"w": 749,
+					"h": 293,
+					"alt": "Iteration & Usability Tests"
+				},
+				{
+					"t": "h3",
+					"runs": [
+						{
+							"s": "Pivot: Design Decision"
+						}
+					]
+				},
+				{
+					"t": "p",
+					"runs": [
+						{
+							"s": "During the usability test, I identified a key issue that required us to pivot and adjust the design to better meet user needs."
+						}
+					]
+				},
+				{
+					"t": "row",
+					"cols": [
+						{
+							"w": 362,
+							"items": [
+								{
+									"t": "card",
+									"fill": "#f3f8fd",
+									"items": [
+										{
+											"t": "img",
+											"src": "childrens-museum/011.png",
+											"w": 256,
+											"h": 182,
+											"alt": "Pivot: Design Decision"
+										},
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "01"
+												}
+											]
+										},
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Original Design"
+												}
+											]
+										},
+										{
+											"t": "p",
+											"runs": [
+												{
+													"s": "Designed the input and output setting feature by using a "
+												},
+												{
+													"s": "Time Frame logic",
+													"b": 1
+												},
+												{
+													"s": ", similar to iMovie and Adobe Premiere"
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"w": 363,
+							"items": [
+								{
+									"t": "card",
+									"fill": "#f3f8fd",
+									"items": [
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "02"
+												}
+											]
+										},
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Takeaway"
+												}
+											]
+										},
+										{
+											"t": "p",
+											"runs": [
+												{
+													"s": "Through observation and interviews, I identified 3 key pain points for users."
+												}
+											]
+										},
+										{
+											"t": "p",
+											"list": "ol",
+											"lines": [
+												[
+													{
+														"s": "Difficulty understanding the concept of time frame"
+													}
+												],
+												[
+													{
+														"s": "Long setup times"
+													}
+												],
+												[
+													{
+														"s": "Disorganization and challenges with post-setup editing"
+													}
+												]
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"t": "card",
+					"fill": "#f3f8fd",
+					"items": [
+						{
+							"t": "h3",
+							"runs": [
+								{
+									"s": "03"
+								}
+							]
+						},
+						{
+							"t": "h3",
+							"runs": [
+								{
+									"s": "New design"
+								}
+							]
+						},
+						{
+							"t": "p",
+							"runs": [
+								{
+									"s": "As a result, I pivoted the design to"
+								},
+								{
+									"s": " an event trigger logic：",
+									"b": 1
+								}
+							]
+						},
+						{
+							"t": "row",
+							"cols": [
+								{
+									"w": 179,
+									"items": [
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "What is event system?"
+												}
+											]
+										},
+										{
+											"t": "p",
+											"runs": [
+												{
+													"s": "An event system pairs triggers with outputs, like a mouse click in PowerPoint triggering an animation. For example, an Arduino audio sensor triggers a servo response."
+												}
+											]
+										}
+									]
+								},
+								{
+									"w": 317,
+									"items": [
+										{
+											"t": "img",
+											"src": "childrens-museum/012.png",
+											"w": 317,
+											"h": 209,
+											"alt": "What is event system?"
+										}
+									]
+								}
+							]
+						},
+						{
+							"t": "h4",
+							"runs": [
+								{
+									"s": "Why event trigger logic is better?"
+								}
+							]
+						},
+						{
+							"t": "p",
+							"list": "ol",
+							"lines": [
+								[
+									{
+										"s": "Shortening the learning curve: Matches skills museum staff already have, like creating a PowerPoint"
+									}
+								],
+								[
+									{
+										"s": "Reducing setup errors:"
+									},
+									{
+										"s": "Separates input and output instead of mixing interactions together"
+									}
+								],
+								[
+									{
+										"s": "Faster to find and change:"
+									},
+									{
+										"s": "Shows sequence at a glance with numbered event lists per page"
+									}
+								]
+							]
+						}
+					]
+				},
+				{
+					"t": "h3",
+					"runs": [
+						{
+							"s": "Design Concept: Visual"
+						}
+					]
+				},
+				{
+					"t": "p",
+					"runs": [
+						{
+							"s": "We used an existing base design system as our foundation, adjusting the main colors and Typography to meet our client's brand request. "
+						}
+					]
+				},
+				{
+					"t": "img",
+					"src": "childrens-museum/013.png",
+					"w": 749,
+					"h": 241,
+					"alt": "Design Concept: Visual"
+				}
+			]
+		},
+		{
+			"id": "30:1527",
+			"name": "Final Design",
+			"items": [
+				{
+					"t": "h2",
+					"runs": [
+						{
+							"s": "Final Design"
+						}
+					],
+					"blue": 1
+				},
+				{
+					"t": "card",
+					"fill": "#f6f9fe",
+					"items": [
+						{
+							"t": "img",
+							"src": "childrens-museum/014.png",
+							"w": 593,
+							"h": 336,
+							"alt": "Final Design"
+						},
+						{
+							"t": "p",
+							"runs": [
+								{
+									"s": "01 Creative Storytelling Tools for Hosting Story Telling Event"
+								}
+							],
+							"center": 1
+						},
+						{
+							"t": "p",
+							"runs": [
+								{
+									"s": "Craft and personalize narratives that children will enjoy using basic animations, text, and resizing tools, all in one platform, no extra software needed."
+								}
+							],
+							"center": 1
+						}
+					],
+					"center": 1
+				},
+				{
+					"t": "card",
+					"fill": "#f6f9fe",
+					"items": [
+						{
+							"t": "img",
+							"src": "childrens-museum/015.png",
+							"w": 593,
+							"h": 336,
+							"alt": "Final Design"
+						},
+						{
+							"t": "h3",
+							"runs": [
+								{
+									"s": "02 No-Code Solution for Physical Interaction Setup"
+								}
+							],
+							"center": 1
+						},
+						{
+							"t": "p",
+							"runs": [
+								{
+									"s": "Equip users to set up digital and physical interactions without needing to code."
+								}
+							],
+							"center": 1
+						}
+					],
+					"center": 1
+				},
+				{
+					"t": "card",
+					"fill": "#f6f9fe",
+					"items": [
+						{
+							"t": "img",
+							"src": "childrens-museum/016.png",
+							"w": 593,
+							"h": 336,
+							"alt": "02 No-Code Solution for Physical Interaction Setup"
+						},
+						{
+							"t": "h3",
+							"runs": [
+								{
+									"s": "03 Reusable Pipeline"
+								}
+							],
+							"center": 1
+						},
+						{
+							"t": "p",
+							"runs": [
+								{
+									"s": "Museum staff can use any story they hold the copyright to set up interactions at home, and then practice and present them in the Museum Lab."
+								}
+							],
+							"center": 1
+						}
+					],
+					"center": 1
+				}
+			]
+		},
+		{
+			"id": "30:1533",
+			"name": "Frame 50",
+			"items": [
+				{
+					"t": "card",
+					"band": 1,
+					"items": [
+						{
+							"t": "h2",
+							"runs": [
+								{
+									"s": "Impact"
+								}
+							],
+							"blue": 1
+						},
+						{
+							"t": "p",
+							"runs": [
+								{
+									"s": "The toolkit gave the Children's Museum of Pittsburgh a repeatable way to plan and run interactive storytelling events, something the Museum Lab never had before."
+								}
+							]
+						},
+						{
+							"t": "row",
+							"cols": [
+								{
+									"w": 233,
+									"items": [
+										{
+											"t": "card",
+											"fill": "#e8f1fc",
+											"items": [
+												{
+													"t": "stat",
+													"runs": [
+														{
+															"s": "0 → 1"
+														}
+													],
+													"center": 1
+												},
+												{
+													"t": "small",
+													"runs": [
+														{
+															"s": "From no existing pipeline to a beta-level no-code toolkit built for the museum's space."
+														}
+													],
+													"center": 1
+												}
+											],
+											"center": 1
+										}
+									]
+								},
+								{
+									"w": 233,
+									"items": [
+										{
+											"t": "card",
+											"fill": "#faeef4",
+											"items": [
+												{
+													"t": "stat",
+													"runs": [
+														{
+															"s": "Over 81%"
+														}
+													],
+													"center": 1
+												},
+												{
+													"t": "small",
+													"runs": [
+														{
+															"s": "of event creators learned to set up a storytelling event within 5 minutes of the tutorial."
+														}
+													],
+													"center": 1
+												}
+											],
+											"center": 1
+										}
+									]
+								},
+								{
+									"w": 233,
+									"items": [
+										{
+											"t": "card",
+											"fill": "#fff4ec",
+											"items": [
+												{
+													"t": "stat",
+													"runs": [
+														{
+															"s": "93%"
+														}
+													],
+													"center": 1
+												},
+												{
+													"t": "small",
+													"runs": [
+														{
+															"s": "of the children who tried the storytelling event created by the tool responded positively. "
+														}
+													],
+													"center": 1
+												}
+											],
+											"center": 1
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "30:1542",
+			"name": "What I learnt",
+			"items": [
+				{
+					"t": "h3",
+					"runs": [
+						{
+							"s": "What I’d learned from this project"
+						}
+					]
+				},
+				{
+					"t": "row",
+					"cols": [
+						{
+							"w": 363,
+							"items": [
+								{
+									"t": "card",
+									"items": [
+										{
+											"t": "img",
+											"src": "childrens-museum/017.png",
+											"w": 40,
+											"h": 40,
+											"alt": ""
+										},
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "How to communicate with a client"
+												}
+											],
+											"center": 1
+										},
+										{
+											"t": "small",
+											"runs": [
+												{
+													"s": "Working with museum staff meant translating between their operational reality and our design process. I learned to ask the right questions early, rather than assume their goals matched our first instincts."
+												}
+											],
+											"center": 1
+										}
+									],
+									"center": 1
+								}
+							]
+						},
+						{
+							"w": 363,
+							"items": [
+								{
+									"t": "card",
+									"items": [
+										{
+											"t": "img",
+											"src": "childrens-museum/018.png",
+											"w": 40,
+											"h": 40,
+											"alt": ""
+										},
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Understand the limitation early on"
+												}
+											],
+											"center": 1
+										},
+										{
+											"t": "small",
+											"runs": [
+												{
+													"s": "The constraints of the real location shaped a lot of our decisions. We chose a PowerPoint-style experience because the projector was the one thing guaranteed to be in the room every time."
+												}
+											],
+											"center": 1
+										}
+									],
+									"center": 1
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}

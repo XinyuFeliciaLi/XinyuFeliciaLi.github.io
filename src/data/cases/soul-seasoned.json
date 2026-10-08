@@ -1,0 +1,1092 @@
+{
+	"title": "Soul Seasoned: AI-Driven Narrative Game",
+	"sections": [
+		{
+			"id": "30:2641",
+			"name": "Project Introduction / HUA",
+			"items": [
+				{
+					"t": "title",
+					"runs": [
+						{
+							"s": "Soul Seasoned: AI-Driven Narrative Game"
+						}
+					]
+				},
+				{
+					"t": "p",
+					"runs": [
+						{
+							"s": "Designed and implemented the UI for "
+						},
+						{
+							"s": "Soul Seasoned",
+							"i": 1
+						},
+						{
+							"s": ", with a focus on making AI NPC conversations feel visually more natural and integrated into the game world. "
+						}
+					]
+				},
+				{
+					"t": "card",
+					"items": [
+						{
+							"t": "row",
+							"cols": [
+								{
+									"w": 100,
+									"items": [
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Role"
+												}
+											]
+										},
+										{
+											"t": "small",
+											"runs": [
+												{
+													"s": "UX/UI Designer"
+												}
+											]
+										}
+									]
+								},
+								{
+									"w": 130,
+									"items": [
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Focus"
+												}
+											]
+										},
+										{
+											"t": "small",
+											"runs": [
+												{
+													"s": "Game UI Design & Unity Implementation "
+												}
+											]
+										}
+									]
+								},
+								{
+									"w": 129,
+									"items": [
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Collaborators"
+												}
+											]
+										},
+										{
+											"t": "small",
+											"runs": [
+												{
+													"s": "Team of 8: PM, artists, developers"
+												}
+											]
+										}
+									]
+								},
+								{
+									"w": 90,
+									"items": [
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Status"
+												}
+											]
+										},
+										{
+											"t": "small",
+											"runs": [
+												{
+													"s": "Shipped\n2025"
+												}
+											]
+										}
+									]
+								},
+								{
+									"w": 130,
+									"items": [
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Tools"
+												}
+											]
+										},
+										{
+											"t": "small",
+											"runs": [
+												{
+													"s": "Figma, Illustrator, Photoshop, Unity"
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "30:2684",
+			"name": "Impact / HUA",
+			"items": [
+				{
+					"t": "h2",
+					"runs": [
+						{
+							"s": "Highlights"
+						}
+					]
+				},
+				{
+					"t": "p",
+					"runs": [
+						{
+							"s": "Soul Seasoned is an AI-powered narrative game where players run a surreal diner, serving customers, managing resources, and shaping conversations with AI-driven characters. "
+						}
+					]
+				},
+				{
+					"t": "img",
+					"src": "soul-seasoned/001.png",
+					"w": 750,
+					"h": 677,
+					"alt": "Highlights"
+				}
+			]
+		},
+		{
+			"id": "30:2729",
+			"name": "Overview",
+			"items": [
+				{
+					"t": "eyebrow",
+					"runs": [
+						{
+							"s": "Overview"
+						}
+					]
+				},
+				{
+					"t": "h2",
+					"runs": [
+						{
+							"s": "Challenge"
+						}
+					]
+				},
+				{
+					"t": "row",
+					"cols": [
+						{
+							"w": 362,
+							"items": [
+								{
+									"t": "card",
+									"items": [
+										{
+											"t": "img",
+											"src": "soul-seasoned/002.png",
+											"w": 44,
+											"h": 44,
+											"alt": "",
+											"right": 1
+										},
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Making AI Dialogue Feel In-World"
+												}
+											]
+										},
+										{
+											"t": "small",
+											"runs": [
+												{
+													"s": "Shape the chat experience so it feels native to the visual novel instead of like a separate chatbot interface."
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"w": 362,
+							"items": [
+								{
+									"t": "card",
+									"items": [
+										{
+											"t": "img",
+											"src": "soul-seasoned/003.png",
+											"w": 44,
+											"h": 44,
+											"alt": "",
+											"right": 1
+										},
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Creating Cohesion from Early Inputs"
+												}
+											]
+										},
+										{
+											"t": "small",
+											"runs": [
+												{
+													"s": "Turn design docs, prototypes, and the existing 2D art direction into a consistent user experience and interface."
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "30:2786",
+			"name": "Product Design Process",
+			"items": [
+				{
+					"t": "card",
+					"band": 1,
+					"items": [
+						{
+							"t": "h2",
+							"runs": [
+								{
+									"s": "Overall Process"
+								}
+							]
+						},
+						{
+							"t": "card",
+							"items": [
+								{
+									"t": "row",
+									"cols": [
+										{
+											"w": 99,
+											"items": [
+												{
+													"t": "card",
+													"items": [
+														{
+															"t": "caption",
+															"runs": [
+																{
+																	"s": "Understand"
+																}
+															],
+															"center": 1
+														}
+													],
+													"center": 1
+												}
+											]
+										},
+										{
+											"w": 9,
+											"items": [
+												{
+													"t": "img",
+													"src": "soul-seasoned/004.png",
+													"w": 10,
+													"h": 7,
+													"alt": ""
+												}
+											]
+										},
+										{
+											"w": 73,
+											"items": [
+												{
+													"t": "card",
+													"items": [
+														{
+															"t": "caption",
+															"runs": [
+																{
+																	"s": "Define"
+																}
+															],
+															"center": 1
+														}
+													],
+													"center": 1
+												}
+											]
+										},
+										{
+											"w": 9,
+											"items": [
+												{
+													"t": "img",
+													"src": "soul-seasoned/005.png",
+													"w": 10,
+													"h": 7,
+													"alt": ""
+												}
+											]
+										},
+										{
+											"w": 75,
+											"items": [
+												{
+													"t": "card",
+													"items": [
+														{
+															"t": "caption",
+															"runs": [
+																{
+																	"s": "Design"
+																}
+															],
+															"center": 1
+														}
+													],
+													"center": 1
+												}
+											]
+										},
+										{
+											"w": 9,
+											"items": [
+												{
+													"t": "img",
+													"src": "soul-seasoned/006.png",
+													"w": 10,
+													"h": 7,
+													"alt": ""
+												}
+											]
+										},
+										{
+											"w": 120,
+											"items": [
+												{
+													"t": "card",
+													"items": [
+														{
+															"t": "caption",
+															"runs": [
+																{
+																	"s": "Implementation"
+																}
+															],
+															"center": 1
+														}
+													],
+													"center": 1
+												}
+											]
+										},
+										{
+											"w": 9,
+											"items": [
+												{
+													"t": "img",
+													"src": "soul-seasoned/007.png",
+													"w": 10,
+													"h": 7,
+													"alt": ""
+												}
+											]
+										},
+										{
+											"w": 77,
+											"items": [
+												{
+													"t": "card",
+													"items": [
+														{
+															"t": "caption",
+															"runs": [
+																{
+																	"s": "Playtest"
+																}
+															],
+															"center": 1
+														}
+													],
+													"center": 1
+												}
+											]
+										},
+										{
+											"w": 9,
+											"items": [
+												{
+													"t": "img",
+													"src": "soul-seasoned/008.png",
+													"w": 10,
+													"h": 7,
+													"alt": ""
+												}
+											]
+										},
+										{
+											"w": 70,
+											"items": [
+												{
+													"t": "card",
+													"items": [
+														{
+															"t": "caption",
+															"runs": [
+																{
+																	"s": "Iterate"
+																}
+															],
+															"center": 1
+														}
+													],
+													"center": 1
+												}
+											]
+										},
+										{
+											"w": 9,
+											"items": [
+												{
+													"t": "img",
+													"src": "soul-seasoned/009.png",
+													"w": 10,
+													"h": 7,
+													"alt": ""
+												}
+											]
+										},
+										{
+											"w": 81,
+											"items": [
+												{
+													"t": "card",
+													"items": [
+														{
+															"t": "caption",
+															"runs": [
+																{
+																	"s": "Delivery"
+																}
+															],
+															"center": 1
+														}
+													],
+													"center": 1
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "30:2816",
+			"name": "Usability Test & Iteration",
+			"items": [
+				{
+					"t": "eyebrow",
+					"runs": [
+						{
+							"s": "Experience Evaluation"
+						}
+					]
+				},
+				{
+					"t": "h2",
+					"runs": [
+						{
+							"s": "Playtest & Iteration"
+						}
+					]
+				},
+				{
+					"t": "h4",
+					"runs": [
+						{
+							"s": "01 · Chat Input"
+						}
+					]
+				},
+				{
+					"t": "img",
+					"src": "soul-seasoned/010.png",
+					"w": 749,
+					"h": 249,
+					"alt": "01 · Chat Input"
+				},
+				{
+					"t": "card",
+					"items": [
+						{
+							"t": "row",
+							"cols": [
+								{
+									"w": 293,
+									"items": [
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "User Feel"
+												}
+											]
+										},
+										{
+											"t": "p",
+											"runs": [
+												{
+													"s": "The chat input felt disconnected from the scene and too similar to a standard chatbot interface."
+												}
+											]
+										}
+									]
+								},
+								{
+									"w": 291,
+									"items": [
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Action"
+												}
+											]
+										},
+										{
+											"t": "p",
+											"runs": [
+												{
+													"s": "Integrated the input and CTA into the game’s visual language to make conversations feel more natural and in-world."
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"t": "h4",
+					"runs": [
+						{
+							"s": "02 · Chat History Popup"
+						}
+					]
+				},
+				{
+					"t": "img",
+					"src": "soul-seasoned/011.png",
+					"w": 749,
+					"h": 249,
+					"alt": "02 · Chat History Popup"
+				},
+				{
+					"t": "card",
+					"items": [
+						{
+							"t": "row",
+							"cols": [
+								{
+									"w": 293,
+									"items": [
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "User Feel"
+												}
+											]
+										},
+										{
+											"t": "p",
+											"runs": [
+												{
+													"s": "Text alone made it difficult to recall key customer details while managing multiple things in the game."
+												}
+											]
+										}
+									]
+								},
+								{
+									"w": 291,
+									"items": [
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Action"
+												}
+											]
+										},
+										{
+											"t": "p",
+											"runs": [
+												{
+													"s": "Reorganized the popup with clearer hierarchy and visual cues so customer history and preferences were easier to scan and use."
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "30:2895",
+			"name": "Final Design / HUA",
+			"items": [
+				{
+					"t": "eyebrow",
+					"runs": [
+						{
+							"s": "Experience Design"
+						}
+					]
+				},
+				{
+					"t": "h2",
+					"runs": [
+						{
+							"s": "Final Design"
+						}
+					]
+				},
+				{
+					"t": "card",
+					"items": [
+						{
+							"t": "img",
+							"src": "soul-seasoned/012.png",
+							"w": 713,
+							"h": 401,
+							"alt": "Final Design"
+						},
+						{
+							"t": "h3",
+							"runs": [
+								{
+									"s": "01 · Main Diner Screen"
+								}
+							]
+						},
+						{
+							"t": "row",
+							"cols": [
+								{
+									"w": 249,
+									"items": [
+										{
+											"t": "small",
+											"runs": [
+												{
+													"s": "Outcome\nTurned AI-driven dialogue into an in-world conversation experience that feels native, rather than a separate chatbot layer."
+												}
+											]
+										}
+									]
+								},
+								{
+									"w": 303,
+									"items": [
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Design Decisions"
+												}
+											]
+										},
+										{
+											"t": "small",
+											"list": "ul",
+											"lines": [
+												[
+													{
+														"s": "Anchored speech bubbles to characters"
+													}
+												],
+												[
+													{
+														"s": "Used bold color to prioritize chat actions"
+													}
+												],
+												[
+													{
+														"s": "Added texture to match the 2D art direction"
+													}
+												]
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"t": "card",
+					"items": [
+						{
+							"t": "img",
+							"src": "soul-seasoned/013.png",
+							"w": 713,
+							"h": 401,
+							"alt": "01 · Main Diner Screen"
+						},
+						{
+							"t": "h3",
+							"runs": [
+								{
+									"s": "02 · Cooking Screen"
+								}
+							]
+						},
+						{
+							"t": "row",
+							"cols": [
+								{
+									"w": 249,
+									"items": [
+										{
+											"t": "small",
+											"runs": [
+												{
+													"s": "Outcome\nTurned customer orders into a visual receipt system that makes each order easy to scan and match to the right customer."
+												}
+											]
+										}
+									]
+								},
+								{
+									"w": 303,
+									"items": [
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Design Decisions"
+												}
+											]
+										},
+										{
+											"t": "small",
+											"list": "ul",
+											"lines": [
+												[
+													{
+														"s": "Paired orders with customer visuals"
+													}
+												],
+												[
+													{
+														"s": "Used receipts to reinforce the diner setting"
+													}
+												],
+												[
+													{
+														"s": "Kept cooking actions easy to scan"
+													}
+												]
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"t": "card",
+					"items": [
+						{
+							"t": "img",
+							"src": "soul-seasoned/014.png",
+							"w": 713,
+							"h": 401,
+							"alt": "02 · Cooking Screen"
+						},
+						{
+							"t": "h3",
+							"runs": [
+								{
+									"s": "03 · Chat History"
+								}
+							]
+						},
+						{
+							"t": "row",
+							"cols": [
+								{
+									"w": 249,
+									"items": [
+										{
+											"t": "small",
+											"runs": [
+												{
+													"s": "Outcome\nCreated a lightweight information panel that helps players quickly recall customer history and preferences."
+												}
+											]
+										}
+									]
+								},
+								{
+									"w": 303,
+									"items": [
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Design Decisions"
+												}
+											]
+										},
+										{
+											"t": "small",
+											"list": "ul",
+											"lines": [
+												[
+													{
+														"s": "Tracks who the player has met"
+													}
+												],
+												[
+													{
+														"s": "Surfaces customer preferences"
+													}
+												],
+												[
+													{
+														"s": "Keeps previous conversations easy to reference"
+													}
+												]
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "30:2910",
+			"name": "Impact / HUA",
+			"items": [
+				{
+					"t": "eyebrow",
+					"runs": [
+						{
+							"s": "Launch & Reception"
+						}
+					]
+				},
+				{
+					"t": "h2",
+					"runs": [
+						{
+							"s": "Outcomes"
+						}
+					]
+				},
+				{
+					"t": "p",
+					"runs": [
+						{
+							"s": "Soul Seasoned’s delivery, reception, and visibility on itch.io, as of September 2026."
+						}
+					]
+				},
+				{
+					"t": "row",
+					"cols": [
+						{
+							"w": 234,
+							"items": [
+								{
+									"t": "card",
+									"items": [
+										{
+											"t": "stat",
+											"runs": [
+												{
+													"s": "Top Selling"
+												}
+											],
+											"center": 1
+										},
+										{
+											"t": "small",
+											"runs": [
+												{
+													"s": "AI-Assisted + Cooking",
+													"i": 1
+												},
+												{
+													"s": " on itch.io"
+												}
+											],
+											"center": 1
+										}
+									],
+									"center": 1
+								}
+							]
+						},
+						{
+							"w": 234,
+							"items": [
+								{
+									"t": "card",
+									"items": [
+										{
+											"t": "stat",
+											"runs": [
+												{
+													"s": "5.0 / 5"
+												}
+											],
+											"center": 1
+										},
+										{
+											"t": "small",
+											"runs": [
+												{
+													"s": "itch.io Rating"
+												}
+											],
+											"center": 1
+										}
+									],
+									"center": 1
+								}
+							]
+						},
+						{
+							"w": 234,
+							"items": [
+								{
+									"t": "card",
+									"items": [
+										{
+											"t": "stat",
+											"runs": [
+												{
+													"s": "15+"
+												}
+											],
+											"center": 1
+										},
+										{
+											"t": "small",
+											"runs": [
+												{
+													"s": "UI Screens Designed + Implemented"
+												}
+											],
+											"center": 1
+										}
+									],
+									"center": 1
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "30:2948",
+			"name": "Check Out the Product / HUA",
+			"items": [
+				{
+					"t": "card",
+					"band": 1,
+					"items": [
+						{
+							"t": "h2",
+							"runs": [
+								{
+									"s": "Check out the product"
+								}
+							]
+						},
+						{
+							"t": "card",
+							"fill": "#fa5c5c",
+							"items": [
+								{
+									"t": "row",
+									"cols": [
+										{
+											"w": 22,
+											"items": [
+												{
+													"t": "img",
+													"src": "soul-seasoned/015.png",
+													"w": 22,
+													"h": 19,
+													"alt": ""
+												}
+											]
+										},
+										{
+											"w": 43,
+											"items": [
+												{
+													"t": "small",
+													"runs": [
+														{
+															"s": "itch.io",
+															"href": "https://alterstaff.itch.io/soul-seasoned"
+														}
+													]
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}

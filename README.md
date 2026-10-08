@@ -28,17 +28,13 @@ Built with Astro, hosted free on GitHub Pages, served at feliciali.com.
 - [x] Clone locally
 - [x] Confirm Node and npm are installed
 - [x] Scaffold Astro
-- [x] Port the design system from Figma ([NZCCJJITy1aAd8bQ4GZkvg](https://www.figma.com/design/NZCCJJITy1aAd8bQ4GZkvg/Portfolio-Web)): Poppins sitewide, grayscale surfaces + one blue accent (`#3d83c4`), Material 3 spacing — see [src/styles/tokens.css](src/styles/tokens.css). Supersedes the earlier Jost+Danfo/cream-terracotta guess from before the Figma was shared.
+- [x] Port the design system from the final Figma ([g3zH06cDNIeq0Uhdjn2axc](https://www.figma.com/design/g3zH06cDNIeq0Uhdjn2axc/Portfolio---Web--Final)): Poppins sitewide (self-hosted), navy ink `#253746` on page `#F1F2F4`, white surfaces, mint accent `#5ADBA6`, one set of type roles — see [src/styles/tokens.css](src/styles/tokens.css). Supersedes the earlier NZCCJJITy1aAd8bQ4GZkvg file.
 - [x] Build the page layouts, matching the Figma's actual nav — Home, Projects (top 4 featured), Playground (smaller/faster pieces), About, Resume (JPG portfolio). No separate Contact page; Figma has none.
 - [x] Add motion: scroll reveals, page transitions, hover micro-interactions, hero moment — see "Motion and media" below
-- [x] Move case studies in as markdown (placeholder copy, pending real content) — see [src/content/case-studies/](src/content/case-studies/) and [src/content/playground/](src/content/playground/)
-  - [ ] Web Design — Fortune Kids — replace placeholder copy
-  - [ ] Voice and text input for ai platform — AlterStaff (AI2U) — replace placeholder copy
-  - [ ] Design Snapshots — AlterStaff — replace placeholder copy
-  - [ ] Children's museum — CMP — replace placeholder copy
-  - [ ] 6 Playground items (HUA, Dreamville Mart, MonoMon MR, Graphic Design Snapshots, UXR Instagram, UI Collections) — replace placeholder one-liners
-  - [ ] Nonprofit volunteer engagement platform (anonymized) — not in the Figma's top 4, kept as `draft: true` in [src/content/case-studies/nonprofit-volunteer-platform.md](src/content/case-studies/nonprofit-volunteer-platform.md) pending a decision on where it lives
-- [ ] Replace placeholder About bio, the 6 "Key Strength" reason cards on Home (unfilled in the Figma too), and the Resume page's JPG(s)
+- [x] Build all 9 case studies from the final Figma: 4 Projects (Fortune Kid, AI2U voice and chat, AI2U Design Snapshots, Children's Museum) and 5 Playground (HUA, Soul Seasoned, Dreamville Mart, Monomon MR, Graphic & UI). Real copy and images, no placeholders.
+- [ ] Export the 4 videos (see "Content rules")
+- [ ] Re-export key images at 2x for sharper screens (current crops are 1x)
+- [ ] About and Resume pages: not designed in the Figma yet, still placeholders
 
 ### Phase 3 — Ship
 
@@ -106,15 +102,69 @@ Certificate issuance can take up to 24 hours. A warning during that window is no
 - Registrar: Squarespace Domains II LLC (inherited from Google Domains)
 - Current nameservers: `ns8.wixdns.net`, `ns9.wixdns.net` — to be changed
 
+## Content rules (from the Figma)
+
+Source of truth: [Portfolio - Web (Final)](https://www.figma.com/design/g3zH06cDNIeq0Uhdjn2axc/Portfolio---Web--Final). The case study copy and images are final there.
+
+- **Text is copied word for word.** The only edits are the typo fixes and meta-label wording below. Nothing else is reworded.
+- **Images are exported as-is.** None are added or removed.
+- **Typography and color are unified, not copied.** Figma sets body copy in Jost at many slightly different sizes. The site uses Poppins and the type roles in [src/styles/tokens.css](src/styles/tokens.css) everywhere.
+- **Every case study uses the Fortune Kid section format:** phase eyebrow (Understand / Research / Define / Design / Iterate), then the section heading, then content. Final Design and Impact are headings with no eyebrow. In AI2U and Children's Museum, the phase names were large blue headings in Figma and become eyebrows. The heading that follows the phase becomes the section heading.
+
+### Where content lives
+
+| What | Where |
+| --- | --- |
+| Case study list and card copy | [src/data/cases.ts](src/data/cases.ts) |
+| Case study pages (text, cards, rows, image references) | `src/data/cases/<slug>.json`, generated from the Figma frames |
+| Case study images (cropped from Figma at 1x) | `src/assets/cases/<slug>/` |
+| Hero mockups | `src/assets/heroes/<slug>.png` |
+| Videos | `src/assets/media/<slug>/<figma-node>.mp4` (see below) |
+| Renderer | [src/components/Blocks.astro](src/components/Blocks.astro), [src/components/CaseStudy.astro](src/components/CaseStudy.astro) |
+
+**Videos still to export.** Figma can't export video, so these four show their poster frame until the MP4 is dropped in. Once the file exists, it becomes a click-to-play video automatically:
+
+- `src/assets/media/ai2u-voice-chat/30-2096.mp4`: AI2U, "Recording stops on click"
+- `src/assets/media/ai2u-voice-chat/30-2102.mp4`: AI2U, "No mic feedback while speaking"
+- `src/assets/media/monomon-mr/30-3596.mp4`: Monomon MR, Highlights
+- `src/assets/media/monomon-mr/30-3757.mp4`: Monomon MR, Experience Walkthrough
+
+### Typo fixes applied on the site (Figma still has the original)
+
+| Page | Figma | Site |
+| --- | --- | --- |
+| Graphic & UI (title) | Graphic & UI Design Snpashots | Graphic & UI Design Snapshots |
+| Dreamville Mart (title) | Dreamville Mart:AI Multiplayer Game | Dreamville Mart: AI Multiplayer Game |
+| Soul Seasoned | 03 · Chat Hisotry | 03 · Chat History |
+| Children's Museum | Orginal Design | Original Design |
+| AI2U | Collaborating with development,we refined | Collaborating with development, we refined |
+| Soul Seasoned | CMU ETC FestivalShowcase | CMU ETC Festival Showcase |
+| AI2U Design Snapshots (Problem) | stent interaction patterns increased… | Inconsistent interaction patterns increased… (text box was cut off) |
+| AI2U Design Snapshots | What I’d learned from these project | What I’d learned from these projects |
+| AI2U | …work began. scope that coordination work… | …work began. Scope that coordination work… |
+| HUA | high-fidelity Interface | High-fidelity Interface |
+
+### Meta label wording (unified across all case studies)
+
+| Figma | Site |
+| --- | --- |
+| Deliverables / Deliverable | Deliverable |
+| Tool / Tools | Tools |
+| Timeline / Timeline & Status / Status | Status |
+| Focus | Focus |
+
+Role, Client, Collaborators and Responsibilities stay as they are.
+
 ## Motion and media
 
 The site uses motion in four places: scroll reveals, page transitions, hover micro-interactions, and a hero moment on the landing page.
 
 Rules for keeping it fast and accessible:
 
-- **No GIFs for screen recordings.** Export to MP4 and WebM instead. A GIF of a UI interaction is routinely 10x the file size of the same clip as video, for no visual gain. Use `<video autoplay loop muted playsinline>`.
+- **No GIFs for screen recordings.** Export to MP4 and WebM instead. A GIF of a UI interaction is routinely 10x the file size of the same clip as video, for no visual gain.
+- **Videos never autoplay.** Use [src/components/VideoPlayer.astro](src/components/VideoPlayer.astro): it shows the poster frame, and the viewer clicks to play and clicks again to pause.
 - **Respect `prefers-reduced-motion`.** Some viewers get motion sickness from scroll animations. Every animation needs a reduced-motion fallback that skips straight to the end state. Implemented in [src/styles/global.css](src/styles/global.css) and the reveal observer in [src/layouts/BaseLayout.astro](src/layouts/BaseLayout.astro).
-- **Lazy-load video below the fold.** Nothing plays until it is near the viewport.
+- **Load video lazily.** `preload="metadata"` fetches only the first frame and duration until the viewer presses play.
 - **Watch the budget.** GitHub Pages caps published sites at 1 GB with a soft 100 GB/month bandwidth limit. Media is what eats it.
 
 Real animated artwork — pixel loops, motion graphics where the format is the point — can stay as GIF. This is about screen captures.

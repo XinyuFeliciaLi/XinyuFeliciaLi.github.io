@@ -1,0 +1,1508 @@
+{
+ "title": "Building Trust: AI Chat & Voice UX",
+ "sections": [
+  {
+   "id": "30:1589",
+   "name": "Overview",
+   "items": [
+    {
+     "t": "title",
+     "runs": [
+      {
+       "s": "Building Trust: AI Chat & Voice UX"
+      }
+     ]
+    },
+    {
+     "t": "p",
+     "runs": [
+      {
+       "s": "AI2U is an "
+      },
+      {
+       "s": "AI-powered platform",
+       "b": 1
+      },
+      {
+       "s": " where users talk to LLM-driven characters through both voice and text, in real time, serving a community of 80,000+ users."
+      }
+     ]
+    },
+    {
+     "t": "row",
+     "cols": [
+      {
+       "w": 478,
+       "items": [
+        {
+         "t": "card",
+         "items": [
+          {
+           "t": "h3",
+           "runs": [
+            {
+             "s": "Challenge"
+            }
+           ]
+          },
+          {
+           "t": "p",
+           "list": "ul",
+           "lines": [
+            [
+             {
+              "s": "Both voice and text i"
+             },
+             {
+              "s": "nput modes left users unsure whether the system had registered",
+              "b": 1
+             },
+             {
+              "s": " them:"
+             }
+            ],
+            [
+             {
+              "s": "Voice gave no signal it was listening and no way to fix a bad transcript."
+             }
+            ],
+            [
+             {
+              "s": "Text had no visible send action."
+             }
+            ]
+           ]
+          },
+          {
+           "t": "h3",
+           "runs": [
+            {
+             "s": "Goal"
+            }
+           ]
+          },
+          {
+           "t": "p",
+           "runs": [
+            {
+             "s": "Make voice and text input feel reliable, without changing the underlying system."
+            }
+           ]
+          },
+          {
+           "t": "h3",
+           "runs": [
+            {
+             "s": "Impact"
+            }
+           ]
+          },
+          {
+           "t": "p",
+           "runs": [
+            {
+             "s": "The input system shipped in Q2 2025. Internal tickets on the input feature dropped 54% after launch."
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "w": 257,
+       "items": [
+        {
+         "t": "card",
+         "items": [
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "Role"
+            }
+           ]
+          },
+          {
+           "t": "small",
+           "runs": [
+            {
+             "s": "UX/UI Designer"
+            }
+           ]
+          },
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "Responsibilities"
+            }
+           ]
+          },
+          {
+           "t": "small",
+           "runs": [
+            {
+             "s": "Led end-to-end input system design"
+            }
+           ]
+          },
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "Collaborators"
+            }
+           ]
+          },
+          {
+           "t": "small",
+           "runs": [
+            {
+             "s": "10+ Teams: Game Designers, Concept Artists, Marketing Team, Front-End &Back-End Developers"
+            }
+           ]
+          },
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "Status"
+            }
+           ]
+          },
+          {
+           "t": "small",
+           "runs": [
+            {
+             "s": "Q2 2025, Shipped"
+            }
+           ]
+          },
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "Tools"
+            }
+           ]
+          },
+          {
+           "t": "small",
+           "runs": [
+            {
+             "s": "Figma, Photoshop, Illustrator, \nGoogle Forms, Unity"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "30:1606",
+   "name": "Understand",
+   "items": [
+    {
+     "t": "eyebrow",
+     "runs": [
+      {
+       "s": "Understand"
+      }
+     ]
+    },
+    {
+     "t": "h2",
+     "runs": [
+      {
+       "s": "Starting from feedback"
+      }
+     ]
+    },
+    {
+     "t": "p",
+     "runs": [
+      {
+       "s": "The feature was already live with an active user base. Feedback came through community channels and internal reports, but it described frustration rather than cause."
+      }
+     ]
+    },
+    {
+     "t": "img",
+     "src": "ai2u-voice-chat/001.png",
+     "w": 749,
+     "h": 208,
+     "alt": "Starting from feedback"
+    },
+    {
+     "t": "h3",
+     "runs": [
+      {
+       "s": "Constraints"
+      }
+     ]
+    },
+    {
+     "t": "p",
+     "runs": [
+      {
+       "s": "Before design started, I held a kickoff with everyone involved in the feature. We reviewed technical constraints and the overall development scope. This set the boundaries the design had to work inside."
+      }
+     ]
+    },
+    {
+     "t": "row",
+     "cols": [
+      {
+       "w": 232,
+       "items": [
+        {
+         "t": "card",
+         "items": [
+          {
+           "t": "img",
+           "src": "ai2u-voice-chat/002.png",
+           "w": 24,
+           "h": 24,
+           "alt": ""
+          },
+          {
+           "t": "p",
+           "runs": [
+            {
+             "s": "User"
+            }
+           ],
+           "center": 1
+          },
+          {
+           "t": "caption",
+           "runs": [
+            {
+             "s": "The core interaction flow had to stay familiar to existing users."
+            }
+           ],
+           "center": 1
+          }
+         ],
+         "center": 1
+        }
+       ]
+      },
+      {
+       "w": 232,
+       "items": [
+        {
+         "t": "card",
+         "items": [
+          {
+           "t": "img",
+           "src": "ai2u-voice-chat/003.png",
+           "w": 24,
+           "h": 24,
+           "alt": ""
+          },
+          {
+           "t": "p",
+           "runs": [
+            {
+             "s": "Business"
+            }
+           ],
+           "center": 1
+          },
+          {
+           "t": "caption",
+           "runs": [
+            {
+             "s": "Updating the speech-to-text model was out of scope, so accuracy was fixed."
+            }
+           ],
+           "center": 1
+          }
+         ],
+         "center": 1
+        }
+       ]
+      },
+      {
+       "w": 229,
+       "items": [
+        {
+         "t": "card",
+         "items": [
+          {
+           "t": "img",
+           "src": "ai2u-voice-chat/004.png",
+           "w": 24,
+           "h": 24,
+           "alt": ""
+          },
+          {
+           "t": "p",
+           "runs": [
+            {
+             "s": "Timeline"
+            }
+           ],
+           "center": 1
+          },
+          {
+           "t": "caption",
+           "runs": [
+            {
+             "s": "Four-week agile iteration on a live feature, with time reserved for QA."
+            }
+           ],
+           "center": 1
+          }
+         ],
+         "center": 1
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "30:1727",
+   "name": "Define Content",
+   "items": [
+    {
+     "t": "card",
+     "band": 1,
+     "items": [
+      {
+       "t": "img",
+       "src": "ai2u-voice-chat/005.png",
+       "w": 183,
+       "h": 183,
+       "alt": "Constraints"
+      },
+      {
+       "t": "h3",
+       "runs": [
+        {
+         "s": "Problem to solve"
+        }
+       ],
+       "center": 1
+      },
+      {
+       "t": "p",
+       "runs": [
+        {
+         "s": "Why users lost confidence in a system that was technically working."
+        }
+       ],
+       "center": 1
+      }
+     ],
+     "center": 1
+    }
+   ]
+  },
+  {
+   "id": "30:1836",
+   "name": "Define",
+   "items": [
+    {
+     "t": "eyebrow",
+     "runs": [
+      {
+       "s": "Research"
+      }
+     ]
+    },
+    {
+     "t": "p",
+     "runs": [
+      {
+       "s": "With no way to reach the live user base, I initiated and led the research effort with marketing, game design and development:"
+      }
+     ]
+    },
+    {
+     "t": "card",
+     "items": [
+      {
+       "t": "row",
+       "cols": [
+        {
+         "w": 403,
+         "items": [
+          {
+           "t": "p",
+           "list": "ul",
+           "lines": [
+            [
+             {
+              "s": "Wrote the survey questions on voice and text input"
+             }
+            ],
+            [
+             {
+              "s": "Aligned with game design on incentive rewards"
+             }
+            ],
+            [
+             {
+              "s": "Worked with marketing to reach players across channels"
+             }
+            ]
+           ]
+          }
+         ]
+        },
+        {
+         "w": 268,
+         "items": [
+          {
+           "t": "img",
+           "src": "ai2u-voice-chat/006.png",
+           "w": 268,
+           "h": 158,
+           "alt": "Research"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "t": "h3",
+     "runs": [
+      {
+       "s": "Research Goals"
+      }
+     ]
+    },
+    {
+     "t": "p",
+     "list": "ol",
+     "lines": [
+      [
+       {
+        "s": "Where confidence breaks",
+        "b": 1
+       },
+       {
+        "s": " in voice and text input"
+       }
+      ],
+      [
+       {
+        "s": "What users expect",
+        "b": 1
+       },
+       {
+        "s": " the input bar to do"
+       }
+      ],
+      [
+       {
+        "s": "What they already rely on",
+        "b": 1
+       },
+       {
+        "s": " and should not lose"
+       }
+      ]
+     ]
+    },
+    {
+     "t": "h3",
+     "runs": [
+      {
+       "s": "Research Results"
+      }
+     ]
+    },
+    {
+     "t": "p",
+     "runs": [
+      {
+       "s": "I analyzed 200+ responses to find what was actually breaking:"
+      }
+     ]
+    },
+    {
+     "t": "img",
+     "src": "ai2u-voice-chat/007.png",
+     "w": 748,
+     "h": 418,
+     "alt": "Research Results"
+    },
+    {
+     "t": "h3",
+     "runs": [
+      {
+       "s": "Key Insights"
+      }
+     ]
+    },
+    {
+     "t": "card",
+     "items": [
+      {
+       "t": "h4",
+       "runs": [
+        {
+         "s": "01 |  Voice input carried the experience"
+        }
+       ]
+      },
+      {
+       "t": "p",
+       "runs": [
+        {
+         "s": "Most users preferred voice to text. Speaking to an NPC felt more immersive, so voice led the redesign."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "t": "card",
+     "items": [
+      {
+       "t": "h4",
+       "runs": [
+        {
+         "s": "02 |  The gap was feedback, not accuracy"
+        }
+       ]
+      },
+      {
+       "t": "p",
+       "runs": [
+        {
+         "s": "Users saw their words mistranscribed, but the LLM parsed imperfect transcripts fine. They needed to see the game listening and mistakes fixable"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "t": "card",
+     "items": [
+      {
+       "t": "h4",
+       "runs": [
+        {
+         "s": "03 | Controls did not signal what was available"
+        }
+       ]
+      },
+      {
+       "t": "p",
+       "runs": [
+        {
+         "s": "Users could not tell which controls were live at any moment. "
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "t": "card",
+     "band": 1,
+     "items": [
+      {
+       "t": "img",
+       "src": "ai2u-voice-chat/008.png",
+       "w": 184,
+       "h": 184,
+       "alt": "03 | Controls did not signal what was available"
+      },
+      {
+       "t": "h3",
+       "runs": [
+        {
+         "s": "How Might We"
+        }
+       ],
+       "center": 1
+      },
+      {
+       "t": "p",
+       "runs": [
+        {
+         "s": "How might we show users the system heard them, and let them fix it when it gets them wrong, without touching the backend?"
+        }
+       ],
+       "center": 1
+      }
+     ],
+     "center": 1
+    }
+   ]
+  },
+  {
+   "id": "30:2027",
+   "name": "Design",
+   "items": [
+    {
+     "t": "eyebrow",
+     "runs": [
+      {
+       "s": "Ideation"
+      }
+     ]
+    },
+    {
+     "t": "h2",
+     "runs": [
+      {
+       "s": "Multiple Iterations"
+      }
+     ]
+    },
+    {
+     "t": "p",
+     "runs": [
+      {
+       "s": "To meet tight deadlines, we prioritized rapid iteration, starting with high-fidelity mocks. Collaborating with development, we refined key areas for the voice and text input:"
+      }
+     ]
+    },
+    {
+     "t": "row",
+     "cols": [
+      {
+       "w": 176,
+       "items": [
+        {
+         "t": "card",
+         "items": [
+          {
+           "t": "label",
+           "runs": [
+            {
+             "s": "Voice Input Accuracy"
+            }
+           ],
+           "center": 1
+          },
+          {
+           "t": "caption",
+           "runs": [
+            {
+             "s": "Enable editing after voice input"
+            }
+           ],
+           "center": 1
+          }
+         ],
+         "center": 1
+        }
+       ]
+      },
+      {
+       "w": 176,
+       "items": [
+        {
+         "t": "card",
+         "items": [
+          {
+           "t": "label",
+           "runs": [
+            {
+             "s": "Microphone \nStates"
+            }
+           ],
+           "center": 1
+          },
+          {
+           "t": "caption",
+           "runs": [
+            {
+             "s": "Identify and add key mic states"
+            }
+           ],
+           "center": 1
+          }
+         ],
+         "center": 1
+        }
+       ]
+      },
+      {
+       "w": 176,
+       "items": [
+        {
+         "t": "card",
+         "items": [
+          {
+           "t": "label",
+           "runs": [
+            {
+             "s": "Added Missing Control "
+            }
+           ],
+           "center": 1
+          },
+          {
+           "t": "caption",
+           "runs": [
+            {
+             "s": "Include the send\n button"
+            }
+           ],
+           "center": 1
+          }
+         ],
+         "center": 1
+        }
+       ]
+      },
+      {
+       "w": 176,
+       "items": [
+        {
+         "t": "card",
+         "items": [
+          {
+           "t": "label",
+           "runs": [
+            {
+             "s": "General Interactive states"
+            }
+           ],
+           "center": 1
+          },
+          {
+           "t": "caption",
+           "runs": [
+            {
+             "s": "Match button states to what the system allows"
+            }
+           ],
+           "center": 1
+          }
+         ],
+         "center": 1
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "t": "h3",
+     "runs": [
+      {
+       "s": "Iterations Details"
+      }
+     ]
+    },
+    {
+     "t": "eyebrow",
+     "runs": [
+      {
+       "s": "First Iteration"
+      }
+     ],
+     "center": 1
+    },
+    {
+     "t": "card",
+     "items": [
+      {
+       "t": "row",
+       "cols": [
+        {
+         "w": 231,
+         "items": [
+          {
+           "t": "card",
+           "items": [
+            {
+             "t": "small",
+             "runs": [
+              {
+               "s": "Established a clear split between the two input modes."
+              }
+             ],
+             "center": 1
+            },
+            {
+             "t": "small",
+             "list": "ul",
+             "lines": [
+              [
+               {
+                "s": "Separated voice and text states with distinct icons and hint text"
+               }
+              ],
+              [
+               {
+                "s": "Used different outline colors and weights to differentiate states"
+               }
+              ],
+              [
+               {
+                "s": "Added a send button to complete the text flow"
+               }
+              ]
+             ]
+            }
+           ],
+           "center": 1
+          }
+         ]
+        },
+        {
+         "w": 477,
+         "items": [
+          {
+           "t": "img",
+           "src": "ai2u-voice-chat/009.png",
+           "w": 477,
+           "h": 256,
+           "alt": "Iterations Details"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "t": "eyebrow",
+     "runs": [
+      {
+       "s": "......"
+      }
+     ]
+    },
+    {
+     "t": "eyebrow",
+     "runs": [
+      {
+       "s": "Last Iteration"
+      }
+     ],
+     "center": 1
+    },
+    {
+     "t": "card",
+     "items": [
+      {
+       "t": "row",
+       "cols": [
+        {
+         "w": 480,
+         "items": [
+          {
+           "t": "img",
+           "src": "ai2u-voice-chat/010.png",
+           "w": 480,
+           "h": 397,
+           "alt": "Iterations Details"
+          }
+         ]
+        },
+        {
+         "w": 232,
+         "items": [
+          {
+           "t": "card",
+           "items": [
+            {
+             "t": "small",
+             "runs": [
+              {
+               "s": "Made mode and system status readable at a glance."
+              }
+             ],
+             "center": 1
+            },
+            {
+             "t": "small",
+             "list": "ul",
+             "lines": [
+              [
+               {
+                "s": "Replaced weight with color to separate modes: solid blue for voice, outline for text"
+               }
+              ],
+              [
+               {
+                "s": "Added a disconnected mic state so users could tell the issue was hardware, not the NPC"
+               }
+              ],
+              [
+               {
+                "s": "Added disabled and active states so buttons matched what the system allowed"
+               }
+              ]
+             ]
+            }
+           ],
+           "center": 1
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "30:2074",
+   "name": "Design",
+   "items": [
+    {
+     "t": "eyebrow",
+     "runs": [
+      {
+       "s": "Usability Test & Iteration"
+      }
+     ]
+    },
+    {
+     "t": "p",
+     "runs": [
+      {
+       "s": "After the first round of iterations, we tested the flow with the QA team. Two findings changed the design."
+      }
+     ]
+    },
+    {
+     "t": "h3",
+     "runs": [
+      {
+       "s": "Recording stops on click"
+      }
+     ]
+    },
+    {
+     "t": "row",
+     "cols": [
+      {
+       "w": 362,
+       "items": [
+        {
+         "t": "card",
+         "items": [
+          {
+           "t": "img",
+           "src": "ai2u-voice-chat/011.png",
+           "w": 31,
+           "h": 31,
+           "alt": ""
+          },
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "User feel"
+            }
+           ]
+          },
+          {
+           "t": "caption",
+           "runs": [
+            {
+             "s": "Making the transcript editable introduced a new failure. Users clicked into the text field while still talking, which cut off the voice input mid-sentence."
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "t": "card",
+         "items": [
+          {
+           "t": "img",
+           "src": "ai2u-voice-chat/012.png",
+           "w": 31,
+           "h": 31,
+           "alt": ""
+          },
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "Action"
+            }
+           ]
+          },
+          {
+           "t": "caption",
+           "runs": [
+            {
+             "s": "Worked with the developer to disable mouse interaction with the text field while voice input is active, so the transcript only becomes editable once recording ends."
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "w": 363,
+       "items": [
+        {
+         "t": "video",
+         "src": "ai2u-voice-chat/013.png",
+         "w": 363,
+         "h": 350,
+         "video": "ai2u-voice-chat/30-2096.mp4",
+         "alt": "Action"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "t": "h3",
+     "runs": [
+      {
+       "s": "No mic feedback while speaking"
+      }
+     ]
+    },
+    {
+     "t": "row",
+     "cols": [
+      {
+       "w": 362,
+       "items": [
+        {
+         "t": "video",
+         "src": "ai2u-voice-chat/014.png",
+         "w": 362,
+         "h": 350,
+         "video": "ai2u-voice-chat/30-2102.mp4",
+         "alt": "No mic feedback while speaking"
+        }
+       ]
+      },
+      {
+       "w": 362,
+       "items": [
+        {
+         "t": "card",
+         "items": [
+          {
+           "t": "img",
+           "src": "ai2u-voice-chat/015.png",
+           "w": 31,
+           "h": 31,
+           "alt": ""
+          },
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "User feel"
+            }
+           ]
+          },
+          {
+           "t": "caption",
+           "runs": [
+            {
+             "s": "The microphone icon confirmed the mic was on, but users could not tell whether their audio was coming through clearly."
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "t": "card",
+         "items": [
+          {
+           "t": "img",
+           "src": "ai2u-voice-chat/016.png",
+           "w": 31,
+           "h": 31,
+           "alt": ""
+          },
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "Action"
+            }
+           ]
+          },
+          {
+           "t": "caption",
+           "runs": [
+            {
+             "s": "Worked with the developer to add motion that responds to input volume, so users can see their voice is being captured clearly while they speak."
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "30:2108",
+   "name": "Final Design",
+   "items": [
+    {
+     "t": "h2",
+     "runs": [
+      {
+       "s": "Final Design"
+      }
+     ],
+     "blue": 1
+    },
+    {
+     "t": "p",
+     "runs": [
+      {
+       "s": "The final MVP delivered a voice and text input experience that fits into AI2U's existing PC platform."
+      }
+     ]
+    },
+    {
+     "t": "card",
+     "items": [
+      {
+       "t": "img",
+       "src": "ai2u-voice-chat/017.png",
+       "w": 593,
+       "h": 336,
+       "alt": "Final Design"
+      },
+      {
+       "t": "h3",
+       "runs": [
+        {
+         "s": "01 Enable Editing After Voice Input"
+        }
+       ],
+       "center": 1
+      },
+      {
+       "t": "p",
+       "runs": [
+        {
+         "s": "After recording ends, the transcript remains open for edits. Users can fix a word or reword a sentence before sending, instead of discarding the take and starting over."
+        }
+       ],
+       "center": 1
+      }
+     ],
+     "center": 1
+    },
+    {
+     "t": "card",
+     "items": [
+      {
+       "t": "img",
+       "src": "ai2u-voice-chat/018.png",
+       "w": 593,
+       "h": 336,
+       "alt": "01 Enable Editing After Voice Input"
+      },
+      {
+       "t": "h3",
+       "runs": [
+        {
+         "s": "02 Microphone state feedback"
+        }
+       ],
+       "center": 1
+      },
+      {
+       "t": "p",
+       "runs": [
+        {
+         "s": "The microphone carries three states. Waiting for user input, listening, and hardware connection needs checking. Users can see if the game heard them, or if their mic failed."
+        }
+       ],
+       "center": 1
+      }
+     ],
+     "center": 1
+    },
+    {
+     "t": "card",
+     "items": [
+      {
+       "t": "img",
+       "src": "ai2u-voice-chat/019.png",
+       "w": 593,
+       "h": 336,
+       "alt": "02 Microphone state feedback"
+      },
+      {
+       "t": "h3",
+       "runs": [
+        {
+         "s": "03 Visible send action"
+        }
+       ],
+       "center": 1
+      },
+      {
+       "t": "p",
+       "runs": [
+        {
+         "s": " Sending no longer depends on users discovering a hotkey and remembering it."
+        }
+       ],
+       "center": 1
+      }
+     ],
+     "center": 1
+    },
+    {
+     "t": "card",
+     "items": [
+      {
+       "t": "img",
+       "src": "ai2u-voice-chat/020.png",
+       "w": 593,
+       "h": 336,
+       "alt": "03 Visible send action"
+      },
+      {
+       "t": "h3",
+       "runs": [
+        {
+         "s": "04 Clear active mode between voice and text"
+        }
+       ],
+       "center": 1
+      },
+      {
+       "t": "p",
+       "runs": [
+        {
+         "s": "Active mode takes a solid fill, inactive mode is grey. Users can see which mode they are in and which one is available."
+        }
+       ],
+       "center": 1
+      }
+     ],
+     "center": 1
+    }
+   ]
+  },
+  {
+   "id": "30:2116",
+   "name": "Frame 106",
+   "items": [
+    {
+     "t": "card",
+     "band": 1,
+     "items": [
+      {
+       "t": "h2",
+       "runs": [
+        {
+         "s": "Impact"
+        }
+       ],
+       "blue": 1
+      },
+      {
+       "t": "p",
+       "runs": [
+        {
+         "s": "The redesigned input experience shipped in Q2 2025."
+        }
+       ]
+      },
+      {
+       "t": "row",
+       "cols": [
+        {
+         "w": 232,
+         "items": [
+          {
+           "t": "card",
+           "items": [
+            {
+             "t": "h3",
+             "runs": [
+              {
+               "s": "54% drop in internal tickets"
+              }
+             ],
+             "center": 1
+            },
+            {
+             "t": "small",
+             "runs": [
+              {
+               "s": "Input-related reports fell after launch across a community of 30,000+ users."
+              }
+             ],
+             "center": 1
+            }
+           ],
+           "center": 1
+          }
+         ]
+        },
+        {
+         "w": 232,
+         "items": [
+          {
+           "t": "card",
+           "items": [
+            {
+             "t": "h3",
+             "runs": [
+              {
+               "s": "Player-Requested Controls Shipped"
+              }
+             ],
+             "center": 1
+            },
+            {
+             "t": "small",
+             "runs": [
+              {
+               "s": "Shipped clearer voice controls, editable input, and clearer message sending."
+              }
+             ],
+             "center": 1
+            }
+           ],
+           "center": 1
+          }
+         ]
+        },
+        {
+         "w": 232,
+         "items": [
+          {
+           "t": "card",
+           "items": [
+            {
+             "t": "h3",
+             "runs": [
+              {
+               "s": "Reusable Feedback Pipeline"
+              }
+             ],
+             "center": 1
+            },
+            {
+             "t": "small",
+             "runs": [
+              {
+               "s": "The research workflow was adopted internally and reused across future team projects."
+              }
+             ],
+             "center": 1
+            }
+           ],
+           "center": 1
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "t": "h3",
+     "runs": [
+      {
+       "s": "What I’d learned from this project"
+      }
+     ]
+    },
+    {
+     "t": "row",
+     "cols": [
+      {
+       "w": 363,
+       "items": [
+        {
+         "t": "card",
+         "items": [
+          {
+           "t": "img",
+           "src": "ai2u-voice-chat/021.png",
+           "w": 40,
+           "h": 40,
+           "alt": ""
+          },
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "Cross-team initiation is its own skill"
+            }
+           ],
+           "center": 1
+          },
+          {
+           "t": "small",
+           "runs": [
+            {
+             "s": "Establishing the pipeline required alignment across different teams before any interface work began. Scope that coordination work explicitly at the start, rather than treating it as overhead alongside."
+            }
+           ],
+           "center": 1
+          }
+         ],
+         "center": 1
+        }
+       ]
+      },
+      {
+       "w": 363,
+       "items": [
+        {
+         "t": "card",
+         "items": [
+          {
+           "t": "img",
+           "src": "ai2u-voice-chat/022.png",
+           "w": 40,
+           "h": 40,
+           "alt": ""
+          },
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "Not every problem fits the budget, and that's fine."
+            }
+           ],
+           "center": 1
+          },
+          {
+           "t": "small",
+           "runs": [
+            {
+             "s": "User feedback surfaced issues; a full fix couldn't touch given cost constraints, so I found a design-level fix that addressed the experience without touching the underlying system. "
+            }
+           ],
+           "center": 1
+          }
+         ],
+         "center": 1
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

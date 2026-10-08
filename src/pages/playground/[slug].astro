@@ -1,0 +1,14 @@
+---
+import CaseStudy from '../../components/CaseStudy.astro';
+import { cases, hasPage } from '../../data/cases';
+
+export function getStaticPaths() {
+	return cases
+		.filter((c) => c.kind === 'playground' && hasPage(c.slug))
+		.map((entry) => ({ params: { slug: entry.slug }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+---
+
+<CaseStudy entry={entry} />

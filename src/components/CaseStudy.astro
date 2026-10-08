@@ -1,0 +1,98 @@
+---
+// One case study page: shared hero band, then the Figma sections in a 750px reading column.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CaseHero from './CaseHero.astro';
+import Blocks from './Blocks.astro';
+import { caseContent, heroImage, type Block, type CaseEntry } from '../data/cases';
+
+interface Props {
+	entry: CaseEntry;
+}
+
+const { entry } = Astro.props;
+const content = caseContent(entry.slug);
+
+// Figma nests each section as an intro (eyebrow / heading / body) followed by sub-blocks, each
+// headed by an h2, h3 or eyebrow. Split the flat block list at those headings (an eyebrow sticks to
+// the heading after it) so sub-blocks can be spaced apart like the Figma frames.
+const isHeading = (b?: Block) => b?.t === 'h2' || b?.t === 'h3';
+const startsGroup = (items: Block[], i: number) => {
+	const prev = items[i - 1]?.t;
+	if (isHeading(items[i])) return prev !== 'eyebrow';
+	// a showcase image / video after a card row is its own block (Fortune Kid's show reel)
+	if (['img', 'video'].includes(items[i].t)) return prev === 'row' || prev === 'card';
+	return items[i].t === 'eyebrow' && prev !== 'eyebrow' && !isHeading(items[i - 1]);
+};
+const groups = (items: Block[]) =>
+	items.reduce<Block[][]>((out, b, i) => {
+		if (i === 0 || startsGroup(items, i)) out.push([]);
+		out[out.length - 1].push(b);
+		return out;
+	}, []);
+// "Final Design" sections (eyebrow or heading) get a lighter card background
+const isFinal = (items: Block[]) =>
+	items.slice(0, 2).some((b) => b.runs?.some((r) => /final design/i.test(r.s)));
+---
+
+<BaseLayout title={content.title} description={entry.cardTitle}>
+	<CaseHero image={heroImage(entry.slug)} alt={entry.heroAlt} />
+	<article class:list={['container container--prose case', `case--${entry.slug}`]}>
+		{
+			content.sections.map((section) => (
+				<section class:list={['case-section', { 'case-section--final': isFinal(section.items) }]} data-reveal>
+					{groups(section.items).map((group) => (
+						<div class="case-group">
+							<Blocks items={group} />
+						</div>
+					))}
+				</section>
+			))
+		}
+	</article>
+</BaseLayout>
+
+<style>
+	.case {
+		padding-top: var(--space-12);
+	}
+
+	/* Figma separates sections with space only (~170px at 1920), no divider lines */
+	.case-section {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-20);
+		padding-block: var(--space-24);
+	}
+
+	/* a heading and its content: Figma keeps ~16–32px inside a sub-block, ~80px between them */
+	.case-group {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-5);
+	}
+
+	/* stacked showcase cards (Final Design screens) get Figma's ~44px breathing room */
+	.case-group > :global(.block-card--center + .block-card--center) {
+		margin-top: var(--space-5);
+	}
+
+	/* h4 steps within a sub-block ("Investor Interviews", "01 · Aiming & Targeting") sit ~60px
+	   below the previous step in Figma; directly under a heading they stay tight */
+	.case-group > :global(:not(h2, h3, h4, .t-eyebrow) + h4) {
+		margin-top: var(--space-10);
+	}
+
+	.case--ai2u-design-snapshots :global(.block-card--wide .t-body),
+	.case--ai2u-design-snapshots :global(.block-card--wide .block-list) {
+		font-size: calc(0.875rem * var(--fit-400)); /* Figma 16 − 2 */
+	}
+
+	/* Final Design cards: half the usual card background (tinted cards too) */
+	.case-section--final :global(.block-card:not(.block-card .block-card)) {
+		background: color-mix(in srgb, var(--fill, var(--color-card)) 50%, transparent) !important;
+	}
+
+	.case-section:first-child {
+		padding-top: 0;
+	}
+</style>

@@ -4,29 +4,26 @@ const year = new Date().getFullYear();
 
 <footer class="site-footer">
 	<div class="container site-footer__inner">
-		<p>&copy; {year} Felicia Li. Product design, UX/UI.</p>
-		<a class="link-underline" href="mailto:hello@feliciali.com">hello@feliciali.com</a>
+		<p>&copy; {year} Felicia Li</p>
+		<p>Designed and built with love and coffee</p>
 	</div>
 </footer>
 
 <style>
+	/* Navy band (Figma: 178px footer band) */
 	.site-footer {
-		border-top: 1px solid var(--color-line);
 		margin-top: var(--space-24);
+		background: var(--color-ink);
+		color: var(--color-on-ink-80);
 	}
 
 	.site-footer__inner {
-		padding-block: var(--space-8);
+		min-height: 11.125rem;
 		display: flex;
 		flex-wrap: wrap;
 		align-items: center;
 		justify-content: space-between;
 		gap: var(--space-4);
-		color: var(--color-ink-muted);
-		font-size: var(--text-sm);
-	}
-
-	.site-footer p {
-		margin: 0;
+		font: var(--type-small);
 	}
 </style>

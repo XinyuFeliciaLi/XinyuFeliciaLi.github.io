@@ -5,17 +5,22 @@ const nav = [
 	{ href: '/about/', label: 'About' },
 	{ href: '/resume/', label: 'Resume' },
 ];
+
+const path = Astro.url.pathname;
 ---
 
 <header class="site-header">
-	<div class="container site-header__inner">
+	<div class="site-header__inner">
 		<a href="/" class="site-header__mark">Felicia Li</a>
 		<nav aria-label="Primary">
 			<ul class="site-header__nav">
 				{
 					nav.map((item) => (
 						<li>
-							<a href={item.href} class="link-underline">
+							<a
+								href={item.href}
+								aria-current={path.startsWith(item.href) ? 'page' : undefined}
+							>
 								{item.label}
 							</a>
 						</li>
@@ -27,40 +32,84 @@ const nav = [
 </header>
 
 <style>
+	/* Glass navigation bar: stays at the top, frosted over whatever scrolls beneath it */
 	.site-header {
-		padding-block: var(--space-6);
+		position: fixed;
+		inset: var(--space-6) 0 auto;
+		z-index: 10;
+		padding-inline: var(--space-4); /* same inset as the hero panel */
+		pointer-events: none;
 	}
 
 	.site-header__inner {
+		pointer-events: auto;
+		max-width: var(--width-nav);
+		margin-inline: auto;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 		gap: var(--space-6);
-		background: var(--color-surface-alt);
+		padding: var(--space-3) var(--space-8);
 		border-radius: var(--radius-full);
-		padding: var(--space-3) var(--space-6);
+		background: rgb(255 255 255 / 0.45);
+		border: 1px solid rgb(255 255 255 / 0.6);
+		box-shadow:
+			0 8px 32px -12px rgb(37 55 70 / 0.25),
+			inset 0 1px 0 rgb(255 255 255 / 0.7);
+		-webkit-backdrop-filter: blur(18px) saturate(180%);
+		backdrop-filter: blur(18px) saturate(180%);
+	}
+
+	/* browsers without backdrop-filter get a solid, readable bar instead */
+	@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+		.site-header__inner {
+			background: rgb(255 255 255 / 0.95);
+		}
 	}
 
 	.site-header__mark {
-		font-family: var(--font-heading);
-		font-size: var(--text-lg);
+		font: var(--type-subheading);
 		font-weight: 600;
-		text-transform: capitalize;
-		color: var(--color-ink);
 		text-decoration: none;
 	}
 
 	.site-header__nav {
 		list-style: none;
 		display: flex;
-		gap: var(--space-8);
+		gap: var(--space-2);
 		margin: 0;
 		padding: 0;
 	}
 
 	.site-header__nav a {
+		display: block;
+		font: var(--type-small);
 		font-weight: 600;
-		text-transform: capitalize;
 		color: var(--color-ink);
+		text-decoration: none;
+		padding: var(--space-2) var(--space-4);
+		border-radius: var(--radius-full);
+		transition: background-color var(--duration-short) var(--ease-standard);
+	}
+
+	.site-header__nav a:hover {
+		background: rgb(255 255 255 / 0.6);
+	}
+
+	.site-header__nav a[aria-current='page'] {
+		background: var(--color-accent);
+	}
+
+	@media (max-width: 40rem) {
+		.site-header__inner {
+			flex-wrap: wrap;
+			justify-content: center;
+			border-radius: var(--radius-lg);
+			padding: var(--space-3) var(--space-4);
+		}
+
+		.site-header__nav a {
+			padding-inline: var(--space-3);
+		}
 	}
 </style>

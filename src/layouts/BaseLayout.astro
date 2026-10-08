@@ -2,14 +2,20 @@
 import { ClientRouter } from 'astro:transitions';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+// Poppins, self-hosted (latin subset) — only the weights the type roles use
+import '@fontsource/poppins/latin-400.css';
+import '@fontsource/poppins/latin-400-italic.css';
+import '@fontsource/poppins/latin-500.css';
+import '@fontsource/poppins/latin-600.css';
 import '../styles/global.css';
 
 interface Props {
 	title: string;
 	description?: string;
+	noindex?: boolean;
 }
 
-const { title, description = 'Felicia Li — senior product designer, UX/UI.' } = Astro.props;
+const { title, description = 'Felicia Li — senior product designer, UX/UI.', noindex = false } = Astro.props;
 ---
 
 <!doctype html>
@@ -19,15 +25,9 @@ const { title, description = 'Felicia Li — senior product designer, UX/UI.' } 
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="description" content={description} />
+		{noindex && <meta name="robots" content="noindex, nofollow" />}
 		<meta name="generator" content={Astro.generator} />
 		<title>{title} · Felicia Li</title>
-
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
-			rel="stylesheet"
-		/>
 
 		<ClientRouter />
 	</head>
@@ -42,7 +42,7 @@ const { title, description = 'Felicia Li — senior product designer, UX/UI.' } 
 			const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
 			function observeReveals() {
-				const targets = document.querySelectorAll<HTMLElement>('[data-reveal]');
+				const targets = document.querySelectorAll<HTMLElement>('[data-reveal], [data-roll]');
 
 				if (prefersReducedMotion.matches || !('IntersectionObserver' in window)) {
 					targets.forEach((el) => el.setAttribute('data-revealed', ''));
@@ -51,14 +51,20 @@ const { title, description = 'Felicia Li — senior product designer, UX/UI.' } 
 
 				const observer = new IntersectionObserver(
 					(entries) => {
+						// Elements entering in the same batch cascade in, 60ms apart
+						let index = 0;
 						for (const entry of entries) {
 							if (entry.isIntersecting) {
-								entry.target.setAttribute('data-revealed', '');
-								observer.unobserve(entry.target);
+								const el = entry.target as HTMLElement;
+								el.style.setProperty('--reveal-delay', `${Math.min(index++, 6) * 60}ms`);
+								el.setAttribute('data-revealed', '');
+								observer.unobserve(el);
 							}
 						}
 					},
-					{ threshold: 0.2, rootMargin: '0px 0px -10% 0px' }
+					// Fire as soon as an element's top edge is just below the fold, so content is
+					// already arriving by the time it scrolls into view (tall sections included)
+					{ threshold: 0, rootMargin: '0px 0px 8% 0px' }
 				);
 
 				targets.forEach((el) => observer.observe(el));

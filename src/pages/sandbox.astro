@@ -1,0 +1,261 @@
+---
+// Landing-hero sandbox: the real landing page with the hero swapped for one of six design
+// directions, picked from a floating switcher (which also sets the palette and full-width option). Not linked from the nav, kept out of search engines.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HomeSections from '../components/HomeSections.astro';
+import HeroBoard from '../components/sandbox/HeroBoard.astro';
+import HeroDither from '../components/sandbox/HeroDither.astro';
+import HeroDitherLight from '../components/sandbox/HeroDitherLight.astro';
+import HeroMorph from '../components/sandbox/HeroMorph.astro';
+
+const directions = [
+	{
+		id: 'acid',
+		label: 'Board · Acid',
+		note: 'The board with acid-style icons, ink outlines and hard shadows on the stickies.',
+	},
+	{
+		id: 'dots',
+		label: 'Board · Dots',
+		note: 'Move across the grid: nearby dots grow into vivid circles, pills and stars, then ease back. Idle dots pulse on their own.',
+	},
+	{
+		id: 'tune',
+		label: 'Board · Dots (tunable)',
+		note: 'Just the hero text on the dots grid, with sliders: how far the cursor reaches, how long dots take to settle, how many react, and how big they grow.',
+	},
+	{
+		id: 'dither',
+		label: 'Retro dither',
+		note: 'A cursor lens dithers the gradients and leaves trails. Click for a ripple.',
+	},
+	{
+		id: 'light',
+		label: 'Dither light',
+		note: 'A calmer dither: one soft light follows the cursor across the whole hero, Bayer-dithered into a few flat tones.',
+	},
+	{
+		id: 'morph',
+		label: 'Form follows timing',
+		note: 'Dots swell into hearts, stars and flowers near the cursor and shrink back further out. Far cells react later.',
+	},
+];
+
+const palettes = [
+	{ id: 'all', label: 'All colors' },
+	{ id: 'pink', label: 'Pink + purple' },
+	{ id: 'bluegreen', label: 'Blue + green' },
+];
+---
+
+<BaseLayout title="Sandbox" noindex>
+	{
+		directions.map((d, i) => (
+			<section
+				class="hero"
+				data-hero
+				role="tabpanel"
+				id={`panel-${d.id}`}
+				aria-labelledby={`tab-${d.id}`}
+				hidden={i !== 0}
+			>
+				{d.id === 'acid' && <HeroBoard variant="acid" />}
+				{d.id === 'dots' && <HeroBoard variant="dots" ambient />}
+				{d.id === 'tune' && <HeroBoard variant="dots" tunable bare ambient />}
+				{d.id === 'dither' && <HeroDither />}
+				{d.id === 'light' && <HeroDitherLight />}
+				{d.id === 'morph' && <HeroMorph />}
+			</section>
+		))
+	}
+
+	<HomeSections />
+
+	<div class="switcher" data-switcher>
+		<p class="switcher__note" data-note aria-live="polite">{directions[0].note}</p>
+		<div class="switcher__tabs" role="tablist" aria-label="Hero design directions">
+			{
+				directions.map((d, i) => (
+					<button
+						type="button"
+						role="tab"
+						id={`tab-${d.id}`}
+						aria-controls={`panel-${d.id}`}
+						aria-selected={i === 0 ? 'true' : 'false'}
+						tabindex={i === 0 ? 0 : -1}
+						data-tab={d.id}
+						data-note={d.note}
+					>
+						{d.label}
+					</button>
+				))
+			}
+		</div>
+		<div class="switcher__tabs switcher__options" role="group" aria-label="Sandbox options">
+			{
+				palettes.map((p, i) => (
+					<button type="button" data-palette={p.id} aria-pressed={i === 0 ? 'true' : 'false'}>
+						{p.label}
+					</button>
+				))
+			}
+			<span class="switcher__divider" aria-hidden="true"></span>
+			<button type="button" data-bleed-toggle aria-pressed="false">Full width</button>
+		</div>
+	</div>
+</BaseLayout>
+
+<style>
+	/* Same placement as the landing hero */
+	.hero {
+		padding: var(--space-4) var(--space-4) 0;
+	}
+
+	/* "Full width" option: edge to edge, no inset or rounded corners */
+	.hero[data-bleed] {
+		padding: 0;
+	}
+
+	.hero[data-bleed] > :global(*) {
+		max-width: none;
+		border-radius: 0;
+	}
+
+	/* Floating direction picker, so the hero sits exactly where the real one does */
+	.switcher {
+		position: fixed;
+		left: 50%;
+		bottom: var(--space-6);
+		z-index: 20;
+		translate: -50% 0;
+		width: max-content;
+		max-width: calc(100vw - 2 * var(--space-4));
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: var(--space-2);
+		pointer-events: none;
+	}
+
+	.switcher__note {
+		margin: 0;
+		padding: var(--space-1) var(--space-3);
+		font: var(--type-caption);
+		text-align: center;
+		color: var(--color-on-ink);
+		background: rgb(37 55 70 / 0.85);
+		border-radius: var(--radius-full);
+	}
+
+	.switcher__tabs {
+		pointer-events: auto;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: var(--space-1);
+		padding: var(--space-1);
+		border-radius: var(--radius-full);
+		background: rgb(255 255 255 / 0.6);
+		border: 1px solid rgb(255 255 255 / 0.7);
+		box-shadow: 0 8px 32px -12px rgb(37 55 70 / 0.35);
+		-webkit-backdrop-filter: blur(18px) saturate(180%);
+		backdrop-filter: blur(18px) saturate(180%);
+	}
+
+	.switcher__tabs button {
+		padding: var(--space-2) var(--space-5);
+		font: var(--type-label);
+		color: inherit;
+		background: none;
+		border: 0;
+		border-radius: var(--radius-full);
+		cursor: pointer;
+	}
+
+	.switcher__divider {
+		align-self: stretch;
+		width: 1px;
+		margin: var(--space-1) var(--space-1);
+		background: var(--color-line);
+	}
+
+	.switcher__options button {
+		padding: var(--space-1) var(--space-3);
+		font: var(--type-caption);
+		font-weight: 500;
+	}
+
+	.switcher__tabs button[aria-selected='true'],
+	.switcher__tabs button[aria-pressed='true'] {
+		background: var(--color-accent);
+	}
+
+	@media (max-width: 40rem) {
+		.switcher__note {
+			display: none;
+		}
+
+		.switcher__tabs button {
+			padding: var(--space-2) var(--space-3);
+		}
+	}
+</style>
+
+<script>
+	import { PALETTE_EVENT } from '../components/sandbox/shared';
+
+	function initSwitcher() {
+		const root = document.querySelector<HTMLElement>('[data-switcher]');
+		if (!root) return;
+		const tabs = [...root.querySelectorAll<HTMLButtonElement>('[data-tab]')];
+		const note = root.querySelector<HTMLElement>('[data-note]')!;
+
+		const select = (id: string, focus = false) => {
+			const tab = tabs.find((t) => t.dataset.tab === id) ?? tabs[0];
+			for (const t of tabs) {
+				const on = t === tab;
+				t.setAttribute('aria-selected', String(on));
+				t.tabIndex = on ? 0 : -1;
+				document.getElementById(t.getAttribute('aria-controls')!)!.hidden = !on;
+			}
+			note.textContent = tab.dataset.note ?? '';
+			if (focus) tab.focus();
+			history.replaceState(history.state, '', `#${tab.dataset.tab}`);
+		};
+
+		const bleed = root.querySelector<HTMLButtonElement>('[data-bleed-toggle]')!;
+		const setBleed = (on: boolean) => {
+			bleed.setAttribute('aria-pressed', String(on));
+			document.querySelectorAll('[data-hero]').forEach((hero) => hero.toggleAttribute('data-bleed', on));
+		};
+
+		// Palette for every direction: stored on <html> and announced with an event
+		const setPalette = (id: string) => {
+			document.documentElement.dataset.sbPalette = id;
+			root.querySelectorAll('[data-palette]').forEach((b) => b.setAttribute('aria-pressed', String((b as HTMLElement).dataset.palette === id)));
+			document.dispatchEvent(new Event(PALETTE_EVENT));
+		};
+		setPalette('all');
+
+		root.addEventListener('click', (e) => {
+			const target = e.target as HTMLElement;
+			const tab = target.closest<HTMLButtonElement>('[data-tab]');
+			if (tab) select(tab.dataset.tab!);
+			const palette = target.closest<HTMLButtonElement>('[data-palette]');
+			if (palette) setPalette(palette.dataset.palette!);
+			if (target.closest('[data-bleed-toggle]')) setBleed(bleed.getAttribute('aria-pressed') !== 'true');
+		});
+
+		const list = root.querySelector('[role="tablist"]')!;
+		list.addEventListener('keydown', (e) => {
+			const key = (e as KeyboardEvent).key;
+			if (key !== 'ArrowLeft' && key !== 'ArrowRight') return;
+			const i = tabs.findIndex((t) => t.getAttribute('aria-selected') === 'true');
+			select(tabs[(i + (key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length].dataset.tab!, true);
+		});
+
+		if (location.hash) select(location.hash.slice(1));
+	}
+
+	document.addEventListener('astro:page-load', initSwitcher);
+</script>

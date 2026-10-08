@@ -1,0 +1,244 @@
+{
+ "title": "Graphic & UI Design Snapshots",
+ "sections": [
+  {
+   "id": "30:3339",
+   "name": "Overview",
+   "items": [
+    {
+     "t": "title",
+     "runs": [
+      {
+       "s": "Graphic & UI Design Snapshots"
+      }
+     ]
+    },
+    {
+     "t": "p",
+     "runs": [
+      {
+       "s": "A collection of 2D graphics and UI work across digital and physical products"
+      }
+     ]
+    },
+    {
+     "t": "card",
+     "items": [
+      {
+       "t": "row",
+       "cols": [
+        {
+         "w": 136,
+         "items": [
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "Role"
+            }
+           ]
+          },
+          {
+           "t": "small",
+           "runs": [
+            {
+             "s": "Graphic & UI Designer"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "w": 176,
+         "items": [
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "Tools"
+            }
+           ]
+          },
+          {
+           "t": "small",
+           "runs": [
+            {
+             "s": "Figma, Illustrator, Photoshop"
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "w": 89,
+         "items": [
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "Status"
+            }
+           ]
+          },
+          {
+           "t": "small",
+           "runs": [
+            {
+             "s": "2020 - 2026"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "37:1869",
+   "name": "ProjectsList",
+   "items": [
+    {
+     "t": "h3",
+     "runs": [
+      {
+       "s": "Product Design · Visual Direction & 3D"
+      }
+     ]
+    },
+    {
+     "t": "p",
+     "runs": [
+      {
+       "s": "Developed the product’s visual direction across layout, branding, and 3D modeling to create a cohesive end-to-end experience."
+      }
+     ]
+    },
+    {
+     "t": "img",
+     "src": "graphic-ui-snapshots/001.png",
+     "w": 750,
+     "h": 562,
+     "alt": "Product Design · Visual Direction & 3D"
+    },
+    {
+     "t": "h3",
+     "runs": [
+      {
+       "s": "Emoji Design"
+      }
+     ]
+    },
+    {
+     "t": "p",
+     "runs": [
+      {
+       "s": "Designed a production-ready emoji set for AI2U Live, balancing visual consistency, readability, and product requirements for release."
+      }
+     ]
+    },
+    {
+     "t": "img",
+     "src": "graphic-ui-snapshots/002.png",
+     "w": 740,
+     "h": 97,
+     "alt": "Emoji Design"
+    },
+    {
+     "t": "h3",
+     "runs": [
+      {
+       "s": "AI2U · Parrot Sticker Set"
+      }
+     ]
+    },
+    {
+     "t": "p",
+     "runs": [
+      {
+       "s": "Designed a series of parrot stickers for internal use, translating the product’s visual identity into expressive, reusable assets."
+      }
+     ]
+    },
+    {
+     "t": "img",
+     "src": "graphic-ui-snapshots/003.png",
+     "w": 750,
+     "h": 86,
+     "alt": "AI2U · Parrot Sticker Set"
+    },
+    {
+     "t": "h3",
+     "runs": [
+      {
+       "s": "Soul Seasoned · Game Icons"
+      }
+     ]
+    },
+    {
+     "t": "p",
+     "runs": [
+      {
+       "s": "Designed custom icons for in-game currency, rewards, inventory, and shop, using consistent shapes, colors, and visual styling to support gameplay and match the game's art direction."
+      }
+     ]
+    },
+    {
+     "t": "img",
+     "src": "graphic-ui-snapshots/004.png",
+     "w": 745,
+     "h": 112,
+     "alt": "Soul Seasoned · Game Icons"
+    },
+    {
+     "t": "h3",
+     "runs": [
+      {
+       "s": "Game Project · 2D Art & UI"
+      }
+     ]
+    },
+    {
+     "t": "p",
+     "runs": [
+      {
+       "s": "Designed 2D graphics and interface elements for gameplay, combining visual hierarchy with clear interaction feedback."
+      }
+     ]
+    },
+    {
+     "t": "img",
+     "src": "graphic-ui-snapshots/005.png",
+     "w": 750,
+     "h": 275,
+     "alt": "Game Project · 2D Art & UI"
+    },
+    {
+     "t": "h3",
+     "runs": [
+      {
+       "s": "Board Game · Visual & Component Design"
+      }
+     ]
+    },
+    {
+     "t": "p",
+     "runs": [
+      {
+       "s": "Designed physical game components and supporting graphics, balancing usability, visual clarity, and production constraints."
+      }
+     ]
+    },
+    {
+     "t": "img",
+     "src": "graphic-ui-snapshots/006.png",
+     "w": 750,
+     "h": 562,
+     "alt": "Board Game · Visual & Component Design"
+    }
+   ]
+  }
+ ]
+}

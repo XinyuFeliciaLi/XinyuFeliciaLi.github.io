@@ -1,34 +1,58 @@
-/* Design tokens — pulled from Figma (NZCCJJITy1aAd8bQ4GZkvg), Poppins sitewide, Material 3 spacing scale */
+/* Design tokens — Figma "Portfolio - Web (Final)" (g3zH06cDNIeq0Uhdjn2axc).
+   Poppins sitewide; navy ink on a cool grey page; one mint accent.
+   The Figma body copy is set in Jost — it is deliberately unified to Poppins here. */
 :root {
-	/* Color — grayscale surfaces + single blue accent, as designed */
-	--color-page: #bfbfbf;
-	--color-surface: #ebebeb;
-	--color-surface-alt: #f3f3f3;
-	--color-card: #e1e1e1;
-	--color-accent: #3d83c4;
-	--color-ink: #292929;
-	--color-ink-soft: #343434;
-	--color-ink-muted: #474747;
-	--color-ink-faint: rgb(71 71 71 / 0.8);
-	--color-line: rgb(13 13 13 / 0.05);
-	--color-pill: rgb(217 217 217 / 0.4);
+	/* Color */
+	--color-page: #ffffff;
+	--color-surface: #e4e6ea; /* cards, panels, hero, nav — a darker grey than the page */
+	--color-card: rgb(228 230 234 / 0.3); /* grey boxes on landing cards + case studies: last number = opacity (0–1) */
+	--color-ink: #253746;
+	--color-ink-80: rgb(37 55 70 / 0.8);
+	--color-ink-60: rgb(37 55 70 / 0.6);
+	--color-ink-40: rgb(37 55 70 / 0.4);
+	--color-line: rgb(37 55 70 / 0.1);
+	--color-ink-wash: rgb(37 55 70 / 0.05);
 
-	/* Type — Poppins across the whole site */
-	--font-display: 'Poppins', system-ui, sans-serif;
-	--font-heading: 'Poppins', system-ui, sans-serif;
-	--font-body: 'Poppins', system-ui, sans-serif;
+	/* Text on navy (footer) */
+	--color-on-ink: #f1f2f4;
+	--color-on-ink-80: rgb(241 242 244 / 0.8);
 
-	--text-xs: 0.75rem;
-	--text-sm: 0.875rem;
-	--text-base: 1rem;
-	--text-lg: 1.125rem;
-	--text-xl: 1.375rem;
-	--text-2xl: 1.75rem;
-	--text-3xl: 2.25rem;
-	--text-4xl: 2.75rem;
-	--text-5xl: 3.5rem;
+	/* Mint is the one pop color. ~1.5:1 on the page — fills, markers and focus only, never
+	   text there. Navy text on mint is ~7:1, and mint text on navy is ~7:1. */
+	--color-accent: #5adba6;
+	--color-accent-soft: rgb(90 219 166 / 0.2);
 
-	/* Spacing — Material 3 4dp grid */
+	/* Figma blue — eyebrows and the tinted "What I Achieved" style cards */
+	--color-blue: #3d83c4;
+	--color-blue-60: rgb(61 131 196 / 0.6);
+	--color-blue-soft: rgb(61 131 196 / 0.1);
+
+	/* Type — Poppins only */
+	--font-sans: 'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+	/* Figma is set in Jost; Poppins is wider. These ratios (measured on all case-study text) shrink
+	   Poppins so every line is as long as the Jost line in Figma: same line breaks, same layout.
+	   Poppins' taller x-height means the letters still look the same size as in Figma.
+	   Set a ratio to 1 to use the plain Figma size. */
+	--fit-400: 1; /* Regular: Poppins is 18% wider than Jost (0.8472 = exact Figma line breaks) */
+	--fit-500: 1; /* Medium: 14.5% wider (0.8733 = exact Figma line breaks) */
+	--fit-600: 1; /* SemiBold: 12% wider (0.8909 = exact Figma line breaks) */
+
+	/* Type roles. Every piece of text on the site uses one of these.
+	   Format: weight  Figma size × ratio / Figma line height. Titles scale down on small screens. */
+	--type-display: 600 calc(clamp(1.75rem, 1.2rem + 1.8vw, 2rem) * var(--fit-600)) / calc(1.3 / var(--fit-600)) var(--font-sans); /* Figma 32/42 home hero */
+	--type-title: 600 calc(clamp(1.75rem, 1.2rem + 1.8vw, 2rem) * var(--fit-600)) / calc(1.25 / var(--fit-600)) var(--font-sans); /* Figma 32/40 case title */
+	--type-heading: 600 calc(clamp(1.5rem, 1.2rem + 1vw, 1.75rem) * var(--fit-600)) / calc(1.3 / var(--fit-600)) var(--font-sans); /* Figma 28/36 section */
+	--type-subheading: 500 calc(1.25rem * var(--fit-500)) / 1.75rem var(--font-sans); /* Figma 20/28 */
+	--type-lead: 600 calc(1rem * var(--fit-600)) / 1.5rem var(--font-sans); /* Figma 16/24 card title */
+	--type-body: 400 calc(1rem * var(--fit-400)) / 1.625rem var(--font-sans); /* Figma 16/26 */
+	--type-small: 400 calc(0.875rem * var(--fit-400)) / 1.375rem var(--font-sans); /* Figma 14/22 */
+	--type-label: 500 calc(0.875rem * var(--fit-500)) / 1.375rem var(--font-sans); /* Figma 14/22 meta label */
+	--type-eyebrow: 600 calc(0.8125rem * var(--fit-600)) / 1.25rem var(--font-sans); /* Figma 13/20, uppercase */
+	--type-caption: 400 calc(0.75rem * var(--fit-400)) / 1.125rem var(--font-sans); /* Figma 12/18 */
+	--tracking-eyebrow: 0.08em;
+
+	/* Spacing — 4px grid */
 	--space-1: 0.25rem;
 	--space-2: 0.5rem;
 	--space-3: 0.75rem;
@@ -42,12 +66,17 @@
 	--space-20: 5rem;
 	--space-24: 6rem;
 
-	/* Shape — cards ~24px, the big content panels use a much larger radius in Figma */
+	/* Layout — Figma is 1920 wide with a 750px reading column (the Figma nav is 1520px; ours matches the hero) */
+	--width-prose: 46.875rem; /* 750px */
+	--width-wide: 63rem; /* 1008px — landing content column */
+	--width-hero: 117rem; /* 1872px — the landing hero panel, inset 16px from the window */
+	--width-nav: var(--width-hero); /* the nav bar lines up with the hero panel's edges */
+	--hero-height: clamp(22rem, 32.25vw, 38.75rem); /* 620px at 1920 — same on every case study */
+
+	/* Shape — Figma had ~15 radii; collapsed to three plus pill */
 	--radius-sm: 8px;
 	--radius-md: 16px;
 	--radius-lg: 24px;
-	--radius-xl: 32px;
-	--radius-panel: 48px;
 	--radius-full: 999px;
 
 	/* Motion */
@@ -56,4 +85,6 @@
 	--duration-short: 150ms;
 	--duration-medium: 300ms;
 	--duration-long: 500ms;
+	--duration-reveal: 700ms;
+	--ease-reveal: cubic-bezier(0.22, 1, 0.36, 1);
 }

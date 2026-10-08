@@ -1,0 +1,352 @@
+---
+// Direction 2 — canvasui.dev "Retro Dither": soft Why Me colour blobs drift behind the hero, and a
+// cursor lens Bayer-dithers whatever it passes over, leaving phosphor ghosts. Click to ripple.
+// Modes: the lens dithers / "In between" (a light dither everywhere, full under the lens) / the
+// lens reveals the clean gradient. Blur sets how soft the blobs are. Colours follow the sandbox
+// palette, or switch to a dark retro palette with white text.
+import HeroCopy from './HeroCopy.astro';
+---
+
+<div class="dither" data-dither data-mode="lens" data-colors="whyme">
+	<canvas class="dither__canvas" data-canvas aria-hidden="true"></canvas>
+	<div class="dither__content">
+		<HeroCopy />
+	</div>
+	<div class="dither__controls" role="group" aria-label="Dither settings">
+		<label>
+			Blur
+			<input type="range" min="0" max="100" value="35" data-control="blur" />
+		</label>
+		<label>
+			Colors
+			<select data-control="colors">
+				<option value="whyme">Why Me</option>
+				<option value="retro">Retro</option>
+			</select>
+		</label>
+		<label>
+			Mode
+			<select data-control="mode">
+				<option value="lens">Lens dithers</option>
+				<option value="blend">In between</option>
+				<option value="full">Lens reveals</option>
+			</select>
+		</label>
+	</div>
+</div>
+
+<style>
+	.dither {
+		position: relative;
+		max-width: var(--width-hero);
+		min-height: clamp(34rem, 35vw, 42rem);
+		margin-inline: auto;
+		display: grid;
+		align-items: center;
+		background: rgb(228 230 234 / 0.5);
+		border-radius: clamp(var(--radius-lg), 4vw, 80px);
+		overflow: hidden;
+		cursor: crosshair;
+	}
+
+	.dither[data-colors='retro'] {
+		background: #1a1c2c;
+	}
+
+	.dither[data-colors='retro'] .dither__content {
+		color: #fff;
+	}
+
+	.dither__canvas {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		image-rendering: pixelated;
+	}
+
+	.dither__content {
+		position: relative;
+		width: 100%;
+		max-width: calc(var(--width-wide) + 2 * var(--space-6));
+		margin-inline: auto;
+		padding: calc(var(--space-10) + 5rem) var(--space-6) var(--space-12);
+		pointer-events: none;
+	}
+
+	.dither__controls {
+		position: absolute;
+		left: var(--space-6);
+		bottom: var(--space-6);
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-2);
+		cursor: default;
+	}
+
+	.dither__controls label {
+		display: flex;
+		align-items: center;
+		gap: var(--space-2);
+		padding: var(--space-1) var(--space-1) var(--space-1) var(--space-3);
+		font: var(--type-caption);
+		background: #fff;
+		border-radius: var(--radius-sm);
+		box-shadow: 0 4px 16px -8px rgb(37 55 70 / 0.35);
+	}
+
+	.dither__controls input[type='range'] {
+		width: 8rem;
+		margin-right: var(--space-2);
+		accent-color: var(--color-ink);
+	}
+
+	.dither__controls select {
+		font: var(--type-caption);
+		font-weight: 500;
+		color: inherit;
+		padding: var(--space-1) var(--space-2);
+		border: 1px solid var(--color-line);
+		border-radius: 6px;
+		background: #fff;
+	}
+</style>
+
+<script>
+	import { PALETTE_EVENT, currentPalette, onEachPage, reducedMotion, visibleLoop } from './shared';
+
+	const PIXEL = 4; // retro pixel size in CSS px
+	const FOLLOW = 0.14; // lens easing per frame
+	const TRAIL_DECAY = 0.9; // ghost alpha kept per frame
+	const hex = (h: string) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
+
+	// Each theme: a background, the blob colours, and the dither palette (blobs + extra tones).
+	// Why Me sits on the surface grey at half strength with white, so navy text stays legible;
+	// Retro (Sweetie 16 tones) sits on deep navy with a slate, under white text.
+	function theme(key: string) {
+		if (key === 'retro') {
+			const blobs = ['#5d275d', '#b13e53', '#ef7d57', '#ffcd75', '#41a6f6', '#73eff7', '#38b764'].map(hex);
+			return { base: hex('#1a1c2c'), blobs, palette: [...blobs, hex('#1a1c2c'), hex('#333c57')] };
+		}
+		const blobs = currentPalette().map(hex);
+		const base = [242, 243, 245];
+		return { base, blobs, palette: [...blobs, base, [255, 255, 255]] };
+	}
+
+	const BAYER = [0, 8, 2, 10, 12, 4, 14, 6, 3, 11, 1, 9, 15, 7, 13, 5].map((v) => (v + 0.5) / 16);
+
+	onEachPage('[data-dither]', (root) => {
+		const canvas = root.querySelector<HTMLCanvasElement>('[data-canvas]')!;
+		const out = canvas.getContext('2d')!;
+		const scene = document.createElement('canvas');
+		const sctx = scene.getContext('2d', { willReadFrequently: true })!;
+
+		let blur = 0.35; // 0 crisp – 1 hazy, from the Blur slider
+		let colors = theme(root.dataset.colors ?? 'whyme');
+		const retheme = () => {
+			colors = theme(root.dataset.colors ?? 'whyme');
+		};
+		let w = 0;
+		let h = 0;
+		let mask = new Float32Array(0);
+		let frame: ImageData | null = null;
+
+		// Lens state, in low-res pixels
+		const pointer = { x: 0, y: 0, inside: false };
+		const lens = { x: 0, y: 0, alpha: 0 };
+		let ghosts: { x: number; y: number; a: number }[] = [];
+		let ripples: { x: number; y: number; born: number }[] = [];
+
+		// Seven drifting blobs; colours cycle through the theme, so short palettes repeat
+		const blobs = Array.from({ length: 7 }, (_, i) => ({
+			ox: 0.1 + ((i * 0.37) % 1) * 0.8,
+			oy: 0.2 + ((i * 0.61) % 1) * 0.6,
+			sp: 0.00003 + i * 0.000005,
+			ph: i * 1.7,
+		}));
+
+		function resize() {
+			w = Math.max(1, Math.ceil(root.clientWidth / PIXEL));
+			h = Math.max(1, Math.ceil(root.clientHeight / PIXEL));
+			canvas.width = scene.width = w;
+			canvas.height = scene.height = h;
+			mask = new Float32Array(w * h);
+			frame = out.createImageData(w, h);
+		}
+
+		function drawScene(now: number) {
+			const t = reducedMotion() ? 0 : now;
+			sctx.fillStyle = `rgb(${colors.base})`;
+			sctx.fillRect(0, 0, w, h);
+			for (const [i, b] of blobs.entries()) {
+				const rgb = colors.blobs[i % colors.blobs.length];
+				const x = (b.ox + Math.sin(t * b.sp + b.ph) * 0.12) * w;
+				const y = (b.oy + Math.cos(t * b.sp * 1.3 + b.ph) * 0.18) * h;
+				// More blur: bigger blobs with a longer fade and a smaller solid core
+				const r = h * (0.28 + 0.27 * blur);
+				const g = sctx.createRadialGradient(x, y, 0, x, y, r);
+				g.addColorStop(0, `rgba(${rgb}, 0.95)`);
+				g.addColorStop(0.85 * (1 - blur), `rgba(${rgb}, 0.95)`);
+				g.addColorStop(1, `rgba(${rgb}, 0)`);
+				sctx.fillStyle = g;
+				sctx.fillRect(0, 0, w, h);
+			}
+		}
+
+		// Max-stamp a feathered disc into the mask
+		function stamp(cx: number, cy: number, r: number, a: number) {
+			if (a <= 0.01 || r <= 0) return;
+			const x0 = Math.max(0, Math.floor(cx - r));
+			const x1 = Math.min(w - 1, Math.ceil(cx + r));
+			const y0 = Math.max(0, Math.floor(cy - r));
+			const y1 = Math.min(h - 1, Math.ceil(cy + r));
+			for (let y = y0; y <= y1; y++) {
+				for (let x = x0; x <= x1; x++) {
+					const d = Math.hypot(x - cx, y - cy) / r;
+					if (d >= 1) continue;
+					const v = a * Math.min(1, (1 - d) * 2.5); // soft outer 40%
+					const i = y * w + x;
+					if (v > mask[i]) mask[i] = v;
+				}
+			}
+		}
+
+		function stampRing(cx: number, cy: number, radius: number, width: number, a: number) {
+			const r = radius + width;
+			const x0 = Math.max(0, Math.floor(cx - r));
+			const x1 = Math.min(w - 1, Math.ceil(cx + r));
+			const y0 = Math.max(0, Math.floor(cy - r));
+			const y1 = Math.min(h - 1, Math.ceil(cy + r));
+			for (let y = y0; y <= y1; y++) {
+				for (let x = x0; x <= x1; x++) {
+					const v = a * (1 - Math.abs(Math.hypot(x - cx, y - cy) - radius) / width);
+					const i = y * w + x;
+					if (v > mask[i]) mask[i] = v;
+				}
+			}
+		}
+
+		function render(now: number) {
+			if (!frame) return;
+			drawScene(now);
+			const src = sctx.getImageData(0, 0, w, h).data;
+			const dst = frame.data;
+
+			// Lens follows the pointer with easing and fades in/out
+			lens.x += (pointer.x - lens.x) * FOLLOW;
+			lens.y += (pointer.y - lens.y) * FOLLOW;
+			lens.alpha += ((pointer.inside ? 1 : 0) - lens.alpha) * 0.12;
+
+			const radius = h * 0.25;
+			mask.fill(0);
+			if (!reducedMotion()) {
+				const lastGhost = ghosts[ghosts.length - 1];
+				if (lens.alpha > 0.1 && (!lastGhost || Math.hypot(lens.x - lastGhost.x, lens.y - lastGhost.y) > radius * 0.25)) {
+					ghosts.push({ x: lens.x, y: lens.y, a: 0.75 * lens.alpha });
+				}
+				ghosts = ghosts.filter((g) => (g.a *= TRAIL_DECAY) > 0.03).slice(-14);
+				for (const g of ghosts) stamp(g.x, g.y, radius * (0.4 + g.a * 0.6), g.a);
+
+				ripples = ripples.filter((r) => now - r.born < 900);
+				for (const r of ripples) {
+					const t = (now - r.born) / 900;
+					stampRing(r.x, r.y, t * h * 0.9, 6, 1 - t);
+				}
+			}
+			stamp(lens.x, lens.y, radius, lens.alpha);
+
+			const mode = root.dataset.mode;
+			const PALETTE = colors.palette;
+
+			for (let y = 0, i = 0; y < h; y++) {
+				for (let x = 0; x < w; x++, i++) {
+					const p = i * 4;
+					const r = src[p];
+					const g = src[p + 1];
+					const b = src[p + 2];
+					// "In between": ~40% of Bayer cells dither everywhere, the lens fills in the rest
+					const m = mode === 'full' ? 1 - mask[i] : mode === 'blend' ? 0.4 + 0.6 * mask[i] : mask[i];
+					const t = BAYER[(y & 3) * 4 + (x & 3)];
+
+					// Outside the effect (dithered edge via the same threshold): copy the clean scene
+					if (m <= t * 0.999) {
+						dst[p] = r;
+						dst[p + 1] = g;
+						dst[p + 2] = b;
+						dst[p + 3] = 255;
+						continue;
+					}
+
+					// Ordered dither between the two nearest palette colours
+					let d1 = Infinity;
+					let d2 = Infinity;
+					let c1 = PALETTE[0];
+					let c2 = PALETTE[0];
+					for (const c of PALETTE) {
+						const d = (c[0] - r) ** 2 + (c[1] - g) ** 2 + (c[2] - b) ** 2;
+						if (d < d1) {
+							d2 = d1;
+							c2 = c1;
+							d1 = d;
+							c1 = c;
+						} else if (d < d2) {
+							d2 = d;
+							c2 = c;
+						}
+					}
+					const ratio = Math.sqrt(d1) / (Math.sqrt(d1) + Math.sqrt(d2) || 1);
+					const c = ratio > t ? c2 : c1;
+					dst[p] = c[0];
+					dst[p + 1] = c[1];
+					dst[p + 2] = c[2];
+					dst[p + 3] = 255;
+				}
+			}
+			out.putImageData(frame, 0, 0);
+		}
+
+		const toLocal = (e: PointerEvent) => {
+			const rect = root.getBoundingClientRect();
+			return { x: (e.clientX - rect.left) / PIXEL, y: (e.clientY - rect.top) / PIXEL };
+		};
+
+		const onMove = (e: PointerEvent) => {
+			const p = toLocal(e);
+			if (!pointer.inside) Object.assign(lens, { x: p.x, y: p.y });
+			Object.assign(pointer, p, { inside: true });
+		};
+		const onLeave = () => {
+			pointer.inside = false;
+		};
+		const onDown = (e: PointerEvent) => {
+			if ((e.target as HTMLElement).closest('.dither__controls')) return;
+			ripples.push({ ...toLocal(e), born: performance.now() });
+		};
+		const onInput = (e: Event) => {
+			const control = e.target as HTMLInputElement | HTMLSelectElement;
+			if (control.dataset.control === 'blur') blur = Number(control.value) / 100;
+			if (control.dataset.control === 'mode') root.dataset.mode = control.value;
+			if (control.dataset.control === 'colors') {
+				root.dataset.colors = control.value;
+				retheme();
+			}
+		};
+
+		root.addEventListener('pointermove', onMove);
+		root.addEventListener('pointerleave', onLeave);
+		root.addEventListener('pointerdown', onDown);
+		root.addEventListener('input', onInput);
+		document.addEventListener(PALETTE_EVENT, retheme);
+
+		const ro = new ResizeObserver(resize);
+		ro.observe(root);
+		resize();
+		const stop = visibleLoop(root, render);
+
+		return () => {
+			ro.disconnect();
+			stop();
+			document.removeEventListener(PALETTE_EVENT, retheme);
+		};
+	});
+</script>

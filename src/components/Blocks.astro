@@ -1,0 +1,448 @@
+---
+// Renders case study content blocks. Every text block maps to one shared type role,
+// so all case studies share the same title / heading / body / eyebrow format.
+import { Image } from 'astro:assets';
+import Runs from './Runs.astro';
+import RollingStat from './RollingStat.astro';
+import VideoPlayer from './VideoPlayer.astro';
+import { blockImage, videoUrl, type Block } from '../data/cases';
+
+interface Props {
+	items: Block[];
+}
+
+const { items } = Astro.props;
+const isIcon = (b: Block) => (b.w ?? 0) <= 48 && (b.h ?? 0) <= 48;
+// Figma alignment and color, carried per block: centered text, blue headings, accent colors
+const mods = (b: Block) => ({ center: b.center, blue: b.blue, muted: b.muted });
+const tint = (b: Block) => (b.color ? `color: ${b.color}` : undefined);
+const wideImage = (b: Block) => b.items?.find((i) => (i.t === 'img' || i.t === 'video') && (i.w ?? 0) > 760)?.w;
+// Videos play once their MP4 is added at src/assets/media/<slug>/<figma-node>.mp4; until then
+// the poster frame from Figma is shown as a still.
+---
+
+{
+	items.map((b) => {
+		// bulleted / numbered text, as set in Figma
+		if (b.lines) {
+			const List = b.list === 'ol' ? 'ol' : 'ul';
+			const role = b.t === 'small' ? 't-small' : b.t === 'caption' ? 't-caption' : b.t === 'h4' ? 't-lead' : 't-body';
+			return (
+				<List class:list={['block-list', role, mods(b)]} style={tint(b)}>
+					{b.lines.map((line) => (
+						<li>
+							<Runs runs={line} />
+						</li>
+					))}
+				</List>
+			);
+		}
+		switch (b.t) {
+			case 'title':
+				return (
+					<h1 class:list={["t-title", mods(b)]} style={tint(b)}>
+						<Runs runs={b.runs!} />
+					</h1>
+				);
+			case 'eyebrow':
+				return (
+					<p class:list={["t-eyebrow", mods(b)]} style={tint(b)}>
+						<Runs runs={b.runs!} />
+					</p>
+				);
+			case 'h2':
+				return (
+					<h2 class:list={mods(b)} style={tint(b)}>
+						<Runs runs={b.runs!} />
+					</h2>
+				);
+			case 'h3':
+				return (
+					<h3 class:list={mods(b)} style={tint(b)}>
+						<Runs runs={b.runs!} />
+					</h3>
+				);
+			case 'h4':
+				return (
+					<h4 class:list={mods(b)} style={tint(b)}>
+						<Runs runs={b.runs!} />
+					</h4>
+				);
+			case 'label':
+				return (
+					<p class:list={['t-label-caps', mods(b)]} style={tint(b)}>
+						<Runs runs={b.runs!} />
+					</p>
+				);
+			case 'stat':
+				return (
+					<p class:list={["t-stat", mods(b)]} style={tint(b)}>
+						<RollingStat text={b.runs!.map((r) => r.s).join('')} />
+					</p>
+				);
+			case 'video': {
+				const poster = blockImage(b.src!);
+				const url = b.video ? videoUrl(b.video) : undefined;
+				if (url) {
+					return (
+						<div class="block-video" style={`max-width: ${b.w}px`}>
+							<VideoPlayer src={url} poster={poster?.src} label={b.alt || 'Project video'} />
+						</div>
+					);
+				}
+				return poster ? (
+					<Image class="block-img" src={poster} alt={b.alt ?? ''} width={b.w} height={b.h} loading="lazy" style={`width: ${b.w}px`} />
+				) : null;
+			}
+			case 'p':
+				return (
+					<p class:list={['t-body', mods(b)]} style={tint(b)}>
+						<Runs runs={b.runs!} />
+					</p>
+				);
+			case 'small':
+				return (
+					<p class:list={["t-small", mods(b)]} style={tint(b)}>
+						<Runs runs={b.runs!} />
+					</p>
+				);
+			case 'caption':
+				return (
+					<p class:list={["t-caption", mods(b)]} style={tint(b)}>
+						<Runs runs={b.runs!} />
+					</p>
+				);
+			case 'img': {
+				const src = blockImage(b.src!);
+				if (!src) return null;
+				return isIcon(b) ? (
+					<Image class:list={["block-icon", { center: b.center, right: b.right }]} src={src} alt="" width={b.w} height={b.h} loading="lazy" />
+				) : (
+					<Image
+						class:list={["block-img", { center: b.center }]}
+						src={src}
+						alt={b.alt ?? ''}
+						width={b.w}
+						height={b.h}
+						loading="lazy"
+						style={`width: ${b.w}px`}
+					/>
+				);
+			}
+			case 'card':
+				return (
+					<div
+							class:list={['block-card', { 'block-card--tint': b.tint, 'block-card--center': b.center, 'block-card--band': b.band, 'block-card--wide': wideImage(b) }]}
+							style={[b.fill && `--fill: ${b.fill}; background: var(--fill)`, wideImage(b) && `--wide: ${wideImage(b)! + 48}px`].filter(Boolean).join('; ') || undefined}
+						>
+						<Astro.self items={b.items!} />
+					</div>
+				);
+			case 'pair':
+				return (
+					<div class="block-pair">
+						<Astro.self items={b.items!} />
+					</div>
+				);
+			case 'row': {
+				// a row of single cards shares its inner rows, so titles, text and icons line up
+				// across the cards even when one title wraps to two lines
+				// (only when the cards are built the same way, e.g. icon + title + text in each)
+				const shape = (c: { items: Block[] }) => c.items[0].items?.map((i) => i.t).join() ?? '';
+				const cards =
+					b.cols!.length > 1 &&
+					b.cols!.every((c) => c.items.length === 1 && c.items[0].t === 'card') &&
+					b.cols!.every((c) => shape(c) === shape(b.cols![0]));
+				const rows = cards ? Math.max(...b.cols!.map((c) => c.items[0].items?.length ?? 1)) : 0;
+				return (
+					<div
+						class:list={['block-row', { 'block-row--aligned': cards }]}
+						style={[`grid-template-columns: ${b.cols!.map((c) => `minmax(0, ${c.w}fr)`).join(' ')}`, cards && `--rows: ${rows}`].filter(Boolean).join('; ')}
+					>
+						{b.cols!.map((c) => (
+							<div class="block-col">
+								<Astro.self items={c.items} />
+							</div>
+						))}
+					</div>
+				);
+			}
+			default:
+				return null;
+		}
+	})
+}
+
+<style>
+	h2 {
+		margin-top: var(--space-2);
+	}
+
+	/* eyebrow sits tight above its heading, like the Fortune Kid layout */
+	.t-eyebrow + h2,
+	.t-eyebrow + h3 {
+		margin-top: calc(-1 * var(--space-2));
+	}
+
+	h3:not(:first-child) {
+		margin-top: var(--space-6);
+	}
+
+	/* small uppercase label inside a card (navy, unlike section eyebrows) */
+	.t-label-caps {
+		font: var(--type-eyebrow);
+		text-transform: uppercase;
+		letter-spacing: 0.02em;
+		color: var(--color-ink-80);
+	}
+
+	/* Figma stat numbers ("50+ screens", "93%"): 24px Medium */
+	.t-stat {
+		font: var(--type-subheading);
+		font-size: calc(1.5rem * var(--fit-500)); /* Figma 24 */
+	}
+
+	.block-video {
+		width: 100%;
+	}
+
+	.center {
+		text-align: center;
+	}
+
+	.blue {
+		color: var(--color-blue);
+	}
+
+	/* Figma full-width band: tinted strip across the whole page, content stays in the column */
+	.block-card.block-card--band {
+		margin-block: var(--space-8);
+		margin-inline: calc(50% - 50vw);
+		padding: var(--space-20) calc(50vw - 50%);
+		border-radius: 0;
+		gap: var(--space-4);
+	}
+
+	/* cards inside a band (Impact stats etc.): roomy, content centred vertically, as in Figma */
+	.block-card--band .block-card {
+		min-height: 11rem;
+		padding: var(--space-10) var(--space-6);
+		justify-content: center;
+		gap: var(--space-2);
+	}
+
+	.block-card--band .block-row {
+		align-items: stretch;
+	}
+
+	/* Figma snapshot cards are wider than the reading column (image ~913px); grow to that width,
+	   centred, and never wider than the screen */
+	.block-card.block-card--wide {
+		--card-w: min(calc(100vw - 2 * var(--space-6)), var(--wide));
+		width: var(--card-w);
+		margin-inline: calc((100% - var(--card-w)) / 2);
+	}
+
+	.block-list {
+		margin: 0;
+		padding-left: 1.4em;
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-1);
+	}
+
+	.block-list.center {
+		list-style-position: inside;
+		padding-left: 0;
+	}
+
+	.block-card--center {
+		align-items: center;
+		text-align: center;
+	}
+
+	/* bullets stay left-aligned under a centred card heading, as in Figma */
+	.block-card--center .block-list:not(.center) {
+		align-self: stretch;
+		text-align: left;
+	}
+
+	.block-card--center > .block-img,
+	.block-card--center > .block-icon {
+		align-self: center;
+	}
+
+	/* icon-to-title gap is 1.5× the card gap */
+	.block-card > .block-icon {
+		margin-bottom: calc(var(--space-3) / 2);
+	}
+
+	.muted {
+		color: var(--color-ink-80);
+	}
+
+	/* images keep their Figma size (never stretched), and shrink on narrow screens */
+	/* flex containers would otherwise stretch images to the full column width */
+	.block-img,
+	.block-icon {
+		align-self: flex-start;
+	}
+
+	/* Figma alignment for a single image or icon: centred in its box, or icon pinned top-right */
+	.block-img.center,
+	.block-icon.center {
+		align-self: center;
+	}
+
+	.block-icon.right {
+		align-self: flex-end;
+	}
+
+	.block-img {
+		width: auto;
+		height: auto;
+		max-width: 100%;
+		border-radius: var(--radius-sm);
+	}
+
+	.block-icon {
+		display: inline-block;
+		width: auto;
+		height: auto;
+		max-height: 2.75rem;
+	}
+
+	.block-card {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-3);
+		padding: var(--space-6);
+		background: var(--color-card);
+		border-radius: var(--radius-md);
+	}
+
+	/* nested boxes, as in Figma: a lighter panel inside a card, white pills one level deeper */
+	.block-card .block-card {
+		padding: var(--space-4);
+		background: var(--color-page);
+		border-radius: var(--radius-md);
+	}
+
+	.block-card .block-card .block-card {
+		padding: 6px 12px;
+		background: #fff;
+		border-radius: 12px;
+		justify-content: center;
+	}
+
+	/* arrows between process steps sit on the steps' centre line */
+	.block-col:has(> .block-icon:only-child) {
+		align-self: center;
+		align-items: center;
+	}
+
+	.block-card--tint {
+		background: var(--color-blue-soft);
+	}
+
+	.block-card :global(h3:not(:first-child)),
+	.block-col :global(h3:not(:first-child)) {
+		margin-top: var(--space-2);
+	}
+
+	/* Challenge / Goal / Impact style stacks inside one card: Figma leaves ~44px between them */
+	.block-card > :not(h3, .t-eyebrow) + h3 {
+		margin-top: var(--space-8);
+	}
+
+	.block-row {
+		display: grid;
+		gap: var(--space-4);
+		align-items: start;
+	}
+
+	.block-col {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-3);
+		min-width: 0;
+	}
+
+	.block-row > .block-col:has(> .block-card:only-child) {
+		align-self: stretch;
+	}
+
+	.block-col > .block-card:only-child {
+		height: 100%;
+	}
+
+	/* card rows: every card shares the same inner rows (icon / title / text …), so a two-line
+	   title in one card pushes the text down in all of them and everything stays aligned */
+	.block-row--aligned {
+		grid-template-rows: repeat(var(--rows), auto);
+		row-gap: 0;
+	}
+
+	.block-row--aligned > .block-col,
+	.block-row--aligned > .block-col > .block-card {
+		display: grid;
+		grid-row: span var(--rows);
+		grid-template-rows: subgrid;
+		height: auto;
+	}
+
+	.block-row--aligned > .block-col > .block-card {
+		row-gap: var(--space-3);
+		align-items: start;
+	}
+
+	.block-card--band .block-row--aligned > .block-col > .block-card {
+		row-gap: var(--space-2);
+		align-content: center;
+	}
+
+	.block-row--aligned > .block-col > .block-card > .block-img,
+	.block-row--aligned > .block-col > .block-card > .block-icon {
+		justify-self: start;
+		align-self: start;
+	}
+
+	.block-row--aligned > .block-col > .block-card--center > .block-img,
+	.block-row--aligned > .block-col > .block-card--center > .block-icon,
+	.block-row--aligned > .block-col > .block-card > .center {
+		justify-self: center;
+	}
+
+	.block-row--aligned > .block-col > .block-card > .block-icon.right {
+		justify-self: end;
+	}
+
+	/* a small icon and its label read as one line */
+	.block-pair {
+		display: flex;
+		align-items: center;
+		gap: var(--space-3);
+	}
+
+	.block-pair > :global(*) {
+		margin: 0 !important;
+	}
+
+	@media (max-width: 40rem) {
+		.block-row {
+			grid-template-columns: 1fr !important;
+		}
+
+		/* stacked on phones: each card lays out on its own again */
+		.block-row--aligned {
+			grid-template-rows: none;
+			row-gap: var(--space-4);
+		}
+
+		.block-row--aligned > .block-col,
+		.block-row--aligned > .block-col > .block-card {
+			display: flex;
+			grid-row: auto;
+		}
+	}
+</style>

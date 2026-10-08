@@ -1,0 +1,116 @@
+---
+// Shared hero band for every case study. Same height (Figma: 619px at 1920 wide),
+// same background, artwork centred at the same offset — only the artwork changes.
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+	image: ImageMetadata;
+	alt: string;
+}
+
+const { image, alt } = Astro.props;
+---
+
+<section class="case-hero">
+	<Image
+		class="case-hero__art"
+		data-reveal
+		src={image}
+		alt={alt}
+		loading="eager"
+		fetchpriority="high"
+		widths={[480, 800, 1240]}
+		sizes="(max-width: 40rem) 90vw, 620px"
+	/>
+</section>
+
+<style>
+	.case-hero {
+		height: var(--hero-height);
+		display: grid;
+		grid-template-rows: minmax(0, 1fr);
+		place-items: center;
+		/* clears the absolutely-positioned nav (40px offset + ~67px pill) */
+		padding: calc(var(--space-10) + 4.5rem) var(--space-6) var(--space-8);
+		/* FigJam-style canvas: light ground, soft dot grid. The grid drifts a few px
+		   with the pointer and dots near it pick up a hint of mint (see script). */
+		--grid-gap: 24px;
+		--grid-dot: radial-gradient(circle, rgb(37 55 70 / 0.16) 1.2px, transparent 1.6px);
+		--mx: 50%;
+		--my: 50%;
+		--shift-x: 0px;
+		--shift-y: 0px;
+		position: relative;
+		overflow: hidden;
+		isolation: isolate;
+		background-color: #f5f6f8;
+		background-image: var(--grid-dot);
+		background-size: var(--grid-gap) var(--grid-gap);
+		background-position: var(--shift-x) var(--shift-y);
+		border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+		transition: background-position var(--duration-long) var(--ease-reveal);
+	}
+
+	/* Same grid, mint and slightly larger, revealed only in a soft circle around the pointer */
+	.case-hero::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		background-image: radial-gradient(circle, rgb(90 219 166 / 0.55) 1.6px, transparent 2px);
+		background-size: var(--grid-gap) var(--grid-gap);
+		background-position: var(--shift-x) var(--shift-y);
+		-webkit-mask-image: radial-gradient(180px circle at var(--mx) var(--my), #000, transparent 70%);
+		mask-image: radial-gradient(180px circle at var(--mx) var(--my), #000, transparent 70%);
+		opacity: 0;
+		transition:
+			opacity var(--duration-long) var(--ease-standard),
+			background-position var(--duration-long) var(--ease-reveal);
+		pointer-events: none;
+	}
+
+	.case-hero.is-hovering::before {
+		opacity: 1;
+	}
+
+	.case-hero__art {
+		position: relative;
+		height: 100%;
+		width: auto;
+		max-width: min(100%, 38.75rem);
+		object-fit: contain;
+	}
+</style>
+
+<script>
+	// Slight interaction only: fine pointers, and nothing when reduced motion is requested.
+	const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+	const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+	if (canHover && !reduce) {
+		document.querySelectorAll<HTMLElement>('.case-hero').forEach((hero) => {
+			let frame = 0;
+			hero.addEventListener('pointermove', (e) => {
+				cancelAnimationFrame(frame);
+				frame = requestAnimationFrame(() => {
+					const r = hero.getBoundingClientRect();
+					const x = e.clientX - r.left;
+					const y = e.clientY - r.top;
+					hero.style.setProperty('--mx', `${x}px`);
+					hero.style.setProperty('--my', `${y}px`);
+					// grid drifts at most ±4px opposite the pointer
+					hero.style.setProperty('--shift-x', `${(0.5 - x / r.width) * 8}px`);
+					hero.style.setProperty('--shift-y', `${(0.5 - y / r.height) * 8}px`);
+					hero.classList.add('is-hovering');
+				});
+			});
+			hero.addEventListener('pointerleave', () => {
+				cancelAnimationFrame(frame);
+				hero.classList.remove('is-hovering');
+				hero.style.setProperty('--shift-x', '0px');
+				hero.style.setProperty('--shift-y', '0px');
+			});
+		});
+	}
+</script>

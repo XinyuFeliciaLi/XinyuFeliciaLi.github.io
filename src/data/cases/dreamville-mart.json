@@ -1,0 +1,1228 @@
+{
+	"title": "Dreamville Mart: AI Multiplayer Game",
+	"sections": [
+		{
+			"id": "30:3122",
+			"name": "Project Info / Dreamville",
+			"items": [
+				{
+					"t": "title",
+					"runs": [
+						{
+							"s": "Dreamville Mart: AI Multiplayer Game"
+						}
+					]
+				},
+				{
+					"t": "p",
+					"runs": [
+						{
+							"s": "Owned the end-to-end UX/UI across onboarding, item input, in-game guidance, 2D progress feedback, and final states."
+						}
+					]
+				},
+				{
+					"t": "card",
+					"items": [
+						{
+							"t": "row",
+							"cols": [
+								{
+									"w": 127,
+									"items": [
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Role"
+												}
+											]
+										},
+										{
+											"t": "small",
+											"runs": [
+												{
+													"s": "UX/UI Designer"
+												}
+											]
+										}
+									]
+								},
+								{
+									"w": 127,
+									"items": [
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Deliverable"
+												}
+											]
+										},
+										{
+											"t": "small",
+											"runs": [
+												{
+													"s": "End-to-End UX/UI, \nUI Implementation"
+												}
+											]
+										}
+									]
+								},
+								{
+									"w": 127,
+									"items": [
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Collaborators"
+												}
+											]
+										},
+										{
+											"t": "small",
+											"runs": [
+												{
+													"s": "Team of 6 · PM, Developers, 3D & VFX Artists"
+												}
+											]
+										}
+									]
+								},
+								{
+									"w": 64,
+									"items": [
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Status"
+												}
+											]
+										},
+										{
+											"t": "small",
+											"runs": [
+												{
+													"s": "4 months \n2023"
+												}
+											]
+										}
+									]
+								},
+								{
+									"w": 127,
+									"items": [
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Tools"
+												}
+											]
+										},
+										{
+											"t": "small",
+											"runs": [
+												{
+													"s": "Figma, Illustrator, Photoshop, Unreal Engine"
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "30:3133",
+			"name": "Highlights / Dreamville",
+			"items": [
+				{
+					"t": "h2",
+					"runs": [
+						{
+							"s": "Highlights"
+						}
+					]
+				},
+				{
+					"t": "img",
+					"src": "dreamville-mart/001.png",
+					"w": 750,
+					"h": 522,
+					"alt": "Highlights"
+				},
+				{
+					"t": "row",
+					"cols": [
+						{
+							"w": 363,
+							"items": [
+								{
+									"t": "card",
+									"items": [
+										{
+											"t": "h3",
+											"runs": [
+												{
+													"s": "Completed Playable Build"
+												}
+											],
+											"center": 1
+										},
+										{
+											"t": "small",
+											"runs": [
+												{
+													"s": "Delivered the full player-facing UX/UI and implemented the final interface in Unreal Engine."
+												}
+											],
+											"center": 1
+										}
+									],
+									"center": 1
+								}
+							]
+						},
+						{
+							"w": 363,
+							"items": [
+								{
+									"t": "card",
+									"items": [
+										{
+											"t": "h3",
+											"runs": [
+												{
+													"s": "CMU ETC Festival Showcase"
+												}
+											],
+											"center": 1
+										},
+										{
+											"t": "small",
+											"runs": [
+												{
+													"s": "Presented as a playable experience at the CMU ETC Festival.",
+													"i": 1
+												}
+											],
+											"center": 1
+										}
+									],
+									"center": 1
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "30:3175",
+			"name": "Overview / Dreamville",
+			"items": [
+				{
+					"t": "eyebrow",
+					"runs": [
+						{
+							"s": "Overview"
+						}
+					]
+				},
+				{
+					"t": "h2",
+					"runs": [
+						{
+							"s": "Concept"
+						}
+					]
+				},
+				{
+					"t": "p",
+					"runs": [
+						{
+							"s": "A two-player desktop game concept developed by the Art Direction Lead, where each player creates three hidden items for their opponent to find, with AI-generated riddles available as optional clues."
+						}
+					]
+				},
+				{
+					"t": "card",
+					"items": [
+						{
+							"t": "row",
+							"cols": [
+								{
+									"w": 100,
+									"items": [
+										{
+											"t": "card",
+											"items": [
+												{
+													"t": "caption",
+													"runs": [
+														{
+															"s": "Players"
+														}
+													],
+													"center": 1
+												},
+												{
+													"t": "caption",
+													"runs": [
+														{
+															"s": "Input 3 Items for Your Opponent"
+														}
+													],
+													"center": 1
+												}
+											],
+											"center": 1
+										}
+									]
+								},
+								{
+									"w": 9,
+									"items": [
+										{
+											"t": "img",
+											"src": "dreamville-mart/002.png",
+											"w": 10,
+											"h": 7,
+											"alt": ""
+										}
+									]
+								},
+								{
+									"w": 100,
+									"items": [
+										{
+											"t": "card",
+											"items": [
+												{
+													"t": "caption",
+													"runs": [
+														{
+															"s": "AI System"
+														}
+													],
+													"center": 1
+												},
+												{
+													"t": "caption",
+													"runs": [
+														{
+															"s": "Generate \nItems & Riddles"
+														}
+													],
+													"center": 1
+												}
+											],
+											"center": 1
+										}
+									]
+								},
+								{
+									"w": 9,
+									"items": [
+										{
+											"t": "img",
+											"src": "dreamville-mart/003.png",
+											"w": 10,
+											"h": 7,
+											"alt": ""
+										}
+									]
+								},
+								{
+									"w": 100,
+									"items": [
+										{
+											"t": "card",
+											"items": [
+												{
+													"t": "caption",
+													"runs": [
+														{
+															"s": "Players"
+														}
+													],
+													"center": 1
+												},
+												{
+													"t": "caption",
+													"runs": [
+														{
+															"s": "Explore the \nStore"
+														}
+													],
+													"center": 1
+												}
+											],
+											"center": 1
+										}
+									]
+								},
+								{
+									"w": 9,
+									"items": [
+										{
+											"t": "img",
+											"src": "dreamville-mart/004.png",
+											"w": 10,
+											"h": 7,
+											"alt": ""
+										}
+									]
+								},
+								{
+									"w": 100,
+									"items": [
+										{
+											"t": "card",
+											"items": [
+												{
+													"t": "caption",
+													"runs": [
+														{
+															"s": "Players"
+														}
+													],
+													"center": 1
+												},
+												{
+													"t": "caption",
+													"runs": [
+														{
+															"s": "Use Optional Riddles"
+														}
+													],
+													"center": 1
+												}
+											],
+											"center": 1
+										}
+									]
+								},
+								{
+									"w": 9,
+									"items": [
+										{
+											"t": "img",
+											"src": "dreamville-mart/005.png",
+											"w": 10,
+											"h": 7,
+											"alt": ""
+										}
+									]
+								},
+								{
+									"w": 100,
+									"items": [
+										{
+											"t": "card",
+											"items": [
+												{
+													"t": "caption",
+													"runs": [
+														{
+															"s": "Players"
+														}
+													],
+													"center": 1
+												},
+												{
+													"t": "caption",
+													"runs": [
+														{
+															"s": "Find All Opponent’s Items"
+														}
+													],
+													"center": 1
+												}
+											],
+											"center": 1
+										}
+									]
+								},
+								{
+									"w": 9,
+									"items": [
+										{
+											"t": "img",
+											"src": "dreamville-mart/006.png",
+											"w": 10,
+											"h": 7,
+											"alt": ""
+										}
+									]
+								},
+								{
+									"w": 100,
+									"items": [
+										{
+											"t": "card",
+											"items": [
+												{
+													"t": "caption",
+													"runs": [
+														{
+															"s": "Game System"
+														}
+													],
+													"center": 1
+												},
+												{
+													"t": "caption",
+													"runs": [
+														{
+															"s": "Show Winner \n& Reveal Items"
+														}
+													],
+													"center": 1
+												}
+											],
+											"center": 1
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"t": "h2",
+					"runs": [
+						{
+							"s": "Challenge"
+						}
+					]
+				},
+				{
+					"t": "row",
+					"cols": [
+						{
+							"w": 363,
+							"items": [
+								{
+									"t": "card",
+									"items": [
+										{
+											"t": "img",
+											"src": "dreamville-mart/007.png",
+											"w": 44,
+											"h": 44,
+											"alt": "",
+											"right": 1
+										},
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Making a New AI Game Loop Easy to Learn"
+												}
+											]
+										},
+										{
+											"t": "small",
+											"runs": [
+												{
+													"s": "Guide players through item creation, AI-generated riddles, and exploration without making the experience feel complicated."
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"w": 363,
+							"items": [
+								{
+									"t": "card",
+									"items": [
+										{
+											"t": "img",
+											"src": "dreamville-mart/008.png",
+											"w": 44,
+											"h": 44,
+											"alt": "",
+											"right": 1
+										},
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Keeping Players Oriented During Gameplay"
+												}
+											]
+										},
+										{
+											"t": "small",
+											"runs": [
+												{
+													"s": "Provide clear progress, status, and contextual guidance while keeping the interface lightweight inside the 3D world."
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"t": "h2",
+					"runs": [
+						{
+							"s": "Overall Process"
+						}
+					]
+				},
+				{
+					"t": "card",
+					"items": [
+						{
+							"t": "row",
+							"cols": [
+								{
+									"w": 99,
+									"items": [
+										{
+											"t": "card",
+											"items": [
+												{
+													"t": "caption",
+													"runs": [
+														{
+															"s": "Understand"
+														}
+													],
+													"center": 1
+												}
+											],
+											"center": 1
+										}
+									]
+								},
+								{
+									"w": 9,
+									"items": [
+										{
+											"t": "img",
+											"src": "dreamville-mart/009.png",
+											"w": 10,
+											"h": 7,
+											"alt": ""
+										}
+									]
+								},
+								{
+									"w": 73,
+									"items": [
+										{
+											"t": "card",
+											"items": [
+												{
+													"t": "caption",
+													"runs": [
+														{
+															"s": "Define"
+														}
+													],
+													"center": 1
+												}
+											],
+											"center": 1
+										}
+									]
+								},
+								{
+									"w": 9,
+									"items": [
+										{
+											"t": "img",
+											"src": "dreamville-mart/010.png",
+											"w": 10,
+											"h": 7,
+											"alt": ""
+										}
+									]
+								},
+								{
+									"w": 75,
+									"items": [
+										{
+											"t": "card",
+											"items": [
+												{
+													"t": "caption",
+													"runs": [
+														{
+															"s": "Design"
+														}
+													],
+													"center": 1
+												}
+											],
+											"center": 1
+										}
+									]
+								},
+								{
+									"w": 9,
+									"items": [
+										{
+											"t": "img",
+											"src": "dreamville-mart/011.png",
+											"w": 10,
+											"h": 7,
+											"alt": ""
+										}
+									]
+								},
+								{
+									"w": 120,
+									"items": [
+										{
+											"t": "card",
+											"items": [
+												{
+													"t": "caption",
+													"runs": [
+														{
+															"s": "Implementation"
+														}
+													],
+													"center": 1
+												}
+											],
+											"center": 1
+										}
+									]
+								},
+								{
+									"w": 9,
+									"items": [
+										{
+											"t": "img",
+											"src": "dreamville-mart/012.png",
+											"w": 10,
+											"h": 7,
+											"alt": ""
+										}
+									]
+								},
+								{
+									"w": 77,
+									"items": [
+										{
+											"t": "card",
+											"items": [
+												{
+													"t": "caption",
+													"runs": [
+														{
+															"s": "Playtest"
+														}
+													],
+													"center": 1
+												}
+											],
+											"center": 1
+										}
+									]
+								},
+								{
+									"w": 9,
+									"items": [
+										{
+											"t": "img",
+											"src": "dreamville-mart/013.png",
+											"w": 10,
+											"h": 7,
+											"alt": ""
+										}
+									]
+								},
+								{
+									"w": 70,
+									"items": [
+										{
+											"t": "card",
+											"items": [
+												{
+													"t": "caption",
+													"runs": [
+														{
+															"s": "Iterate"
+														}
+													],
+													"center": 1
+												}
+											],
+											"center": 1
+										}
+									]
+								},
+								{
+									"w": 9,
+									"items": [
+										{
+											"t": "img",
+											"src": "dreamville-mart/014.png",
+											"w": 10,
+											"h": 7,
+											"alt": ""
+										}
+									]
+								},
+								{
+									"w": 81,
+									"items": [
+										{
+											"t": "card",
+											"items": [
+												{
+													"t": "caption",
+													"runs": [
+														{
+															"s": "Delivery"
+														}
+													],
+													"center": 1
+												}
+											],
+											"center": 1
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"t": "eyebrow",
+					"runs": [
+						{
+							"s": "Design"
+						}
+					]
+				},
+				{
+					"t": "h2",
+					"runs": [
+						{
+							"s": "My Approach"
+						}
+					]
+				},
+				{
+					"t": "row",
+					"cols": [
+						{
+							"w": 230,
+							"items": [
+								{
+									"t": "card",
+									"items": [
+										{
+											"t": "img",
+											"src": "dreamville-mart/015.png",
+											"w": 44,
+											"h": 44,
+											"alt": "",
+											"right": 1
+										},
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Structure the Player Journey"
+												}
+											]
+										},
+										{
+											"t": "small",
+											"runs": [
+												{
+													"s": "Organized onboarding, item input, gameplay, and final states into a clear sequence."
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"w": 230,
+							"items": [
+								{
+									"t": "card",
+									"items": [
+										{
+											"t": "img",
+											"src": "dreamville-mart/016.png",
+											"w": 44,
+											"h": 44,
+											"alt": "",
+											"right": 1
+										},
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Use In-World Feedback"
+												}
+											]
+										},
+										{
+											"t": "small",
+											"runs": [
+												{
+													"s": "Integrated prompts, status updates, and clues into the game world to reduce UI friction."
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"w": 230,
+							"items": [
+								{
+									"t": "card",
+									"items": [
+										{
+											"t": "img",
+											"src": "dreamville-mart/017.png",
+											"w": 44,
+											"h": 44,
+											"alt": "",
+											"right": 1
+										},
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Design for AI Variability"
+												}
+											]
+										},
+										{
+											"t": "small",
+											"runs": [
+												{
+													"s": "Created flexible UI patterns for unpredictable text input and variable AI-generated riddle lengths."
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "30:3250",
+			"name": "Process / Dreamville",
+			"items": [
+				{
+					"t": "eyebrow",
+					"runs": [
+						{
+							"s": "Experience Evaluation"
+						}
+					]
+				},
+				{
+					"t": "h2",
+					"runs": [
+						{
+							"s": "Playtest & Iteration"
+						}
+					]
+				},
+				{
+					"t": "p",
+					"runs": [
+						{
+							"s": "Refined the functional build through weekly usability tests, then validated the experience with public players during two open-house testing days."
+						}
+					]
+				},
+				{
+					"t": "img",
+					"src": "dreamville-mart/018.png",
+					"w": 750,
+					"h": 346,
+					"alt": "Playtest & Iteration"
+				},
+				{
+					"t": "p",
+					"runs": [
+						{
+							"s": "View weekly build walkthroughs →"
+						},
+						{
+							"s": " CMU ETC project archive",
+							"href": "https://projects.etc.cmu.edu/cheat-code/category/media/"
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "30:3281",
+			"name": "Final Design / Dreamville",
+			"items": [
+				{
+					"t": "eyebrow",
+					"runs": [
+						{
+							"s": "Experience Design"
+						}
+					]
+				},
+				{
+					"t": "h2",
+					"runs": [
+						{
+							"s": "Final Design"
+						}
+					]
+				},
+				{
+					"t": "card",
+					"items": [
+						{
+							"t": "img",
+							"src": "dreamville-mart/019.png",
+							"w": 713,
+							"h": 401,
+							"alt": "Final Design"
+						},
+						{
+							"t": "h3",
+							"runs": [
+								{
+									"s": "01 · Player Item Input"
+								}
+							],
+							"center": 1
+						},
+						{
+							"t": "p",
+							"runs": [
+								{
+									"s": "Structured three AI-driven item inputs into a clear step-by-step experience with visible progress and input guidance."
+								}
+							],
+							"center": 1
+						}
+					],
+					"center": 1
+				},
+				{
+					"t": "card",
+					"items": [
+						{
+							"t": "img",
+							"src": "dreamville-mart/020.png",
+							"w": 713,
+							"h": 401,
+							"alt": "01 · Player Item Input"
+						},
+						{
+							"t": "h3",
+							"runs": [
+								{
+									"s": "02 · In-Game Guidance"
+								}
+							],
+							"center": 1
+						},
+						{
+							"t": "p",
+							"runs": [
+								{
+									"s": "Combined clues, progress tracking, status updates, and a persistent shopping list into a lightweight in-game UI."
+								}
+							],
+							"center": 1
+						}
+					],
+					"center": 1
+				},
+				{
+					"t": "card",
+					"items": [
+						{
+							"t": "img",
+							"src": "dreamville-mart/021.png",
+							"w": 713,
+							"h": 401,
+							"alt": "02 · In-Game Guidance"
+						},
+						{
+							"t": "h3",
+							"runs": [
+								{
+									"s": "03 · Final Reveal"
+								}
+							],
+							"center": 1
+						},
+						{
+							"t": "p",
+							"runs": [
+								{
+									"s": "Revealed the winner alongside each player’s hidden generated items, giving both players a clear sense of what was found and what remained in the scene."
+								}
+							],
+							"center": 1
+						}
+					],
+					"center": 1
+				}
+			]
+		},
+		{
+			"id": "30:3295",
+			"name": "Outcome / Dreamville",
+			"items": [
+				{
+					"t": "eyebrow",
+					"runs": [
+						{
+							"s": "IMPACT"
+						}
+					]
+				},
+				{
+					"t": "h2",
+					"runs": [
+						{
+							"s": "Project Outcome"
+						}
+					]
+				},
+				{
+					"t": "row",
+					"cols": [
+						{
+							"w": 234,
+							"items": [
+								{
+									"t": "card",
+									"items": [
+										{
+											"t": "img",
+											"src": "dreamville-mart/022.png",
+											"w": 44,
+											"h": 44,
+											"alt": "",
+											"right": 1
+										},
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Generative AI as Core Gameplay"
+												}
+											]
+										},
+										{
+											"t": "small",
+											"runs": [
+												{
+													"s": "Used ChatGPT 3.5 and DALL·E 2 to generate riddles and player-created store items in real time."
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"w": 234,
+							"items": [
+								{
+									"t": "card",
+									"items": [
+										{
+											"t": "img",
+											"src": "dreamville-mart/023.png",
+											"w": 44,
+											"h": 44,
+											"alt": "",
+											"right": 1
+										},
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Completed Playable Build"
+												}
+											]
+										},
+										{
+											"t": "small",
+											"runs": [
+												{
+													"s": "Delivered the full player-facing UX/UI and implemented the final interface in Unreal Engine."
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"w": 234,
+							"items": [
+								{
+									"t": "card",
+									"items": [
+										{
+											"t": "img",
+											"src": "dreamville-mart/024.png",
+											"w": 44,
+											"h": 44,
+											"alt": "",
+											"right": 1
+										},
+										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "CMU ETC Festival Showcase"
+												}
+											]
+										},
+										{
+											"t": "small",
+											"runs": [
+												{
+													"s": "Presented the completed playable experience at the Carnegie Mellon University ETC Festival."
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}

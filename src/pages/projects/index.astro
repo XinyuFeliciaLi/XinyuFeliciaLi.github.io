@@ -1,27 +1,26 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { cases, cardImage, caseHref, hasPage } from '../../data/cases';
 
-const caseStudies = (await getCollection('case-studies', ({ data }) => !data.draft)).sort(
-	(a, b) => a.data.order - b.data.order
-);
+const items = cases.filter((c) => c.kind === 'project');
 ---
 
 <BaseLayout title="Projects">
-	<section class="container">
-		<h1 data-reveal>Projects</h1>
+	<section class="container page">
+		<h1 class="t-title" data-reveal>Projects</h1>
 		<ul class="grid">
 			{
-				caseStudies.map((study) => (
+				items.map((c) => (
 					<li data-reveal>
-						<a class="card card-hover" href={`/projects/${study.id}/`}>
-							<div class="card__image" />
-							<span class="card__title">{study.data.title}</span>
-							<span class="card__meta">
-								{study.data.client} · {study.data.status} · {study.data.year}
-							</span>
-							<p class="card__summary">{study.data.summary}</p>
-						</a>
+						<ProjectCard
+							size="lg"
+							href={hasPage(c.slug) ? caseHref(c) : undefined}
+							image={cardImage(c.slug)}
+							title={c.cardTitle}
+							meta={c.cardMeta}
+							tags={c.tags}
+						/>
 					</li>
 				))
 			}
@@ -30,47 +29,32 @@ const caseStudies = (await getCollection('case-studies', ({ data }) => !data.dra
 </BaseLayout>
 
 <style>
-	section {
-		padding-block: var(--space-16);
+	.page {
+		/* clears the absolutely-positioned nav */
+		padding-top: calc(var(--space-10) + 4.5rem + var(--space-12));
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-10);
 	}
 
 	.grid {
 		list-style: none;
-		margin: var(--space-8) 0 0;
+		margin: 0;
 		padding: 0;
 		display: grid;
-		gap: var(--space-8);
-		grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: var(--space-12) var(--space-10);
 	}
 
-	.card {
-		display: flex;
-		flex-direction: column;
-		gap: var(--space-3);
-		text-decoration: none;
-		color: var(--color-ink-soft);
+	@media (max-width: 52rem) {
+		.grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
 	}
 
-	.card__image {
-		background: var(--color-card);
-		border-radius: var(--radius-lg);
-		aspect-ratio: 16 / 9;
-	}
-
-	.card__title {
-		font-family: var(--font-heading);
-		font-weight: 700;
-		font-size: var(--text-xl);
-	}
-
-	.card__meta {
-		font-weight: 500;
-		font-size: var(--text-sm);
-		color: var(--color-ink-muted);
-	}
-
-	.card__summary {
-		color: var(--color-ink-muted);
-		margin: 0;
+	@media (max-width: 40rem) {
+		.grid {
+			grid-template-columns: 1fr;
+		}
 	}
 </style>

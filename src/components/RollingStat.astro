@@ -1,0 +1,79 @@
+---
+// Impact stat whose digits roll upward from 0 to their value when scrolled into view
+// (motion.dev stats-section style). Non-digit text ("+", "%", "screens") stays put.
+// [data-roll] is picked up by BaseLayout's reveal observer, which adds [data-revealed].
+interface Props {
+	text: string;
+}
+
+const { text } = Astro.props;
+const parts = text.split(/(\d)/).filter(Boolean);
+const digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+let n = 0;
+---
+
+<span class="rolling-stat" data-roll>
+	<span class="visually-hidden">{text}</span>
+	<span aria-hidden="true">
+		{
+			parts.map((p) =>
+				/\d/.test(p) ? (
+					<span class="digit" style={`--d: ${p}; --i: ${n++}`}>
+						<span class="digit__sizer">{p}</span>
+						<span class="digit__strip">
+							{digits.map((d) => (
+								<span>{d}</span>
+							))}
+						</span>
+					</span>
+				) : (
+					<span class="rolling-stat__text">{p}</span>
+				)
+			)
+		}
+	</span>
+</span>
+
+<style>
+	.rolling-stat {
+		white-space: pre-wrap;
+	}
+
+	/* one digit window, sized to its final digit; the 0–9 strip slides up behind it */
+	.digit {
+		position: relative;
+		display: inline-block;
+		height: 1lh;
+		overflow: clip;
+		vertical-align: bottom;
+	}
+
+	.digit__sizer {
+		visibility: hidden;
+	}
+
+	.digit__strip {
+		position: absolute;
+		inset: 0 -0.2em auto;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		transform: translateY(0);
+		transition: transform 2.2s cubic-bezier(0.16, 1, 0.3, 1);
+		transition-delay: calc(var(--reveal-delay, 0ms) + var(--i) * 120ms);
+	}
+
+	.digit__strip > span {
+		height: 1lh;
+	}
+
+	[data-revealed] .digit__strip {
+		transform: translateY(calc(var(--d) * -1lh));
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.digit__strip {
+			transition: none;
+		}
+	}
+</style>

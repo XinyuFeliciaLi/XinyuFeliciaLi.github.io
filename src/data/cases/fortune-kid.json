@@ -1,0 +1,1548 @@
+{
+ "title": "AI Native Workflow: Investor-Focused Web Design",
+ "sections": [
+  {
+   "id": "30:3796",
+   "name": "Overview",
+   "items": [
+    {
+     "t": "title",
+     "runs": [
+      {
+       "s": "AI Native Workflow: Investor-Focused Web Design"
+      }
+     ]
+    },
+    {
+     "t": "p",
+     "runs": [
+      {
+       "s": "Fortune Kid is an early stage indie game studio. I redesigned and launched its website using an AI native design and development workflow, adapting the process to each page’s complexity."
+      }
+     ]
+    },
+    {
+     "t": "row",
+     "cols": [
+      {
+       "w": 470,
+       "items": [
+        {
+         "t": "card",
+         "items": [
+          {
+           "t": "h3",
+           "runs": [
+            {
+             "s": "Challenge"
+            }
+           ]
+          },
+          {
+           "t": "p",
+           "runs": [
+            {
+             "s": "The studio’s direction was evolving, but its existing website did not clearly communicate its current focus to investors."
+            }
+           ]
+          },
+          {
+           "t": "h3",
+           "runs": [
+            {
+             "s": "Goal"
+            }
+           ]
+          },
+          {
+           "t": "p",
+           "runs": [
+            {
+             "s": "Create a website that supports investor evaluation and outreach while keeping essential game and player information accessible as the studio evolves."
+            }
+           ]
+          },
+          {
+           "t": "h3",
+           "runs": [
+            {
+             "s": "Outcome"
+            }
+           ]
+          },
+          {
+           "t": "p",
+           "runs": [
+            {
+             "s": "A live website that brings the studio’s direction, products, and progress into one place, with game pages and required player information."
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "w": 263,
+       "items": [
+        {
+         "t": "card",
+         "items": [
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "Role"
+            }
+           ]
+          },
+          {
+           "t": "small",
+           "runs": [
+            {
+             "s": "Web Designer & Front End Builder"
+            }
+           ]
+          },
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "Responsibilities"
+            }
+           ]
+          },
+          {
+           "t": "small",
+           "runs": [
+            {
+             "s": "Research, UX/UI Design, AI Native Development"
+            }
+           ]
+          },
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "Collaborators"
+            }
+           ]
+          },
+          {
+           "t": "small",
+           "runs": [
+            {
+             "s": "Studio Owner & Community Operations"
+            }
+           ]
+          },
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "Status"
+            }
+           ]
+          },
+          {
+           "t": "small",
+           "runs": [
+            {
+             "s": "2026 · Shipped & Live"
+            }
+           ]
+          },
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "Tools"
+            }
+           ]
+          },
+          {
+           "t": "small",
+           "runs": [
+            {
+             "s": "Figma, Claude Cowork, GitHub, VS Code"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "t": "img",
+     "src": "fortune-kid/001.png",
+     "w": 761,
+     "h": 485,
+     "alt": "Tools"
+    }
+   ]
+  },
+  {
+   "id": "30:3834",
+   "name": "Understand",
+   "items": [
+    {
+     "t": "eyebrow",
+     "runs": [
+      {
+       "s": "Understand"
+      }
+     ]
+    },
+    {
+     "t": "h2",
+     "runs": [
+      {
+       "s": "Stakeholder Priorities and Requirements"
+      }
+     ]
+    },
+    {
+     "t": "p",
+     "runs": [
+      {
+       "s": "An initial "
+      },
+      {
+       "s": "stakeholder alignment meeting",
+       "b": 1
+      },
+      {
+       "s": " clarified the website’s audiences, scope, and constraints. This established investors as the primary audience while preserving essential information for players."
+      }
+     ]
+    },
+    {
+     "t": "row",
+     "cols": [
+      {
+       "w": 327,
+       "items": [
+        {
+         "t": "h3",
+         "runs": [
+          {
+           "s": "Starting Point"
+          }
+         ]
+        },
+        {
+         "t": "p",
+         "runs": [
+          {
+           "s": "The existing website described the studio’s registered business activities."
+          }
+         ]
+        },
+        {
+         "t": "card",
+         "items": [
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "Main Gap"
+            }
+           ]
+          },
+          {
+           "t": "small",
+           "runs": [
+            {
+             "s": "It did not clearly explain what the studio was currently building or communicate its brand."
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "w": 382,
+       "items": [
+        {
+         "t": "img",
+         "src": "fortune-kid/002.png",
+         "w": 382,
+         "h": 241,
+         "alt": "Main Gap"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "t": "h3",
+     "runs": [
+      {
+       "s": "Stakeholder Requirements"
+      }
+     ]
+    },
+    {
+     "t": "row",
+     "cols": [
+      {
+       "w": 367,
+       "items": [
+        {
+         "t": "img",
+         "src": "fortune-kid/003.png",
+         "w": 367,
+         "h": 309,
+         "alt": "Stakeholder Requirements"
+        }
+       ]
+      },
+      {
+       "w": 367,
+       "items": [
+        {
+         "t": "card",
+         "items": [
+          {
+           "t": "img",
+           "src": "fortune-kid/004.png",
+           "w": 319,
+           "h": 194,
+           "alt": "Stakeholder Requirements"
+          },
+          {
+           "t": "small",
+           "runs": [
+            {
+             "s": "Provide the website support needed for games distributed through app stores."
+            }
+           ],
+           "center": 1
+          }
+         ],
+         "center": 1
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "t": "h3",
+     "runs": [
+      {
+       "s": "Constraints That Shaped the Approach"
+      }
+     ]
+    },
+    {
+     "t": "row",
+     "cols": [
+      {
+       "w": 239,
+       "items": [
+        {
+         "t": "card",
+         "items": [
+          {
+           "t": "img",
+           "src": "fortune-kid/005.png",
+           "w": 32,
+           "h": 32,
+           "alt": ""
+          },
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "Evolving direction"
+            }
+           ],
+           "center": 1
+          },
+          {
+           "t": "small",
+           "runs": [
+            {
+             "s": "Support product and messaging changes without rebuilding the site."
+            }
+           ],
+           "center": 1
+          }
+         ],
+         "center": 1
+        }
+       ]
+      },
+      {
+       "w": 239,
+       "items": [
+        {
+         "t": "card",
+         "items": [
+          {
+           "t": "img",
+           "src": "fortune-kid/006.png",
+           "w": 32,
+           "h": 32,
+           "alt": ""
+          },
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "Limited budget"
+            }
+           ],
+           "center": 1
+          },
+          {
+           "t": "small",
+           "runs": [
+            {
+             "s": "Deliver design and frontend development within limited resources."
+            }
+           ],
+           "center": 1
+          }
+         ],
+         "center": 1
+        }
+       ]
+      },
+      {
+       "w": 239,
+       "items": [
+        {
+         "t": "card",
+         "items": [
+          {
+           "t": "img",
+           "src": "fortune-kid/007.png",
+           "w": 32,
+           "h": 32,
+           "alt": ""
+          },
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "Unreleased work"
+            }
+           ],
+           "center": 1
+          },
+          {
+           "t": "small",
+           "runs": [
+            {
+             "s": "Highlight UNI, the studio’s primary project, while keeping its public scope flexible."
+            }
+           ],
+           "center": 1
+          }
+         ],
+         "center": 1
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "30:3996",
+   "name": "Research",
+   "items": [
+    {
+     "t": "eyebrow",
+     "runs": [
+      {
+       "s": "Research"
+      }
+     ]
+    },
+    {
+     "t": "h2",
+     "runs": [
+      {
+       "s": "Building Context Before Defining the Website"
+      }
+     ]
+    },
+    {
+     "t": "p",
+     "runs": [
+      {
+       "s": "Before defining the website structure, I researched industry patterns and App Store requirements to understand the landscape, identify knowledge gaps, and establish a foundation for design decisions."
+      }
+     ]
+    },
+    {
+     "t": "h3",
+     "runs": [
+      {
+       "s": "Methods Used"
+      }
+     ]
+    },
+    {
+     "t": "h4",
+     "runs": [
+      {
+       "s": "Investor Interviews"
+      }
+     ]
+    },
+    {
+     "t": "p",
+     "runs": [
+      {
+       "s": "With the studio owner’s support, we gathered input from investors and venture capital professionals to understand their evaluation needs."
+      }
+     ]
+    },
+    {
+     "t": "h4",
+     "runs": [
+      {
+       "s": "Competitive Analysis"
+      }
+     ]
+    },
+    {
+     "t": "p",
+     "runs": [
+      {
+       "s": "I conducted a competitive analysis of game studio websites of different sizes to identify useful content and navigation patterns. Studio names are withheld due to restrictions."
+      }
+     ]
+    },
+    {
+     "t": "img",
+     "src": "fortune-kid/008.png",
+     "w": 749,
+     "h": 341,
+     "alt": "Competitive Analysis"
+    },
+    {
+     "t": "h3",
+     "runs": [
+      {
+       "s": "Research Insights"
+      }
+     ]
+    },
+    {
+     "t": "row",
+     "cols": [
+      {
+       "w": 367,
+       "items": [
+        {
+         "t": "card",
+         "items": [
+          {
+           "t": "img",
+           "src": "fortune-kid/009.png",
+           "w": 32,
+           "h": 32,
+           "alt": ""
+          },
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "Investor Information Priorities"
+            }
+           ],
+           "center": 1
+          },
+          {
+           "t": "p",
+           "runs": [
+            {
+             "s": "Product direction | Delivery capability\nCurrent progress"
+            }
+           ],
+           "center": 1
+          }
+         ],
+         "center": 1
+        }
+       ]
+      },
+      {
+       "w": 367,
+       "items": [
+        {
+         "t": "card",
+         "items": [
+          {
+           "t": "img",
+           "src": "fortune-kid/010.png",
+           "w": 28,
+           "h": 28,
+           "alt": ""
+          },
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "Essential Player Information"
+            }
+           ],
+           "center": 1
+          },
+          {
+           "t": "p",
+           "runs": [
+            {
+             "s": "Clear access to game information, store links, and required privacy policies."
+            }
+           ],
+           "center": 1
+          }
+         ],
+         "center": 1
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "30:4043",
+   "name": "How Might We",
+   "items": [
+    {
+     "t": "card",
+     "band": 1,
+     "items": [
+      {
+       "t": "row",
+       "cols": [
+        {
+         "w": 180,
+         "items": [
+          {
+           "t": "img",
+           "src": "fortune-kid/011.png",
+           "w": 180,
+           "h": 180,
+           "alt": "Essential Player Information"
+          }
+         ]
+        },
+        {
+         "w": 489,
+         "items": [
+          {
+           "t": "h3",
+           "runs": [
+            {
+             "s": "How Might We"
+            }
+           ]
+          },
+          {
+           "t": "p",
+           "runs": [
+            {
+             "s": "How might we clearly communicate what Fortune Kid is building and demonstrate its ability to deliver?"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "30:4052",
+   "name": "Define",
+   "items": [
+    {
+     "t": "eyebrow",
+     "runs": [
+      {
+       "s": "Define"
+      }
+     ]
+    },
+    {
+     "t": "h2",
+     "runs": [
+      {
+       "s": "Turning Insights into Website Strategy"
+      }
+     ]
+    },
+    {
+     "t": "p",
+     "runs": [
+      {
+       "s": "With the context established, I defined the website’s purpose, content priorities, and structure to create a clear foundation for design and development."
+      }
+     ]
+    },
+    {
+     "t": "h3",
+     "runs": [
+      {
+       "s": "Information Architecture"
+      }
+     ]
+    },
+    {
+     "t": "card",
+     "items": [
+      {
+       "t": "img",
+       "src": "fortune-kid/012.png",
+       "w": 665,
+       "h": 232,
+       "alt": "Information Architecture"
+      },
+      {
+       "t": "caption",
+       "runs": [
+        {
+         "s": "Note: Items marked with a + tag were added to the original site structure."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "t": "h3",
+     "runs": [
+      {
+       "s": "Strategic Structure Decisions"
+      }
+     ]
+    },
+    {
+     "t": "row",
+     "cols": [
+      {
+       "w": 361,
+       "items": [
+        {
+         "t": "card",
+         "items": [
+          {
+           "t": "img",
+           "src": "fortune-kid/013.png",
+           "w": 28,
+           "h": 28,
+           "alt": ""
+          },
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "Investor-Focused Landing Page"
+            }
+           ]
+          },
+          {
+           "t": "p",
+           "runs": [
+            {
+             "s": "With investors as a primary audience, key studio information was placed on the landing page for review in one place."
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "w": 362,
+       "items": [
+        {
+         "t": "card",
+         "items": [
+          {
+           "t": "img",
+           "src": "fortune-kid/014.png",
+           "w": 32,
+           "h": 32,
+           "alt": ""
+          },
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "Flexible Product Focus"
+            }
+           ]
+          },
+          {
+           "t": "p",
+           "runs": [
+            {
+             "s": "UNI, the studio’s primary project, was given a flexible page structure that could evolve as more content became public."
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "t": "row",
+     "cols": [
+      {
+       "w": 361,
+       "items": [
+        {
+         "t": "card",
+         "items": [
+          {
+           "t": "img",
+           "src": "fortune-kid/015.png",
+           "w": 28,
+           "h": 28,
+           "alt": ""
+          },
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "Accessible Player Information"
+            }
+           ]
+          },
+          {
+           "t": "p",
+           "runs": [
+            {
+             "s": "Required privacy policies were added to the footer and linked from App Store listings for direct player access."
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "w": 362,
+       "items": [
+        {
+         "t": "card",
+         "items": [
+          {
+           "t": "img",
+           "src": "fortune-kid/016.png",
+           "w": 28,
+           "h": 28,
+           "alt": ""
+          },
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "Adaptable Site Structure"
+            }
+           ]
+          },
+          {
+           "t": "p",
+           "runs": [
+            {
+             "s": "The modular structure lets the studio update the game list and landing-page sections without rebuilding the site."
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "30:4098",
+   "name": "Design",
+   "items": [
+    {
+     "t": "eyebrow",
+     "runs": [
+      {
+       "s": "Design"
+      }
+     ]
+    },
+    {
+     "t": "h2",
+     "runs": [
+      {
+       "s": "AI-Native Workflow"
+      }
+     ]
+    },
+    {
+     "t": "p",
+     "runs": [
+      {
+       "s": "I used an AI native workflow to move quickly from ideas to functional prototypes, selecting from three workflows based on page complexity while designing in a live, functional context."
+      }
+     ]
+    },
+    {
+     "t": "h3",
+     "runs": [
+      {
+       "s": "Generating Standard Pages"
+      }
+     ]
+    },
+    {
+     "t": "h4",
+     "runs": [
+      {
+       "s": "Situation"
+      }
+     ]
+    },
+    {
+     "t": "p",
+     "runs": [
+      {
+       "s": "Standard pages, such as privacy policies, did not require precise visual styling."
+      }
+     ]
+    },
+    {
+     "t": "img",
+     "src": "fortune-kid/017.png",
+     "w": 749,
+     "h": 362,
+     "alt": "Situation"
+    },
+    {
+     "t": "card",
+     "items": [
+      {
+       "t": "h4",
+       "runs": [
+        {
+         "s": "What I Achieved"
+        }
+       ]
+      },
+      {
+       "t": "p",
+       "runs": [
+        {
+         "s": "Reduced design effort on standard pages, keeping time focused on higher priority product experiences."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "t": "h3",
+     "runs": [
+      {
+       "s": "Building Custom Layouts"
+      }
+     ]
+    },
+    {
+     "t": "h4",
+     "runs": [
+      {
+       "s": "Situation"
+      }
+     ]
+    },
+    {
+     "t": "p",
+     "runs": [
+      {
+       "s": "The product details page needed a specific layout to bring together descriptions and supporting media."
+      }
+     ]
+    },
+    {
+     "t": "img",
+     "src": "fortune-kid/018.png",
+     "w": 749,
+     "h": 356,
+     "alt": "Situation"
+    },
+    {
+     "t": "card",
+     "items": [
+      {
+       "t": "h4",
+       "runs": [
+        {
+         "s": "What I Achieved"
+        }
+       ]
+      },
+      {
+       "t": "p",
+       "runs": [
+        {
+         "s": "Reduced design time by moving from low-fidelity wireframes directly into working pages while maintaining control over layout and visual direction."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "t": "h3",
+     "runs": [
+      {
+       "s": "Exploring Visual Directions"
+      }
+     ]
+    },
+    {
+     "t": "h4",
+     "runs": [
+      {
+       "s": "Situation"
+      }
+     ]
+    },
+    {
+     "t": "p",
+     "runs": [
+      {
+       "s": "The landing hero needed visual exploration while the creative direction was still evolving."
+      }
+     ]
+    },
+    {
+     "t": "img",
+     "src": "fortune-kid/019.png",
+     "w": 749,
+     "h": 356,
+     "alt": "Situation"
+    },
+    {
+     "t": "card",
+     "items": [
+      {
+       "t": "h4",
+       "runs": [
+        {
+         "s": "What I Achieved"
+        }
+       ]
+      },
+      {
+       "t": "p",
+       "runs": [
+        {
+         "s": "Turned visual directions into functional prototypes, helping the stakeholder compare working solutions and align on a direction."
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "30:4202",
+   "name": "Refine",
+   "items": [
+    {
+     "t": "eyebrow",
+     "runs": [
+      {
+       "s": "Iterate"
+      }
+     ]
+    },
+    {
+     "t": "h2",
+     "runs": [
+      {
+       "s": "Refining the Experience Before Launch"
+      }
+     ]
+    },
+    {
+     "t": "p",
+     "runs": [
+      {
+       "s": "Team and tester feedback helped reveal gaps between design intent and real use, guiding improvements before the website launched."
+      }
+     ]
+    },
+    {
+     "t": "h3",
+     "runs": [
+      {
+       "s": "Creative Direction"
+      }
+     ]
+    },
+    {
+     "t": "img",
+     "src": "fortune-kid/020.png",
+     "w": 749,
+     "h": 229,
+     "alt": "Creative Direction"
+    },
+    {
+     "t": "card",
+     "items": [
+      {
+       "t": "row",
+       "cols": [
+        {
+         "w": 249,
+         "items": [
+          {
+           "t": "img",
+           "src": "fortune-kid/021.png",
+           "w": 31,
+           "h": 31,
+           "alt": ""
+          },
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "User feel"
+            }
+           ]
+          },
+          {
+           "t": "p",
+           "runs": [
+            {
+             "s": "The initial website did not convey the passion and creativity the studio wanted to express."
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "w": 242,
+         "items": [
+          {
+           "t": "img",
+           "src": "fortune-kid/022.png",
+           "w": 31,
+           "h": 31,
+           "alt": ""
+          },
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "Action"
+            }
+           ]
+          },
+          {
+           "t": "p",
+           "runs": [
+            {
+             "s": "Redesigned the landing hero to better express the studio’s creativity and passion."
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "t": "h3",
+     "runs": [
+      {
+       "s": "Game Information"
+      }
+     ]
+    },
+    {
+     "t": "img",
+     "src": "fortune-kid/023.png",
+     "w": 749,
+     "h": 229,
+     "alt": "Game Information"
+    },
+    {
+     "t": "card",
+     "items": [
+      {
+       "t": "row",
+       "cols": [
+        {
+         "w": 249,
+         "items": [
+          {
+           "t": "img",
+           "src": "fortune-kid/024.png",
+           "w": 31,
+           "h": 31,
+           "alt": ""
+          },
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "User feel"
+            }
+           ]
+          },
+          {
+           "t": "p",
+           "runs": [
+            {
+             "s": "Players had to scroll before understanding the game, risking early drop off."
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "w": 242,
+         "items": [
+          {
+           "t": "img",
+           "src": "fortune-kid/025.png",
+           "w": 31,
+           "h": 31,
+           "alt": ""
+          },
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "Action"
+            }
+           ]
+          },
+          {
+           "t": "p",
+           "runs": [
+            {
+             "s": "Condensed the layout to bring key game information into the initial viewport."
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "30:4232",
+   "name": "Final Design",
+   "items": [
+    {
+     "t": "h2",
+     "runs": [
+      {
+       "s": "Final Design"
+      }
+     ],
+     "blue": 1
+    },
+    {
+     "t": "p",
+     "runs": [
+      {
+       "s": "Showcase the studio landing page, games overview, and game details for investors and players. \nUNI, the studio’s primary project, currently has a placeholder page and is excluded here while the team defines its public content strategy."
+      }
+     ],
+     "muted": 1
+    },
+    {
+     "t": "card",
+     "items": [
+      {
+       "t": "img",
+       "src": "fortune-kid/026.png",
+       "w": 586,
+       "h": 330,
+       "alt": "Final Design"
+      },
+      {
+       "t": "h3",
+       "runs": [
+        {
+         "s": "01 Landing Page"
+        }
+       ],
+       "center": 1
+      },
+      {
+       "t": "p",
+       "runs": [
+        {
+         "s": "The landing page introduces what Fortune Kid is building and who is behind the work. Investors can explore products through “What We Build” tiles, with team and contact information on the same page."
+        }
+       ],
+       "center": 1
+      }
+     ],
+     "center": 1
+    },
+    {
+     "t": "card",
+     "items": [
+      {
+       "t": "img",
+       "src": "fortune-kid/027.png",
+       "w": 586,
+       "h": 330,
+       "alt": "01 Landing Page"
+      },
+      {
+       "t": "h3",
+       "runs": [
+        {
+         "s": "02 Our Games"
+        }
+       ],
+       "center": 1
+      },
+      {
+       "t": "p",
+       "runs": [
+        {
+         "s": "Visitors can browse released and announced games, then select a title for more information."
+        }
+       ],
+       "center": 1
+      }
+     ],
+     "center": 1
+    },
+    {
+     "t": "card",
+     "items": [
+      {
+       "t": "img",
+       "src": "fortune-kid/028.png",
+       "w": 586,
+       "h": 330,
+       "alt": "02 Our Games"
+      },
+      {
+       "t": "h3",
+       "runs": [
+        {
+         "s": "03 Game Details"
+        }
+       ],
+       "center": 1
+      },
+      {
+       "t": "p",
+       "runs": [
+        {
+         "s": "Each game page brings together videos, images, a description, and an App Store link. The revised layout brings key game information higher on the page."
+        }
+       ],
+       "center": 1
+      }
+     ],
+     "center": 1
+    }
+   ]
+  },
+  {
+   "id": "30:4246",
+   "name": "Impact",
+   "items": [
+    {
+     "t": "h2",
+     "runs": [
+      {
+       "s": "Impact"
+      }
+     ],
+     "blue": 1
+    },
+    {
+     "t": "row",
+     "cols": [
+      {
+       "w": 363,
+       "items": [
+        {
+         "t": "card",
+         "items": [
+          {
+           "t": "img",
+           "src": "fortune-kid/029.png",
+           "w": 32,
+           "h": 32,
+           "alt": ""
+          },
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "Ready for Investor Outreach"
+            }
+           ],
+           "center": 1
+          },
+          {
+           "t": "small",
+           "runs": [
+            {
+             "s": "Created a website that brings the studio’s direction, products, and progress into one place, giving investors the key information needed for evaluation."
+            }
+           ],
+           "center": 1
+          }
+         ],
+         "center": 1
+        }
+       ]
+      },
+      {
+       "w": 363,
+       "items": [
+        {
+         "t": "card",
+         "items": [
+          {
+           "t": "img",
+           "src": "fortune-kid/030.png",
+           "w": 32,
+           "h": 32,
+           "alt": ""
+          },
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "From Incomplete Site to Launch"
+            }
+           ],
+           "center": 1
+          },
+          {
+           "t": "small",
+           "runs": [
+            {
+             "s": "Transformed an outdated, largely nonfunctional website into a complete experience through AI native design and development, iteration, and launch."
+            }
+           ],
+           "center": 1
+          }
+         ],
+         "center": 1
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "t": "h3",
+     "runs": [
+      {
+       "s": "What I’d learned from this project"
+      }
+     ]
+    },
+    {
+     "t": "row",
+     "cols": [
+      {
+       "w": 363,
+       "items": [
+        {
+         "t": "card",
+         "items": [
+          {
+           "t": "img",
+           "src": "fortune-kid/031.png",
+           "w": 32,
+           "h": 32,
+           "alt": ""
+          },
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "Match the Workflow to the Problem"
+            }
+           ],
+           "center": 1
+          },
+          {
+           "t": "small",
+           "runs": [
+            {
+             "s": "Matching the AI workflow to each problem helped balance speed with the right level of design control."
+            }
+           ],
+           "center": 1
+          }
+         ],
+         "center": 1
+        }
+       ]
+      },
+      {
+       "w": 363,
+       "items": [
+        {
+         "t": "card",
+         "items": [
+          {
+           "t": "img",
+           "src": "fortune-kid/032.png",
+           "w": 32,
+           "h": 32,
+           "alt": ""
+          },
+          {
+           "t": "h4",
+           "runs": [
+            {
+             "s": "Prototype to Make Decisions"
+            }
+           ],
+           "center": 1
+          },
+          {
+           "t": "small",
+           "runs": [
+            {
+             "s": "Working prototypes made ideas and constraints tangible, helping the team evaluate options and align earlier."
+            }
+           ],
+           "center": 1
+          }
+         ],
+         "center": 1
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

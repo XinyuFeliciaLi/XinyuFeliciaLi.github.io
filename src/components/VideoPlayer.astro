@@ -1,0 +1,129 @@
+---
+// Click-to-play video. Never autoplays: shows the poster frame until the viewer clicks,
+// and clicking again pauses. The button is the whole video area, so it also works by
+// keyboard (Tab + Enter/Space).
+interface Props {
+	src: string; // MP4 in /public, e.g. /media/ai2u/voice-input.mp4
+	webm?: string;
+	poster?: string;
+	label: string; // what the video shows, for screen readers
+	loop?: boolean;
+	muted?: boolean;
+}
+
+const { src, webm, poster, label, loop = true, muted = true } = Astro.props;
+---
+
+<figure class="video-player" data-state="paused">
+	<video preload="metadata" playsinline poster={poster} loop={loop} muted={muted}>
+		{webm && <source src={webm} type="video/webm" />}
+		<source src={src} type="video/mp4" />
+	</video>
+	<button class="video-player__toggle" type="button" aria-label={`Play video: ${label}`}>
+		<span class="video-player__icon" aria-hidden="true">
+			<svg class="icon-play" viewBox="0 0 24 24" width="24" height="24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"></path></svg>
+			<svg class="icon-pause" viewBox="0 0 24 24" width="24" height="24"><path d="M7 5h4v14H7zM13 5h4v14h-4z" fill="currentColor"></path></svg>
+		</span>
+	</button>
+</figure>
+
+<script>
+	function setupVideoPlayers() {
+		document.querySelectorAll<HTMLElement>('.video-player:not([data-ready])').forEach((root) => {
+			root.dataset.ready = '';
+			const video = root.querySelector('video')!;
+			const button = root.querySelector<HTMLButtonElement>('.video-player__toggle')!;
+			const label = button.getAttribute('aria-label')!.replace(/^Play video: /, '');
+
+			const sync = () => {
+				const playing = !video.paused && !video.ended;
+				root.dataset.state = playing ? 'playing' : 'paused';
+				button.setAttribute('aria-label', `${playing ? 'Pause' : 'Play'} video: ${label}`);
+			};
+
+			button.addEventListener('click', () => {
+				if (video.paused || video.ended) video.play();
+				else video.pause();
+			});
+			video.addEventListener('play', sync);
+			video.addEventListener('pause', sync);
+			video.addEventListener('ended', sync);
+		});
+	}
+
+	setupVideoPlayers();
+	document.addEventListener('astro:page-load', setupVideoPlayers);
+</script>
+
+<style>
+	.video-player {
+		position: relative;
+		margin: 0;
+		border-radius: var(--radius-md);
+		overflow: hidden;
+		background: var(--color-ink);
+	}
+
+	.video-player video {
+		width: 100%;
+	}
+
+	.video-player__toggle {
+		position: absolute;
+		inset: 0;
+		display: grid;
+		place-items: center;
+		border: 0;
+		padding: 0;
+		background: transparent;
+		color: var(--color-ink);
+		cursor: pointer;
+	}
+
+	.video-player__toggle:focus-visible {
+		outline-offset: -4px;
+	}
+
+	.video-player__icon {
+		display: grid;
+		place-items: center;
+		width: 4rem;
+		height: 4rem;
+		border-radius: var(--radius-full);
+		background: var(--color-accent);
+		box-shadow: 0 8px 24px -8px rgb(37 55 70 / 0.4);
+		transition:
+			opacity var(--duration-medium) var(--ease-standard),
+			transform var(--duration-medium) var(--ease-standard);
+	}
+
+	.icon-pause {
+		display: none;
+	}
+
+	/* While playing, the control fades out and comes back on hover/focus */
+	[data-state='playing'] .icon-play {
+		display: none;
+	}
+
+	[data-state='playing'] .icon-pause {
+		display: block;
+	}
+
+	[data-state='playing'] .video-player__icon {
+		opacity: 0;
+		transform: scale(0.9);
+	}
+
+	[data-state='playing'] .video-player__toggle:hover .video-player__icon,
+	[data-state='playing'] .video-player__toggle:focus-visible .video-player__icon {
+		opacity: 1;
+		transform: none;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.video-player__icon {
+			transition: none;
+		}
+	}
+</style>

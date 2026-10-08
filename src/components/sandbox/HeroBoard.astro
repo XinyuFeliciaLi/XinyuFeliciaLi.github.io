@@ -1,0 +1,828 @@
+---
+// Direction 1 — the current dotted-grid hero as a FigJam/Miro-style board: hero text on the left,
+// the "Why Me?" stickies on the right. Pan, zoom and drag the stickies around.
+//   sparkle — the cursor leaves a trail of sparkles
+//   acid    — sparkles, plus stickies with bold outlines and acid/Y2K icons
+//   dots    — no sparkles; the grid dots themselves respond, modeled on alicezhao.work: every grid
+//             point is a tiny grey circle, pill or star; near the cursor they grow (1–3×) and
+//             blend from grey into vivid colours and gradients with a smooth falloff, then ease
+//             back once the mouse rests. With `tunable`, sliders set reach, linger, density, size.
+// `ambient` (dots only): after 2s without hover, 1–3 random dots pulse up in a staggered beat.
+// `bare` drops the stickies and the white frame, leaving the hero text straight on the grid.
+import HeroCopy from './HeroCopy.astro';
+
+interface Props {
+	variant?: 'sparkle' | 'acid' | 'dots';
+	tunable?: boolean;
+	bare?: boolean;
+	ambient?: boolean;
+}
+
+const { variant = 'sparkle', tunable = false, bare = false, ambient = false } = Astro.props;
+
+// Acid icons, 48×48, navy outline on white
+const ink = 'stroke="#253746" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"';
+const petals = [0, 60, 120, 180, 240, 300]
+	.map((a) => {
+		const r = (a * Math.PI) / 180;
+		return `<circle cx="${(24 + 12 * Math.cos(r)).toFixed(1)}" cy="${(24 + 12 * Math.sin(r)).toFixed(1)}" r="7" fill="#fff" ${ink}/>`;
+	})
+	.join('');
+const icons = {
+	bolt: `<path d="M28 3 9 27h13l-4 18 21-26H26z" fill="#fff" ${ink}/>`,
+	spiral: `<path d="M24 24a3 3 0 0 1 3 3 6 6 0 0 1-6 6 9 9 0 0 1-9-9 12 12 0 0 1 12-12 15 15 0 0 1 15 15 18 18 0 0 1-18 18" fill="none" ${ink}/>`,
+	smiley: `<circle cx="24" cy="24" r="20" fill="#fff" ${ink}/><ellipse cx="17" cy="19" rx="2.5" ry="4" fill="#253746"/><ellipse cx="31" cy="19" rx="2.5" ry="4" fill="#253746"/><path d="M13 27c3 8 19 8 22 0" fill="none" ${ink}/>`,
+	flower: `${petals}<circle cx="24" cy="24" r="6" fill="#253746"/>`,
+	sparkle: `<path d="M24 2c2 13 9 20 22 22-13 2-20 9-22 22-2-13-9-20-22-22 13-2 20-9 22-22z" fill="#fff" ${ink}/>`,
+	eye: `<path d="M3 24c6-10 13-14 21-14s15 4 21 14c-6 10-13 14-21 14S9 34 3 24z" fill="#fff" ${ink}/><circle cx="24" cy="24" r="7" fill="#253746"/><circle cx="26.5" cy="21.5" r="2" fill="#fff"/>`,
+};
+
+// Copy and colors are the landing page's "Why Me?" chips, clustered right of the hero text;
+// positions are world px from the board centre
+const stickies = [
+	{ label: 'Product Thinking', color: '#5adba6', x: 230, y: -110, r: -4, icon: icons.bolt },
+	{ label: 'Navigating Ambiguity', color: '#daf69c', x: 405, y: -135, r: 3, icon: icons.spiral },
+	{ label: 'Effective Collaborator', color: '#fccfe9', x: 580, y: -95, r: -2, icon: icons.smiley },
+	{ label: 'Versatile UX/UI Designer', color: '#a3d9ff', x: 255, y: 70, r: 2, icon: icons.flower },
+	{ label: 'Ai Native Workflow', color: '#dac8ff', x: 435, y: 55, r: -3, icon: icons.sparkle },
+	{ label: 'Detail-Driven in Delivery', color: '#ff894b', x: 610, y: 95, r: 4, icon: icons.eye },
+];
+---
+
+<div class="board" data-board data-variant={variant} data-bare={bare || undefined} data-ambient={ambient || undefined}>
+	<canvas class="board__canvas" data-canvas aria-hidden="true"></canvas>
+	<div class="board__world" data-world>
+		<div class="board__item board__frame" data-item style="--x: -232; --y: 0; --r: 0deg">
+			<HeroCopy />
+		</div>
+		{
+			!bare &&
+				stickies.map((s) => (
+				<div
+					class="board__item board__sticky"
+					data-item
+					data-sticky
+					data-color={s.color}
+					style={`--x: ${s.x}; --y: ${s.y}; --r: ${s.r}deg; --sticky: ${s.color}`}
+				>
+					{variant === 'acid' && (
+						<svg class="board__icon" viewBox="0 0 48 48" aria-hidden="true" set:html={s.icon} />
+					)}
+					<span>{s.label}</span>
+				</div>
+			))
+		}
+	</div>
+	<div class="board__toolbar">
+		<button type="button" data-zoom="out" aria-label="Zoom out">−</button>
+		<output data-zoom-level>100%</output>
+		<button type="button" data-zoom="in" aria-label="Zoom in">+</button>
+		<button type="button" data-zoom="reset">Reset</button>
+	</div>
+	{
+		tunable ? (
+			<div class="board__tune" role="group" aria-label="Dot response">
+				<label>
+					Reach
+					<input type="range" min="60" max="400" step="10" value="180" data-tune="reach" />
+				</label>
+				<label>
+					Linger
+					<input type="range" min="200" max="2000" step="50" value="600" data-tune="life" />
+				</label>
+				<label>
+					Density
+					<input type="range" min="5" max="100" value="100" data-tune="density" />
+				</label>
+				<label>
+					Size
+					<input type="range" min="100" max="400" step="10" value="300" data-tune="size" />
+				</label>
+			</div>
+		) : (
+			<p class="board__hint">Drag to pan · Ctrl/⌘ + scroll to zoom · Drag the stickies</p>
+		)
+	}
+</div>
+
+<style>
+	.board {
+		--grid: 24px;
+		position: relative;
+		isolation: isolate;
+		max-width: var(--width-hero);
+		height: clamp(34rem, 35vw, 42rem);
+		margin-inline: auto;
+		/* The surface grey at half strength, so the board reads lighter than the cards */
+		background-color: rgb(228 230 234 / 0.5);
+		background-image: radial-gradient(rgb(37 55 70 / 0.16) 1.2px, transparent 1.4px);
+		background-size: var(--grid) var(--grid);
+		border-radius: clamp(var(--radius-lg), 4vw, 80px);
+		overflow: hidden;
+		cursor: grab;
+		touch-action: pan-y;
+		user-select: none;
+	}
+
+	/* The dots version draws its own grid on the canvas, under the items */
+	.board[data-variant='dots'] {
+		background-image: none;
+	}
+
+	.board[data-panning] {
+		cursor: grabbing;
+	}
+
+	.board__canvas {
+		position: absolute;
+		inset: 0;
+		z-index: 2;
+		width: 100%;
+		height: 100%;
+		pointer-events: none;
+	}
+
+	.board[data-variant='dots'] .board__canvas {
+		z-index: 0;
+	}
+
+	/* A zero-size origin at the board centre; pan and zoom transform it */
+	.board__world {
+		position: absolute;
+		z-index: 1;
+		left: 50%;
+		top: calc(50% + 2.5rem); /* clear the fixed nav, like the real hero copy */
+		width: 0;
+		height: 0;
+		transform-origin: 0 0;
+	}
+
+	.board__item {
+		position: absolute;
+		left: calc(var(--x) * 1px);
+		top: calc(var(--y) * 1px);
+		transform: translate(-50%, -50%) rotate(var(--r));
+		cursor: grab;
+		touch-action: none;
+		transition:
+			box-shadow var(--duration-short) var(--ease-standard),
+			scale var(--duration-short) var(--ease-standard),
+			background-color var(--duration-medium) var(--ease-standard);
+	}
+
+	.board__item[data-dragging] {
+		cursor: grabbing;
+		scale: 1.04;
+		box-shadow: 0 18px 40px -16px rgb(37 55 70 / 0.45);
+	}
+
+	.board__frame {
+		width: 40rem;
+		padding: var(--space-10) var(--space-12);
+		background: #fff;
+		border: 1px solid var(--color-line);
+		border-radius: var(--radius-md);
+		box-shadow: 0 1px 2px rgb(37 55 70 / 0.08);
+	}
+
+	.board[data-bare] .board__frame {
+		background: none;
+		border: 0;
+		box-shadow: none;
+	}
+
+	.board__sticky {
+		width: 9.5rem;
+		aspect-ratio: 1;
+		padding: var(--space-4);
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		align-items: flex-start;
+		font: var(--type-label);
+		font-weight: 600;
+		background: var(--sticky);
+		border-radius: 4px;
+		box-shadow: 0 6px 14px -8px rgb(37 55 70 / 0.35);
+	}
+
+	/* Acid: thick ink outline, hard offset shadow, icon up top */
+	.board[data-variant='acid'] .board__sticky {
+		justify-content: space-between;
+		border: 2.5px solid var(--color-ink);
+		border-radius: 12px;
+		box-shadow: 5px 5px 0 var(--color-ink);
+	}
+
+	.board[data-variant='acid'] .board__item[data-dragging] {
+		box-shadow: 9px 9px 0 var(--color-ink);
+	}
+
+	.board__icon {
+		width: 2.75rem;
+		height: 2.75rem;
+		transform: rotate(calc(var(--r) * -2));
+	}
+
+	.board__toolbar {
+		position: absolute;
+		z-index: 3;
+		left: var(--space-6);
+		bottom: var(--space-6);
+		display: flex;
+		align-items: center;
+		gap: var(--space-1);
+		padding: var(--space-1);
+		background: #fff;
+		border-radius: var(--radius-sm);
+		box-shadow: 0 4px 16px -8px rgb(37 55 70 / 0.35);
+		cursor: default;
+	}
+
+	.board__toolbar button {
+		min-width: 2.25rem;
+		height: 2.25rem;
+		padding: 0 var(--space-2);
+		font: var(--type-label);
+		color: inherit;
+		background: none;
+		border: 0;
+		border-radius: 6px;
+		cursor: pointer;
+	}
+
+	.board__toolbar button:hover {
+		background: var(--color-ink-wash);
+	}
+
+	.board__toolbar output {
+		min-width: 3.25rem;
+		text-align: center;
+		font: var(--type-caption);
+		font-variant-numeric: tabular-nums;
+	}
+
+	.board__tune {
+		position: absolute;
+		z-index: 3;
+		right: var(--space-6);
+		bottom: var(--space-6);
+		display: grid;
+		grid-template-columns: repeat(2, auto);
+		gap: var(--space-2) var(--space-4);
+		padding: var(--space-3) var(--space-4);
+		background: #fff;
+		border-radius: var(--radius-sm);
+		box-shadow: 0 4px 16px -8px rgb(37 55 70 / 0.35);
+		cursor: default;
+	}
+
+	.board__tune label {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--space-2);
+		font: var(--type-caption);
+		font-weight: 500;
+	}
+
+	.board__tune input {
+		width: 6.5rem;
+		accent-color: var(--color-ink);
+	}
+
+	.board__hint {
+		position: absolute;
+		z-index: 3;
+		right: var(--space-6);
+		bottom: var(--space-6);
+		margin: 0;
+		font: var(--type-caption);
+		color: var(--color-ink-60);
+		pointer-events: none;
+	}
+
+	@media (max-width: 40rem) {
+		.board__hint {
+			display: none;
+		}
+	}
+</style>
+
+<script>
+	import { PALETTE_EVENT, currentPalette, onEachPage, paletteKey, reducedMotion, visibleLoop } from './shared';
+
+	const MIN_ZOOM = 0.3;
+	const MAX_ZOOM = 2.5;
+	const GRID = 24; // world px between the CSS grid dots
+	const DOT_GRID = 32; // world px between the living dots (the reference's pitch)
+	const DOT_SIZE = 12.16; // shape size at scale 1; dots rest at REST_SCALE
+	const REST_SCALE = 0.22;
+	const REST_RGB = [208, 211, 216]; // the resting grey, about the CSS grid dots on the board
+	const IDLE_AFTER = 2000; // ms without hover before the idle pulses start
+
+	// Reference fills: vivid solids and two-stop gradients. Reduced palettes build their own.
+	type Fill = string | [string, string];
+	const VIVID: Fill[] = [
+		'#22c55e', '#06b6d4', '#f97316', '#ef4444', '#facc15', '#ec4899', '#a78bfa', '#60a5fa', '#34d399',
+		['#6366f1', '#3b82f6'], ['#06b6d4', '#6366f1'], ['#22c55e', '#06b6d4'], ['#f97316', '#ef4444'],
+		['#8b5cf6', '#06b6d4'], ['#3b82f6', '#8b5cf6'], ['#34d399', '#3b82f6'],
+	];
+	const dotFills = (): Fill[] => {
+		if (paletteKey() === 'all') return VIVID;
+		const pal = currentPalette();
+		return [...pal, ...pal.map((c, i): Fill => [c, pal[(i + 1) % pal.length]])];
+	};
+
+	const rand = (lo: number, hi: number) => lo + Math.random() * (hi - lo);
+	const clamp01 = (v: number) => Math.min(1, Math.max(0, v));
+	const smooth = (v: number) => {
+		const t = clamp01(v);
+		return t * t * (3 - 2 * t);
+	};
+	// Per-frame easing factor that covers 95% of the distance in `seconds` (at 60fps)
+	const ease = (seconds: number) => (seconds <= 0 ? 1 : 1 - 0.05 ** (1 / (60 * seconds)));
+	const hexRgb = (h: string) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
+	const mix = (to: string, t: number) => {
+		const c = hexRgb(to);
+		return `rgb(${REST_RGB.map((r, i) => Math.round(r + (c[i] - r) * t)).join(', ')})`;
+	};
+
+	// Stable 0–1 noise per grid cell, so a lower density gives a fixed scatter, not flicker
+	const cellNoise = (i: number, j: number) => {
+		const v = Math.sin(i * 12.9898 + j * 78.233) * 43758.5453;
+		return v - Math.floor(v);
+	};
+
+	onEachPage('[data-board]', (board) => {
+		const world = board.querySelector<HTMLElement>('[data-world]')!;
+		const canvas = board.querySelector<HTMLCanvasElement>('[data-canvas]')!;
+		const level = board.querySelector<HTMLOutputElement>('[data-zoom-level]')!;
+		const ctx = canvas.getContext('2d')!;
+		const variant = board.dataset.variant;
+		const dotsMode = variant === 'dots';
+
+		// Dot response; the tunable board's sliders change these
+		const tune = { reach: 180, life: 600, density: 1, size: 3 };
+		const onTune = (e: Event) => {
+			const input = e.target as HTMLInputElement;
+			const key = input.dataset.tune as keyof typeof tune | undefined;
+			if (!key) return;
+			tune[key] = Number(input.value) / (key === 'density' || key === 'size' ? 100 : 1);
+		};
+
+		// ---- Pan & zoom -------------------------------------------------------------------------
+		let panX = 0;
+		let panY = 0;
+		let zoom = 1;
+
+		// Fit the frame (left edge -552) and the sticky cluster (right edge ~690) on narrow screens
+		const fitZoom = () => Math.min(1, (board.clientWidth - 48) / 1400);
+		// Screen position of the world origin (the world is offset 2.5rem down to clear the nav)
+		const originX = () => board.clientWidth / 2 + panX;
+		const originY = () => board.clientHeight / 2 + 40 + panY;
+
+		function apply() {
+			world.style.transform = `translate(${panX}px, ${panY}px) scale(${zoom})`;
+			board.style.setProperty('--grid', `${GRID * zoom}px`);
+			board.style.backgroundPosition = `${originX()}px ${originY()}px`;
+			level.value = `${Math.round(zoom * 100)}%`;
+			requestDraw();
+		}
+
+		// Zoom so the world point under (cx, cy) — board-relative — stays put
+		function zoomAt(next: number, cx = board.clientWidth / 2, cy = board.clientHeight / 2) {
+			next = Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, next));
+			const ox = cx - board.clientWidth / 2;
+			const oy = cy - board.clientHeight / 2;
+			panX = ox - ((ox - panX) / zoom) * next;
+			panY = oy - ((oy - panY) / zoom) * next;
+			zoom = next;
+			apply();
+		}
+
+		function reset() {
+			panX = 0;
+			panY = 0;
+			zoom = fitZoom();
+			apply();
+		}
+
+		const onWheel = (e: WheelEvent) => {
+			// Plain scrolling keeps scrolling the page; pinch and Ctrl/⌘ + wheel zoom the board
+			if (!e.ctrlKey && !e.metaKey) return;
+			e.preventDefault();
+			const rect = board.getBoundingClientRect();
+			zoomAt(zoom * Math.exp(-e.deltaY * 0.01), e.clientX - rect.left, e.clientY - rect.top);
+		};
+
+		const onToolbar = (e: Event) => {
+			const action = (e.target as HTMLElement).closest<HTMLElement>('[data-zoom]')?.dataset.zoom;
+			if (action === 'in') zoomAt(zoom * 1.25);
+			if (action === 'out') zoomAt(zoom / 1.25);
+			if (action === 'reset') reset();
+		};
+
+		// ---- Palette: stickies take the first two colours of a reduced palette ------------------
+		const stickies = [...board.querySelectorAll<HTMLElement>('[data-sticky]')];
+		const recolor = () => {
+			const pal = currentPalette();
+			stickies.forEach((el, i) => {
+				el.style.setProperty('--sticky', paletteKey() === 'all' ? el.dataset.color! : pal[i % 2]);
+			});
+		};
+		recolor();
+
+		// ---- Dragging: items move, empty board pans ---------------------------------------------
+		let topZ = 1;
+		let drag: { id: number; x: number; y: number; item?: HTMLElement; ix: number; iy: number } | null = null;
+
+		const onDown = (e: PointerEvent) => {
+			if (e.button !== 0 || (e.target as HTMLElement).closest('.board__toolbar, .board__tune')) return;
+			const item = (e.target as HTMLElement).closest<HTMLElement>('[data-item]') ?? undefined;
+			if (!item && e.pointerType === 'touch') return; // let touch scroll the page
+			drag = {
+				id: e.pointerId,
+				x: e.clientX,
+				y: e.clientY,
+				item,
+				ix: item ? parseFloat(item.style.getPropertyValue('--x')) : panX,
+				iy: item ? parseFloat(item.style.getPropertyValue('--y')) : panY,
+			};
+			board.setPointerCapture(e.pointerId);
+			if (item) {
+				item.style.zIndex = String(++topZ);
+				item.setAttribute('data-dragging', '');
+			} else {
+				board.setAttribute('data-panning', '');
+			}
+		};
+
+		const onUp = (e: PointerEvent) => {
+			if (!drag || e.pointerId !== drag.id) return;
+			drag.item?.removeAttribute('data-dragging');
+			board.removeAttribute('data-panning');
+			drag = null;
+		};
+
+		// ---- Canvas: sparkles and/or the living dot grid -----------------------------------------
+		type Spark = { x: number; y: number; vx: number; vy: number; rot: number; spin: number; size: number; color: string; kind: number; born: number; life: number };
+		type DotState = {
+			kind: number; // 0 circle, 1 pill, 2 star
+			angle: number;
+			points: number;
+			inner: number;
+			fill: Fill;
+			maxScale: number;
+			scale: number;
+			hovered: boolean;
+			a: number; // pointer influence this frame
+			bump: number; // idle pulse this frame
+		};
+		let sparks: Spark[] = [];
+		const dots = new Map<string, DotState>(); // keyed by world grid cell, so shapes stay put while panning
+		const pointer = { x: 0, y: 0, activity: 0 };
+		const copy = board.querySelector<HTMLElement>('.hero-copy');
+		let raf = 0;
+		let carry = 0;
+		let last: { x: number; y: number } | null = null;
+
+		function resize() {
+			const dpr = Math.min(window.devicePixelRatio || 1, 2);
+			canvas.width = Math.round(board.clientWidth * dpr);
+			canvas.height = Math.round(board.clientHeight * dpr);
+			ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+		}
+
+		function star(size: number, inner = 0.28) {
+			ctx.beginPath();
+			for (let i = 0; i < 8; i++) {
+				const r = i % 2 ? size * inner : size;
+				const a = (i * Math.PI) / 4;
+				ctx.lineTo(Math.cos(a) * r, Math.sin(a) * r);
+			}
+			ctx.closePath();
+		}
+
+		// ---- Living dots -------------------------------------------------------------------------
+		const newDot = (): DotState => {
+			const fills = dotFills();
+			return {
+				kind: [0, 1, 2, 2][Math.floor(Math.random() * 4)],
+				angle: rand(0, Math.PI * 2),
+				points: Math.floor(rand(4, 11)),
+				inner: rand(0.1, 0.5),
+				fill: fills[Math.floor(Math.random() * fills.length)],
+				maxScale: rand(1, tune.size),
+				scale: REST_SCALE,
+				hovered: false,
+				a: 0,
+				bump: 0,
+			};
+		};
+
+		function dotPath(d: DotState) {
+			ctx.beginPath();
+			if (d.kind === 0) {
+				ctx.arc(0, 0, DOT_SIZE / 1.5, 0, Math.PI * 2);
+			} else if (d.kind === 1) {
+				const r = DOT_SIZE / 1.4;
+				ctx.roundRect(-0.48 * r, -r, 0.96 * r, 2 * r, 0.48 * r);
+			} else {
+				for (let n = 0; n < d.points * 2; n++) {
+					const a = (n * Math.PI) / d.points - Math.PI / 2;
+					const r = n % 2 ? DOT_SIZE * d.inner : DOT_SIZE;
+					ctx.lineTo(Math.cos(a) * r, Math.sin(a) * r);
+				}
+				ctx.closePath();
+			}
+		}
+
+		// The hero text on the bare board: no dots under it (padded like the reference)
+		function exclusion() {
+			if (!board.hasAttribute('data-bare') || !copy) return null;
+			const b = board.getBoundingClientRect();
+			const c = copy.getBoundingClientRect();
+			return { l: c.left - b.left - 20, r: c.right - b.left + 20, t: c.top - b.top - 16, b: c.bottom - b.top + 16 };
+		}
+
+		// Idle pulses: a few dots in a staggered sequence, then a pause
+		let idle: { key: string; start: number; duration: number }[] = [];
+		let idleNext = 0;
+		let lastHover = 0;
+
+		function scheduleIdle(now: number, cells: string[]) {
+			idle = [];
+			let delay = 0;
+			const count = Math.min(cells.length, Math.floor(rand(1, 4)));
+			const duration = rand(760, 1080);
+			for (let k = 0; k < count; k++) {
+				idle.push({ key: cells[Math.floor(Math.random() * cells.length)], start: now + delay, duration: duration + rand(-90, 120) });
+				delay += rand(140, 260);
+			}
+		}
+
+		function drawDots(now: number) {
+			const step = DOT_GRID * zoom;
+			const ox = originX();
+			const oy = originY();
+			const zs = Math.min(1.4, Math.max(0.6, zoom));
+			const ex = exclusion();
+			const isOut = (x: number, y: number) => !!ex && x >= ex.l && x <= ex.r && y >= ex.t && y <= ex.b;
+			const i0 = Math.floor(-ox / step);
+			const j0 = Math.floor(-oy / step);
+			const i1 = Math.ceil((board.clientWidth - ox) / step);
+			const j1 = Math.ceil((board.clientHeight - oy) / step);
+
+			for (const d of dots.values()) d.a = d.bump = 0;
+
+			// Pointer influence: a smooth falloff over `reach`, fading as the pointer rests
+			pointer.activity *= 0.93;
+			let hovering = false;
+			if (pointer.activity > 0.001) {
+				const reach = Math.ceil(tune.reach / step);
+				const ci = Math.round((pointer.x - ox) / step);
+				const cj = Math.round((pointer.y - oy) / step);
+				for (let i = ci - reach; i <= ci + reach; i++) {
+					for (let j = cj - reach; j <= cj + reach; j++) {
+						const x = ox + i * step;
+						const y = oy + j * step;
+						if (isOut(x, y) || cellNoise(i, j) > tune.density) continue;
+						const a = smooth(1 - Math.hypot(x - pointer.x, y - pointer.y) / tune.reach) * pointer.activity;
+						if (a <= 0.001) continue;
+						const key = `${i},${j}`;
+						let d = dots.get(key);
+						if (!d) dots.set(key, (d = newDot()));
+						d.a = a;
+						if (a > 0.05) {
+							hovering = true;
+							// Each time a dot is entered it rolls a new size, angle and star shape
+							if (!d.hovered) {
+								Object.assign(d, {
+									hovered: true,
+									maxScale: rand(1, tune.size),
+									angle: rand(0, Math.PI * 2),
+									points: Math.floor(rand(4, 11)),
+									inner: rand(0.1, 0.5),
+								});
+							}
+						} else {
+							d.hovered = false;
+						}
+					}
+				}
+			}
+
+			// Idle pulses
+			if (hovering) {
+				lastHover = now;
+				idle = [];
+				idleNext = now + rand(520, 1400);
+			} else if (board.hasAttribute('data-ambient') && !reducedMotion() && now - lastHover >= IDLE_AFTER) {
+				idle = idle.filter((e) => now < e.start + e.duration);
+				if (!idle.length && now >= idleNext) {
+					const cells: string[] = [];
+					for (let k = 0; k < 40; k++) {
+						const i = Math.floor(rand(i0, i1 + 1));
+						const j = Math.floor(rand(j0, j1 + 1));
+						if (!isOut(ox + i * step, oy + j * step)) cells.push(`${i},${j}`);
+					}
+					scheduleIdle(now, cells);
+					idleNext = now + rand(520, 1400) + 1200;
+				}
+				for (const e of idle) {
+					if (now < e.start) continue;
+					let d = dots.get(e.key);
+					if (!d) dots.set(e.key, (d = newDot()));
+					d.bump = Math.max(d.bump, Math.sin(Math.PI * clamp01((now - e.start) / e.duration)) * 0.78);
+				}
+			}
+
+			// Resting dots, batched
+			ctx.fillStyle = `rgb(${REST_RGB.join(', ')})`;
+			ctx.beginPath();
+			const rest = (DOT_SIZE / 1.5) * REST_SCALE * zs;
+			for (let i = i0; i <= i1; i++) {
+				for (let j = j0; j <= j1; j++) {
+					const x = ox + i * step;
+					const y = oy + j * step;
+					if (dots.has(`${i},${j}`) || isOut(x, y)) continue;
+					ctx.moveTo(x + rest, y);
+					ctx.arc(x, y, rest, 0, Math.PI * 2);
+				}
+			}
+			ctx.fill();
+
+			// Live dots: ease toward their goal (grow in 0.5s, shrink over Linger), tint with influence
+			for (const [key, d] of dots) {
+				const goal = REST_SCALE + Math.max(d.a, d.bump) * (d.maxScale - REST_SCALE);
+				d.scale += (goal - d.scale) * (goal > d.scale ? ease(0.5) : ease(tune.life / 1000));
+				if (goal <= REST_SCALE + 0.001 && d.scale < REST_SCALE + 0.01) {
+					dots.delete(key);
+					continue;
+				}
+				const tint = Math.max(clamp01(1.8 * d.a), clamp01(1.1 * d.bump));
+				const [i, j] = key.split(',').map(Number);
+				ctx.save();
+				ctx.translate(ox + i * step, oy + j * step);
+				ctx.rotate(d.angle);
+				ctx.scale(d.scale * zs, d.scale * zs);
+				if (typeof d.fill === 'string') {
+					ctx.fillStyle = mix(d.fill, tint);
+				} else {
+					const g = ctx.createRadialGradient(0, -0.3 * DOT_SIZE, 0, 0, 0.3 * DOT_SIZE, 1.5 * DOT_SIZE);
+					g.addColorStop(0, mix(d.fill[0], tint));
+					g.addColorStop(1, mix(d.fill[1], tint));
+					ctx.fillStyle = g;
+				}
+				dotPath(d);
+				ctx.fill();
+				ctx.restore();
+			}
+		}
+
+		function drawSparks(now: number) {
+			sparks = sparks.filter((s) => now - s.born < s.life);
+			for (const s of sparks) {
+				const t = (now - s.born) / s.life;
+				s.vy += 0.035;
+				s.vx *= 0.97;
+				s.x += s.vx;
+				s.y += s.vy;
+				s.rot += s.spin;
+				// Pop in fast, then shrink and fade
+				const scale = t < 0.15 ? t / 0.15 : 1 - (t - 0.15) / 0.85;
+				ctx.save();
+				ctx.translate(s.x, s.y);
+				ctx.rotate(s.rot);
+				ctx.scale(scale, scale);
+				ctx.globalAlpha = Math.min(1, 1.6 - t * 1.6);
+				ctx.fillStyle = ctx.strokeStyle = s.color;
+				ctx.lineWidth = 1.5;
+				ctx.lineCap = 'round';
+				if (s.kind === 0) {
+					star(s.size);
+					ctx.fill();
+				} else if (s.kind === 1) {
+					star(s.size, 0.34);
+					ctx.stroke();
+				} else if (s.kind === 2) {
+					ctx.beginPath();
+					ctx.arc(0, 0, s.size * 0.35, 0, Math.PI * 2);
+					ctx.fill();
+				} else {
+					ctx.lineWidth = 3;
+					ctx.beginPath();
+					ctx.moveTo(-s.size * 0.5, 0);
+					ctx.lineTo(s.size * 0.5, 0);
+					ctx.stroke();
+				}
+				ctx.restore();
+			}
+		}
+
+		function draw(now: number) {
+			raf = 0;
+			ctx.clearRect(0, 0, board.clientWidth, board.clientHeight);
+			drawSparks(now);
+			if (sparks.length) raf = requestAnimationFrame(draw);
+		}
+
+		// Sparkles draw on demand; the living dots run a loop while the board is on screen
+		function requestDraw() {
+			if (!dotsMode && !raf) raf = requestAnimationFrame(draw);
+		}
+		const stopDots = dotsMode
+			? visibleLoop(board, (now) => {
+					ctx.clearRect(0, 0, board.clientWidth, board.clientHeight);
+					drawDots(now);
+				})
+			: () => {};
+
+		function emit(x: number, y: number, dx: number, dy: number) {
+			const pal = currentPalette();
+			const kind = Math.random();
+			sparks.push({
+				x: x + (Math.random() - 0.5) * 10,
+				y: y + (Math.random() - 0.5) * 10,
+				vx: dx * 0.08 + (Math.random() - 0.5) * 2,
+				vy: dy * 0.08 + (Math.random() - 0.5) * 2 - 0.6,
+				rot: Math.random() * Math.PI,
+				spin: (Math.random() - 0.5) * 0.12,
+				size: 5 + Math.random() * 9,
+				color: pal[Math.floor(Math.random() * pal.length)],
+				kind: kind < 0.45 ? 0 : kind < 0.65 ? 1 : kind < 0.88 ? 2 : 3,
+				born: performance.now(),
+				life: 650 + Math.random() * 550,
+			});
+			if (sparks.length > 160) sparks.shift();
+			requestDraw();
+		}
+
+
+		const onMove = (e: PointerEvent) => {
+			if (drag && e.pointerId === drag.id) {
+				const dx = e.clientX - drag.x;
+				const dy = e.clientY - drag.y;
+				if (drag.item) {
+					drag.item.style.setProperty('--x', String(drag.ix + dx / zoom));
+					drag.item.style.setProperty('--y', String(drag.iy + dy / zoom));
+				} else {
+					panX = drag.ix + dx;
+					panY = drag.iy + dy;
+					apply();
+				}
+			}
+
+			if (e.pointerType !== 'mouse' && e.pointerType !== 'pen') return;
+			if (reducedMotion()) return;
+			const rect = board.getBoundingClientRect();
+			const x = e.clientX - rect.left;
+			const y = e.clientY - rect.top;
+
+			if (dotsMode) {
+				Object.assign(pointer, { x, y, activity: 1 });
+				return;
+			}
+			if (last) {
+				const dx = x - last.x;
+				const dy = y - last.y;
+				// One sparkle roughly every 18px travelled, at most three per event
+				carry += Math.hypot(dx, dy) / 18;
+				const n = Math.min(3, Math.floor(carry));
+				carry -= n;
+				for (let i = 0; i < n; i++) emit(x - (dx * i) / n, y - (dy * i) / n, dx, dy);
+			}
+			last = { x, y };
+		};
+
+		const onLeave = () => {
+			last = null;
+		};
+
+		const ro = new ResizeObserver(() => {
+			resize();
+			if (!drag && panX === 0 && panY === 0) zoom = fitZoom();
+			apply();
+		});
+		ro.observe(board);
+
+		board.addEventListener('wheel', onWheel, { passive: false });
+		board.addEventListener('pointerdown', onDown);
+		board.addEventListener('pointermove', onMove);
+		board.addEventListener('pointerup', onUp);
+		board.addEventListener('pointercancel', onUp);
+		board.addEventListener('pointerleave', onLeave);
+		board.querySelector('.board__toolbar')!.addEventListener('click', onToolbar);
+		board.addEventListener('input', onTune);
+		document.addEventListener(PALETTE_EVENT, recolor);
+
+		return () => {
+			ro.disconnect();
+			cancelAnimationFrame(raf);
+			stopDots();
+			board.removeEventListener('wheel', onWheel);
+			document.removeEventListener(PALETTE_EVENT, recolor);
+		};
+	});
+</script>

@@ -10,27 +10,47 @@ html {
 	color-scheme: light;
 }
 
+/* full-width bands break out of the reading column; never cause sideways scroll */
+body {
+	overflow-x: clip;
+}
+
 body {
 	margin: 0;
 	background: var(--color-page);
-	color: var(--color-ink-soft);
-	font-family: var(--font-body);
-	font-size: var(--text-base);
-	line-height: 1.6;
+	color: var(--color-ink);
+	font: var(--type-body);
 	-webkit-font-smoothing: antialiased;
 }
 
+/* Default element styles map onto the type roles in tokens.css */
 h1,
 h2,
 h3,
-h4 {
-	font-family: var(--font-heading);
-	line-height: 1.15;
-	margin: 0 0 var(--space-4);
+h4,
+p {
+	margin: 0;
 }
 
-p {
-	margin: 0 0 var(--space-4);
+h1 {
+	font: var(--type-title);
+}
+
+h2 {
+	font: var(--type-heading);
+}
+
+h3 {
+	font: var(--type-subheading);
+}
+
+h4 {
+	font: var(--type-lead);
+}
+
+strong,
+b {
+	font-weight: 600;
 }
 
 a {
@@ -40,40 +60,98 @@ a {
 img,
 video {
 	max-width: 100%;
+	height: auto;
 	display: block;
+}
+
+:focus-visible {
+	outline: 2px solid var(--color-ink);
+	outline-offset: 3px;
+	border-radius: var(--radius-sm);
 }
 
 .container {
 	width: 100%;
-	max-width: 72rem;
+	max-width: calc(var(--width-wide) + 2 * var(--space-6));
 	margin-inline: auto;
 	padding-inline: var(--space-6);
 }
 
-/* Hero moment — the one place display type and a slower reveal are used together */
-.hero-title {
-	font-family: var(--font-display);
-	font-size: clamp(var(--text-4xl), 8vw, var(--text-5xl));
+.container--prose {
+	max-width: calc(var(--width-prose) + 2 * var(--space-6));
 }
 
-/* Scroll reveals: elements start hidden, [data-revealed] is added by ScrollReveal.astro's
-   IntersectionObserver. Reduced-motion viewers skip straight to the visible end state. */
+/* Type role utilities — use these instead of setting font sizes per page */
+.t-display {
+	font: var(--type-display);
+}
+.t-title {
+	font: var(--type-title);
+}
+.t-heading {
+	font: var(--type-heading);
+}
+.t-subheading {
+	font: var(--type-subheading);
+}
+.t-lead {
+	font: var(--type-lead);
+}
+.t-body {
+	font: var(--type-body);
+}
+.t-small {
+	font: var(--type-small);
+	color: var(--color-ink-80);
+}
+.t-label {
+	font: var(--type-label);
+}
+.t-caption {
+	font: var(--type-caption);
+	color: var(--color-ink-60);
+}
+
+/* Eyebrow — the Figma Fortune Kid style: SemiBold 13, uppercase, blue at 60%, no marker */
+.t-eyebrow {
+	font: var(--type-eyebrow);
+	text-transform: uppercase;
+	color: var(--color-blue-60);
+}
+
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	white-space: nowrap;
+}
+
+/* Scroll reveals (motion.dev hero style): rise, fade and un-blur. [data-revealed] is added by
+   BaseLayout's IntersectionObserver, which also sets --reveal-delay to stagger elements that
+   enter together. Reduced-motion viewers skip straight to the visible end state. */
 [data-reveal] {
 	opacity: 0;
-	transform: translateY(24px);
-	transition: opacity var(--duration-long) var(--ease-emphasized),
-		transform var(--duration-long) var(--ease-emphasized);
+	transform: translateY(16px);
+	filter: blur(6px);
+	transition: opacity var(--duration-reveal) var(--ease-reveal),
+		transform var(--duration-reveal) var(--ease-reveal),
+		filter var(--duration-reveal) var(--ease-reveal);
+	transition-delay: var(--reveal-delay, 0ms);
 }
 
 [data-reveal][data-revealed] {
 	opacity: 1;
 	transform: none;
+	filter: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
 	[data-reveal] {
 		opacity: 1;
 		transform: none;
+		filter: none;
 		transition: none;
 	}
 }
@@ -109,7 +187,7 @@ video {
 
 .card-hover:hover {
 	transform: translateY(-4px);
-	box-shadow: 0 12px 32px -12px rgb(41 41 41 / 0.25);
+	box-shadow: 0 12px 32px -12px rgb(37 55 70 / 0.25);
 }
 
 @media (prefers-reduced-motion: reduce) {
