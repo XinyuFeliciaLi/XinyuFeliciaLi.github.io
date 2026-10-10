@@ -1,0 +1,30 @@
+---
+import highlights from '../assets/cases/soul-seasoned/001.png';
+// The source background uses alpha 77/255. Apply successive reductions of 15%, 10%, and 20%,
+// preserving every other alpha value, including opaque screenshots and text.
+const alphaTable = Array.from({ length: 256 }, (_, value) =>
+  (value === 77 ? value * 0.85 * 0.9 * 0.8 : value) / 255).join(' ');
+const cardAlphaTable = Array.from({ length: 256 }, (_, value) =>
+  (value === 77 ? value * 0.85 * 0.9 * 0.8 * 1.1 : value) / 255).join(' ');
+---
+<svg width="0" height="0" aria-hidden="true" style="position:absolute">
+  <defs>
+    <filter id="soul-highlights-background" color-interpolation-filters="sRGB">
+      <feComponentTransfer><feFuncA type="discrete" tableValues={alphaTable} /></feComponentTransfer>
+    </filter>
+    <filter id="soul-highlights-card-background" color-interpolation-filters="sRGB">
+      <feComponentTransfer><feFuncA type="discrete" tableValues={cardAlphaTable} /></feComponentTransfer>
+    </filter>
+  </defs>
+</svg>
+<div class="block-img soul-highlights">
+  <img class="highlights-top" src={highlights.src} width="750" height="677" alt="Highlights" loading="lazy" />
+  <img class="highlights-cards" src={highlights.src} width="750" height="677" alt="" aria-hidden="true" loading="lazy" />
+</div>
+<style>
+  .soul-highlights { position: relative; width: 750px; }
+  .soul-highlights img { display: block; width: 100%; height: auto; }
+  /* Split in the transparent gutter above the two statistic cards. */
+  .highlights-top { clip-path: inset(0 0 calc(100% * 144 / 677) 0); filter: url(#soul-highlights-background); }
+  .highlights-cards { position: absolute; inset: 0; clip-path: inset(calc(100% * 533 / 677) 0 0); filter: url(#soul-highlights-card-background); }
+</style>

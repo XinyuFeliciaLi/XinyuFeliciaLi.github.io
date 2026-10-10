@@ -1,0 +1,26 @@
+---
+import highlights from '../assets/cases/dreamville-mart/001.png';
+import AnimatedImage from './AnimatedImage.astro';
+// Replace only the source's translucent background; keep opaque artwork intact.
+const backgroundMask = Array.from({ length: 256 }, (_, alpha) => alpha === 128 ? 1 : 0).join(' ');
+const backgroundAlpha = 77 / 255 * 0.85 * 0.9 * 0.8;
+---
+<svg width="0" height="0" aria-hidden="true" style="position:absolute">
+  <defs>
+    <filter id="dreamville-highlights-background" color-interpolation-filters="sRGB">
+      <feComponentTransfer in="SourceAlpha" result="background-mask">
+        <feFuncA type="discrete" tableValues={backgroundMask} />
+      </feComponentTransfer>
+      <feComposite in="SourceGraphic" in2="background-mask" operator="out" result="artwork" />
+      <feFlood flood-color="rgb(228, 230, 234)" flood-opacity={backgroundAlpha} />
+      <feComposite in2="background-mask" operator="in" />
+      <feComposite in2="artwork" operator="over" />
+    </filter>
+  </defs>
+</svg>
+<div class="block-img dreamville-highlights">
+  <AnimatedImage src={highlights} width={750} height={522} alt="Highlights" loading="lazy" />
+</div>
+<style>
+  .dreamville-highlights { width: 750px; filter: url(#dreamville-highlights-background); }
+</style>

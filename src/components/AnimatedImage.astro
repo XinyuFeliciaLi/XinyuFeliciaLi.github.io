@@ -1,0 +1,98 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import { gifLayersFor, gifPosterFor, gifUrl, type GifLayer } from '../data/gifs';
+
+interface Props {
+  src: ImageMetadata;
+  alt: string;
+  width?: number;
+  height?: number;
+  widths?: number[];
+  sizes?: string;
+  loading?: 'eager' | 'lazy';
+  fetchpriority?: 'high' | 'low' | 'auto';
+  class?: string;
+  style?: string;
+  mediaFrame?: boolean;
+  [key: string]: unknown;
+}
+const { src, alt, width, height, widths, sizes, loading = 'lazy', fetchpriority, class: className, style = '', mediaFrame = false, ...rest } = Astro.props;
+const layers = gifLayersFor(src);
+const poster = gifPosterFor(src);
+const frame = mediaFrame && layers.length === 1 ? layers[0] : undefined;
+const placement = (layer: GifLayer) => `left:${layer.x * 100}%;top:${layer.y * 100}%;width:${layer.w * 100}%;height:${layer.h * 100}%;border-radius:var(--design-layer-radius, ${layer.radius / layer.sourceWidth * 100}% / ${layer.radius / layer.sourceHeight * 100}%)`;
+const crop = (layer: GifLayer) => {
+  if (layer.mode !== 'CROP' || !layer.transform) return 'inset:0;width:100%;height:100%;object-fit:cover';
+  const [[sx, , tx], [, sy, ty]] = layer.transform;
+  return `left:${-tx / sx * 100}%;top:${-ty / sy * 100}%;width:${100 / sx}%;height:${100 / sy}%;object-fit:fill`;
+};
+---
+{layers.length ? (
+  <span {...rest} class:list={['gif-image', className, { 'gif-image--frame': frame }]} style={`aspect-ratio:${frame ? `${frame.sourceWidth}/${frame.sourceHeight}` : `${src.width}/${src.height}`};${style}`} data-gif-image>
+    <Image class="gif-poster" src={poster} alt={alt} width={width} height={height} widths={widths} sizes={sizes} loading={loading} fetchpriority={fetchpriority} style={frame ? `--poster-width:${100 / frame.w}%;--poster-height:${100 / frame.h}%;--poster-left:${-frame.x / frame.w * 100}%;--poster-top:${-frame.y / frame.h * 100}%` : undefined} />
+    {layers.map(layer => <span class="gif-layer" style={frame ? 'inset:0' : placement(layer)} aria-hidden="true" data-figma-gif={layer.node}>
+      <img class="gif-original" data-gif-src={gifUrl(layer.hash)} alt="" decoding="async" style={crop(layer)} />
+    </span>)}
+  </span>
+) : <Image {...rest} class={className} style={style} src={src} alt={alt} width={width} height={height} widths={widths} sizes={sizes} loading={loading} fetchpriority={fetchpriority} />}
+
+<style>
+  .gif-image { position: relative; display: block; width: 100%; max-width: 100%; overflow: hidden; }
+  .gif-image > :global(.gif-poster) { position: absolute !important; inset: 0 !important; display: block; width: 100% !important; height: 100% !important; object-fit: cover !important; }
+  .gif-layer { position: absolute; display: block; overflow: hidden; pointer-events: none; }
+  .gif-image.gif-image--frame { border-radius: var(--radius-design); }
+  .gif-image--frame > :global(.gif-poster) { inset: auto !important; left: var(--poster-left) !important; top: var(--poster-top) !important; width: var(--poster-width) !important; height: var(--poster-height) !important; }
+  .gif-image .gif-layer > .gif-original { position: absolute; display: block; max-width: none; border-radius: 0; opacity: 0; }
+  .gif-image[data-gif-active] .gif-original[data-loaded] { opacity: 1; }
+  @media (prefers-reduced-motion: reduce) { .gif-layer { display: none; } }
+</style>
+
+<script>
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let paused = false;
+  try { paused = sessionStorage.getItem('portfolio-gifs-paused') === 'true'; } catch {}
+  let observer: IntersectionObserver | undefined;
+  let visible = new Set<HTMLElement>();
+  const sync = () => {
+    const enabled = !paused && !reduced.matches && !document.hidden;
+    document.querySelectorAll<HTMLElement>('[data-gif-image]').forEach(root => {
+      const active = enabled && visible.has(root);
+      root.toggleAttribute('data-gif-active', active);
+      if (active) root.querySelectorAll<HTMLImageElement>('[data-gif-src]').forEach(img => {
+        if (img.hasAttribute('src')) return;
+        img.addEventListener('load', () => { img.dataset.loaded = ''; }, { once: true });
+        img.src = img.dataset.gifSrc!;
+      });
+    });
+    document.querySelectorAll<HTMLButtonElement>('[data-gif-toggle]').forEach(button => {
+      button.hidden = reduced.matches || !document.querySelector('[data-gif-image]');
+      button.textContent = paused ? 'Play GIFs' : 'Pause GIFs';
+      button.setAttribute('aria-pressed', String(paused));
+    });
+  };
+  const setup = () => {
+    observer?.disconnect();
+    visible = new Set();
+    observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        const root = entry.target as HTMLElement;
+        if (entry.isIntersecting) visible.add(root); else visible.delete(root);
+      });
+      sync();
+    }, { rootMargin: '160px' });
+    document.querySelectorAll<HTMLElement>('[data-gif-image]').forEach(root => observer!.observe(root));
+    sync();
+  };
+  document.addEventListener('click', event => {
+    if (!(event.target instanceof Element) || !event.target.closest('[data-gif-toggle]')) return;
+    paused = !paused;
+    try { sessionStorage.setItem('portfolio-gifs-paused', String(paused)); } catch {}
+    sync();
+  });
+  reduced.addEventListener('change', sync);
+  document.addEventListener('visibilitychange', sync);
+  document.addEventListener('astro:before-swap', () => observer?.disconnect());
+  document.addEventListener('astro:page-load', setup);
+  setup();
+</script>

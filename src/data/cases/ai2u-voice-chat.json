@@ -163,10 +163,10 @@
      "t": "p",
      "runs": [
       {
-       "s": "Both voice and text i"
+       "s": "Both voice and text "
       },
       {
-       "s": "nput modes left users unsure whether the system had registered",
+       "s": "input modes left users unsure whether the system had registered",
        "b": 1
       },
       {
@@ -1030,13 +1030,6 @@
          "t": "card",
          "items": [
           {
-           "t": "img",
-           "src": "ai2u-voice-chat/011.png",
-           "w": 31,
-           "h": 31,
-           "alt": ""
-          },
-          {
            "t": "h4",
            "runs": [
             {
@@ -1057,13 +1050,6 @@
         {
          "t": "card",
          "items": [
-          {
-           "t": "img",
-           "src": "ai2u-voice-chat/012.png",
-           "w": 31,
-           "h": 31,
-           "alt": ""
-          },
           {
            "t": "h4",
            "runs": [
@@ -1130,13 +1116,6 @@
          "t": "card",
          "items": [
           {
-           "t": "img",
-           "src": "ai2u-voice-chat/015.png",
-           "w": 31,
-           "h": 31,
-           "alt": ""
-          },
-          {
            "t": "h4",
            "runs": [
             {
@@ -1157,13 +1136,6 @@
         {
          "t": "card",
          "items": [
-          {
-           "t": "img",
-           "src": "ai2u-voice-chat/016.png",
-           "w": 31,
-           "h": 31,
-           "alt": ""
-          },
           {
            "t": "h4",
            "runs": [

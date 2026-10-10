@@ -1,5 +1,6 @@
 ---
 import type { ImageMetadata } from 'astro';
+import AnimatedImage from './AnimatedImage.astro';
 interface Props { variant: number }
 const { variant } = Astro.props;
 const assets = import.meta.glob<{ default: ImageMetadata }>('../assets/workflows/*.png', { eager: true });
@@ -26,7 +27,7 @@ const descriptions = [
  <h4>Workflow</h4>
  <div class="workflow-canvas" role="img" aria-label={descriptions[variant - 1]} style={`aspect-ratio:749/${height}`}>
   <img class="workflow-layer" src={src(`pipeline-${variant}`)} alt="" style={variant === 3 ? position(18.5,41.69,676,237) : position(variant === 1 ? 16.5 : 21.5,41.69,722,256)} />
-  <img class="workflow-layer workflow-screen" src={src(`result-${variant}`)} alt="" style={position(variant === 1 ? 409.5 : variant === 2 ? 401.5 : 363.25,variant === 1 ? 40.69 : variant === 2 ? 45.69 : 18.69,329,209)} />
+  <AnimatedImage class="workflow-layer workflow-screen" src={assets[`../assets/workflows/result-${variant}.png`].default} alt="" style={position(variant === 1 ? 409.5 : variant === 2 ? 401.5 : 363.25,variant === 1 ? 40.69 : variant === 2 ? 45.69 : 18.69,329,209)} />
   {variant === 2 ? <>
    <img class="workflow-layer workflow-screen" src={src('reference')} alt="" style={position(centerX(96.5,98),11.63,98,67)} />
    <img class="workflow-layer workflow-screen" src={src('lowfi')} alt="" style={position(centerX(377.5,98),11.63,98,67)} />
@@ -38,5 +39,5 @@ const descriptions = [
  .workflow-figure { margin: 20px 0 0; width: 100%; max-width: 749px; align-self: center; display: flex; flex-direction: column; gap: 16px; }
  .workflow-canvas { position: relative; width: 100%; background: var(--case-fill-workflow); border-radius: 16px; overflow: hidden; }
  .workflow-layer { position: absolute; object-fit: contain; }
- .workflow-screen { border-radius: 8px; object-fit: cover; }
+ .workflow-screen { border-radius: var(--radius-design); --design-layer-radius: var(--radius-design); object-fit: cover; }
 </style>

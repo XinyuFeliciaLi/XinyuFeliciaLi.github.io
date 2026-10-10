@@ -143,6 +143,14 @@
 			"name": "Highlights / Dreamville",
 			"items": [
 				{
+					"t": "eyebrow",
+					"runs": [
+						{
+							"s": "Overview"
+						}
+					]
+				},
+				{
 					"t": "h2",
 					"runs": [
 						{
@@ -152,11 +160,12 @@
 				},
 				{
 					"t": "video",
-					"src": "monomon-mr/001.png",
+					"src": "monomon-mr/trailer-poster-5s.png",
 					"w": 750,
 					"h": 422,
-					"video": "monomon-mr/30-3596.mp4",
-					"alt": "Highlights"
+					"video": "monomon-mr/final-trailer.mp4",
+					"controls": true,
+					"alt": "Monomon MR — Final Trailer"
 				},
 				{
 					"t": "row",
@@ -227,14 +236,6 @@
 			"id": "30:3603",
 			"name": "Overview / Dreamville",
 			"items": [
-				{
-					"t": "eyebrow",
-					"runs": [
-						{
-							"s": "Overview"
-						}
-					]
-				},
 				{
 					"t": "h2",
 					"runs": [
@@ -994,10 +995,11 @@
 				},
 				{
 					"t": "video",
-					"src": "monomon-mr/017.png",
+					"src": "monomon-mr/walkthrough-poster-36s.png",
 					"w": 750,
 					"h": 422,
-					"video": "monomon-mr/30-3757.mp4",
+					"video": "monomon-mr/experience-walkthrough.mp4",
+					"controls": true,
 					"alt": "Experience Walkthrough"
 				}
 			]
@@ -1010,7 +1012,7 @@
 					"t": "eyebrow",
 					"runs": [
 						{
-							"s": "Outcome"
+							"s": "Impact"
 						}
 					]
 				},
@@ -1018,7 +1020,7 @@
 					"t": "h2",
 					"runs": [
 						{
-							"s": "Project Impact"
+							"s": "Project Outcomes"
 						}
 					]
 				},
@@ -1099,3 +1101,4 @@
 		}
 	]
 }
+

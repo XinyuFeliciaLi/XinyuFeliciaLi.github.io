@@ -1,0 +1,144 @@
+---
+import lab from '../assets/cases/childrens-museum/001.png';
+import facultyCharacter from '../assets/cases/childrens-museum/faculty-character.png';
+import audienceCharacter from '../assets/cases/childrens-museum/audience-character.png';
+import MuseumWorkflow from './MuseumWorkflow.astro';
+import MuseumResearch from './MuseumResearch.astro';
+import pivotBefore from '../assets/cases/childrens-museum/011.png';
+import pivotAfter from '../assets/cases/childrens-museum/pivot-after.png';
+import version1 from '../assets/cases/childrens-museum/version-1.png';
+import version3 from '../assets/cases/childrens-museum/version-3.png';
+import version10 from '../assets/cases/childrens-museum/version-10.png';
+interface Props { kind: string }
+const { kind } = Astro.props;
+const pipeline = [['Get book', 'copyright'], ['Plan storytelling', 'event'], ['Prepare', 'assets'], ['Create interactive', 'events'], ['Export &', 'present']];
+---
+<div class:list={['museum-diagram', `museum-diagram--${kind}`]}>
+ {kind === 'constraints' && <div class="constraints">
+  <div class="lab-photo"><img src={lab.src} alt="Museum Lab interior with open floor space and projection area" loading="lazy" /></div>
+  <div class="tile sand"><h4>Tech</h4><ul><li>Built-in speakers</li><li>Projector setup</li><li>HDMI connectivity</li></ul></div>
+  <div class="tile sand"><h4>Space</h4><ul><li>Echo issues</li><li>No permanent props allowed</li></ul></div>
+ </div>}
+ {kind === 'stakeholders' && <div class="museum-stakeholders">
+  {['Event creator and storyteller', 'Children age 3+'].map((label, i) => <div class:list={['stakeholder-card', { 'stakeholder-card--audience': i === 1 }]} style={`--step-delay:${i * 180}ms`}>
+   <div class="stakeholder-art" aria-hidden="true"><img src={i === 0 ? facultyCharacter.src : audienceCharacter.src} alt="" loading="lazy" /></div>
+   <p><strong>{i === 0 ? '01. Museum Faculty' : '02. Audience Member'}</strong><br />{label}</p>
+  </div>)}
+ </div>}
+ {kind === 'pipeline' && <div class="diagram-surface">
+  <ol class="flow pipeline" aria-label="Event creation pipeline">{pipeline.map((step, i) => <li style={`--step-delay:${i * 100}ms;--step-fill:${i < 3 ? '#edf9fc' : '#faedf3'}`}><span class="number">0{i + 1}</span><span class="step-label">{step[0]}<br />{step[1]}</span></li>)}</ol>
+  <div class="toolkit"><h4 class="toolkit-title">Key Toolkit Components</h4><div class="toolkit-grid">
+   <div class="tile cyan"><h4>Storytelling guides<br />& tutorials</h4><p>Support story planning<br />and asset preparation.</p></div>
+   <div class="tile pink"><h4>Digital tool<br />prototype</h4><p>Create and sequence<br />interactions.</p><span class="ownership">My focus: UX/UI Design</span></div>
+   <div class="tile pink"><h4>Physical interactive<br />prototype</h4><p>Connect sensors and<br />physical responses.</p></div>
+  </div></div>
+ </div>}
+ {kind === 'workflow' && <MuseumWorkflow />}
+ {kind === 'research' && <MuseumResearch />}
+ {kind === 'versions' && <div class="versions">{[version1,version3,version10].map((src,i)=><><figure style={`--step-delay:${i*220}ms`}><img src={src.src} alt={`Prototype and usability testing for version ${[1,3,10][i]}`} loading="lazy"/><figcaption><strong>Version {[1,3,10][i]}</strong><br />{['“Paper” prototype','First prototype','Final tool prototype'][i]}</figcaption></figure>{i < 2 && <svg class="version-arrow" viewBox="0 0 32 24" aria-hidden="true"><path d="M3 12h3" opacity=".35"/><path d="M10 12h17m-6-6 6 6-6 6"/></svg>}</>)}</div>}
+ {kind === 'pivot' && <div class="pivot">
+  <div class="comparison">
+   <div class="tile neutral"><img class="pivot-image" src={pivotBefore.src} alt="Original low-fidelity interface with timeline-based input and output settings" loading="lazy" /><h4>Before: Time frame logic</h4><p>The original setup used a timeline like iMovie or Premiere.</p><ul><li>Unfamiliar time-frame concepts</li><li>Long setup times</li><li>Disorganized post-setup editing</li></ul></div>
+   <div class="tile museum-blue"><img class="pivot-image" src={pivotAfter.src} alt="Revised low-fidelity interface with numbered event triggers" loading="lazy" /><h4>After: Event trigger logic</h4><p>Staff build numbered events per page, using a familiar interaction model like PowerPoint.</p><ul><li>A shorter learning curve</li><li>Separate inputs and outputs to reduce errors</li><li>Easy-to-find events for faster editing</li></ul></div>
+  </div>
+  <div class="event-example"><h4>What it looks like</h4><p>This is a low-fidelity example to explain how event trigger logic works. A numbered event connects an input to an output.</p><div class="event-row"><span class="event-label">Event 01</span><span class="event-divider" aria-hidden="true"></span><div><span class="t-eyebrow">TRIGGER</span><p>Arduino audio sensor</p></div><span class="connector" aria-hidden="true">→</span><div><span class="t-eyebrow">RESPONSE</span><p>Servo movement</p></div></div></div>
+ </div>}
+</div>
+<style>
+ .museum-diagram { width:100%; margin-top:12px; color:var(--color-ink); }
+ .versions { display:grid; grid-template-columns:minmax(0,1fr) 24px minmax(0,1fr) 24px minmax(0,1fr); gap:12px; align-items:start; }
+ .versions figure { position:relative; margin:0; }
+ .version-arrow { width:100%; fill:none; stroke:#426986; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; align-self:center; margin-top:-48px; }
+ .versions img { width:100%; border-radius:12px; }
+ .versions figcaption { margin-top:12px; font:var(--type-small); text-align:center; }
+ .toolkit-title { font:500 18px/1.5 var(--font-sans); margin-bottom:16px!important; }
+ .museum-stakeholders { display:grid; grid-template-columns:1fr 1fr; gap:48px; }
+ .stakeholder-card { position:relative; aspect-ratio:363/260; --stakeholder-fill:#faf1f6; }
+ .stakeholder-card::before { content:''; position:absolute; inset:45% 0 0; border-radius:16px; background:var(--stakeholder-fill); }
+ .stakeholder-card--audience { --stakeholder-fill:#fff5ee; }
+ .stakeholder-art { position:absolute; inset:0 0 35%; overflow:hidden; }
+ .stakeholder-art img { position:absolute; width:43%; max-width:none; left:29%; top:0; }
+ .stakeholder-card--audience img { left:29%; }
+ .stakeholder-card p { position:absolute; top:68%; width:100%; margin:0; text-align:center; font:400 15px/1.6 var(--font-sans); }
+ .stakeholder-card strong { font-weight:600; color:#ce5990; }
+ .stakeholder-card--audience strong { color:#ff862e; }
+ .constraints > :nth-child(1) { --step-delay:0ms; }
+ .constraints > :nth-child(2) { --step-delay:180ms; }
+ .constraints > :nth-child(3) { --step-delay:360ms; }
+ .constraints,.toolkit-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; }
+ .tile { border-radius:16px; padding:24px; min-width:0; }
+ .tile h4 { font:var(--type-lead); margin:0 0 8px; }
+ .tile p,.tile li { font:var(--type-small); }
+ .tile p { margin:0; }
+ ul { padding-left:18px; margin:8px 0 0; }
+ .sand { background:#f8f6ec; }
+ .cyan { background:#edf9fc; }
+ .pink { background:#faedf3; }
+ .pale { background:#f8f0f5; }
+ .museum-blue { background:#f3f8fd; }
+ .neutral { background:rgb(247 247 248 / 45%); }
+ .lab-photo { position:relative; overflow:hidden; border-radius:16px; min-height:150px; }
+ .lab-photo img { position:absolute; height:100%; width:auto; max-width:none; left:0; top:0; }
+ .diagram-surface { padding:28px 24px; border-radius:16px; background:#fcf8fa; }
+ .museum-diagram--pipeline .diagram-surface { background:transparent; padding-inline:0; padding-top:14px; }
+ .museum-diagram--pipeline { margin-top:0; }
+ .museum-diagram--pipeline .flow li { background:var(--step-fill); padding-inline:4px; }
+ .museum-diagram--pipeline .step-label { white-space:nowrap; }
+ .museum-diagram--pipeline .toolkit h4 { font-size:15px; white-space:nowrap; }
+ .museum-diagram--pipeline .toolkit .tile p { font-size:13px; white-space:nowrap; }
+ .flow { display:grid; list-style:none; padding:0; margin:0; gap:20px; }
+ .pipeline { grid-template-columns:repeat(5,minmax(0,1fr)); }
+ .workflow { grid-template-columns:repeat(7,minmax(0,1fr)); gap:16px; }
+ .flow li { position:relative; background:#f7e8f0; border-radius:12px; padding:14px 8px; font:500 13px/1.6 var(--font-sans); text-align:center; }
+ .number { display:block; margin-bottom:6px; color:var(--color-ink); font:var(--type-eyebrow); }
+ .flow li:not(:last-child)::after { content:'→'; position:absolute; left:100%; top:50%; width:20px; color:#b84d84; transform:translateY(-50%); }
+ .workflow li:not(:last-child)::after { width:16px; }
+ .toolkit,.interaction { margin-top:24px; padding-top:20px; border-top:1px solid #ce599024; }
+ .toolkit > p,.interaction > p { margin:0 0 12px; }
+ .toolkit .tile { padding:18px; }
+ .ownership { display:block; margin-top:12px; font:400 12px/1.65 var(--font-sans); color:#95416c; white-space:nowrap; }
+ .pivot-image { width:100%; height:180px; object-fit:cover; margin-bottom:20px; border-radius:12px; }
+ .interaction-grid { display:grid; grid-template-columns:1fr 32px 1fr; gap:12px; align-items:center; }
+ .connector { text-align:center; color:#b84d84; font-size:24px; }
+ .return-path,.saved-path { font:var(--type-caption); margin:16px 0 0; }
+ .return-path { color:#95416c; }
+ .comparison { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+ .comparison > .tile:first-child { --step-delay:0ms; }
+ .comparison > .tile:nth-child(2) { --step-delay:220ms; }
+ .comparison .t-eyebrow { font:var(--type-eyebrow); margin:0 0 10px; }
+ .comparison li + li { margin-top:4px; }
+ .event-example { margin-top:20px; padding:24px; background:#f3f8fd; border-radius:16px; }
+ .event-example > p { font:var(--type-small); margin:6px 0 16px; }
+ .event-row { display:grid; grid-template-columns:auto 1fr 24px 1fr; gap:20px; align-items:center; background:#fff; border-radius:12px; padding:16px; }
+ .event-row p { font:var(--type-small); margin:4px 0 0; }
+ .event-label { font:var(--type-label); color:#426986; }
+ .event-row .event-label { white-space:nowrap; }
+ .event-row { grid-template-columns:auto 2px minmax(0,1fr) 24px minmax(0,1fr); }
+ .event-row > div { text-align:center; }
+ .event-divider { width:2px; height:52px; border-radius:999px; background:rgb(37 55 70 / 22%); }
+ .event-row > .connector { color:#426986; justify-self:center; align-self:center; line-height:1; }
+ .toolkit-grid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+ .toolkit .tile { padding:16px 12px; text-align:center; }
+ @media (prefers-reduced-motion:no-preference) {
+  .museum-diagram:global([data-panel-motion]) .versions figure { opacity:0; transform:translateX(-16px); transition:opacity 650ms ease,transform 650ms ease; transition-delay:var(--step-delay); }
+  .museum-diagram:global([data-panel-visible]) .versions figure { opacity:1; transform:none; }
+  .museum-diagram:global([data-panel-motion]) :is(.tile,.flow li,.event-row,.lab-photo,.stakeholder-card) { opacity:0; transform:translateY(12px); transition:opacity 650ms cubic-bezier(.16,1,.3,1),transform 650ms cubic-bezier(.16,1,.3,1); transition-delay:var(--step-delay,140ms); }
+  .museum-diagram:global([data-panel-visible]) :is(.tile,.flow li,.event-row,.lab-photo,.stakeholder-card) { opacity:1; transform:none; }
+ }
+ @media(max-width:40rem) {
+  .constraints,.toolkit-grid,.comparison { grid-template-columns:1fr; gap:12px; }
+  .museum-stakeholders { grid-template-columns:1fr; gap:32px; }
+  .lab-photo { height:180px; }
+  .lab-photo img { height:auto; width:336.7%; top:50%; transform:translateY(-50%); }
+  .diagram-surface { padding:20px; }
+  .flow { grid-template-columns:1fr; gap:22px; }
+  .flow li { padding:12px; text-align:left; display:flex; gap:12px; align-items:center; }
+  .number { margin:0; }
+  .flow li:not(:last-child)::after { content:'↓'; left:50%; top:100%; transform:none; height:22px; }
+  .interaction-grid { grid-template-columns:1fr; gap:8px; }
+  .interaction-grid > .connector { transform:rotate(90deg); }
+  .event-row { grid-template-columns:auto 2px minmax(0,1fr) 20px minmax(0,1fr); gap:8px; padding:12px; }
+  .event-row .event-label, .event-row p { font-size:12px; }
+  .event-row .t-eyebrow { font-size:10px; }
+ }
+</style>

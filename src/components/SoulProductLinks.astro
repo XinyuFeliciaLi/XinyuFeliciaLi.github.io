@@ -1,0 +1,19 @@
+---
+import itchIcon from '../assets/cases/soul-seasoned/itch-io.svg';
+---
+<div class="soul-product-links">
+  <h2>Check out the product</h2>
+  <a href="https://alterstaff.itch.io/soul-seasoned" target="_blank" rel="noopener noreferrer" aria-label="View Soul Seasoned on itch.io">
+    <img src={itchIcon.src} alt="" />
+    <span>itch.io</span>
+  </a>
+</div>
+<style>
+  .soul-product-links { position: relative; isolation: isolate; padding: 76px 0; text-align: center; }
+  .soul-product-links::before { content: ''; position: absolute; z-index: -1; inset-block: 0; left: calc(50% - 50vw); width: 100vw; background: rgb(247 248 249 / 0.6375); }
+  a { display: flex; width: 136px; height: 38px; margin-top: 26px; align-items: center; justify-content: center; gap: 9.6px; border-radius: 4.8px; background: #fa5c5c; color: white; text-decoration: none; font: 500 14.4px / 1.4 var(--font-sans); }
+  img { display: block; flex-shrink: 0; }
+  a { margin-inline: auto; }
+  a:hover { filter: brightness(.92); }
+  a:focus-visible { outline: 3px solid #253746; outline-offset: 4px; }
+</style>

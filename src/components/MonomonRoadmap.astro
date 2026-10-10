@@ -1,0 +1,24 @@
+---
+const phases = [
+ ['Foundation', 'Game Pillars + Tech Validation', 'Define the core experience and validate shared-space multiplayer MR feasibility.'],
+ ['Prototype', 'Multiplayer Build + Playtests', 'Build the central loop and test interactions, gameplay, and technical performance.'],
+ ['Refine', 'GDC + Iteration', 'Use live demos and playtest feedback to refine usability, gameplay, and interaction clarity.'],
+ ['Deliver', 'Tournament + Final Build', 'Polish, validate competitive play, and deliver the final playable Quest build.'],
+];
+---
+<div class="monomon-roadmap" aria-label="High-Level Roadmap">
+ {phases.map(([phase, title, body], i) => <div class="roadmap-phase" style={`--step:${i}`}>
+  <div class="phase-label">{phase}</div>
+  <div class="phase-content"><strong>{title}</strong><p>{body}</p></div>
+ </div>)}
+</div>
+<style>
+ .monomon-roadmap { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); width:100%; padding-block:4px; }
+ .roadmap-phase { min-width:0; }
+ .phase-label { position:relative; text-align:center; padding-bottom:16px; border-bottom:1px solid #778ac7; font:500 12px/1.6 var(--font-sans); color:#374a8c; }
+ .phase-label::after { content:''; position:absolute; width:6px; height:6px; border-radius:50%; background:#778ac7; bottom:-3.5px; left:0; }
+ .phase-content { border-left:1px solid #d5d9df; margin-top:20px; padding-top:calc(var(--step) * 24px); padding-right:12px; min-height:294px; }
+ strong { display:block; border-radius:0 4px 4px 0; background:linear-gradient(100deg,#d4e3fc,#ecf0f7); padding:10px 8px; font:600 13px/1.65 var(--font-sans); color:#374a8c; }
+ p { margin:12px 8px 0 12px; font:400 13px/1.65 var(--font-sans); color:var(--color-ink-80); }
+ @media(max-width:40rem) { .monomon-roadmap { grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px 0; } .phase-content { padding-top:0; padding-right:6px; min-height:0; } }
+</style>

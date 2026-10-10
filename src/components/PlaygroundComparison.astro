@@ -1,0 +1,47 @@
+---
+import AnimatedImage from './AnimatedImage.astro';
+import { blockImage } from '../data/cases';
+interface Props { source: string; alt: string; width?: number; height?: number; }
+const { source, alt, width, height } = Astro.props;
+const src = blockImage(source)!;
+const compact = source.startsWith('soul-seasoned/');
+const paired = source === 'monomon-mr/014.png' || source === 'monomon-mr/016.png';
+const charging = source === 'monomon-mr/015.png';
+const displayWidth = (width ?? src.width) - (compact ? 8 : 0);
+const labels = source === 'monomon-mr/015.png' ? ['After']
+  : source === 'monomon-mr/016.png' ? ['After: Gained HP', 'After: Lost HP']
+  : ['Before', 'After'];
+---
+<figure class:list={['playground-comparison', 'block-img', { compact, paired, charging }]} style={`width: ${displayWidth}px; aspect-ratio: ${displayWidth} / ${height ?? src.height}; --label-height: ${(src.height - 217) / src.height * 100}%; --label-columns: ${labels.length}; --comparison-fill: rgb(240 240 245 / 0.2)`}>
+  <div class="comparison-artwork">
+    <AnimatedImage src={src} alt={alt} width={width} height={height} loading="lazy" />
+  </div>
+  {(compact || paired) && <div class="comparison-artwork comparison-artwork--right" aria-hidden="true">
+    <AnimatedImage src={src} alt="" width={width} height={height} loading="lazy" />
+  </div>}
+  <figcaption>{labels.map(label => <span>{label}</span>)}</figcaption>
+</figure>
+<style>
+  .playground-comparison { position: relative; container-type: inline-size; margin: 0; overflow: hidden; }
+  .paired .comparison-artwork { clip-path: inset(0 50% var(--label-height) 0); }
+  .paired .comparison-artwork--right { clip-path: inset(0 0 var(--label-height) 50%); }
+  .charging { background: var(--comparison-fill); }
+  .charging .comparison-artwork { clip-path: inset(4.8018% 25.8011% 13.6051% 25.8011% round 16px); }
+  .charging figcaption { background: transparent; }
+  @media (prefers-reduced-motion: no-preference) {
+    .paired[data-panel-motion] .comparison-artwork,
+    .paired[data-panel-motion] figcaption > span { opacity: 0; transition: opacity 450ms ease; transition-delay: 140ms; }
+    .paired[data-panel-motion] .comparison-artwork--right,
+    .paired[data-panel-motion] figcaption > span:nth-child(2) { transition-delay: 700ms; }
+    .paired[data-panel-visible] .comparison-artwork,
+    .paired[data-panel-visible] figcaption > span { opacity: 1; }
+  }
+  .comparison-artwork { position: absolute; inset: 0; clip-path: inset(0 0 var(--label-height) 0); }
+  .comparison-artwork > :global(img), .comparison-artwork > :global(.gif-image) { display: block; width: 100%; height: auto; }
+  /* Preserve each 362px screenshot; remove only 8px from the original 24px gutter. */
+  .compact .comparison-artwork { right: auto; width: calc(100% * 749 / 741); clip-path: inset(0 calc(100% * 387 / 749) var(--label-height) 0); }
+  .compact .comparison-artwork--right { left: auto; right: 0; clip-path: inset(0 0 var(--label-height) calc(100% * 386 / 749)); }
+  .compact::before { content: ''; position: absolute; left: calc(100% * 362 / 741); width: calc(100% * 16 / 741); top: 0; bottom: var(--label-height); background: var(--comparison-fill); }
+  .compact figcaption { column-gap: calc(100% * 16 / 741); font-size: calc(100cqw * 12 / 741); }
+  figcaption { position: absolute; inset: auto 0 0; height: var(--label-height); display: grid; grid-template-columns: repeat(var(--label-columns), minmax(0, 1fr)); column-gap: 3.2%; align-items: start; padding-top: 0.4%; box-sizing: border-box; background: var(--comparison-fill); text-align: center; color: #203442; font: 400 1.602cqw / 1.5 var(--font-sans); }
+</style>

@@ -1,0 +1,41 @@
+<figure class="feedback-quote">
+ <svg class="feedback-illustration" viewBox="0 0 340 270" fill="none" aria-hidden="true">
+  <g stroke="#263947" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+   <path d="M30 228V76a13 13 0 0 1 13-13h249a13 13 0 0 1 13 13v152" fill="#d2d4d5" />
+   <path d="M45 228V77h247v151" fill="white" />
+   <path d="M2 228h330a33 33 0 0 1-33 33H35a33 33 0 0 1-33-33Z" fill="#d2d4d5" />
+   <path d="m67 224 58-111 18-49c5-16 21-15 26-1l8 32c3 15-7 15-21 9l-8 22 45 5c10 0 18-12 33-24l-5-27c-4-16 7-21 16-10l8 10 13-25c7-14 20-4 15 8l-3 17 8-16c8-16 23-6 19 7l-8 24 8-10c11-10 20 1 13 13l-30 44-29 27c-15 13-22 9-48 6l-43-4-20 58H76c-15 0-18-8-9-22Z" fill="white" />
+   <path d="m125 113 25 12 43 6c10 0 18-12 33-24l54 30-29 32c-15 13-22 9-48 6l-53-33 1 30-21 56H76c-15 0-18-8-9-22Z" fill="#263947" stroke="none" />
+   <path d="M154 91c4-7 10-8 15-2M245 80c11 6 17 16 17 30M157 170c24-3 43 1 56 9 8 6 2 13-5 14" />
+   <path d="M154 170c24 0 42 10 55 28 13 20-1 24-13 15l-22-19 15 16c12 14-1 21-12 12l-20-14 9 9c9 11-1 16-12 11l-11-6-10 6" fill="white" />
+  </g>
+  <g stroke="#686566" stroke-width="6" stroke-linecap="round">
+   <path d="M155 12c0-9 14-9 14 0 0 7-8 7-8 14M161 33v1M111 29c-2-7 9-9 10-3 2 5-5 7-3 12M120 43v1M196 28c2-7 13-3 10 3-2 4-8 2-9 8M194 45v1" />
+  </g>
+ </svg>
+ <blockquote class="feedback-bubble">
+  <svg class="quote-mark quote-mark--open" viewBox="0 0 66 36" aria-hidden="true"><path d="M29 2C13 2 1 11 1 23c0 8 7 12 15 11 8-1 14-7 14-14 0-7-6-11-13-10 2-4 7-6 12-8Zm35 0C48 2 36 11 36 23c0 8 7 12 15 11 8-1 14-7 14-14 0-7-6-11-13-10 2-4 7-6 12-8Z" /></svg>
+  <p>I have a mic and its on but it won’t do anything</p>
+  <svg class="quote-mark quote-mark--close" viewBox="0 0 66 36" aria-hidden="true"><path d="M29 2C13 2 1 11 1 23c0 8 7 12 15 11 8-1 14-7 14-14 0-7-6-11-13-10 2-4 7-6 12-8Zm35 0C48 2 36 11 36 23c0 8 7 12 15 11 8-1 14-7 14-14 0-7-6-11-13-10 2-4 7-6 12-8Z" /></svg>
+  <cite>— User feedback from Steam</cite>
+ </blockquote>
+</figure>
+
+<style>
+ .feedback-quote { margin: 0; width: 100%; box-sizing: border-box; display: grid; grid-template-columns: 25% minmax(0, 1fr); align-items: center; gap: 7%; padding: 3.7% 5.7% 6.5%; background: #f7f7f8; border-radius: 16px; container-type: inline-size; }
+ .feedback-illustration { display: block; width: 100%; height: auto; }
+ .feedback-bubble { position: relative; display: grid; grid-template-columns: 7.5% minmax(0, 1fr) 7.5%; align-items: start; column-gap: 2%; margin: 3% 0 0; padding: 4.4% 4.5%; border-radius: 12px; background: white; color: #263947; font-family: 'Poppins', sans-serif; }
+ .feedback-bubble::before { content: ''; position: absolute; right: 100%; bottom: 15%; width: 7%; height: 23%; background: white; clip-path: polygon(100% 0, 100% 100%, 0 50%); }
+ .feedback-bubble p { margin: 0; padding-top: 1%; font: 400 clamp(12px, 2.35cqw, 28px)/1.6 'Poppins', sans-serif; }
+ .feedback-bubble cite { grid-column: 2 / 4; margin-top: 4%; padding-right: 4%; text-align: right; color: #606570; font: 400 clamp(10px, 1.75cqw, 21px)/1.5 'Poppins', sans-serif; }
+ .quote-mark { width: 100%; fill: #f1f2f2; }
+ .quote-mark--close { transform: rotate(180deg); }
+ @media (max-width: 540px) {
+  .feedback-quote { grid-template-columns: 1fr; gap: 20px; padding: 24px; }
+  .feedback-illustration { width: 140px; justify-self: center; }
+  .feedback-bubble { margin: 0; padding: 20px 14px; }
+  .feedback-bubble::before { right: auto; left: 24%; bottom: 100%; width: 28px; height: 18px; clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+  .feedback-bubble p { font-size: 14px; }
+  .feedback-bubble cite { font-size: 11px; margin-top: 12px; }
+ }
+</style>

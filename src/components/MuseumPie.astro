@@ -1,0 +1,30 @@
+---
+interface Props { values: number[]; labels: string[] }
+const { values, labels } = Astro.props;
+const colors = ['#ffab50', '#ffc477', '#ffdaab', '#fff0dc'];
+let total = 0;
+const slices = values.map((value, i) => {
+ const start = total / 100 * Math.PI * 2 - Math.PI;
+ total += value;
+ const end = total / 100 * Math.PI * 2 - Math.PI;
+ const mid = (start + end) / 2;
+ return { value, color: colors[i], path: `M60 60 L${60+58*Math.cos(start)} ${60+58*Math.sin(start)} A58 58 0 ${value>50?1:0} 1 ${60+58*Math.cos(end)} ${60+58*Math.sin(end)} Z`, x:60+36*Math.cos(mid), y:60+36*Math.sin(mid) };
+});
+---
+<div class="chart">
+ <svg viewBox="0 0 120 120" role="img" aria-label={labels.map((label,i)=>`${label}: ${values[i]}%`).join(', ')}>
+  {slices.map(slice=><g><path d={slice.path} fill={slice.color}/><text x={slice.x} y={slice.y+4} text-anchor="middle">{slice.value}%</text></g>)}
+ </svg>
+ <dl>{labels.map((label,i)=><div><dt><span style={`background:${colors[i]}`} aria-hidden="true"/>{label}</dt><dd>{values[i]}%</dd></div>)}</dl>
+</div>
+<style>
+ .chart { display:grid; grid-template-columns:112px minmax(0,1fr); gap:12px; align-items:center; text-align:left; }
+ svg { width:100%; }
+ text { font:600 11px var(--font-sans); fill:#53371e; }
+ dl { margin:0; font:400 11px/1.65 var(--font-sans); }
+ dl div { display:flex; justify-content:space-between; gap:6px; padding:4px 0; }
+ dt { display:flex; align-items:baseline; gap:6px; }
+ dt span { flex:0 0 9px; width:9px; height:9px; border-radius:3px; }
+ dd { margin:0; font-weight:600; }
+ @media(min-width:40.001rem) and (max-width:48rem) { .chart { grid-template-columns:1fr; } svg { max-width:120px; margin:auto; } }
+</style>

@@ -101,6 +101,7 @@ export interface Block {
 	h?: number;
 	alt?: string;
 	video?: string;
+	controls?: boolean;
 	items?: Block[];
 	cols?: { w: number; items: Block[] }[];
 }
@@ -114,7 +115,7 @@ const content = import.meta.glob<CaseContent>('./cases/*.json', { eager: true, i
 const heroes = import.meta.glob<ImageMetadata>('../assets/heroes/*.png', { eager: true, import: 'default' });
 const cards = import.meta.glob<ImageMetadata>('../assets/home/card-*.png', { eager: true, import: 'default' });
 const images = import.meta.glob<ImageMetadata>('../assets/cases/*/*.png', { eager: true, import: 'default' });
-const videos = import.meta.glob<string>('../assets/media/*/*.mp4', { eager: true, query: '?url', import: 'default' });
+const videos = import.meta.glob<string>('../assets/media/*/*.{mp4,webm}', { eager: true, query: '?url', import: 'default' });
 
 export const caseContent = (slug: string) => content[`./cases/${slug}.json`];
 export const heroImage = (slug: string) => heroes[`../assets/heroes/${slug}.png`];

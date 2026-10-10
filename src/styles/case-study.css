@@ -33,8 +33,29 @@
 	min-width: 0;
 }
 .case-section { gap: var(--case-topic-gap); }
+.case--graphic-ui-snapshots #section-37-1869 { gap: calc(2 * var(--case-topic-gap)); }
 .case-section + .case-section { margin-top: var(--case-section-gap); }
 .case-group { gap: 12px; }
+.case--ai2u-design-snapshots #section-30-4363 {
+	position: relative;
+	isolation: isolate;
+	padding-block: 44px;
+}
+.case--ai2u-design-snapshots #section-30-4363 > .case-group:first-child { position:relative; isolation:isolate; }
+.case--ai2u-design-snapshots #section-30-4363 > .case-group:first-child::before {
+	content: '';
+	position: absolute;
+	inset-block: -44px;
+	left: calc(50% - 50vw);
+	width: 100vw;
+	z-index: -1;
+	background: color-mix(in srgb, var(--color-card) 95%, transparent);
+}
+.case--ai2u-design-snapshots #section-30-4363 .block-card:has(> .t-stat) {
+	background: rgb(247 247 248 / 0.75);
+}
+/* Tighten only the transitions from Challenge to Goal and from Goal to Impact. */
+.case--ai2u-voice-chat #section-30-1589 > .case-group:nth-last-child(-n + 2) { margin-top: calc(-0.25 * var(--case-topic-gap)); }
 .case h1, .case h2, .case h3, .case h4 { margin: 0; }
 .case :is(p, li) { overflow-wrap: anywhere; }
 .case .t-title + .t-body { margin-top: 8px; }
@@ -201,6 +222,7 @@
 .case .block-card--split > .block-row > .block-col > .block-card { padding: 0; background: transparent; height: auto; }
 .case .iteration-divider { text-align: center; align-self: center; width: 100%; margin: 0; }
 .case-group:has(> .iteration-divider:first-child) { margin-top: -40px; gap: 24px; }
+.case--ai2u-voice-chat .case-group:has(> .iteration-divider:first-child) { margin-top: calc(-0.5 * var(--case-topic-gap) - 20px); }
 
 /* Compact parallel cards keep enough width for their labels and short descriptions. */
 .case .block-row--compact { gap: 12px; }
@@ -211,18 +233,22 @@
 
 /* Preserve the authored image dimensions; use container space instead of stretching artwork. */
 .case .block-img, .case .block-icon { align-self: flex-start; height: auto; max-width: 100%; }
-.case .block-img { border-radius: 8px; align-self: center; }
-.case .block-img--backdrop { border-radius: 16px; }
+.case .block-img { border-radius: var(--radius-design); --design-layer-radius: var(--radius-design); align-self: center; }
+.case .block-col--media-panel:has(> .gif-image--frame),
+.case .block-img.gif-image--frame { border-radius: var(--radius-design); }
+.case .block-img--backdrop { border-radius: var(--radius-design); }
+.case .block-col--media-panel { border-radius: var(--radius-design); }
 .case .block-icon { width: auto; max-height: 44px; }
 .case .block-img.center, .case .block-icon.center,
 .case .block-card--center > .block-img, .case .block-card--center > .block-icon { align-self: center; }
 .case .block-icon.right { align-self: flex-end; }
 .case .block-video { width: 100%; align-self: center; }
+.case--monomon-mr .block-video video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: contain; }
 /* The exported reel includes a baked heading and footer; display its preview area
    with accessible live heading/link text supplied by the content blocks. */
-.case .block-showreel { width: 100%; aspect-ratio: 761 / 432; overflow: hidden; border-radius: 12px; margin-top: 12px; }
+.case .block-showreel { width: 100%; aspect-ratio: 761 / 432; overflow: hidden; border-radius: var(--radius-design); --design-layer-radius: var(--radius-design); margin-top: 12px; }
 .case .showreel-media { position: relative; height: 100%; overflow: hidden; border-radius: inherit; }
-.case .block-showreel img { position: absolute; top: -6.02%; display: block; width: 100%; height: auto; }
+.case .block-showreel .showreel-image { position: absolute; top: -6.02%; display: block; width: 100%; height: auto; }
 .case--fortune-kid .case-section:first-child .block-row--metadata { column-gap: 31px; row-gap: 24px; }
 .case--fortune-kid .block-row--metadata h4 { font: 600 0.875rem / 1.57 var(--font-sans); }
 .case--featured .case-section:first-child .block-row--metadata { column-gap: 24px; row-gap: 24px; }
@@ -231,6 +257,7 @@
 .case .block-pair > * { margin: 0; }
 
 /* Large screenshots and captions form one showcase, with 44px between consecutive examples. */
+.case--playground .case-section--final { --case-fill-showcase: rgb(247 247 248 / 0.4025); }
 .case-section--final .case-group > .block-card {
 	padding: 48px 54px;
 	border-radius: 20px;
@@ -279,17 +306,31 @@
 .case .block-row--process > .block-col:has(> .block-icon:only-child) { align-items: center; }
 
 /* Keep the research findings and usability evidence compact within the AI2U narrative. */
+/* Keep the problem illustration above the centered heading and supporting copy. */
+.case--ai2u-voice-chat #section-30-1727 .block-card--band {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px;
+}
+.case--ai2u-voice-chat #section-30-1727 .block-card--band > .block-img { margin: 0; }
+.case--ai2u-voice-chat #section-30-1727 .block-card--band > h3 { margin: 0; }
+
+/* Match the Impact intro to the shared section heading/body rhythm. */
+.case--ai2u-voice-chat #section-30-2116 .block-card--band { gap: 12px; }
+.case--ai2u-voice-chat #section-30-2116 .block-card--band > .block-row { margin-top: 12px; }
 .case--ai2u-voice-chat .case-group--insights > .block-card { padding: 20px 24px; gap: 8px; }
 .case--ai2u-voice-chat .case-group--insights > .block-card + .block-card { margin-top: 4px; }
 .case--ai2u-voice-chat .case-group--insights .t-body { font: var(--type-small); color: var(--color-ink-80); }
 .case--ai2u-voice-chat #section-30-1836 .block-row--media .block-list { font: var(--type-small); color: var(--color-ink-80); }
-.case--ai2u-voice-chat #section-30-2027 .block-card--split .block-card > .t-small:first-child { color: var(--color-ink); }
-.case--ai2u-voice-chat #section-30-2074 .block-card { display: grid; grid-template-columns: 28px minmax(0, 1fr); padding: 20px; gap: 10px; }
-.case--ai2u-voice-chat #section-30-2074 .block-card > h4 { margin-top: 0; align-self: center; }
-.case--ai2u-voice-chat #section-30-2074 .block-card > .t-caption { grid-column: 1 / -1; color: var(--color-ink-80); }
+.case--ai2u-voice-chat #section-30-2027 .block-card--split .block-card > .t-small:first-child { color: var(--color-ink); font-weight: 500; }
+.case--ai2u-voice-chat #section-30-2074 .block-card { display: flex; flex-direction: column; padding: 20px; gap: 10px; }
+.case--ai2u-voice-chat #section-30-2074 .block-card > h4 { margin-top: 0; }
+.case--ai2u-voice-chat #section-30-2074 .block-card > .t-caption { color: var(--color-ink-80); }
 .case--ai2u-voice-chat #section-30-2074 .block-col { gap: 16px; }
 .case--ai2u-voice-chat #section-30-2074 .block-col > .block-card + .block-card { margin-top: 0; }
-.case--ai2u-voice-chat #section-30-2074 .block-icon { width: 28px; }
+.case--ai2u-voice-chat #section-30-2074 .block-col--media-panel { display: flex; align-items: center; justify-content: center; }
+.case--ai2u-voice-chat #section-30-2074 .block-col--media-panel::before { display: none; }
 
 /* Shared neutral surfaces retain FK's fill alpha without fading text or screenshots. */
 .case .block-card--metadata { --fill: rgb(247 247 248 / 0.4025); }
@@ -313,18 +354,31 @@
 .case:not(.case--fortune-kid) .block-icon { filter: grayscale(1); }
 .case--fortune-kid .block-card > .constraint-icon { opacity: 0.16; margin-bottom: -4px; }
 .case--fortune-kid .block-card > .constraint-icon + h4:not(:first-child) { margin-top: 0; }
-.case--fortune-kid #section-30-4202 .block-icon { filter: grayscale(1); opacity: 0.3915046875; }
-/* Action assets are opaque; Feel assets already contain transparency. */
-.case--fortune-kid #section-30-4202 .block-col:nth-child(2) > .block-icon { opacity: 0.20511775; }
+.case--fortune-kid #section-30-4202 .block-icon { display: none; }
 .case--fortune-kid #section-30-4202 .block-col:has(> .block-icon) { gap: 6px; }
 .case--fortune-kid #section-30-4202 .block-col > .block-icon + h4 { margin-top: 0; }
 .case--fortune-kid #section-30-4202 .block-col > .block-icon + h4 + .t-body { margin-top: 6px; }
 .case--fortune-kid #section-30-3996 .case-group > .t-body + h4 { margin-top: 24px; }
-.case .case-section:not(.case-section--final) .block-card:not(.block-card--band):not(.block-card--split):not(.block-card--split .block-card):not([data-persona] .block-card) {
+.case .case-section:not(.case-section--final) .block-card:not(.block-card--band):not(.block-card--split):not(.block-card--split .block-card):not([data-persona] .block-card):not(:where(.case--playground .block-card--process, .case--playground .block-card--process .block-card)) {
 	background: var(--fill, var(--case-fill-stakeholder));
 }
 
 /* Persona pairs retain Figma's matching audience colors in a more compact layout. */
+.case--childrens-museum #section-30-1122 .block-card--band > .block-row { align-items: start; column-gap:80px; }
+.case--childrens-museum #section-30-1542 .block-icon { width:40px; height:40px; opacity:0.31875; }
+.case--childrens-museum #section-30-1542 { margin-top:calc(var(--case-section-gap) / 2); }
+.case--childrens-museum #section-30-1533 .block-card--band { padding-block: 88px; }
+@media (max-width: 40rem) {
+	.case--childrens-museum #section-30-1533 .block-card--band { padding-block: 64px; }
+}
+.case--childrens-museum .museum-diagram--workflow + .t-body { margin-top:36px; }
+.case--childrens-museum .case-group:has(.museum-diagram--workflow) > .block-list { padding-left:28px; }
+.case--childrens-museum #section-30-1122 .block-card--band .block-col { gap:20px; }
+.case--childrens-museum #section-30-1122 .block-card--band .block-list { gap:20px; line-height:1.8; }
+.case--childrens-museum #section-30-1122 [data-card-group="Museum Faculty"] > .block-col > .block-card { padding:32px 40px; }
+.case--childrens-museum #section-30-1122 .block-card--band { padding-block:88px; }
+.case--childrens-museum #section-30-1225 .case-group:has([data-persona="audience"]) { margin-top:var(--case-topic-gap); }
+.case--childrens-museum #section-30-1312 .case-group:has(.museum-diagram--pipeline) { margin-top:calc(var(--case-topic-gap) / -3); gap:6px; }
 .case .block-row[data-persona] { grid-template-columns: minmax(0, 280px) minmax(0, 1fr); gap: 20px; align-items: stretch; margin-top: 0; }
 .case [data-persona="faculty"] { --persona-fill: rgb(206 89 144 / 0.05); }
 .case [data-persona="audience"] { --persona-fill: rgb(253 145 61 / 0.05); }
@@ -365,4 +419,107 @@
 	.case [data-persona] > .block-col > .block-card { padding: 20px; }
 	.case .block-card--split { padding: 0; }
 	.case-group:has(> .iteration-divider:first-child) { margin-top: -16px; }
+	.case--ai2u-voice-chat .case-group:has(> .iteration-divider:first-child) { margin-top: calc(-0.5 * var(--case-topic-gap) - 8px); }
+}
+
+/* HUA-only spacing, stats, and process surfaces. */
+/* Playground Highlights share Pocket Harmonica's compact introductory gap. */
+.case--hua #section-30-2209,
+.case--soul-seasoned #section-30-2684,
+.case--dreamville-mart #section-30-3133,
+.case--monomon-mr #section-30-3566 { margin-top: calc(var(--case-section-gap) / 2); }
+.case--hua :is(#section-30-2209, #section-30-2536) .block-card:has(> .t-stat) { background: #f7f7f8; row-gap: 6px; }
+.case--hua :is(#section-30-2209, #section-30-2536) .t-stat + .t-label-caps { margin-top: 10px; }
+/* Use Pocket Harmonica's process presentation throughout the playground. */
+.case--hua #section-30-2298 .block-card--band::before,
+.case--playground:not(.case--hua) .block-card--band:has(.block-card--process)::before { background: rgb(247 247 248 / 0.491625); }
+.case--hua #section-30-2298 .block-card--process,
+.case--playground:not(.case--hua) .block-card--process { background: rgb(247 247 248 / 0.40425); }
+.case--hua #section-30-2298 .block-row--process > .block-col > .block-card,
+.case--playground:not(.case--hua) .block-row--process > .block-col > .block-card { background: #fff; }
+.case--playground:not(.case--hua) :is(h2, h3):has(+ .block-card--process) { font: var(--type-subheading); }
+.case--hua .case-section { scroll-margin-top: 184px; }
+@media (max-width: 40rem) { .case--hua .case-section { scroll-margin-top: 240px; } }
+@media (min-width: 75rem) { .case--hua .case-section { scroll-margin-top: 120px; } }
+
+/* HUA refinements: use the existing topic rhythm for the Highlights/Challenge transition. */
+/* All Playground graphs share Pocket Harmonica's Overall Process text color and alpha. */
+.case--playground .block-row--process :is(.t-body, .t-small, .t-caption, .t-label-caps) { color: var(--color-ink-80); }
+/* Match Highlights-to-Concept/Challenge spacing to the Concept-to-Challenge rhythm. */
+.case--hua #section-30-2249,
+.case--soul-seasoned #section-30-2729,
+.case--dreamville-mart #section-30-3175,
+.case--monomon-mr #section-30-3603 { margin-top: var(--case-topic-gap); }
+.case--hua #section-30-2298 .block-card--process + h2 { margin-top: 24px; }
+.case--hua #section-30-2392 .case-group:first-child .block-col > .block-img { width: 100% !important; aspect-ratio: 276 / 144; object-fit: fill; align-self: stretch; }
+.case--hua #section-30-2392 .case-group:first-child .block-col { align-items: stretch; }
+.case--hua #section-30-2392 .hua-wireframe-action { align-self: center; max-width: 100%; display: flex; flex-direction: column; gap: 12px; }
+.case--hua #section-30-2392 .hua-wireframe-action > h4 { text-align: left; padding-left: 1.265625rem; }
+.case--hua #section-30-2392 .block-img { border-radius: 7% / 13.5%; overflow: hidden; }
+.case--hua :is(#section-30-2392, #section-hua-design, #section-30-2524) .block-img { background: white; box-shadow: none; border: 0; }
+.case--hua #section-30-2524 .block-card > .t-body { font: var(--type-body); color: var(--color-ink); filter: none; }
+.case--hua #section-30-2447 > .case-group:nth-child(2) { margin-top: calc(var(--case-topic-gap) * -0.5); }
+.case--hua #section-30-2570 { margin-top: calc(var(--case-section-gap) / 1.2); }
+
+/* Soul Seasoned: tighten the process transitions and align iteration copy. */
+/* Dreamville Concept and Overall Process: 0.40425 × 1.5 background alpha. */
+.case--dreamville-mart #section-30-3175 .block-card--process { background: rgb(247 247 248 / 0.606375); }
+/* Concept nodes: align role labels at the top and center descriptions below. */
+.case--dreamville-mart :is(.case-section, #dreamville-design) { scroll-margin-top: 184px; }
+@media (max-width: 40rem) {
+	.case--dreamville-mart :is(.case-section, #dreamville-design) { scroll-margin-top: 240px; }
+}
+@media (min-width: 75rem) {
+	.case--dreamville-mart :is(.case-section, #dreamville-design) { scroll-margin-top: 120px; }
+}
+.case--dreamville-mart #section-30-3175 .case-group:first-child .block-row--process > .block-col:has(> .block-card) {
+	align-self: stretch;
+}
+.case--dreamville-mart #section-30-3175 .case-group:first-child .block-row--process > .block-col > .block-card {
+	display: grid;
+	grid-template-rows: calc(0.91rem + (2em - 0.91rem) * 2 / 3) 1fr;
+	row-gap: 8px;
+	height: 100%;
+	align-items: start;
+}
+.case--dreamville-mart #section-30-3175 .case-group:first-child .block-row--process > .block-col > .block-card > :last-child {
+	align-self: center;
+}
+.case--dreamville-mart #section-30-3175 .case-group:first-child .block-row--process .t-caption {
+	font-weight: 500;
+}
+.case--dreamville-mart #section-30-3175 .case-group:first-child .block-row--process > .block-col > .block-card > .t-caption:first-child {
+	font-size: 0.65rem;
+}
+/* Overall Process only: Challenge gray at 75% of its 19.25% opacity. */
+.case--dreamville-mart #section-30-3175 h2 + .block-card--process,
+.case--monomon-mr #section-30-3690 h3 + .block-card--process {
+	background: rgb(228 230 234 / 0.144375);
+}
+/* Challenge, My Approach, and Outcome: original alpha × 0.75 × 0.85. */
+.case--dreamville-mart :is(#section-30-3175, #section-30-3295) .case-group > .block-row > .block-col > .block-card {
+	--fill: rgb(228 230 234 / 0.1925);
+}
+/* Match the other playground Highlights cards to Soul Seasoned's statistic cards. */
+.case--playground :is(#section-30-2209, #section-30-3133, #section-30-3566) .block-card {
+	background: rgb(228 230 234 / 0.20328);
+}
+.case--playground [data-feedback-row] .t-body { font-size: 0.84375rem; font-weight: 400; color: var(--color-ink-80); }
+.case--playground .block-card:has(> [data-feedback-row]) { --fill: rgb(247 247 248 / 0.4648875); }
+.case--soul-seasoned #section-30-2729 .block-card { --fill: rgb(247 247 248 / 0.4648875); }
+/* Other Playground Challenge and Outcome cards match Dreamville's gray at 19.25%. */
+.case--playground:not(.case--dreamville-mart) :is(#section-30-2729, #section-30-2910, #section-30-2536, #section-30-3603, #section-30-3758) .block-card {
+	background: rgb(228 230 234 / 0.1925);
+}
+/* Monomon: Challenge gray with 15% less opacity. */
+.case--monomon-mr #section-30-3639 .block-card { background: rgb(228 230 234 / 0.163625); }
+.case--monomon-mr #section-30-3690 > .case-group:has(> h3 + .t-body) + .case-group:has(> h4) { margin-top: calc(var(--case-topic-gap) / -2); }
+@media (min-width: 40.001rem) {
+ .case--monomon-mr [data-feedback-row] > .block-col:first-child > .t-body { max-width: calc(100% - 5ch); }
+}
+.case--soul-seasoned #section-30-2786 { margin-top: calc(var(--case-section-gap) / 2); }
+.case--soul-seasoned #section-30-2816 > .case-group:nth-child(2) { margin-top: calc(var(--case-topic-gap) / 2.6 - var(--case-topic-gap)); }
+.case--soul-seasoned #section-30-2816 .block-card .t-body { font: var(--type-small); color: var(--color-ink-80); text-wrap: balance; }
+@media (min-width: 40.001rem) {
+	.case--soul-seasoned #section-30-2816 .block-card > .block-row { column-gap: 48px; }
 }

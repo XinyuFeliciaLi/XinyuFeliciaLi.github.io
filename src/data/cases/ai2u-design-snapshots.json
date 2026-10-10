@@ -777,6 +777,7 @@
     {
      "t": "card",
      "band": 1,
+     "fill": "transparent",
      "items": [
       {
        "t": "h2",
@@ -784,8 +785,7 @@
         {
          "s": "Impact"
         }
-       ],
-       "blue": 1
+       ]
       },
       {
        "t": "p",

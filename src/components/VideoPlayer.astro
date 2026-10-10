@@ -9,22 +9,23 @@ interface Props {
 	label: string; // what the video shows, for screen readers
 	loop?: boolean;
 	muted?: boolean;
+	controls?: boolean;
 }
 
-const { src, webm, poster, label, loop = true, muted = true } = Astro.props;
+const { src, webm, poster, label, controls = false, loop = !controls, muted = !controls } = Astro.props;
 ---
 
 <figure class="video-player" data-state="paused">
-	<video preload="metadata" playsinline poster={poster} loop={loop} muted={muted}>
+	<video controls={controls} aria-label={label} preload="metadata" playsinline poster={poster} loop={loop} muted={muted}>
 		{webm && <source src={webm} type="video/webm" />}
 		<source src={src} type="video/mp4" />
 	</video>
-	<button class="video-player__toggle" type="button" aria-label={`Play video: ${label}`}>
+	{!controls && <button class="video-player__toggle" type="button" aria-label={`Play video: ${label}`}>
 		<span class="video-player__icon" aria-hidden="true">
 			<svg class="icon-play" viewBox="0 0 24 24" width="24" height="24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"></path></svg>
 			<svg class="icon-pause" viewBox="0 0 24 24" width="24" height="24"><path d="M7 5h4v14H7zM13 5h4v14h-4z" fill="currentColor"></path></svg>
 		</span>
-	</button>
+	</button>}
 </figure>
 
 <script>
@@ -33,6 +34,7 @@ const { src, webm, poster, label, loop = true, muted = true } = Astro.props;
 			root.dataset.ready = '';
 			const video = root.querySelector('video')!;
 			const button = root.querySelector<HTMLButtonElement>('.video-player__toggle')!;
+			if (!button) return;
 			const label = button.getAttribute('aria-label')!.replace(/^Play video: /, '');
 
 			const sync = () => {
@@ -59,7 +61,7 @@ const { src, webm, poster, label, loop = true, muted = true } = Astro.props;
 	.video-player {
 		position: relative;
 		margin: 0;
-		border-radius: var(--radius-md);
+		border-radius: var(--radius-design);
 		overflow: hidden;
 		background: var(--color-ink);
 	}

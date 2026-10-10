@@ -122,7 +122,7 @@ Source of truth: [Portfolio - Web (Final)](https://www.figma.com/design/g3zH06cD
 | Videos | `src/assets/media/<slug>/<figma-node>.mp4` (see below) |
 | Renderer | [src/components/Blocks.astro](src/components/Blocks.astro), [src/components/CaseStudy.astro](src/components/CaseStudy.astro) |
 
-**Videos still to export.** Figma can't export video, so these four show their poster frame until the MP4 is dropped in. Once the file exists, it becomes a click-to-play video automatically:
+**Video assets.** Both AI2U Iterate clips are installed from the original 0831-MouseInteracted.mp4 and 0831-Micnofeedback.mp4 files. They autoplay muted, loop inline without controls, and pause offscreen. Reduced motion keeps their still posters. The two Monomon clips still need their MP4 files and use the click-to-play player:
 
 - `src/assets/media/ai2u-voice-chat/30-2096.mp4`: AI2U, "Recording stops on click"
 - `src/assets/media/ai2u-voice-chat/30-2102.mp4`: AI2U, "No mic feedback while speaking"
@@ -159,12 +159,15 @@ Role, Client, Collaborators and Responsibilities stay as they are.
 
 The site uses motion in four places: scroll reveals, page transitions, hover micro-interactions, and a hero moment on the landing page.
 
+The original Figma GIFs are restored across the landing-page cards and all applicable case-study images: 36 unique files, reused in device screens, heroes, walkthroughs, and comparison figures. Graphic & UI has no GIF fills. `AnimatedImage.astro` preserves each existing PNG as a poster and positions the original GIFs using `src/data/gif-layers.json`, including Figma crop transforms. GIFs load near the viewport, show still posters for reduced motion, and can be paused using the footer control. The two AI2U Iterate videos are installed; the two Monomon videos listed above remain pending.
+
 Rules for keeping it fast and accessible:
 
-- **No GIFs for screen recordings.** Export to MP4 and WebM instead. A GIF of a UI interaction is routinely 10x the file size of the same clip as video, for no visual gain.
-- **Videos never autoplay.** Use [src/components/VideoPlayer.astro](src/components/VideoPlayer.astro): it shows the poster frame, and the viewer clicks to play and clicks again to pause.
+- **Preserve the existing Figma GIFs.** For new screen recordings, prefer MP4 and WebM to keep file sizes down.
+- **Long videos use click-to-play.** Use [src/components/VideoPlayer.astro](src/components/VideoPlayer.astro). The two short AI2U Iterate clips intentionally behave like GIFs: muted autoplay, looping, and no play/pause buttons.
 - **Respect `prefers-reduced-motion`.** Some viewers get motion sickness from scroll animations. Every animation needs a reduced-motion fallback that skips straight to the end state. Implemented in [src/styles/global.css](src/styles/global.css) and the reveal observer in [src/layouts/BaseLayout.astro](src/layouts/BaseLayout.astro).
 - **Load video lazily.** `preload="metadata"` fetches only the first frame and duration until the viewer presses play.
 - **Watch the budget.** GitHub Pages caps published sites at 1 GB with a soft 100 GB/month bandwidth limit. Media is what eats it.
 
 Real animated artwork — pixel loops, motion graphics where the format is the point — can stay as GIF. This is about screen captures.
+
