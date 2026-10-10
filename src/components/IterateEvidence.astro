@@ -1,0 +1,76 @@
+---
+import recording from '../assets/cases/ai2u-voice-chat/013.png';
+import microphone from '../assets/cases/ai2u-voice-chat/014.png';
+import { videoUrl } from '../data/cases';
+interface Props { variant: 'recording' | 'microphone' }
+const { variant } = Astro.props;
+const source = variant === 'recording' ? recording : microphone;
+const caption = variant === 'recording' ? 'Recording stops on click' : 'No mic feedback while speaking';
+const clip = videoUrl(`ai2u-voice-chat/${variant === 'recording' ? '30-2096' : '30-2102'}.mp4`);
+const webm = videoUrl(`ai2u-voice-chat/${variant === 'recording' ? '30-2096' : '30-2102'}.webm`);
+---
+<figure class="iterate-evidence">
+ <div class="iterate-evidence__artwork">
+  <img src={source.src} alt={variant === 'recording' ? 'Game dialogue with an active voice input field' : 'Microphone input shown while the player is speaking'} loading="lazy" />
+  {clip && <looping-evidence>
+   <video autoplay muted loop playsinline preload="none" disablepictureinpicture aria-label={caption}>
+    <source data-src={webm} type="video/webm" />
+    <source data-src={clip} type="video/mp4" />
+   </video>
+  </looping-evidence>}
+ </div>
+ <figcaption>{caption}</figcaption>
+</figure>
+<style>
+ .iterate-evidence { width: 100%; margin: 0; padding: 28px; box-sizing: border-box; }
+ /* Display just the original screenshot, excluding its baked-in padding and caption. */
+ .iterate-evidence__artwork { position: relative; width: 100%; aspect-ratio: 307 / 174; overflow: hidden; border-radius: var(--radius-design); }
+ img { position: absolute; width: calc(363 / 307 * 100%); max-width: none; height: auto; left: calc(-28 / 307 * 100%); top: calc(-74 / 174 * 100%); }
+ looping-evidence { position: absolute; inset: 0; display: block; }
+ video { display: block; width: 100%; height: 100%; object-fit: cover; opacity: 0; pointer-events: none; }
+ video[data-playing] { opacity: 1; }
+ @media (prefers-reduced-motion: reduce) { looping-evidence { display: none; } }
+ figcaption { margin-top: 12px; text-align: center; color: var(--color-ink-60); font: 400 12px / 1.6 'Poppins', sans-serif; }
+</style>
+
+<script>
+ class LoopingEvidence extends HTMLElement {
+  private cleanup?: () => void;
+  connectedCallback() {
+   this.cleanup?.();
+   const video = this.querySelector('video')!;
+   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+   const events = new AbortController();
+   let visible = false;
+   video.muted = true;
+   const sync = () => {
+    if (!visible || reduced.matches || document.hidden) {
+     video.pause();
+     if (reduced.matches) video.removeAttribute('data-playing');
+     return;
+    }
+    if (!video.querySelector('source[src]')) {
+     video.querySelectorAll<HTMLSourceElement>('source[data-src]').forEach(source => { source.src = source.dataset.src!; });
+     video.load();
+    }
+    void video.play().catch(() => {
+     // An offscreen pause can reject an older play request after playback resumes.
+     if (video.paused) video.removeAttribute('data-playing');
+    });
+   };
+   video.addEventListener('playing', () => { video.dataset.playing = ''; }, { signal: events.signal });
+   video.addEventListener('error', () => video.removeAttribute('data-playing'), { signal: events.signal });
+   video.addEventListener('canplay', sync, { signal: events.signal });
+   reduced.addEventListener('change', sync, { signal: events.signal });
+   document.addEventListener('visibilitychange', sync, { signal: events.signal });
+   const observer = new IntersectionObserver(entries => {
+    visible = entries[0].isIntersecting;
+    sync();
+   });
+   observer.observe(this);
+   this.cleanup = () => { observer.disconnect(); events.abort(); video.pause(); };
+  }
+  disconnectedCallback() { this.cleanup?.(); }
+ }
+ if (!customElements.get('looping-evidence')) customElements.define('looping-evidence', LoopingEvidence);
+</script>

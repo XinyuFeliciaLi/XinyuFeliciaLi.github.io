@@ -143,6 +143,14 @@
    "name": "Impact / HUA",
    "items": [
     {
+     "t": "eyebrow",
+     "runs": [
+      {
+       "s": "Overview"
+      }
+     ]
+    },
+    {
      "t": "h2",
      "runs": [
       {
@@ -157,6 +165,13 @@
        "s": "HUA shipped as a bilingual mobile experience across iOS and Android, with the final UI implemented in Unity and support for English and Simplified Chinese."
       }
      ]
+    },
+    {
+     "t": "video",
+     "video": "hua/0917-V3-EN.mp4",
+     "alt": "HUA: Pocket Harmonica — English gameplay video",
+     "w": 1440,
+     "controls": true
     },
     {
      "t": "row",
@@ -200,7 +215,7 @@
            "t": "stat",
            "runs": [
             {
-             "s": "3K+"
+             "s": "5K+"
             }
            ],
            "center": 1
@@ -227,14 +242,6 @@
    "id": "30:2249",
    "name": "Overview",
    "items": [
-    {
-     "t": "eyebrow",
-     "runs": [
-      {
-       "s": "Overview"
-      }
-     ]
-    },
     {
      "t": "h2",
      "runs": [
@@ -915,7 +922,7 @@
   },
   {
    "id": "30:2392",
-   "name": "Design",
+   "name": "Define",
    "items": [
     {
      "t": "eyebrow",
@@ -929,7 +936,7 @@
      "t": "h2",
      "runs": [
       {
-       "s": "Early-Stage Low-Fidelity Prototype"
+       "s": "Low-Fidelity Prototype"
       }
      ]
     },
@@ -955,7 +962,7 @@
            "src": "hua/013.png",
            "w": 276,
            "h": 144,
-           "alt": "Early-Stage Low-Fidelity Prototype"
+           "alt": "Low-Fidelity Prototype"
           },
           {
            "t": "h4",
@@ -1035,40 +1042,51 @@
        "center": 1
       },
       {
-       "t": "h4",
-       "runs": [
+       "t": "hua-wireframe-action",
+       "items": [
         {
-         "s": "Action"
+         "t": "h4",
+         "runs": [
+          {
+           "s": "Action"
+          }
+         ]
+        },
+        {
+         "t": "small",
+         "list": "ol",
+         "lines": [
+          [
+           {
+            "s": "Simplified Controls: ",
+            "b": 1
+           },
+           {
+            "s": "Moved blow and draw to a single toggle button"
+           }
+          ],
+          [
+           {
+            "s": "Reduced Visual Weight: Removed the harmonica-shaped interface"
+           }
+          ],
+          [
+           {
+            "s": "Simplified Mechanics: Reduced two rows of notes to one for easier play"
+           }
+          ]
+         ]
         }
-       ]
-      },
-      {
-       "t": "small",
-       "list": "ol",
-       "lines": [
-        [
-         {
-          "s": "Simplified Controls: ",
-          "b": 1
-         },
-         {
-          "s": "Moved blow and draw to a single toggle button"
-         }
-        ],
-        [
-         {
-          "s": "Reduced Visual Weight: Removed the harmonica-shaped interface"
-         }
-        ],
-        [
-         {
-          "s": "Simplified Mechanics: Reduced two rows of notes to one for easier play"
-         }
-        ]
        ]
       }
      ]
-    },
+    }
+   ]
+  },
+  {
+   "id": "hua-design",
+   "name": "Design",
+   "items": [
     {
      "t": "eyebrow",
      "runs": [
@@ -1452,7 +1470,7 @@
            "t": "stat",
            "runs": [
             {
-             "s": "3K+"
+             "s": "5K+"
             }
            ],
            "center": 1
@@ -1480,76 +1498,7 @@
    "name": "Check Out the Product / HUA",
    "items": [
     {
-     "t": "card",
-     "band": 1,
-     "items": [
-      {
-       "t": "h2",
-       "runs": [
-        {
-         "s": "Check Out the Product"
-        }
-       ]
-      },
-      {
-       "t": "row",
-       "cols": [
-        {
-         "w": 136,
-         "items": [
-          {
-           "t": "card",
-           "items": [
-            {
-             "t": "row",
-             "cols": [
-              {
-               "w": 22,
-               "items": [
-                {
-                 "t": "img",
-                 "src": "hua/022.png",
-                 "w": 22,
-                 "h": 22,
-                 "alt": ""
-                }
-               ]
-              },
-              {
-               "w": 69,
-               "items": [
-                {
-                 "t": "small",
-                 "runs": [
-                  {
-                   "s": "App Store",
-                   "href": "https://apps.apple.com/us/app/hua-pocket-harmonica/id6808189960"
-                  }
-                 ]
-                }
-               ]
-              }
-             ]
-            }
-           ]
-          }
-         ]
-        },
-        {
-         "w": 136,
-         "items": [
-          {
-           "t": "img",
-           "src": "hua/023.png",
-           "w": 136,
-           "h": 38,
-           "alt": "Check Out the Product"
-          }
-         ]
-        }
-       ]
-      }
-     ]
+     "t": "hua-product-links"
     }
    ]
   }

@@ -14,7 +14,7 @@ import HeroCopy from './HeroCopy.astro';
 	<div class="dlight__controls" role="group" aria-label="Dither light settings">
 		<label>
 			Pixel
-			<input type="range" min="3" max="10" value="5" data-control="pixel" />
+			<input type="range" min="3" max="10" value="3" data-control="pixel" />
 		</label>
 		<label>
 			Light
@@ -39,7 +39,7 @@ import HeroCopy from './HeroCopy.astro';
 		margin-inline: auto;
 		display: grid;
 		align-items: center;
-		background: #5adba6;
+		background: #f8fcf7;
 		border-radius: clamp(var(--radius-lg), 4vw, 80px);
 		overflow: hidden;
 	}
@@ -110,16 +110,16 @@ import HeroCopy from './HeroCopy.astro';
 		if (key === 'palette') {
 			// The switcher palette's first two colours (e.g. pink + purple), lit up to white
 			const pal = currentPalette();
-			return [pal[1], pal[0], '#ffffff'].map(hex);
+			return [pal[1], pal[0], '#ffffff'].map(c => hex(c).map(v => Math.round(v * 0.22 + 255 * 0.78)));
 		}
-		if (key === 'grey') return ['#c9cdd4', '#e4e6ea', '#f2f3f5', '#ffffff'].map(hex);
-		return ['#5adba6', '#9fe9c9', '#d6f6e8', '#ffffff'].map(hex);
+		if (key === 'grey') return ['#e8ebee', '#f0f2f4', '#f7f8fa', '#ffffff'].map(hex);
+		return ['#e1f4e9', '#edf9f0', '#f8fcf7', '#fffdf8'].map(hex);
 	}
 
 	onEachPage('[data-dlight]', (root) => {
 		const canvas = root.querySelector<HTMLCanvasElement>('[data-canvas]')!;
 		const ctx = canvas.getContext('2d')!;
-		let pixel = 5;
+		let pixel = 3;
 		let lightSize = 0.45; // light radius as a share of the hero width
 		let tones = ramp(root.dataset.colors ?? 'mint');
 		let w = 0;
@@ -159,7 +159,8 @@ import HeroCopy from './HeroCopy.astro';
 				const sky = 0.18 * (1 - y / h);
 				for (let x = 0; x < w; x++, i += 4) {
 					const lit = Math.exp(-((x - light.x) ** 2 + dy2) * inv * 2.2);
-					const v = Math.min(1, lit + sky) * levels;
+					const quiet = 0.82 * Math.pow(1 - x / w, 2);
+					const v = Math.min(1, Math.max(quiet, lit + sky)) * levels;
 					const base = Math.floor(v);
 					const tone = tones[Math.min(levels, base + (v - base > BAYER[(y & 3) * 4 + (x & 3)] ? 1 : 0))];
 					px[i] = tone[0];

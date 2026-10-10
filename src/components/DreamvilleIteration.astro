@@ -1,0 +1,23 @@
+---
+import artwork from '../assets/cases/dreamville-mart/018.png';
+---
+<div class="block-img dreamville-iteration" role="img" aria-label="Playtest and iteration: Week 6 followed by Week 12">
+  <img class="week-six" src={artwork.src} alt="" aria-hidden="true" loading="lazy" />
+  <img class="week-arrow" src={artwork.src} alt="" aria-hidden="true" loading="lazy" />
+  <img class="week-twelve" src={artwork.src} alt="" aria-hidden="true" loading="lazy" />
+</div>
+<style>
+  .dreamville-iteration { position: relative; width: 750px; aspect-ratio: 750 / 346; border-radius: 16px; overflow: hidden; }
+  img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+  .week-six { clip-path: inset(0 56% 0 0); }
+  .week-arrow { clip-path: inset(0 46% 0 44%); }
+  .week-twelve { clip-path: inset(0 0 0 54%); }
+  @media (prefers-reduced-motion: no-preference) {
+    [data-panel-motion] img { opacity: 0; transition: opacity 650ms ease; }
+    [data-panel-visible] img { opacity: 1; }
+    .week-six { transition-delay: 140ms; }
+    .week-arrow { transition-delay: 380ms; }
+    .week-twelve { transition-delay: 620ms; }
+  }
+</style>
+

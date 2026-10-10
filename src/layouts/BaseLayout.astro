@@ -13,9 +13,10 @@ interface Props {
 	title: string;
 	description?: string;
 	noindex?: boolean;
+	footerAtBottom?: boolean;
 }
 
-const { title, description = 'Felicia Li — senior product designer, UX/UI.', noindex = false } = Astro.props;
+const { title, description = 'Felicia Li — senior product designer, UX/UI.', noindex = false, footerAtBottom = false } = Astro.props;
 ---
 
 <!doctype html>
@@ -31,7 +32,7 @@ const { title, description = 'Felicia Li — senior product designer, UX/UI.', n
 
 		<ClientRouter />
 	</head>
-	<body>
+	<body class:list={{ 'footer-at-bottom': footerAtBottom }}>
 		<Header />
 		<main>
 			<slot />
@@ -75,3 +76,16 @@ const { title, description = 'Felicia Li — senior product designer, UX/UI.', n
 		</script>
 	</body>
 </html>
+
+<style>
+	.footer-at-bottom {
+		min-height: 100vh;
+		min-height: 100dvh;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.footer-at-bottom > main {
+		flex: 1 0 auto;
+	}
+</style>

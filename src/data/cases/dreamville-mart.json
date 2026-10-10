@@ -143,6 +143,14 @@
 			"name": "Highlights / Dreamville",
 			"items": [
 				{
+					"t": "eyebrow",
+					"runs": [
+						{
+							"s": "Overview"
+						}
+					]
+				},
+				{
 					"t": "h2",
 					"runs": [
 						{
@@ -208,8 +216,7 @@
 											"t": "small",
 											"runs": [
 												{
-													"s": "Presented as a playable experience at the CMU ETC Festival.",
-													"i": 1
+													"s": "Presented as a playable experience at the CMU ETC Festival."
 												}
 											],
 											"center": 1
@@ -227,14 +234,6 @@
 			"id": "30:3175",
 			"name": "Overview / Dreamville",
 			"items": [
-				{
-					"t": "eyebrow",
-					"runs": [
-						{
-							"s": "Overview"
-						}
-					]
-				},
 				{
 					"t": "h2",
 					"runs": [
@@ -1111,7 +1110,7 @@
 					"t": "h2",
 					"runs": [
 						{
-							"s": "Project Outcome"
+							"s": "Project Outcomes"
 						}
 					]
 				},

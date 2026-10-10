@@ -1,0 +1,31 @@
+---
+import HeroCopy from './HeroCopy.astro';
+---
+<div class="editorial">
+  <div class="editorial__inner">
+    <div class="editorial__copy"><p class="editorial__eyebrow">PRODUCT DESIGN · AI &amp; B2C</p><HeroCopy /><a class="editorial__link" href="/projects/">Explore my work <span aria-hidden="true">↗</span></a></div>
+    <div class="editorial__art" aria-hidden="true">
+      <span class="editorial__orbit"></span>
+      <div class="editorial__sheet"><span class="editorial__kicker">FROM COMPLEXITY</span><div class="editorial__lines"><i></i><i></i><i></i></div><span class="editorial__arrow">↓</span><div class="editorial__result"><span>✦</span> To clarity.</div></div>
+      <span class="editorial__note">Made for people.</span><span class="editorial__dot"></span>
+    </div>
+  </div>
+</div>
+<style>
+.editorial { position:relative; max-width:var(--width-hero); margin-inline:auto; background:#fffdf8; border-radius:clamp(24px,4vw,80px); overflow:hidden; }
+.editorial__inner { max-width:66rem; margin:auto; min-height:38rem; padding:9rem 1.5rem 5rem; display:grid; grid-template-columns:1.4fr 1fr; align-items:center; gap:4rem; }
+.editorial__eyebrow { font:var(--type-caption); letter-spacing:.12em; color:var(--color-ink-60); margin-bottom:2rem; }
+.editorial__copy :global(h1) { font-size:clamp(2rem,3vw,2.7rem); line-height:1.22; letter-spacing:-.035em; }
+.editorial__link { display:inline-flex; align-items:center; gap:2rem; margin-top:2rem; padding-bottom:.5rem; border-bottom:1px solid var(--color-ink); text-decoration:none; font:var(--type-label); }
+.editorial__art { position:relative; min-height:320px; display:grid; place-items:center; }
+.editorial__orbit { position:absolute; width:310px; height:310px; border:1px solid #e7e2d8; border-radius:50%; }
+.editorial__sheet { position:relative; width:250px; padding:28px; background:#fff; border:1px solid #ebe6dc; border-radius:20px; box-shadow:0 20px 60px #2537460c; transform:rotate(-5deg); }
+.editorial__kicker { font:var(--type-caption); letter-spacing:.1em; color:var(--color-ink-60); }
+.editorial__lines { display:grid; gap:9px; margin-top:22px; }
+.editorial__lines i { display:block; height:8px; border-radius:8px; background:#ece8df; }.editorial__lines i:nth-child(2){width:75%}.editorial__lines i:nth-child(3){width:88%}
+.editorial__arrow { display:block; margin:14px 0; color:#53bc90; font-size:30px; }
+.editorial__result { padding:18px 12px; background:#dcf5e8; border-radius:12px; font:var(--type-lead); }.editorial__result span{margin-right:8px;color:#368e67}
+.editorial__note { position:absolute; bottom:5px; right:0; padding:12px 20px; border-radius:8px; background:#dac8ff; font:var(--type-label); transform:rotate(5deg); }
+.editorial__dot { position:absolute; top:12px; right:8px; width:24px; height:24px; border-radius:50%; background:#ff894b; }
+@media(max-width:48rem){.editorial__inner{grid-template-columns:1fr;gap:2rem;padding-top:10rem}.editorial__art{max-width:340px;width:100%;margin:auto}.editorial__orbit{width:280px;height:280px}}
+</style>

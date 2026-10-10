@@ -4,6 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import CaseHero from './CaseHero.astro';
 import Blocks from './Blocks.astro';
 import CaseSectionNav from './CaseSectionNav.astro';
+import CaseProjectLinks from './CaseProjectLinks.astro';
 import { caseContent, heroImage, type Block, type CaseEntry } from '../data/cases';
 import '../styles/case-study.css';
 import '../styles/case-study-card-layouts.css';
@@ -15,6 +16,15 @@ interface Props {
 
 const { entry } = Astro.props;
 const content = caseContent(entry.slug);
+const voiceSections = [
+	{ id: 'section-30-1589', label: 'Overview' },
+	{ id: 'section-30-1606', label: 'Understand' },
+	{ id: 'section-30-1836', label: 'Research' },
+	{ id: 'section-30-2027', label: 'Ideation' },
+	{ id: 'section-30-2074', label: 'Iterate' },
+	{ id: 'section-30-2108', label: 'Final Design' },
+	{ id: 'section-30-2116', label: 'Impact' },
+];
 
 // Figma nests each section as an intro (eyebrow / heading / body) followed by sub-blocks, each
 // headed by an h2, h3 or eyebrow. Split the flat block list at those headings (an eyebrow sticks to
@@ -42,13 +52,46 @@ const isFinal = (items: Block[]) =>
 
 <BaseLayout title={content.title} description={entry.cardTitle}>
 	<CaseHero image={heroImage(entry.slug)} alt={entry.heroAlt} />
+	{entry.slug === 'hua' && <CaseSectionNav sections={[
+		{ id: 'section-30-2166', label: 'Overview' },
+		{ id: 'section-30-2298', label: 'Process' },
+		{ id: 'section-30-2351', label: 'Understand' },
+		{ id: 'section-30-2392', label: 'Define' },
+		{ id: 'section-hua-design', label: 'Design' },
+		{ id: 'section-30-2447', label: 'Iterate' },
+		{ id: 'section-30-2524', label: 'Final Design' },
+		{ id: 'section-30-2536', label: 'Outcomes' },
+	]} />}
+	{entry.slug === 'ai2u-voice-chat' && <CaseSectionNav sections={voiceSections} />}
+	{entry.slug === 'monomon-mr' && <CaseSectionNav sections={[
+		{ id: 'section-30-3554', label: 'Overview' },
+		{ id: 'section-30-3639', label: 'Production' },
+		{ id: 'section-30-3690', label: 'UX Design' },
+		{ id: 'section-30-3753', label: 'Final Design' },
+		{ id: 'section-30-3758', label: 'Outcomes' },
+	]} />}
+	{entry.slug === 'dreamville-mart' && <CaseSectionNav sections={[
+		{ id: `section-${content.sections[0].id.replace(':', '-')}`, label: 'Overview' },
+		{ id: 'dreamville-design', label: 'Design' },
+		{ id: 'section-30-3250', label: 'Iteration' },
+		{ id: 'section-30-3281', label: 'Final Design' },
+		{ id: 'section-30-3295', label: 'Outcomes' },
+	]} />}
+	{entry.slug === 'soul-seasoned' && <CaseSectionNav sections={[
+		{ id: 'section-30-2641', label: 'Overview' },
+		{ id: 'section-30-2786', label: 'Design' },
+		{ id: 'section-30-2895', label: 'Final' },
+		{ id: 'section-30-2910', label: 'Outcomes' },
+	]} />}
+	{entry.slug === 'childrens-museum' && <CaseSectionNav sections={content.sections.filter(s => ['Overview', 'Understand', 'Research', 'Define', 'Design', 'Iterate', 'Final Design', 'Impact'].includes(s.name)).map(s => ({ id: `section-${s.id.replace(':', '-')}`, label: s.name }))} />}
+	{entry.slug === 'ai2u-design-snapshots' && <CaseSectionNav snapshots sections={content.sections.map((section, index) => ({ id: `section-${section.id.replace(':', '-')}`, label: ['Overview', 'Snapshots', 'Impact'][index] }))} />}
 	{entry.slug === 'fortune-kid' && <CaseSectionNav sections={content.sections.filter(s => s.name !== 'How Might We').map(s => ({ id: `section-${s.id.replace(':', '-')}`, label: s.name === 'Refine' ? 'Iteration' : s.name }))} />}
-	<article class:list={['container container--prose case', `case--${entry.slug}`, { 'case--featured': entry.kind === 'project' }]}>
+	<article class:list={['container container--prose case', `case--${entry.slug}`, { 'case--featured': entry.kind === 'project', 'case--playground': entry.kind === 'playground' }]}>
 		{
 			content.sections.map((section) => (
 				<section id={`section-${section.id.replace(':', '-')}`} data-figma-node={section.id} class:list={['case-section', { 'case-section--final': isFinal(section.items) }]} data-panel-entrances>
 					{groups(section.items).map((group) => (
-						<div class:list={['case-group', { 'case-group--insights': group[0]?.runs?.some((run) => run.s.trim() === 'Key Insights') }]}>
+						<div id={entry.slug === 'dreamville-mart' && group.some(block => block.runs?.some(run => run.s === 'My Approach')) ? 'dreamville-design' : undefined} class:list={['case-group', { 'case-group--insights': group[0]?.runs?.some((run) => run.s.trim() === 'Key Insights') }]}>
 							<Blocks items={group} />
 						</div>
 					))}
@@ -56,6 +99,7 @@ const isFinal = (items: Block[]) =>
 			))
 		}
 	</article>
+	<CaseProjectLinks entry={entry} />
 </BaseLayout>
 
 <script>
@@ -64,11 +108,13 @@ const isFinal = (items: Block[]) =>
 	function setupPanelEntrances() {
 		panelObserver?.disconnect();
 		if (reducedMotion.matches || !('IntersectionObserver' in window)) return;
-		const panelSelector = '.block-card, .block-img, .block-video, .block-showreel, .block-col--media-panel, .workflow-canvas, .iteration-comparison, .competitive-analysis';
+		const panelSelector = '.block-card, .block-img, .block-video, .block-showreel, .block-col--media-panel, .workflow-canvas, .iteration-comparison, .competitive-analysis, .feedback-quote, .museum-diagram';
 		// Animate each outer surface once, without nested card reveals.
 		const panels = [...document.querySelectorAll<HTMLElement>('[data-panel-entrances]')]
 			.flatMap(section => [...section.querySelectorAll<HTMLElement>(panelSelector)])
-			.filter(panel => !panel.parentElement?.closest(panelSelector))
+			.filter(panel => panel.closest('.case--playground .block-card--band:has(.block-card--process)')
+				? panel.matches('.block-card--process')
+				: !panel.parentElement?.closest(panelSelector))
 			.filter(panel => !panel.matches('.block-card--metadata, .block-card--details') && !panel.querySelector('.block-row--metadata'));
 		panelObserver = new IntersectionObserver((entries) => {
 			for (const entry of entries) {
@@ -78,10 +124,47 @@ const isFinal = (items: Block[]) =>
 			}
 		}, { threshold: 0, rootMargin: '0px 0px -120px 0px' });
 		for (const panel of panels) {
-			panel.querySelectorAll<HTMLElement>('.block-img, .workflow-layer, .iteration-image, .competitive-analysis img, .showreel-media').forEach(image => {
+			const isVoiceCase = !!panel.closest('.case--ai2u-voice-chat, .case--childrens-museum, .case--hua');
+			panel.querySelectorAll<HTMLElement>('.block-img, .workflow-layer, .iteration-image, .competitive-analysis img, .showreel-media, .feedback-illustration, .feedback-bubble, .block-video video, .iterate-evidence__artwork').forEach(image => {
 				if (!image.hasAttribute('data-panel-media')) image.style.setProperty('--media-rest-opacity', getComputedStyle(image).opacity);
 				image.setAttribute('data-panel-media', '');
 			});
+			if (isVoiceCase || panel.closest('.case--dreamville-mart, .case--monomon-mr')) {
+				// Give grouped cards the same layered entrance as Fortune Kid's image panels.
+				const row = panel.parentElement?.closest('.block-row');
+				if (row && !row.closest('[data-panel-motion]')) {
+					const siblings = panels.filter(candidate => candidate.parentElement?.closest('.block-row') === row);
+					panel.style.setProperty('--panel-delay', `${siblings.indexOf(panel) * 100}ms`);
+				}
+			}
+			if (isVoiceCase) {
+				panel.querySelectorAll<HTMLElement>('.block-card').forEach((card, index) => {
+					if (card.parentElement?.closest('.block-card') !== panel) return;
+					card.setAttribute('data-panel-detail', '');
+					card.style.setProperty('--detail-delay', `${140 + index * 100}ms`);
+				});
+			}
+			if (panel.closest('.case--playground')) {
+				// Reveal flowchart steps in reading order, including their connecting arrows.
+				panel.querySelectorAll<HTMLElement>('.block-row--process > .block-col').forEach((step, index) => {
+					step.setAttribute('data-panel-detail', '');
+					step.style.setProperty('--detail-delay', `${140 + index * 100}ms`);
+					step.querySelectorAll('[data-panel-detail]').forEach(child => child.removeAttribute('data-panel-detail'));
+				});
+				panel.querySelectorAll<HTMLElement>('.block-row:not(.block-row--process)').forEach(row => {
+					[...row.children].forEach((column, index) => {
+						column.querySelectorAll<HTMLElement>('[data-panel-media]').forEach(media => {
+							media.style.setProperty('--hua-media-delay', `${140 + index * 240}ms`);
+						});
+					});
+				});
+			}
+			if (panel.closest('.case--hua')) {
+				panel.querySelectorAll<HTMLElement>('.hua-touch-targets > figure').forEach((figure, index) => {
+					figure.setAttribute('data-panel-detail', '');
+					figure.style.setProperty('--detail-delay', `${140 + index * 240}ms`);
+				});
+			}
 			panel.setAttribute('data-panel-motion', '');
 			panelObserver.observe(panel);
 		}

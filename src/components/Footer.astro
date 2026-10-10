@@ -6,10 +6,13 @@ const year = new Date().getFullYear();
 	<div class="container site-footer__inner">
 		<p>&copy; {year} Felicia Li</p>
 		<p>Designed and built with love and coffee</p>
+		<button class="gif-toggle" data-gif-toggle type="button" aria-pressed="false" hidden>Pause GIFs</button>
 	</div>
 </footer>
 
 <style>
+	.gif-toggle { background: transparent; color: inherit; border: 1px solid currentColor; border-radius: 999px; padding: 8px 16px; font: inherit; cursor: pointer; }
+	.gif-toggle[hidden] { display: none; }
 	/* Navy band (Figma: 178px footer band) */
 	.site-footer {
 		margin-top: var(--space-24);

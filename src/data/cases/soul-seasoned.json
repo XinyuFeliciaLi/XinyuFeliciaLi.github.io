@@ -150,6 +150,14 @@
 			"name": "Impact / HUA",
 			"items": [
 				{
+					"t": "eyebrow",
+					"runs": [
+						{
+							"s": "Overview"
+						}
+					]
+				},
+				{
 					"t": "h2",
 					"runs": [
 						{
@@ -178,14 +186,6 @@
 			"id": "30:2729",
 			"name": "Overview",
 			"items": [
-				{
-					"t": "eyebrow",
-					"runs": [
-						{
-							"s": "Overview"
-						}
-					]
-				},
 				{
 					"t": "h2",
 					"runs": [
@@ -712,10 +712,18 @@
 									"w": 249,
 									"items": [
 										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Outcome"
+												}
+											]
+										},
+										{
 											"t": "small",
 											"runs": [
 												{
-													"s": "Outcome\nTurned AI-driven dialogue into an in-world conversation experience that feels native, rather than a separate chatbot layer."
+													"s": "Turned AI dialogue into natural in-world conversations instead of a separate chatbot experience."
 												}
 											]
 										}
@@ -784,10 +792,18 @@
 									"w": 249,
 									"items": [
 										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Outcome"
+												}
+											]
+										},
+										{
 											"t": "small",
 											"runs": [
 												{
-													"s": "Outcome\nTurned customer orders into a visual receipt system that makes each order easy to scan and match to the right customer."
+													"s": "Turned customer orders into visual receipts, making details easy to scan and match to each customer."
 												}
 											]
 										}
@@ -856,10 +872,18 @@
 									"w": 249,
 									"items": [
 										{
+											"t": "h4",
+											"runs": [
+												{
+													"s": "Outcome"
+												}
+											]
+										},
+										{
 											"t": "small",
 											"runs": [
 												{
-													"s": "Outcome\nCreated a lightweight information panel that helps players quickly recall customer history and preferences."
+													"s": "Improved access to customer history and preferences through a lightweight information panel."
 												}
 											]
 										}
@@ -882,17 +906,12 @@
 											"lines": [
 												[
 													{
-														"s": "Tracks who the player has met"
+														"s": "Tracks customers and their preferences"
 													}
 												],
 												[
 													{
-														"s": "Surfaces customer preferences"
-													}
-												],
-												[
-													{
-														"s": "Keeps previous conversations easy to reference"
+														"s": "Keeps past conversations easy to reference"
 													}
 												]
 											]
@@ -1036,55 +1055,7 @@
 			"name": "Check Out the Product / HUA",
 			"items": [
 				{
-					"t": "card",
-					"band": 1,
-					"items": [
-						{
-							"t": "h2",
-							"runs": [
-								{
-									"s": "Check out the product"
-								}
-							]
-						},
-						{
-							"t": "card",
-							"fill": "#fa5c5c",
-							"items": [
-								{
-									"t": "row",
-									"cols": [
-										{
-											"w": 22,
-											"items": [
-												{
-													"t": "img",
-													"src": "soul-seasoned/015.png",
-													"w": 22,
-													"h": 19,
-													"alt": ""
-												}
-											]
-										},
-										{
-											"w": 43,
-											"items": [
-												{
-													"t": "small",
-													"runs": [
-														{
-															"s": "itch.io",
-															"href": "https://alterstaff.itch.io/soul-seasoned"
-														}
-													]
-												}
-											]
-										}
-									]
-								}
-							]
-						}
-					]
+					"t": "soul-product-links"
 				}
 			]
 		}

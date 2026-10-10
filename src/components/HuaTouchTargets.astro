@@ -1,0 +1,22 @@
+---
+import screenshot from '../assets/cases/hua/018.png';
+---
+<div class="hua-touch-targets block-card">
+  {['Before', 'After'].map((label, index) => (
+    <figure>
+      <div class:list={['hua-touch-screen', { 'hua-touch-screen--after': index === 1 }]}>
+        <img src={screenshot.src} alt={`${label}: HUA gameplay touch controls`} loading="lazy" />
+      </div>
+      <figcaption>{label}</figcaption>
+    </figure>
+  ))}
+</div>
+<style>
+  .hua-touch-targets { display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px !important; padding: 24px !important; }
+  figure { margin: 0; min-width: 0; }
+  .hua-touch-screen { position: relative; aspect-ratio: 363 / 168; overflow: hidden; border-radius: 14px; background: white; }
+  img { position: absolute; width: 206.34%; max-width: none; height: auto; left: 0; top: -7.143%; }
+  .hua-touch-screen--after img { left: -106.34%; }
+  figcaption { margin-top: 12px; text-align: center; font: 500 14px / 1.5 var(--font-sans); }
+  @media (max-width: 40rem) { .hua-touch-targets { grid-template-columns: 1fr; } }
+</style>

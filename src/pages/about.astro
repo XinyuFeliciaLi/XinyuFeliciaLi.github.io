@@ -1,29 +1,115 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import RollingStat from '../components/RollingStat.astro';
+import '@fontsource/poppins/latin-700.css';
+
+
+
+const stats = [
+	{ value: '14,570', unit: 'ft', label: ['Highest elevation', 'hiked'] },
+	{ value: 'V2', label: ['Bouldering grade', 'reached'] },
+	{ value: '600+', label: ['Volunteer hours', 'contributed'] },
+	{ value: '2', label: ['Cats keeping', 'me company'] },
+];
 ---
 
-<BaseLayout title="About">
-	<section class="container">
-		<h1 class="t-title" data-reveal>About</h1>
-		<div class="prose" data-reveal>
-			<p>
-				PLACEHOLDER — a short paragraph about Felicia: background, design
-				philosophy, and a few personal details/hobbies. Structure still TBD —
-				keep this brief for now until the real page is designed.
-			</p>
-		</div>
-	</section>
+<BaseLayout title="About" description="Meet Felicia Li, a New York based product designer creating AI interactions, websites, and interactive experiences." footerAtBottom>
+	<div class="container about-page">
+		<section class="about-intro" aria-labelledby="about-heading">
+			
+			<div class="intro-content">
+				<p class="t-eyebrow intro-label" data-reveal>About me</p>
+				
+				<h1 id="about-heading" data-reveal>Hi, I'm Felicia!<br /><span class="intro-description">I'm a product designer focused on AI and interactive experiences.</span></h1>
+				<div class="intro-copy">
+					<p data-reveal>At AlterStaff, I contributed to the product experience of AI2U, an AI-powered game that sold 100,000+ copies. My work also includes designing and shipping a mobile app and leading the design and development of a startup studio website.</p>
+					<p data-reveal>My approach combines user research, product thinking, rapid prototyping, and AI-native workflows to turn complex ideas into intuitive, functional products.</p>
+					<p data-reveal>I hold a master's degree in Entertainment Technology from Carnegie Mellon University, where I focused on interaction design.</p>
+					<p data-reveal>Outside of work, I'm always curious about new tools, creative ideas, and what I can build next.</p>
+				</div>
+				<div class="intro-links" data-reveal>
+					<a class="button-primary" href="https://www.linkedin.com/in/felicia-li-48826713b/" target="_blank" rel="noopener noreferrer">View LinkedIn <span aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></a>
+					<a href="/resume/">Check my resume <span aria-hidden="true">↗</span></a>
+				</div>
+			</div>
+		</section>
+
+		<section class="fun-stats" aria-labelledby="stats-heading">
+			<div class="stats-heading">
+				<p class="t-eyebrow" data-reveal>Fun stats</p>
+				<h2 id="stats-heading" data-reveal>A little about life outside design.</h2>
+			</div>
+			<dl class="stats-grid">
+				{stats.map((stat) => (
+					<div class="stat" data-reveal>
+						<dt>{stat.label[0]}<br />{stat.label[1]}</dt>
+						<dd><RollingStat text={stat.value} />{stat.unit && <span class="stat-unit"> {stat.unit}</span>}</dd>
+					</div>
+				))}
+			</dl>
+		</section>
+	</div>
 </BaseLayout>
 
 <style>
-	section {
-		/* clears the absolutely-positioned nav */
-		padding-block: calc(var(--space-10) + 4.5rem + var(--space-12)) var(--space-16);
-		max-width: 42rem;
+	/* Keyframes ensure entrance motion also plays when revealed before the first paint. */
+	@media (prefers-reduced-motion: no-preference) {
+		.about-page [data-reveal][data-revealed] {
+			animation: about-enter var(--duration-reveal) var(--ease-reveal) both;
+			animation-delay: var(--reveal-delay, 0ms);
+			transition: none;
+		}
 	}
+	@keyframes about-enter {
+		from { opacity: 0; transform: translateY(16px); filter: blur(6px); }
+		to { opacity: 1; transform: none; filter: none; }
+	}
+	.about-page { padding-top: calc(var(--space-10) + 4.5rem + var(--space-12)); padding-bottom: var(--space-6); }
+	.about-intro { max-width: var(--width-prose); }
+	.intro-label { margin-bottom: var(--space-4); }
+	.about-page .t-eyebrow { font: 500 0.75rem / 1.6 var(--font-sans); letter-spacing: 0.025em; color: var(--color-ink-60); }
 
-	.prose {
-		color: var(--color-ink-80);
-		line-height: 1.75;
+	h1 { font: 700 clamp(1.375rem, 3vw, 1.625rem) / 1.4 var(--font-sans); text-wrap: pretty; }
+	.intro-description { font-weight: 700; }
+	.intro-copy { display: grid; gap: var(--space-5); margin-top: var(--space-8); color: var(--color-ink-80); line-height: 1.8; }
+	.intro-links { display: flex; flex-wrap: wrap; gap: var(--space-4); margin-top: var(--space-8); }
+	.intro-links a { display: inline-flex; align-items: center; gap: var(--space-3); min-height: 44px; padding: var(--space-3) var(--space-6); text-decoration: none; border: 0; border-radius: var(--radius-full); background: var(--color-ink-wash); font: var(--type-label); transition: transform var(--duration-medium) var(--ease-standard), background-color var(--duration-medium) var(--ease-standard), box-shadow var(--duration-medium) var(--ease-standard); }
+	.intro-links a.button-primary { background: var(--color-accent); color: #fff; }
+	@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+		.intro-links a:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgb(37 55 70 / 0.1); }
+		.intro-links a:hover > span[aria-hidden] { transform: translate(2px, -2px); }
+	}
+	.intro-links a:active { transform: translateY(0); box-shadow: none; }
+	@media (prefers-reduced-motion: reduce) {
+		.intro-links a, .intro-links a > span[aria-hidden] { transition: none !important; }
+	}
+	.intro-links a > span[aria-hidden] { font-size: 1.25rem; transition: transform var(--duration-medium) var(--ease-standard); }
+	.fun-stats { margin-top: var(--space-24); border-top: 1px solid var(--color-line); padding-top: var(--space-16); }
+	.stats-heading { display: grid; gap: var(--space-4); }
+	.stats-heading h2 { font: 500 clamp(1.375rem, 3vw, 1.625rem) / 1.4 var(--font-sans); text-wrap: balance; }
+	.stats-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-8); margin: var(--space-12) 0 0; }
+	.stat { display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--space-3); }
+	.stat dt { font: var(--type-small); color: var(--color-ink-80); max-width: 12rem; }
+	.stat dd { order: -1; margin: 0; font-weight: 400; font-size: clamp(2rem, 3.5vw, 3rem); line-height: 1.15; letter-spacing: -0.045em; white-space: nowrap; }
+	.stat-unit { font-size: 1rem; letter-spacing: 0; }
+	@media (max-width: 760px) {
+		.about-page { padding-top: 9rem; }
+
+		
+		.stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-10) var(--space-6); }
+		.fun-stats { margin-top: var(--space-16); padding-top: var(--space-10); }
 	}
 </style>
+
+
+
+
+
+
+
+
+
+
+
+
+

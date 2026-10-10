@@ -1,0 +1,42 @@
+---
+import ProjectCard from './ProjectCard.astro';
+import { cases, cardImage, caseHref, type CaseEntry } from '../data/cases';
+
+interface Props { entry: CaseEntry; }
+const { entry } = Astro.props;
+const isPlayground = entry.kind === 'playground';
+const collection = cases.filter((item) => item.kind === entry.kind);
+const currentIndex = collection.findIndex((item) => item.slug === entry.slug);
+const recommendations = isPlayground
+	? [1, 2, 3].map((offset) => collection[(currentIndex + offset) % collection.length])
+	: collection.filter((item) => item.slug !== entry.slug);
+---
+
+<div class="container case-project-links">
+	<a class="back-link" href={isPlayground ? '/playground/' : '/projects/'}>
+		<span aria-hidden="true">←</span>
+		{isPlayground ? 'Back to playground project lists' : 'Back to project lists'}
+	</a>
+	<section class="more-projects" aria-labelledby="more-projects-title">
+		<h2 id="more-projects-title">View more projects</h2>
+		<ul class="project-grid">
+			{recommendations.map((item) => (
+				<li>
+					<ProjectCard size="sm" href={caseHref(item)} image={cardImage(item.slug)} title={item.cardTitle} tags={item.tags}
+						tagBackground={item.slug === 'graphic-ui-snapshots' ? 'rgb(253 252 252 / 0.55)' : 'rgb(248 249 250 / 0.55)'} />
+				</li>
+			))}
+		</ul>
+	</section>
+</div>
+
+<style>
+	.case-project-links { display: flex; flex-direction: column; align-items: center; gap: var(--space-16); }
+	.back-link { display: inline-flex; align-items: center; gap: var(--space-3); padding: var(--space-4) var(--space-6); border: 1px solid currentColor; border-radius: var(--radius-full); color: var(--color-ink); text-decoration: none; font: var(--type-small); }
+	.back-link:hover { background: var(--color-card); }
+	.more-projects { width: 100%; display: flex; flex-direction: column; gap: var(--space-8); }
+	.more-projects h2 { margin: 0; font: 500 clamp(1.375rem, 3vw, 1.625rem) / 1.4 var(--font-sans); }
+	.project-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-10) var(--space-8); }
+	@media (max-width: 52rem) { .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+	@media (max-width: 40rem) { .project-grid { grid-template-columns: 1fr; } }
+</style>

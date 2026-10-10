@@ -75,6 +75,8 @@
 
 	/* Shape — Figma had ~15 radii; collapsed to three plus pill */
 	--radius-sm: 8px;
+	/* Shared design-media corners, matching Fortune Kids Final Design. */
+	--radius-design: 8px;
 	--radius-md: 16px;
 	--radius-lg: 24px;
 	--radius-full: 999px;

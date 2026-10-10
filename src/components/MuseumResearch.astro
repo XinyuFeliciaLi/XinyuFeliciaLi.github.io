@@ -1,0 +1,53 @@
+---
+import faculty from '../assets/cases/childrens-museum/003-photo.png';
+import audience from '../assets/cases/childrens-museum/004-photo.png';
+import MuseumPie from './MuseumPie.astro';
+---
+<div class="museum-research">
+ <div class="research-card faculty">
+  <img src={faculty.src} alt="Interview with museum staff" loading="lazy" />
+  <header><strong>Museum Faculty:</strong><p>Event creator and storyteller</p></header>
+  <section><h4>Which interactive elements do you think enhance the storytelling experience?</h4><div class="tags">{['Props','Sounds','Physical interaction','Short animation','Letting kids shape the story'].map(t=><span>{t}</span>)}</div></section>
+  <section><h4>How strongly do you believe incorporating physical interaction enhances the storytelling experience?</h4><p class="rating"><strong>4.5</strong> out of 5</p><p class="scale">1: Not important, 5: Extremely important</p></section>
+  <section><h4>What challenges do you face when organizing interactive storytelling events?</h4><blockquote>“We don’t have any pipeline or template to follow within the Museum Lab space.”</blockquote><blockquote>“Incorporating interactive elements when we don’t know how to code and want to avoid expensive subscriptions.”</blockquote></section>
+ </div>
+ <div class="research-card audience">
+  <img src={audience.src} alt="Research visit with elementary-school children" loading="lazy" />
+  <header><strong>Audience Member:</strong><p>Children age 3+</p></header>
+  <section><h4>How do you like to enjoy stories?</h4><MuseumPie values={[45,35,20]} labels={['Watching a show','Listening to a storyteller','Reading a book']} /></section>
+  <section><h4>How would you like to interact with the story?</h4><MuseumPie values={[50,30,10,10]} labels={['Act it out','Make sounds','Draw','Play games']} /></section>
+  <section><h4>What would make storytelling events even more fun for you?</h4><blockquote>“Be a part of the story!”</blockquote><blockquote>“Create our own adventures.”</blockquote></section>
+ </div>
+</div>
+<style>
+ .museum-research { display:grid; grid-template-columns:1fr 1fr; gap:20px 24px; }
+ .research-card { display:grid; grid-row:span 5; grid-template-rows:subgrid; gap:20px; padding:0 12px 28px; border-radius:16px; background:linear-gradient(transparent 66px,#faf1f6 66px); text-align:center; }
+ .audience { background:linear-gradient(transparent 66px,#fff5ed 66px); }
+ img { width:calc(100% - 36px); margin:auto; aspect-ratio:300/162; object-fit:cover; border-radius:12px; }
+ header { text-align:center; font:var(--type-body); color:#ce5990; }
+ .audience header { color:#df792f; }
+ p { margin:0; }
+ section { padding:40px 4px 20px; border-top:2px solid #fff; counter-reset:quotes; }
+ header + section { border-top:0; padding-top:28px; }
+ .audience section { padding-top:40px; padding-bottom:20px; }
+ .audience header + section { padding-top:28px; }
+ .research-card section h4 { font:500 15px/1.6 var(--font-sans); margin:0 0 20px; }
+ .tags { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; }
+ .tags span { padding:6px; border-radius:8px; background:#f4deea; font:400 12px/1.65 var(--font-sans); white-space:nowrap; }
+ .rating { font:var(--type-heading); margin-top:20px; background:#f4deea; padding:12px 8px 0; border-radius:16px 16px 0 0; }
+ .rating { font-size:18px; font-weight:400; line-height:1.5; }
+ .rating strong { font-weight:500; }
+ .scale { font:var(--type-caption); background:#f4deea; padding:6px 8px 14px; border-radius:0 0 16px 16px; }
+ dl { font:var(--type-small); margin:0; }
+ dl div { display:flex; justify-content:space-between; gap:12px; padding:8px 0; }
+ dd { margin:0; font-weight:600; }
+ blockquote { font:var(--type-small); margin:16px 0 0; display:flex; gap:16px; align-items:center; text-align:left; }
+ blockquote::before { counter-increment:quotes; content:'0' counter(quotes); color:#ce5990; font:var(--type-lead); }
+ .audience blockquote::before { color:#e88a3e; }
+ @media(max-width:40rem) { .museum-research { grid-template-columns:1fr; } .research-card { display:flex; flex-direction:column; } }
+ @media(prefers-reduced-motion:no-preference) {
+  :global(.museum-diagram[data-panel-motion]) .research-card { opacity:0; transform:translateY(12px); transition:opacity 650ms ease,transform 650ms ease; }
+  :global(.museum-diagram[data-panel-motion]) .research-card:nth-child(2) { transition-delay:180ms; }
+  :global(.museum-diagram[data-panel-visible]) .research-card { opacity:1; transform:none; }
+ }
+</style>

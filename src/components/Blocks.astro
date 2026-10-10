@@ -2,14 +2,27 @@
 // Renders case study content blocks. Every text block maps to one shared type role,
 // so all case studies share the same title / heading / body / eyebrow format.
 import { Image } from 'astro:assets';
+import AnimatedImage from './AnimatedImage.astro';
+import PlaygroundComparison from './PlaygroundComparison.astro';
+import SoulProductLinks from './SoulProductLinks.astro';
+import SoulHighlights from './SoulHighlights.astro';
+import DreamvilleHighlights from './DreamvilleHighlights.astro';
+import DreamvilleIteration from './DreamvilleIteration.astro';
 import Runs from './Runs.astro';
 import RollingStat from './RollingStat.astro';
 import VideoPlayer from './VideoPlayer.astro';
+import HuaProductLinks from './HuaProductLinks.astro';
+import HuaTouchTargets from './HuaTouchTargets.astro';
 import WorkflowFigure from './WorkflowFigure.astro';
 import StakeholderIllustration from './StakeholderIllustration.astro';
 import CompetitiveAnalysis from './CompetitiveAnalysis.astro';
 import IterationComparison from './IterationComparison.astro';
 import ConstraintIcon from './ConstraintIcon.astro';
+import ResearchResults from './ResearchResults.astro';
+import MuseumDiagram from './MuseumDiagram.astro';
+import FeedbackQuote from './FeedbackQuote.astro';
+import IterateEvidence from './IterateEvidence.astro';
+import MonomonRoadmap from './MonomonRoadmap.astro';
 import { blockImage, videoUrl, type Block } from '../data/cases';
 
 interface Props {
@@ -69,6 +82,14 @@ const cardMods = (b: Block) => ({
 			);
 		}
 		switch (b.t) {
+			case 'soul-product-links':
+				return <SoulProductLinks />;
+			case 'hua-wireframe-action':
+				return <div class="hua-wireframe-action"><Astro.self items={b.items!} /></div>;
+			case 'hua-product-links':
+				return <HuaProductLinks />;
+			case 'museum-diagram':
+				return <MuseumDiagram kind={b.alt ?? 'pipeline'} />;
 			case 'stakeholder-illustration':
 				return <StakeholderIllustration kind={b.alt ?? 'investor'} />;
 			case 'competitive-analysis':
@@ -118,12 +139,13 @@ const cardMods = (b: Block) => ({
 					</p>
 				);
 			case 'video': {
+				if (b.src === 'ai2u-voice-chat/013.png' || b.src === 'ai2u-voice-chat/014.png') return <IterateEvidence variant={b.src.endsWith('013.png') ? 'recording' : 'microphone'} />;
 				const poster = blockImage(b.src!);
 				const url = b.video ? videoUrl(b.video) : undefined;
 				if (url) {
 					return (
 						<div class="block-video" style={`max-width: ${b.w}px`}>
-							<VideoPlayer src={url} poster={poster?.src} label={b.alt || 'Project video'} />
+							<VideoPlayer src={url} poster={poster?.src} label={b.alt || 'Project video'} controls={b.controls} />
 						</div>
 					);
 				}
@@ -150,6 +172,14 @@ const cardMods = (b: Block) => ({
 					</p>
 				);
 			case 'img': {
+				if (b.src === 'monomon-mr/007.png') return <MonomonRoadmap />;
+				if (b.src === 'soul-seasoned/001.png') return <SoulHighlights />;
+				if (b.src === 'dreamville-mart/001.png') return <DreamvilleHighlights />;
+				if (b.src === 'dreamville-mart/018.png') return <DreamvilleIteration />;
+				if (['soul-seasoned/010.png', 'soul-seasoned/011.png', 'monomon-mr/014.png', 'monomon-mr/015.png', 'monomon-mr/016.png'].includes(b.src ?? '')) return <PlaygroundComparison source={b.src!} alt={b.alt ?? ''} width={b.w} height={b.h} />;
+				if (b.src === 'hua/018.png') return <HuaTouchTargets />;
+				if (b.src === 'ai2u-voice-chat/001.png') return <FeedbackQuote />;
+				if (b.src === 'ai2u-voice-chat/007.png') return <ResearchResults />;
 				const constraint = ['fortune-kid/005.png', 'fortune-kid/006.png', 'fortune-kid/007.png'].indexOf(b.src ?? '');
 				if (constraint !== -1) return <ConstraintIcon variant={constraint} />;
 				const workflow = ['fortune-kid/017.png', 'fortune-kid/018.png', 'fortune-kid/019.png'].indexOf(b.src ?? '');
@@ -159,7 +189,8 @@ const cardMods = (b: Block) => ({
 				return isIcon(b) ? (
 					<Image class:list={["block-icon", { center: b.center, right: b.right }]} src={src} alt="" width={b.w} height={b.h} loading="lazy" />
 				) : (
-					<Image
+					<AnimatedImage
+						mediaFrame={/^ai2u-voice-chat\/0(17|18|19|20)\.png$/.test(b.src ?? '')}
 						class:list={["block-img", { center: b.center, 'block-img--backdrop': b.fill }]}
 						src={src}
 						alt={b.alt ?? ''}
@@ -172,7 +203,7 @@ const cardMods = (b: Block) => ({
 			}
 			case 'showreel': {
 				const src = blockImage(b.src!);
-				return src ? <div class="block-showreel"><div class="showreel-media"><Image src={src} alt={b.alt ?? ''} width={b.w} height={b.h} loading="lazy" /></div></div> : null;
+				return src ? <div class="block-showreel"><div class="showreel-media"><AnimatedImage class="showreel-image" src={src} alt={b.alt ?? ''} width={b.w} height={b.h} loading="lazy" /></div></div> : null;
 			}
 			case 'card':
 				return (
@@ -202,6 +233,7 @@ const cardMods = (b: Block) => ({
 				return (
 					<div
 						data-persona={personaKind(b)}
+						data-feedback-row={b.cols?.some(c => c.items.some(i => /^(user feel|player feel)$/i.test(text(i)))) ? '' : undefined}
 						data-media-source={b.cols?.flatMap((c) => c.items).find((i) => i.src)?.src}
 						data-card-group={cards ? text(b.cols![0].items[0].items?.find((i) => i.runs)) : undefined}
 						class:list={['block-row', { 'block-row--aligned': cards, 'block-row--metadata': isMetadata(b), 'block-row--process': isProcess(b), 'block-row--media': isMediaRow(b), 'block-row--compact': cards && b.cols!.every((c) => shape(c) === 'label,caption') }]}

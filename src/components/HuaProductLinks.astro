@@ -1,0 +1,27 @@
+---
+import { Image } from 'astro:assets';
+import apple from '../assets/cases/hua/022.png';
+import taptap from '../assets/cases/hua/023.png';
+---
+<div class="hua-product-links">
+  <h2>Check Out the Product</h2>
+  <div class="hua-product-buttons">
+    <a target="_blank" rel="noopener noreferrer" class="hua-app-store" href="https://apps.apple.com/us/app/hua-pocket-harmonica/id6808189960">
+      <Image src={apple} alt="" width={22} height={22} />
+      <span>App Store</span>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" href="https://www.taptap.cn/app/933776?os=android&utm_source=chatgpt.com" aria-label="Get HUA on TapTap">
+      <Image src={taptap} alt="TapTap" width={136} height={38} />
+    </a>
+  </div>
+</div>
+<style>
+  .hua-product-links { position: relative; isolation: isolate; padding: 152px 0; text-align: center; }
+  .hua-product-links::before { content: ''; position: absolute; z-index: -1; inset-block: 0; left: calc(50% - 50vw); width: 100vw; background: #f7f8f9; }
+  .hua-product-buttons { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+  a { display: inline-flex; width: 136px; height: 38px; align-items: center; justify-content: center; border-radius: 5px; overflow: hidden; text-decoration: none; }
+  a:focus-visible { outline: 3px solid #253746; outline-offset: 4px; }
+  a:hover { filter: brightness(.92); }
+  img { display: block; }
+  .hua-app-store { gap: 10px; background: #101012; color: white; font: 400 14px / 1.4 var(--font-sans); }
+</style>
