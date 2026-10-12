@@ -33,7 +33,7 @@ export const cases: CaseEntry[] = [
 	{
 		slug: 'ai2u-design-snapshots',
 		kind: 'project',
-		cardTitle: 'Shipped AI Product Design',
+		cardTitle: 'Design Snapshot: AI Product UX Design',
 		cardMeta: 'AlterStaff · Shipped · 2024-2026',
 		tags: ['AI Product', 'UXUI', 'B2C'],
 		heroAlt: 'AI2U phonograph screen shown on a desktop screen',
@@ -125,3 +125,6 @@ export const videoUrl = (key: string) => videos[`../assets/media/${key}`];
 
 export const caseHref = (c: CaseEntry) => `/${c.kind === 'project' ? 'projects' : 'playground'}/${c.slug}/`;
 export const hasPage = (slug: string) => Boolean(caseContent(slug));
+
+
+

@@ -4,17 +4,37 @@ import ProjectCard from '../../components/ProjectCard.astro';
 import { cases, cardImage, caseHref, hasPage } from '../../data/cases';
 
 const items = cases.filter((c) => c.kind === 'project');
+const moreProjects = cases.filter((c) => c.kind === 'playground');
 ---
 
 <BaseLayout title="Projects">
 	<section class="container page">
-		<h1 class="t-title" data-reveal>Projects</h1>
+		<h1 class="t-title" data-reveal>Highlights</h1>
 		<ul class="grid">
 			{
 				items.map((c) => (
-					<li data-reveal>
+					<li id={`project-${c.slug}`} data-reveal style="scroll-margin-top: 2rem">
 						<ProjectCard
 							size="lg"
+							href={hasPage(c.slug) ? caseHref(c) : undefined}
+							image={cardImage(c.slug)}
+							title={c.cardTitle}
+							meta={c.cardMeta}
+							tags={c.tags}
+						/>
+					</li>
+				))
+			}
+		</ul>
+	</section>
+	<section class="container page" aria-labelledby="more-projects">
+		<h2 id="more-projects" class="t-title" data-reveal>More projects</h2>
+		<ul class="grid grid--more">
+			{
+				moreProjects.map((c) => (
+					<li id={`project-${c.slug}`} data-reveal style="scroll-margin-top: 2rem">
+						<ProjectCard
+							size="sm"
 							href={hasPage(c.slug) ? caseHref(c) : undefined}
 							image={cardImage(c.slug)}
 							title={c.cardTitle}
@@ -44,6 +64,10 @@ const items = cases.filter((c) => c.kind === 'project');
 		display: grid;
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 		gap: var(--space-12) var(--space-10);
+	}
+
+	.grid--more {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
 	}
 
 	@media (max-width: 52rem) {

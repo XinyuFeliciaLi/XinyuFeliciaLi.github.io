@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HomeSections from '../components/HomeSections.astro';
+import HeroMorph from '../components/sandbox/HeroMorph.astro';
+import LogoPicker from '../components/sandbox/LogoPicker.astro';
+---
+<BaseLayout title="Navigation logo sandbox" noindex>
+  <section class="hero"><HeroMorph controls={false} /></section>
+  <HomeSections />
+  <LogoPicker />
+</BaseLayout>
+<style>
+  .hero { width:100%; padding:var(--space-4) var(--space-4) 0; margin-inline:auto; }
+  .hero > :global(*) { width:100%; margin-inline:auto; min-width:0; }
+</style>

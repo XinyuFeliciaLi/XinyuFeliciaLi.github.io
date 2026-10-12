@@ -1,6 +1,5 @@
 ---
-// Shared hero band for every case study. Same height (Figma: 619px at 1920 wide),
-// same background, artwork centred at the same offset — only the artwork changes.
+// Shared compact hero band; artwork is centered in the space below the navigation.
 import AnimatedImage from './AnimatedImage.astro';
 import type { ImageMetadata } from 'astro';
 
@@ -29,12 +28,15 @@ const { image, alt, background } = Astro.props;
 
 <style>
 	.case-hero {
+		--hero-height: clamp(19rem, 27.5vw, 33rem);
+		/* Header: 24px top inset + 24px padding + 38px link + 2px border. */
+		--hero-nav-bottom: 88px;
+		--hero-art-inset: 16px;
 		height: var(--hero-height);
 		display: grid;
 		grid-template-rows: minmax(0, 1fr);
 		place-items: center;
-		/* clears the absolutely-positioned nav (40px offset + ~67px pill) */
-		padding: calc(var(--space-10) + 4.5rem) var(--space-6) var(--space-8);
+		padding: calc(var(--hero-nav-bottom) + var(--hero-art-inset)) var(--space-6) var(--hero-art-inset);
 		/* Light canvas with a gently drifting dot grid. */
 		--grid-gap: 24px;
 		--grid-dot: radial-gradient(circle, rgb(37 55 70 / 0.16) 1.2px, transparent 1.6px);
@@ -54,10 +56,14 @@ const { image, alt, background } = Astro.props;
 	.case-hero :global(.case-hero__art) {
 		position: relative;
 		/* Bound both dimensions together so GIF overlays and the poster share one scale. */
-		width: min(100%, 38.75rem, calc((var(--hero-height) - var(--space-10) - 4.5rem - var(--space-8)) * var(--hero-art-ratio)));
+		width: min(100%, 38.75rem, calc((var(--hero-height) - var(--hero-nav-bottom) - 2 * var(--hero-art-inset)) * var(--hero-art-ratio)));
 		height: auto;
 		max-width: 100%;
 		object-fit: contain;
+	}
+	@media (max-width: 40rem) {
+		/* Header: 16px top inset + 16px padding + 44px control + 2px border. */
+		.case-hero { --hero-nav-bottom: 78px; }
 	}
 </style>
 

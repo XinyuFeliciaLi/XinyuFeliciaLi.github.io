@@ -126,6 +126,8 @@ const pipeline = [['Get book', 'copyright'], ['Plan storytelling', 'event'], ['P
   .museum-diagram:global([data-panel-visible]) :is(.tile,.flow li,.event-row,.lab-photo,.stakeholder-card) { opacity:1; transform:none; }
  }
  @media(max-width:40rem) {
+  .versions { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .versions .version-arrow { justify-self: center; transform: rotate(90deg); margin: 0; width: 24px; height: 24px; }
   .constraints,.toolkit-grid,.comparison { grid-template-columns:1fr; gap:12px; }
   .museum-stakeholders { grid-template-columns:1fr; gap:32px; }
   .lab-photo { height:180px; }

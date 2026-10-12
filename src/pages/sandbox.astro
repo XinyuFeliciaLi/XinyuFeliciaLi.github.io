@@ -77,13 +77,73 @@ const palettes = [
 				))
 			}
 			<span class="switcher__divider" aria-hidden="true"></span>
-			<label class="nav-picker">Navigation <select data-nav-style aria-label="Navigation style"><option value="glass">Glass pill</option><option value="split">Split capsules</option><option value="editorial">Editorial line</option></select></label>
+			<label class="nav-picker">Navigation <select data-nav-style aria-label="Navigation style"><option value="glass">Glass pill</option><option value="split">Split capsules</option><option value="editorial">Editorial line</option><option value="soft">Soft frame · New</option><option value="ink">Ink ribbon · New</option></select></label>
 			<button type="button" data-bleed-toggle aria-pressed="false">Full width</button>
 		</div>
 	</div>
 </BaseLayout>
 
 <style>
+	/* Navigation experiments are loaded only with the sandbox. */
+	:global(.site-header[data-style='soft'] .site-header__inner) {
+		background: var(--color-surface);
+		border: 1px solid var(--color-line);
+		border-radius: var(--radius-md);
+		box-shadow: 0 6px 18px -12px var(--color-ink-40);
+		backdrop-filter: none;
+		-webkit-backdrop-filter: none;
+	}
+	:global(.site-header[data-style='soft'] .site-header__mark) {
+		display: flex;
+		align-items: center;
+		gap: var(--space-3);
+	}
+	:global(.site-header[data-style='soft'] .site-header__mark::before) {
+		content: '';
+		width: 10px;
+		height: 10px;
+		border-radius: 50%;
+		background: var(--color-accent);
+		box-shadow: 0 0 0 5px var(--color-accent-soft);
+	}
+	:global(.site-header[data-style='soft'] .site-header__nav) {
+		padding: var(--space-1);
+		background: var(--color-ink-wash);
+		border-radius: var(--radius-sm);
+	}
+	:global(.site-header[data-style='soft'] .site-header__nav a) { border-radius: 6px; }
+	:global(.site-header[data-style='soft'] .site-header__nav a:hover),
+	:global(.site-header[data-style='soft'] .site-header__nav a:focus-visible) { background: var(--color-card); }
+	:global(.site-header[data-style='ink'] .site-header__inner) {
+		background: var(--color-ink);
+		color: var(--color-on-ink);
+		border: 1px solid var(--color-ink);
+		border-radius: var(--radius-md);
+		box-shadow: 0 8px 24px -16px var(--color-ink-60);
+		backdrop-filter: none;
+		-webkit-backdrop-filter: none;
+	}
+	:global(.site-header[data-style='ink'] .site-header__mark) { color: var(--color-on-ink); }
+	:global(.site-header[data-style='ink'] .site-header__nav a) {
+		color: var(--color-on-ink);
+		font-weight: 500;
+		border-radius: var(--radius-sm);
+	}
+	:global(.site-header[data-style='ink'] .site-header__nav a:hover),
+	:global(.site-header[data-style='ink'] .site-header__nav a:focus-visible) { background: rgb(241 242 244 / 0.12); }
+	:global(.site-header[data-style='ink'] .site-header__nav li:last-child a) {
+		background: var(--color-accent);
+		color: var(--color-ink);
+	}
+	:global(.site-header[data-style='ink'] .site-header__nav li:last-child a:hover) { background: var(--color-on-ink); }
+	@media (min-width: 40.001rem) {
+		:global(.site-header[data-style='ink'] .site-header__nav) { gap: var(--space-4); }
+	}
+	@media (max-width: 40rem) {
+		:global(.site-header[data-style='soft'] nav),
+		:global(.site-header[data-style='ink'] nav) { padding-block: var(--space-2); }
+		:global(.site-header[data-style='ink'] .site-header__nav) { gap: var(--space-2); }
+	}
 	.hero :global([data-slider-value]) { display:inline-block; min-width:3ch; text-align:right; font:var(--type-caption); font-weight:600; font-variant-numeric:tabular-nums; color:var(--color-ink); }
 	@media(max-width:40rem) { .hero :global(.board__tune) { grid-template-columns:1fr; } }
 
@@ -209,9 +269,21 @@ const palettes = [
 		});
 		const root = document.querySelector<HTMLElement>('[data-switcher]');
 		if (!root) return;
-		root.querySelector<HTMLSelectElement>('[data-nav-style]')?.addEventListener('change', (e) => {
-			document.querySelector<HTMLElement>('.site-header')!.dataset.style = (e.target as HTMLSelectElement).value;
-		});
+		const navPicker = root.querySelector<HTMLSelectElement>('[data-nav-style]');
+		const setNavStyle = () => {
+			const header = document.querySelector<HTMLElement>('.site-header');
+			if (!header || !navPicker) return;
+			header.dataset.style = navPicker.value;
+			const url = new URL(location.href);
+			url.searchParams.set('nav', navPicker.value);
+			history.replaceState(history.state, '', url);
+		};
+		const requestedNav = new URLSearchParams(location.search).get('nav') ?? 'soft';
+		if (navPicker) {
+			if ([...navPicker.options].some(option => option.value === requestedNav)) navPicker.value = requestedNav;
+			setNavStyle();
+			navPicker.addEventListener('change', setNavStyle);
+		}
 		const tabs = [...root.querySelectorAll<HTMLButtonElement>('[data-tab]')];
 		const note = root.querySelector<HTMLElement>('[data-note]')!;
 

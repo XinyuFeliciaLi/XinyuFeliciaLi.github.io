@@ -1,9 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import LandingIntro from '../components/LandingIntro.astro';
 import HomeSections from '../components/HomeSections.astro';
 import HeroMorph from '../components/sandbox/HeroMorph.astro';
 ---
 <BaseLayout title="Home">
+  <LandingIntro />
   <section class="hero"><HeroMorph controls={false} /></section>
   <HomeSections />
 </BaseLayout>

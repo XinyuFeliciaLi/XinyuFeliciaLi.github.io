@@ -1,0 +1,45 @@
+<!-- Casual-copy deterrents only: public browser content remains inspectable. -->
+<script>
+	function isEditable(target: EventTarget | null) {
+		return target instanceof Element && (
+			!!target.closest('input, textarea, select') ||
+			(target instanceof HTMLElement && target.isContentEditable)
+		);
+	}
+
+	for (const type of ['contextmenu', 'copy', 'cut', 'selectstart', 'dragstart']) {
+		document.addEventListener(type, (event) => {
+			if (!isEditable(event.target)) event.preventDefault();
+		}, { capture: true });
+	}
+
+	document.addEventListener('keydown', (event) => {
+		const key = event.key.toLowerCase();
+		const command = event.ctrlKey || event.metaKey;
+		const inspectShortcut = key === 'f12' ||
+			(event.ctrlKey && event.shiftKey && ['i', 'j', 'c', 'k'].includes(key)) ||
+			(event.metaKey && event.altKey && ['i', 'j', 'c', 'u'].includes(key));
+		const sourceOrSave = command && ['u', 's'].includes(key);
+		const copyOrSelect = command && ['c', 'x', 'a'].includes(key) && !isEditable(event.target);
+		if (inspectShortcut || sourceOrSave || copyOrSelect) event.preventDefault();
+	}, { capture: true });
+</script>
+
+<style is:global>
+	body {
+		-webkit-user-select: none;
+		user-select: none;
+		-webkit-touch-callout: none;
+	}
+
+	img {
+		-webkit-user-drag: none;
+		-webkit-touch-callout: none;
+	}
+
+	input, textarea, select, [contenteditable]:not([contenteditable='false']) {
+		-webkit-user-select: text;
+		user-select: text;
+		-webkit-touch-callout: default;
+	}
+</style>

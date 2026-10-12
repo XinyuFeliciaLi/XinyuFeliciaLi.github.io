@@ -45,3 +45,18 @@ const labels = source === 'monomon-mr/015.png' ? ['After']
   .compact figcaption { column-gap: calc(100% * 16 / 741); font-size: calc(100cqw * 12 / 741); }
   figcaption { position: absolute; inset: auto 0 0; height: var(--label-height); display: grid; grid-template-columns: repeat(var(--label-columns), minmax(0, 1fr)); column-gap: 3.2%; align-items: start; padding-top: 0.4%; box-sizing: border-box; background: var(--comparison-fill); text-align: center; color: #203442; font: 400 1.602cqw / 1.5 var(--font-sans); }
 </style>
+
+<style>
+  @media (max-width: 40rem) {
+    .playground-comparison { overflow: visible; margin-bottom: 36px; }
+    .playground-comparison figcaption {
+      top: 100%;
+      bottom: auto;
+      height: auto;
+      min-height: 28px;
+      padding-block: 4px;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+  }
+</style>

@@ -23,5 +23,5 @@ const images = hero ? [heroBefore, heroAfter] : [gameBefore, gameAfter];
  .iteration-comparison--hero figure:first-child :global(.iteration-media) { height: 115.12%; top: -9.99%; }
  .iteration-comparison--hero figure:last-child :global(.iteration-media) { height: 113.82%; top: -8.83%; }
  figcaption { margin-top: 4px; text-align: center; font: 400 12px / 17px var(--font-sans); color: var(--color-ink); }
- @media(max-width:40rem) { .iteration-comparison { gap: 12px; } }
+ @media(max-width:40rem) { .iteration-comparison { grid-template-columns: minmax(0, 1fr); gap: 20px; } }
 </style>

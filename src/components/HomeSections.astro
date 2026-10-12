@@ -57,7 +57,9 @@ const strengthRows = [
 					<span class="chips__dot" style={`--chip: ${row.dots[0]}`} aria-hidden="true" />
 					<ul>
 						{row.chips.map((c) => (
-							<li style={`--chip: ${c.color}`}>{c.label}</li>
+							<li class="chips__pill" style={`--chip: ${c.color}`}>
+								<span class="chips__label">{c.label}</span>
+							</li>
 						))}
 					</ul>
 					<span class="chips__dot" style={`--chip: ${row.dots[1]}`} aria-hidden="true" />
@@ -126,43 +128,107 @@ const strengthRows = [
 		width: 100%;
 	}
 
+	.why {
+		text-align: center;
+	}
+
+	.why h2[data-reveal] {
+		transform: none;
+		filter: none;
+		transition: opacity 650ms ease;
+	}
+
+	.chips[data-reveal] {
+		opacity: 1;
+		transform: none;
+		filter: none;
+		transition: none;
+	}
+
 	/* Figma: chips ~45px tall, 14px Medium uppercase, 28px dots at both ends of each row */
 	.chips {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		gap: var(--space-5);
-		width: 100%;
+		width: min(100%, 62rem);
+		margin-inline: auto;
 	}
 
 	.chips__row {
-		display: flex;
+		display: grid;
+		grid-template-columns: 28px minmax(0, 1fr) 28px;
 		align-items: center;
+		justify-content: center;
+		width: 100%;
 		gap: var(--space-6);
+		--lane-delay: 120ms;
+		--lane-start: -32px;
 	}
 
 	.chips__row:nth-child(2) {
-		gap: var(--space-6) var(--space-6);
-		transform: translateX(-1rem);
+		--lane-delay: 280ms;
+		--lane-start: calc(-100% - var(--space-5) - 32px);
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		.chips[data-reveal] .chips__row {
+			opacity: 0;
+			transform: translateY(var(--lane-start));
+			transition: transform 850ms cubic-bezier(0.22, 1, 0.36, 1), opacity 650ms ease;
+			transition-delay: var(--lane-delay, 0ms);
+		}
+
+		.chips[data-reveal] .chips__label {
+			opacity: 0;
+			transition: opacity 650ms ease;
+			transition-delay: calc(var(--lane-delay, 0ms) + 180ms);
+		}
+
+		.chips[data-revealed] .chips__row {
+			opacity: 1;
+			transform: none;
+		}
+
+		.chips[data-revealed] .chips__label {
+			opacity: 1;
+		}
 	}
 
 	.chips__row ul {
 		list-style: none;
 		margin: 0;
 		padding: 0;
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
 		gap: var(--space-4) var(--space-6);
 	}
 
-	.chips__row li {
+	.chips__pill {
+		position: relative;
+		isolation: isolate;
+		display: grid;
+		place-items: center;
+		min-width: 0;
 		font: var(--type-label);
 		letter-spacing: 0.04em;
 		text-transform: uppercase;
-		padding: 0.8rem 2.6rem;
+		padding: 0.8rem 1rem;
+	}
+
+	/* The decorative pill is independent of its selectable text label. */
+	.chips__pill::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: -1;
 		border-radius: var(--radius-full);
 		background: var(--chip);
+	}
+
+	.chips__label {
+		display: block;
+		text-align: center;
 	}
 
 	.chips__dot {
@@ -174,16 +240,16 @@ const strengthRows = [
 	}
 
 	@media (max-width: 52rem) {
+		.chips__row {
+			grid-template-columns: minmax(0, 1fr);
+		}
+
 		.chips__dot {
 			display: none;
 		}
 
-		.chips__row:nth-child(2) {
-			transform: none;
-		}
-
-		.chips__row li {
-			padding: 0.6rem 1.4rem;
+		.chips__pill {
+			padding: 0.6rem 0.75rem;
 		}
 	}
 
@@ -194,6 +260,17 @@ const strengthRows = [
 	}
 
 	@media (max-width: 40rem) {
+		.chips__row ul {
+			grid-template-columns: minmax(0, 1fr);
+			width: min(100%, 24rem);
+			margin-inline: auto;
+		}
+
+		.why,
+		.related {
+			padding-top: var(--space-20);
+		}
+
 		.grid--2,
 		.grid--3 {
 			grid-template-columns: 1fr;

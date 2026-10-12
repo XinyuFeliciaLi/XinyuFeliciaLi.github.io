@@ -15,9 +15,10 @@ interface Props {
   class?: string;
   style?: string;
   mediaFrame?: boolean;
+  format?: 'png' | 'webp';
   [key: string]: unknown;
 }
-const { src, alt, width, height, widths, sizes, loading = 'lazy', fetchpriority, class: className, style = '', mediaFrame = false, ...rest } = Astro.props;
+const { src, alt, width, height, widths, sizes, loading = 'lazy', fetchpriority, class: className, style = '', mediaFrame = false, format, ...rest } = Astro.props;
 const layers = gifLayersFor(src);
 const poster = gifPosterFor(src);
 const frame = mediaFrame && layers.length === 1 ? layers[0] : undefined;
@@ -30,12 +31,12 @@ const crop = (layer: GifLayer) => {
 ---
 {layers.length ? (
   <span {...rest} class:list={['gif-image', className, { 'gif-image--frame': frame }]} style={`aspect-ratio:${frame ? `${frame.sourceWidth}/${frame.sourceHeight}` : `${src.width}/${src.height}`};${style}`} data-gif-image>
-    <Image class="gif-poster" src={poster} alt={alt} width={width} height={height} widths={widths} sizes={sizes} loading={loading} fetchpriority={fetchpriority} style={frame ? `--poster-width:${100 / frame.w}%;--poster-height:${100 / frame.h}%;--poster-left:${-frame.x / frame.w * 100}%;--poster-top:${-frame.y / frame.h * 100}%` : undefined} />
+    <Image class="gif-poster" src={poster} format={format} alt={alt} width={width} height={height} widths={widths} sizes={sizes} loading={loading} fetchpriority={fetchpriority} style={frame ? `--poster-width:${100 / frame.w}%;--poster-height:${100 / frame.h}%;--poster-left:${-frame.x / frame.w * 100}%;--poster-top:${-frame.y / frame.h * 100}%` : undefined} />
     {layers.map(layer => <span class="gif-layer" style={frame ? 'inset:0' : placement(layer)} aria-hidden="true" data-figma-gif={layer.node}>
       <img class="gif-original" data-gif-src={gifUrl(layer.hash)} alt="" decoding="async" style={crop(layer)} />
     </span>)}
   </span>
-) : <Image {...rest} class={className} style={style} src={src} alt={alt} width={width} height={height} widths={widths} sizes={sizes} loading={loading} fetchpriority={fetchpriority} />}
+) : <Image {...rest} class={className} style={style} src={src} format={format} alt={alt} width={width} height={height} widths={widths} sizes={sizes} loading={loading} fetchpriority={fetchpriority} />}
 
 <style>
   .gif-image { position: relative; display: block; width: 100%; max-width: 100%; overflow: hidden; }

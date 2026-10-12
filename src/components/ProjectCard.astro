@@ -20,7 +20,7 @@ const Tag = href ? 'a' : 'div';
 <Tag class:list={['card', `card--${size}`, { 'card--link': href }]} href={href} style={tagBackground ? `--tag-background: ${tagBackground}` : undefined}>
 	<div class:list={['card__media', { 'card__media--snapshots': title === 'Graphic & UI Snapshots' }]}>
 		{/* Keep the Figma exports intact: background color-keying clips the soft device shadows into grey outlines. */}
-		<AnimatedImage src={image} alt="" widths={[320, 640, 960]} sizes={size === 'lg' ? '(max-width: 40rem) 92vw, 490px' : '(max-width: 40rem) 92vw, 330px'} />
+		<AnimatedImage format="png" src={image} alt="" widths={[320, 640, 960]} sizes={size === 'lg' ? '(max-width: 40rem) 92vw, 490px' : '(max-width: 40rem) 92vw, 330px'} />
 	</div>
 	<div class="card__body">
 		<h3 class="card__title">{title}</h3>
@@ -61,6 +61,15 @@ const Tag = href ? 'a' : 'div';
 	.card--sm .card__media {
 		aspect-ratio: 308 / 204;
 		border-radius: var(--radius-design);
+	}
+	/* Match the artwork's rounded panel and give transparent animation corners a white backing. */
+	.card--lg .card__media {
+		border-radius: 5.32% / 9.45%;
+		background: #fff;
+	}
+	.card--lg .card__media > :global(.gif-image) {
+		border-radius: inherit;
+		background: #fff;
 	}
 	/* Match the rendered WebP panel fill and 20px corners of the other 308 × 204 thumbnails. */
 	.card--sm .card__media--snapshots {
@@ -143,6 +152,20 @@ const Tag = href ? 'a' : 'div';
 		font: var(--type-caption);
 		color: var(--color-ink);
 		padding: 4px 10px;
+	}
+
+	@media (max-width: 40rem) {
+		.card__tags,
+		.card--sm .card__tags {
+			max-height: none;
+			overflow: visible;
+		}
+
+		.card__tags li {
+			max-width: 100%;
+			white-space: normal;
+			overflow-wrap: anywhere;
+		}
 	}
 
 </style>

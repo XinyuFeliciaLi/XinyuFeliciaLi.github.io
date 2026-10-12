@@ -2,6 +2,8 @@
 import { ClientRouter } from 'astro:transitions';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import ProjectTransition from '../components/ProjectTransition.astro';
+import ContentProtection from '../components/ContentProtection.astro';
 // Poppins, self-hosted (latin subset) — only the weights the type roles use
 import '@fontsource/poppins/latin-400.css';
 import '@fontsource/poppins/latin-400-italic.css';
@@ -33,6 +35,8 @@ const { title, description = 'Felicia Li — senior product designer, UX/UI.', n
 		<ClientRouter />
 	</head>
 	<body class:list={{ 'footer-at-bottom': footerAtBottom }}>
+		<ContentProtection />
+		<ProjectTransition />
 		<Header />
 		<main>
 			<slot />

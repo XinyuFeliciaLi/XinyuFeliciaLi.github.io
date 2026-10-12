@@ -1,5 +1,5 @@
 {
- "title": "HUA: Pocket Harmonica",
+ "title": "Pocket Harmonica Simulator",
  "sections": [
   {
    "id": "30:2166",
@@ -9,7 +9,7 @@
      "t": "title",
      "runs": [
       {
-       "s": "HUA: Pocket Harmonica"
+       "s": "Pocket Harmonica Simulator"
       }
      ]
     },

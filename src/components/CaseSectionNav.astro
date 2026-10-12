@@ -12,7 +12,7 @@ const { sections, snapshots = false } = Astro.props;
   a[aria-current="location"] { color: #253746; background: transparent; font-weight: 500; text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 1.5px; }
   :global(:is(.case--monomon-mr, .case--soul-seasoned, .case--fortune-kid, .case--childrens-museum, .case--ai2u-voice-chat, .case--ai2u-design-snapshots) .case-section) { scroll-margin-top: 184px; }
   @media (max-width: 40rem) {
-    .case-section-nav { top: 160px; }
+    .case-section-nav { top: 90px; }
     :global(:is(.case--monomon-mr, .case--soul-seasoned, .case--fortune-kid, .case--childrens-museum, .case--ai2u-voice-chat, .case--ai2u-design-snapshots) .case-section) { scroll-margin-top: 240px; }
   }
   @media (min-width: 75rem) {
@@ -27,6 +27,7 @@ const { sections, snapshots = false } = Astro.props;
     .case-section-nav--snapshots[data-outside] { visibility: visible; pointer-events: auto; }
     :global(.case--ai2u-design-snapshots .case-section) { scroll-margin-top: 184px; }
   }
+  .case-section-nav[data-near-projects] { visibility: hidden; pointer-events: none; }
 </style>
 <script>
   let cleanup: (() => void) | undefined;
@@ -34,6 +35,7 @@ const { sections, snapshots = false } = Astro.props;
     cleanup?.();
     const nav = document.querySelector<HTMLElement>('.case-section-nav');
     const article = document.querySelector<HTMLElement>('.case');
+    const moreProjects = document.querySelector<HTMLElement>('.more-projects');
     if (!nav || !article) return;
     const links = [...nav.querySelectorAll<HTMLAnchorElement>('a')];
     const targets = links.map(link => document.getElementById(link.hash.slice(1))!);
@@ -44,6 +46,8 @@ const { sections, snapshots = false } = Astro.props;
       const centeredTop = (window.innerHeight - nav.offsetHeight) / 2;
       nav.style.setProperty('--section-nav-top', `${Math.max(centeredTop, targets[0].offsetTop - window.scrollY)}px`);
       nav.toggleAttribute('data-outside', bounds.top > innerHeight * .65 || bounds.bottom < 120);
+      // Clear the menu before the next-project section reaches it, at every breakpoint.
+      nav.toggleAttribute('data-near-projects', !!moreProjects && moreProjects.getBoundingClientRect().top <= nav.getBoundingClientRect().bottom + 24);
       let current = 0;
       const activationLine = article.classList.contains('case--hua')
         ? Math.max(innerWidth <= 640 ? 256 : 200, innerHeight * 0.4)

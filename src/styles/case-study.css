@@ -400,7 +400,7 @@
 @media (max-width: 40rem) {
 	.case { --case-section-gap: 120px; --case-topic-gap: 80px; padding-block: 32px 72px; }
 	.case .block-row { grid-template-columns: minmax(0, 1fr); gap: 24px; }
-	.case .block-row--metadata { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+	.case .block-row--metadata { grid-template-columns: minmax(0, 1fr); }
 	.case .block-row--aligned { grid-template-rows: none; }
 	.case .block-row--aligned > .block-col,
 	.case .block-row--aligned > .block-col > .block-card { display: flex; grid-row: auto; }
@@ -414,7 +414,7 @@
 	.case-section--final .block-card > .block-img + :is(h3, p) { margin-top: 16px; }
 	.case--soul-seasoned .case-section--final .block-card > :is(h3, .block-row) { margin-inline: 0; }
 	.case .block-row--process { gap: 12px; }
-	.case .block-row--compact { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+	.case .block-row--compact { grid-template-columns: minmax(0, 1fr); }
 	.case .block-row[data-persona] { grid-template-columns: minmax(0, 1fr); gap: 12px; }
 	.case [data-persona] > .block-col > .block-card { padding: 20px; }
 	.case .block-card--split { padding: 0; }
@@ -522,4 +522,9 @@
 .case--soul-seasoned #section-30-2816 .block-card .t-body { font: var(--type-small); color: var(--color-ink-80); text-wrap: balance; }
 @media (min-width: 40.001rem) {
 	.case--soul-seasoned #section-30-2816 .block-card > .block-row { column-gap: 48px; }
+}
+/* Mobile reading layout only; desktop compositions retain their original rules. */
+@media (max-width: 40rem) {
+ .case--dreamville-mart #section-30-3175 .case-group:first-child .block-row--process > .block-col > .block-card > .t-caption:first-child { font-size: 12px; }
+ .case--dreamville-mart #section-30-3175 .case-group:first-child .block-row--process > .block-col > .block-card { grid-template-rows: auto 1fr; }
 }

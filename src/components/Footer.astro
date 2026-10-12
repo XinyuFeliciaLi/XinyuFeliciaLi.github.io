@@ -1,32 +1,113 @@
 ---
 const year = new Date().getFullYear();
 ---
+<footer class="site-footer" aria-label="Stay connected">
+ <div class="site-footer__reveal">
+  <div class="container site-footer__inner">
+   <div class="site-footer__row">
+    <p>&copy; {year}</p>
+    <button class="back-to-top" type="button" data-back-to-top>
+     BACK TO TOP
+     <span class="back-to-top__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none"><path d="m7 14 5-5 5 5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /></svg>
+     </span>
+    </button>
+   </div>
+   <div class="site-footer__heading">
+    <p class="site-footer__eyebrow">NICE TO MEET YOU ; )</p>
+    <h2>LET&rsquo;S CONNECT!</h2>
+   </div>
+   <div class="site-footer__row">
+    <div class="site-footer__links"><a class="site-footer__linkedin" href="https://www.linkedin.com/in/felicia-li-48826713b/" target="_blank" rel="noopener noreferrer">LinkedIn<span class="visually-hidden"> (opens in a new tab)</span></a>
+   <button class="gif-toggle" data-gif-toggle type="button" aria-pressed="false" hidden>Pause GIFs</button></div>
+    <p class="site-footer__credit">Design by <strong>Felicia Li</strong></p>
+   </div>
 
-<footer class="site-footer">
-	<div class="container site-footer__inner">
-		<p>&copy; {year} Felicia Li</p>
-		<p>Designed and built with love and coffee</p>
-		<button class="gif-toggle" data-gif-toggle type="button" aria-pressed="false" hidden>Pause GIFs</button>
-	</div>
+  </div>
+ </div>
 </footer>
-
+<script>
+ let cleanupFooter = () => {};
+ function setupFooter() {
+  cleanupFooter();
+  const footer = document.querySelector<HTMLElement>('.site-footer');
+  const panel = footer?.querySelector<HTMLElement>('.site-footer__reveal');
+  const button = footer?.querySelector<HTMLButtonElement>('[data-back-to-top]');
+  if (!footer || !panel || !button) return;
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let frame = 0;
+  const update = () => {
+   frame = 0;
+   const rect = footer.getBoundingClientRect();
+   const distance = Math.max(0, Math.min(rect.height, rect.bottom - innerHeight));
+   const progress = 1 - distance / Math.max(1, rect.height);
+   // Anchor the panel under the page while its clipped wrapper uncovers it.
+   const animate = !reduced.matches && rect.height < innerHeight;
+   panel.style.transform = animate ? `translateY(${-distance}px)` : 'none';
+   panel.style.opacity = animate ? String(progress) : '1';
+  };
+  const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
+  const backToTop = () => {
+   window.scrollTo({ top: 0, behavior: reduced.matches ? 'instant' : 'smooth' });
+   document.querySelector<HTMLElement>('header a')?.focus({ preventScroll: true });
+  };
+  button.addEventListener('click', backToTop);
+  window.addEventListener('scroll', schedule, { passive: true });
+  window.addEventListener('resize', schedule);
+  reduced.addEventListener('change', schedule);
+  const resize = new ResizeObserver(schedule);
+  resize.observe(footer);
+  update();
+  cleanupFooter = () => {
+   cancelAnimationFrame(frame);
+   resize.disconnect();
+   window.removeEventListener('scroll', schedule);
+   window.removeEventListener('resize', schedule);
+   reduced.removeEventListener('change', schedule);
+   button.removeEventListener('click', backToTop);
+  };
+ }
+ setupFooter();
+ document.addEventListener('astro:page-load', setupFooter);
+ document.addEventListener('astro:before-swap', () => cleanupFooter());
+</script>
 <style>
-	.gif-toggle { background: transparent; color: inherit; border: 1px solid currentColor; border-radius: 999px; padding: 8px 16px; font: inherit; cursor: pointer; }
-	.gif-toggle[hidden] { display: none; }
-	/* Navy band (Figma: 178px footer band) */
-	.site-footer {
-		margin-top: var(--space-24);
-		background: var(--color-ink);
-		color: var(--color-on-ink-80);
-	}
-
-	.site-footer__inner {
-		min-height: 11.125rem;
-		display: flex;
-		flex-wrap: wrap;
-		align-items: center;
-		justify-content: space-between;
-		gap: var(--space-4);
-		font: var(--type-small);
-	}
+ .site-footer { margin-top: var(--space-24); background: rgb(247 247 248 / 0.8); color: var(--color-ink); clip-path: inset(0); }
+ .site-footer__reveal { background: transparent; }
+ .site-footer__inner { padding-block: 32px; display: grid; gap: clamp(40px, 6vw, 88px); }
+ .site-footer__row { display: flex; align-items: center; justify-content: space-between; gap: 20px; font: var(--type-small); font-weight: 600; }
+ .site-footer__heading { display: grid; gap: 4px; }
+ .site-footer__eyebrow { font: 500 0.75rem / 1.6 var(--font-sans); letter-spacing: 0.025em; }
+ .site-footer h2 { margin: 0; margin-left: -0.045em; opacity: 0.12; font-family: var(--font-sans); font-size: clamp(31.35px, 7.0125vw, 102.3px); font-weight: 500; line-height: 1.08; letter-spacing: -0.055em; }
+ .back-to-top { display: inline-flex; align-items: center; gap: 16px; min-height: 44px; padding: 0; border: 0; background: transparent; color: inherit; font: inherit; cursor: pointer; }
+ .back-to-top__icon { display: grid; place-items: center; flex: 0 0 auto; width: 1lh; height: 1lh; border-radius: 50%; background: var(--color-ink); color: #fff; }
+ .back-to-top__icon svg { display: block; width: 75%; height: 75%; }
+ .site-footer__linkedin, .gif-toggle { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 28px; border: 1px solid var(--color-ink-40); border-radius: 999px; background: transparent; color: inherit; font: inherit; text-decoration: none; cursor: pointer; transition: background 180ms ease, color 180ms ease; }
+ .site-footer__linkedin:hover, .gif-toggle:hover { background: var(--color-ink); color: #fff; }
+ .site-footer__links { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+ .site-footer__credit { flex-shrink: 0; align-self: flex-start; padding-top: 12px; white-space: nowrap; font-weight: 400; text-align: right; }
+ .site-footer__credit strong { font-weight: 600; }
+ .gif-toggle[hidden] { display: none; }
+ @media (max-width: 480px) {
+  .site-footer__inner { padding-block: 24px; gap: 44px; }
+  .site-footer__row { font-size: 12px; gap: 12px; }
+  .back-to-top { gap: 10px; }
+  .site-footer__linkedin, .gif-toggle { padding-inline: 18px; }
+ }
+ @media (prefers-reduced-motion: reduce) {
+  .site-footer__reveal { transform: none !important; opacity: 1 !important; }
+  .site-footer__linkedin, .gif-toggle { transition: none; }
+ }
 </style>
+
+
+
+
+
+
+
+
+
+
+
+

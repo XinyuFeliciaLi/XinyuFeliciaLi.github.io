@@ -2,6 +2,7 @@
 // One case study page: shared hero band, then the Figma sections in a 750px reading column.
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CaseHero from './CaseHero.astro';
+import CaseBreadcrumb from './CaseBreadcrumb.astro';
 import Blocks from './Blocks.astro';
 import CaseSectionNav from './CaseSectionNav.astro';
 import CaseProjectLinks from './CaseProjectLinks.astro';
@@ -52,6 +53,7 @@ const isFinal = (items: Block[]) =>
 
 <BaseLayout title={content.title} description={entry.cardTitle}>
 	<CaseHero image={heroImage(entry.slug)} alt={entry.heroAlt} />
+	<CaseBreadcrumb title={entry.cardTitle} slug={entry.slug} />
 	{entry.slug === 'hua' && <CaseSectionNav sections={[
 		{ id: 'section-30-2166', label: 'Overview' },
 		{ id: 'section-30-2298', label: 'Process' },

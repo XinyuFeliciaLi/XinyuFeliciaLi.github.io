@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import RollingStat from '../components/RollingStat.astro';
+import { WHY_ME as colors } from '../components/sandbox/shared';
 import '@fontsource/poppins/latin-700.css';
 
 
@@ -11,6 +12,45 @@ const stats = [
 	{ value: '600+', label: ['Volunteer hours', 'contributed'] },
 	{ value: '2', label: ['Cats keeping', 'me company'] },
 ];
+const experience = [
+	{ dates: 'Nov 2024 – Apr 2026', role: 'UX/UI Designer', company: 'AlterStaff · Project AI2U' },
+	{ dates: 'Jun 2024 – Nov 2024', role: 'Product Designer', company: 'BrightLake Inc' },
+	{ dates: 'Jan 2023 – May 2023', role: 'Product Designer', company: 'Children’s Museum of Pittsburgh × CMU' },
+	{ dates: 'Sep 2024 – Present', role: 'UX/UI Designer · Volunteer', company: 'American Red Cross' },
+];
+const skillRows = [
+	['Contextual inquiry', 'Affinity mapping', 'Storyboarding', 'User journey mapping', 'Information architecture', 'Iconography', 'Graphic design'],
+	['Wireframing', 'Prototyping', 'Usability testing', 'Experience surveys', 'Site mapping', 'Think aloud protocols', 'Vibe coding'],
+];
+const skillSections = [
+	{ id: 'skills', title: 'What skills I have', rows: skillRows },
+];
+const designTools = [
+	{ name: 'Figma', icon: 'figma' },
+	{ name: 'Illustrator', icon: 'illustrator' },
+	{ name: 'Photoshop', icon: 'photoshop' },
+	{ name: 'Miro', icon: 'miro' },
+	{ name: 'Lucidchart', icon: 'lucidchart' },
+	{ name: 'Cursor', icon: 'cursor' },
+	{ name: 'Unity', icon: 'unity' },
+	{ name: 'Unreal', icon: 'unreal' },
+	{ name: 'Jira', icon: 'jira' },
+	{ name: 'Azure DevOps', icon: 'azure-devops' },
+];
+// Match patterns and colors by skill family, not position in the marquee.
+const skillCategories = [
+	{ pattern: 'heart', color: colors[0], skills: ['Contextual inquiry', 'Affinity mapping', 'Usability testing', 'Experience surveys', 'Think aloud protocols'] },
+	{ pattern: 'star', color: colors[3], skills: ['Storyboarding', 'User journey mapping', 'Information architecture', 'Wireframing', 'Prototyping', 'Site mapping', 'Vibe coding'] },
+	{ pattern: 'flower', color: colors[2], skills: ['Iconography', 'Graphic design'] },
+];
+const skillStyle = Object.fromEntries(skillCategories.flatMap(category => category.skills.map(skill => [skill, category])));
+// Fit the hero flower to the same 20 × 20 visible bounds as the other shapes.
+const petals = Array.from({ length: 5 }, (_, i) => ({ x: Math.cos(i * Math.PI * 2 / 5) * 7.98, y: Math.sin(i * Math.PI * 2 / 5) * 7.98 }));
+const flowerLeft = Math.min(...petals.map(p => p.x)) - 6.02;
+const flowerTop = Math.min(...petals.map(p => p.y)) - 6.02;
+const flowerWidth = Math.max(...petals.map(p => p.x)) + 6.02 - flowerLeft;
+const flowerHeight = Math.max(...petals.map(p => p.y)) + 6.02 - flowerTop;
+const flowerTransform = `translate(2 2) scale(${20 / flowerWidth} ${20 / flowerHeight}) translate(${-flowerLeft} ${-flowerTop})`;
 ---
 
 <BaseLayout title="About" description="Meet Felicia Li, a New York based product designer creating AI interactions, websites, and interactive experiences." footerAtBottom>
@@ -22,21 +62,19 @@ const stats = [
 				
 				<h1 id="about-heading" data-reveal>Hi, I'm Felicia!<br /><span class="intro-description">I'm a product designer focused on AI and interactive experiences.</span></h1>
 				<div class="intro-copy">
-					<p data-reveal>At AlterStaff, I contributed to the product experience of AI2U, an AI-powered game that sold 100,000+ copies. My work also includes designing and shipping a mobile app and leading the design and development of a startup studio website.</p>
+					<p data-reveal>At AlterStaff, I helped shape AI2U, an AI-powered interactive experience with 100,000+ copies sold, focusing on conversational interfaces and interactions with AI characters. My work also includes designing and shipping a mobile app and leading the design and development of a startup studio website.</p>
 					<p data-reveal>My approach combines user research, product thinking, rapid prototyping, and AI-native workflows to turn complex ideas into intuitive, functional products.</p>
-					<p data-reveal>I hold a master's degree in Entertainment Technology from Carnegie Mellon University, where I focused on interaction design.</p>
 					<p data-reveal>Outside of work, I'm always curious about new tools, creative ideas, and what I can build next.</p>
 				</div>
 				<div class="intro-links" data-reveal>
-					<a class="button-primary" href="https://www.linkedin.com/in/felicia-li-48826713b/" target="_blank" rel="noopener noreferrer">View LinkedIn <span aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></a>
-					<a href="/resume/">Check my resume <span aria-hidden="true">↗</span></a>
+					<a class="button-primary" href="https://www.linkedin.com/in/felicia-li-48826713b/" target="_blank" rel="noopener noreferrer">View LinkedIn<span class="visually-hidden"> (opens in a new tab)</span></a>
+					<a href="/resume/">Check my resume</a>
 				</div>
 			</div>
 		</section>
 
 		<section class="fun-stats" aria-labelledby="stats-heading">
 			<div class="stats-heading">
-				<p class="t-eyebrow" data-reveal>Fun stats</p>
 				<h2 id="stats-heading" data-reveal>A little about life outside design.</h2>
 			</div>
 			<dl class="stats-grid">
@@ -48,10 +86,102 @@ const stats = [
 				))}
 			</dl>
 		</section>
+		<section class="experience-section" aria-labelledby="experience-heading">
+			<h2 id="experience-heading" data-reveal>Experience</h2>
+			<ol class="experience-list">
+				{experience.map((item) => (
+					<li class="experience-row" data-reveal>
+						<p class="experience-dates">{item.dates}</p>
+						<div><h3>{item.role}</h3><p class="experience-company">{item.company}</p></div>
+					</li>
+				))}
+			</ol>
+		</section>
+		{skillSections.map((section) => <section class="skills-section" aria-labelledby={`${section.id}-heading`} data-section-label={section.title}>
+			<div class="skills-heading"><h2 id={`${section.id}-heading`}>{section.title}</h2><button class="skills-toggle" type="button" aria-pressed="false" aria-label={`Pause animation: ${section.title}`}>Pause motion</button></div>
+			<div class="skills-marquee">
+				{section.rows.map((row, rowIndex) => (
+					<div class:list={['skill-track', { reverse: rowIndex === 1 }]}>
+						{[0, 1].map((copy) => <ul class="skill-group" aria-hidden={copy === 1 ? 'true' : undefined}>
+							{row.map((skill) => <li class="skill-pill" data-pattern={skillStyle[skill].pattern}>
+								<svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" fill={skillStyle[skill].color}>
+									{skillStyle[skill].pattern === 'heart' && <path d="M12 6 C12 3 9.5 2 7 2 C4.2 2 2 4.2 2 7 C2 12 7 17 12 22 C17 17 22 12 22 7 C22 4.2 19.8 2 17 2 C14.5 2 12 3 12 6Z" />}
+									{skillStyle[skill].pattern === 'star' && <path d="M22 12 14.97 14.97 12 22 9.03 14.97 2 12 9.03 9.03 12 2 14.97 9.03Z" />}
+									{skillStyle[skill].pattern === 'flower' && <g transform={flowerTransform}>{petals.map(petal => <circle cx={petal.x} cy={petal.y} r="6.02" />)}</g>}
+								</svg>{skill}
+							</li>)}
+						</ul>)}
+					</div>
+				))}
+			</div>
+		</section>)}
+		<section class="tools-section" aria-labelledby="tools-heading">
+			<h2 id="tools-heading">Tools I use</h2>
+			<ul class="tools-grid">
+				{designTools.map(tool => <li class="tool-card">
+					<span class="tool-icon"><img src={`/icons/tools/${tool.icon}.svg`} width="32" height="32" alt="" /></span>
+					<span>{tool.name}</span>
+				</li>)}
+			</ul>
+		</section>
 	</div>
 </BaseLayout>
 
+<script>
+	import { onEachPage } from '../components/sandbox/shared';
+	onEachPage('.skills-section', (root) => {
+		const button = root.querySelector<HTMLButtonElement>('.skills-toggle')!;
+		const toggle = () => {
+			const paused = root.classList.toggle('is-paused');
+			button.setAttribute('aria-pressed', String(paused));
+			button.setAttribute('aria-label', `${paused ? 'Play' : 'Pause'} animation: ${root.dataset.sectionLabel}`);
+			button.textContent = paused ? 'Play motion' : 'Pause motion';
+		};
+		button.addEventListener('click', toggle);
+		return () => button.removeEventListener('click', toggle);
+	});
+</script>
+
 <style>
+	.experience-section { margin-top: var(--space-24); padding-top: var(--space-16); border-top: 1px solid var(--color-line); }
+	.experience-section h2, .skills-section h2, .tools-section h2 { font: 500 clamp(1.375rem, 3vw, 1.625rem) / 1.4 var(--font-sans); }
+	.tools-section { margin-bottom: var(--space-16); }
+	.tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: var(--space-4); list-style: none; margin: var(--space-8) 0 0; padding: 0; }
+	.tool-card { display: flex; align-items: center; gap: var(--space-4); padding: var(--space-5); border: 1px solid var(--color-line); border-radius: var(--radius-lg); font: var(--type-label); }
+	.tool-icon { display: grid; place-items: center; width: 40px; height: 40px; flex: 0 0 40px; }
+	.tool-icon img { display: block; width: 32px; height: 32px; object-fit: contain; }
+	.experience-list { list-style: none; margin: var(--space-8) 0 0; padding: 0; }
+	.experience-row { display: grid; grid-template-columns: 13rem 1fr; gap: var(--space-6); padding: var(--space-8) 0; border-bottom: 1px solid var(--color-line); }
+	.experience-dates { font: var(--type-small); color: var(--color-ink-60); padding-top: 0.2rem; }
+	.experience-row h3 { font: var(--type-subheading); }
+	.experience-company { margin-top: var(--space-2); color: var(--color-ink-80); font: var(--type-small); }
+	.skills-section { margin-block: var(--space-24) var(--space-16); padding-block: var(--space-8) var(--space-12); border-radius: var(--radius-lg); background: var(--color-ink-wash); overflow: hidden; }
+	.skills-heading { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); padding: 0 var(--space-8); margin-bottom: var(--space-8); }
+	.skills-toggle { font: var(--type-caption); color: var(--color-ink-80); background: transparent; border: 1px solid var(--color-line); border-radius: var(--radius-full); padding: 0.6rem 0.9rem; cursor: pointer; flex-shrink: 0; min-height: 44px; }
+	.skills-marquee { display: grid; gap: var(--space-5); }
+	.skill-track { display: flex; width: max-content; animation: skills-scroll 42s linear infinite; }
+	.skill-track.reverse { animation-direction: reverse; animation-duration: 48s; }
+	.skill-track:nth-child(2) { animation-delay: -12s; }
+	.skill-track:nth-child(3) { animation-delay: -24s; animation-duration: 54s; }
+	.skill-group { display: flex; justify-content: space-around; min-width: var(--width-wide); gap: var(--space-4); list-style: none; margin: 0; padding: 0 var(--space-4) 0 0; }
+	.skill-pill { display: flex; align-items: center; gap: var(--space-3); white-space: nowrap; border-radius: var(--radius-full); background: var(--color-page); padding: var(--space-4) var(--space-6); font: var(--type-label); }
+	.skill-pill svg { display: block; width: 26px; height: 26px; flex: 0 0 26px; }
+	.skills-toggle:focus-visible { outline: 2px solid var(--color-ink); outline-offset: 4px; }
+	.skills-marquee:hover .skill-track, .is-paused .skill-track { animation-play-state: paused; }
+	@keyframes skills-scroll { to { transform: translateX(-50%); } }
+	@media (max-width: 760px) {
+		.experience-section { margin-top: var(--space-16); padding-top: var(--space-10); }
+		.experience-row { grid-template-columns: 1fr; gap: var(--space-3); }
+		.skills-section { margin-top: var(--space-16); }
+		.skills-heading { padding-inline: var(--space-5); align-items: flex-start; }
+		.skill-pill { padding: var(--space-3) var(--space-5); }
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.skill-track { animation: none; width: auto; }
+		.skill-group { flex-wrap: wrap; justify-content: flex-start; min-width: 0; padding: 0 var(--space-5); }
+		.skill-group[aria-hidden], .skills-toggle { display: none; }
+		.skill-pill { white-space: normal; }
+	}
 	/* Keyframes ensure entrance motion also plays when revealed before the first paint. */
 	@media (prefers-reduced-motion: no-preference) {
 		.about-page [data-reveal][data-revealed] {
@@ -77,13 +207,11 @@ const stats = [
 	.intro-links a.button-primary { background: var(--color-accent); color: #fff; }
 	@media (hover: hover) and (prefers-reduced-motion: no-preference) {
 		.intro-links a:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgb(37 55 70 / 0.1); }
-		.intro-links a:hover > span[aria-hidden] { transform: translate(2px, -2px); }
 	}
 	.intro-links a:active { transform: translateY(0); box-shadow: none; }
 	@media (prefers-reduced-motion: reduce) {
-		.intro-links a, .intro-links a > span[aria-hidden] { transition: none !important; }
+		.intro-links a { transition: none !important; }
 	}
-	.intro-links a > span[aria-hidden] { font-size: 1.25rem; transition: transform var(--duration-medium) var(--ease-standard); }
 	.fun-stats { margin-top: var(--space-24); border-top: 1px solid var(--color-line); padding-top: var(--space-16); }
 	.stats-heading { display: grid; gap: var(--space-4); }
 	.stats-heading h2 { font: 500 clamp(1.375rem, 3vw, 1.625rem) / 1.4 var(--font-sans); text-wrap: balance; }
@@ -100,6 +228,9 @@ const stats = [
 		.fun-stats { margin-top: var(--space-16); padding-top: var(--space-10); }
 	}
 </style>
+
+
+
 
 
 

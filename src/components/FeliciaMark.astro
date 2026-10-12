@@ -1,0 +1,152 @@
+---
+// Vector version of the selected reference, with independently movable eyes.
+---
+<svg class="felicia-mark" data-felicia-mark viewBox="340 275 582 699" width="30" height="36" aria-hidden="true" focusable="false">
+  <path fill="#080808" d="M347 599C347 421 478 281 690 281C806 277 865 297 898 357C930 414 916 478 875 519C827 565 743 568 674 549L633 543C608 537 587 551 587 574C586 597 601 612 622 610C678 601 722 582 777 590C843 597 879 637 878 696C878 759 841 791 783 801C719 813 650 803 600 778C607 811 615 846 603 883C585 937 547 966 486 966C414 970 374 935 358 878C345 837 347 792 347 747Z" />
+  <g class="mark-eye">
+    <ellipse cx="574" cy="433" rx="74" ry="78" fill="#fffdf8" />
+    <circle class="mark-pupil" cx="574" cy="433" r="33" fill="#080808" />
+  </g>
+  <g class="mark-eye">
+    <ellipse cx="714" cy="413" rx="74" ry="78" fill="#fffdf8" />
+    <circle class="mark-pupil" cx="714" cy="413" r="33" fill="#080808" />
+  </g>
+</svg>
+<style>
+  .felicia-mark { display:block; width:auto; height:36px; overflow:visible; }
+  .mark-eye { transform-box:fill-box; transform-origin:center; }
+  .mark-pupil { transform:translateX(25px); }
+</style>
+<script>
+  let dispose: (() => void) | undefined;
+  function setupMark() {
+    dispose?.();
+    const marks = [...document.querySelectorAll<SVGElement>('[data-felicia-mark]')];
+    if (!marks.length) return;
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    let blinkTimer: ReturnType<typeof setTimeout> | undefined;
+    let blinkAnimations: Animation[] = [];
+    let animations: Animation[] = [];
+    let left = true;
+    let frame = 0;
+    let pointer = { x:0, y:0 };
+    const pupils = marks.flatMap(mark => [...mark.querySelectorAll<SVGCircleElement>('.mark-pupil')]);
+    const positions = pupils.map(() => ({ x:25, y:0 }));
+    let previousTime = 0;
+    const stop = () => {
+      clearTimeout(timer);
+      clearTimeout(blinkTimer);
+      blinkTimer = undefined;
+      blinkAnimations.forEach(animation => animation.cancel());
+      blinkAnimations = [];
+      animations.forEach(animation => animation.cancel());
+      animations = [];
+    };
+    // Blinking has its own rhythm, independent of the more frequent glances.
+    const scheduleBlink = (delay = 8000 + Math.random() * 5000) => {
+      blinkTimer = setTimeout(() => {
+        blinkAnimations.forEach(animation => animation.cancel());
+        blinkAnimations = [];
+        const duration = 110 + Math.random() * 30;
+        for (const mark of marks) {
+          if (!mark.isConnected) continue;
+          mark.querySelectorAll('.mark-eye').forEach(eye => {
+            blinkAnimations.push(eye.animate([
+              { transform:'scaleY(1)', offset:0 },
+              { transform:'scaleY(0.06)', offset:0.4 },
+              { transform:'scaleY(1)', offset:1 },
+            ], { duration, easing:'ease-in-out' }));
+          });
+        }
+        scheduleBlink();
+      }, delay);
+    };
+    const schedule = (delay = 3000) => {
+      if (reduced.matches || document.hidden) return;
+      timer = setTimeout(() => {
+        animations.forEach(animation => animation.cancel());
+        animations = [];
+        if (blinkTimer === undefined) scheduleBlink(3000 + Math.random() * 4000);
+        for (const mark of marks) {
+          if (!mark.isConnected) continue;
+          mark.querySelectorAll<SVGCircleElement>('.mark-pupil').forEach(pupil => {
+            const from = pupil.style.transform || 'translate(25px, 0px)';
+            pupil.style.transform = 'translate(0px, 0px)';
+            animations.push(pupil.animate([
+              { transform:from, offset:0 },
+              { transform:`translate(${left ? -32 : 32}px, 0px)`, offset:0.2 },
+              { transform:`translate(${left ? -32 : 32}px, 0px)`, offset:0.7 },
+              { transform:'translate(0px, 0px)', offset:1 },
+            ], { duration:1000, easing:'ease-in-out' }));
+          });
+        }
+        left = !left;
+        schedule(1800 + Math.random() * 1200);
+      }, delay);
+    };
+    const trackPointer = (event: PointerEvent) => {
+      if (event.pointerType === 'touch' || reduced.matches || document.hidden) return;
+      pointer = { x:event.clientX, y:event.clientY };
+      // Start from the visible gaze when interrupting an idle glance.
+      if (animations.length) pupils.forEach((pupil, i) => {
+        const matrix = new DOMMatrixReadOnly(getComputedStyle(pupil).transform);
+        positions[i] = { x:matrix.m41, y:matrix.m42 };
+        pupil.style.transform = `translate(${matrix.m41}px, ${matrix.m42}px)`;
+      });
+      stop();
+      schedule();
+      if (frame) return;
+      previousTime = 0;
+      const follow = (time: number) => {
+        frame = 0;
+        const elapsed = previousTime ? Math.min(time - previousTime, 50) : 16;
+        previousTime = time;
+        const blend = 1 - Math.exp(-elapsed / 85);
+        let moving = false;
+        for (const [i, pupil] of pupils.entries()) {
+          if (!pupil.isConnected) continue;
+          // Measure the stationary eye to avoid feedback from the pupil's movement.
+          const eye = pupil.parentElement!.querySelector('ellipse')!.getBoundingClientRect();
+          const dx = pointer.x - (eye.left + eye.width / 2);
+          const dy = pointer.y - (eye.top + eye.height / 2);
+          const distance = Math.hypot(dx, dy);
+          const travel = Math.min(32, distance / 100 * 32);
+          const x = distance ? dx / distance * travel : 0;
+          const y = distance ? dy / distance * travel : 0;
+          const position = positions[i];
+          position.x += (x - position.x) * blend;
+          position.y += (y - position.y) * blend;
+          const unsettled = Math.hypot(x - position.x, y - position.y) > 0.05;
+          if (!unsettled) { position.x = x; position.y = y; }
+          moving ||= unsettled;
+          pupil.style.transform = `translate(${position.x}px, ${position.y}px)`;
+        }
+        if (moving) frame = requestAnimationFrame(follow);
+      };
+      frame = requestAnimationFrame(follow);
+    };
+    const restart = () => {
+      stop();
+      cancelAnimationFrame(frame);
+      frame = 0;
+      pupils.forEach(pupil => pupil.style.removeProperty('transform'));
+      positions.forEach(position => { position.x = 25; position.y = 0; });
+      schedule();
+    };
+    reduced.addEventListener('change', restart);
+    document.addEventListener('visibilitychange', restart);
+    document.addEventListener('pointermove', trackPointer, { passive:true });
+    schedule();
+    dispose = () => {
+      stop();
+      cancelAnimationFrame(frame);
+      document.removeEventListener('pointermove', trackPointer);
+      reduced.removeEventListener('change', restart);
+      document.removeEventListener('visibilitychange', restart);
+    };
+  }
+  setupMark();
+  document.addEventListener('astro:page-load', setupMark);
+  document.addEventListener('astro:before-swap', () => dispose?.());
+</script>

@@ -13,9 +13,9 @@ const recommendations = isPlayground
 ---
 
 <div class="container case-project-links">
-	<a class="back-link" href={isPlayground ? '/playground/' : '/projects/'}>
-		<span aria-hidden="true">←</span>
-		{isPlayground ? 'Back to playground project lists' : 'Back to project lists'}
+	<a class="back-link" data-project-navigation href="/projects/">
+		<span class="back-link__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m14 7-5 5 5 5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+		Back to projects
 	</a>
 	<section class="more-projects" aria-labelledby="more-projects-title">
 		<h2 id="more-projects-title">View more projects</h2>
@@ -32,8 +32,13 @@ const recommendations = isPlayground
 
 <style>
 	.case-project-links { display: flex; flex-direction: column; align-items: center; gap: var(--space-16); }
-	.back-link { display: inline-flex; align-items: center; gap: var(--space-3); padding: var(--space-4) var(--space-6); border: 1px solid currentColor; border-radius: var(--radius-full); color: var(--color-ink); text-decoration: none; font: var(--type-small); }
-	.back-link:hover { background: var(--color-card); }
+	.back-link { display: inline-flex; align-items: center; justify-content: center; gap: 16px; min-height: 44px; padding: 10px 28px; border: 1px solid var(--color-ink-40); border-radius: 999px; background: transparent; color: var(--color-ink); text-decoration: none; font: var(--type-small); font-weight: 600; cursor: pointer; transition: background 180ms ease, color 180ms ease; }
+	.back-link:hover { background: var(--color-ink); color: #fff; }
+	.back-link__icon { display: grid; place-items: center; flex: 0 0 auto; width: 1lh; height: 1lh; }
+	.back-link__icon svg { display: block; width: 75%; height: 75%; }
+	.back-link:focus-visible { outline: 2px solid currentColor; outline-offset: 5px; }
+	@media (max-width: 480px) { .back-link { padding-inline: 18px; } }
+	@media (prefers-reduced-motion: reduce) { .back-link { transition: none; } }
 	.more-projects { width: 100%; display: flex; flex-direction: column; gap: var(--space-8); }
 	.more-projects h2 { margin: 0; font: 500 clamp(1.375rem, 3vw, 1.625rem) / 1.4 var(--font-sans); }
 	.project-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-10) var(--space-8); }

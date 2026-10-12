@@ -1,0 +1,84 @@
+---
+// Display the supplied originals through tightly fitted viewBoxes; no redrawing.
+const options = [
+  { id: '1', box: '340 275 582 699', size: 1254 },
+  { id: '2', box: '269 264 491 499', size: 1024 },
+  { id: '3', box: '264 231 496 563', size: 1024 },
+  { id: '4', box: '272 221 480 583', size: 1024 },
+];
+---
+<aside class="logo-picker" aria-label="Navigation logo preview" data-logo-picker>
+  <details open>
+    <summary>Navigation logo <span data-logo-status>Option 1</span></summary>
+    <div class="choices" role="group" aria-label="Logo options in attachment order">
+      {options.map(option => (
+        <button type="button" data-logo={option.id} aria-pressed={option.id === '1' ? 'true' : 'false'} aria-label={`Option ${option.id}`}>
+          <svg viewBox={option.box} aria-hidden="true" class="reference-logo">
+            <image href={`/sandbox/logos/option-${option.id}.png`} width={option.size} height={option.size} />
+          </svg>
+          <span>{option.id}</span>
+        </button>
+      ))}
+      <button type="button" data-logo="text" aria-pressed="false" class="text-choice">Felicia Li<span>Original</span></button>
+    </div>
+    <label class="size-control">Icon height <input type="range" min="28" max="52" step="2" value="40" data-logo-size aria-label="Icon height" /><output data-size-output>40px</output></label>
+    <p>Options match your images, left to right. Collapse to preview.</p>
+  </details>
+</aside>
+<style>
+  .logo-picker { position:fixed; bottom:20px; left:50%; transform:translateX(-50%); z-index:40; width:390px; max-width:calc(100vw - 24px); padding:14px 18px; border:1px solid #dedfdc; border-radius:20px; background:rgb(255 255 255 / .94); box-shadow:0 8px 32px #25374620; backdrop-filter:blur(18px); color:#253746; }
+  summary { cursor:pointer; font-size:13px; font-weight:600; }
+  summary span { float:right; font-size:12px; font-weight:400; }
+  .choices { display:flex; gap:8px; margin-top:14px; }
+  button { flex:1; min-width:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; height:76px; border:1px solid #dedfdc; border-radius:12px; background:white; color:inherit; cursor:pointer; font:inherit; font-size:12px; }
+  button[aria-pressed='true'] { background:#daf69c; border-color:#253746; box-shadow:0 0 0 1px #253746; }
+  .reference-logo { width:34px; height:38px; filter:contrast(1.18); mix-blend-mode:multiply; }
+  .text-choice { font-size:11px; font-weight:600; }
+  .text-choice span { font-size:10px; font-weight:400; }
+  .size-control { display:flex; align-items:center; gap:10px; margin-top:14px; font-size:12px; }
+  input { flex:1; min-width:0; accent-color:#253746; }
+  output { min-width:32px; font-variant-numeric:tabular-nums; }
+  p { margin:10px 0 0; font-size:10px; color:#5e686f; }
+  :global(.site-header__mark[data-logo-preview]) { display:flex; align-items:center; justify-content:center; min-width:44px; min-height:44px; }
+  :global(.site-header__mark[data-logo-preview] svg) { display:block; width:auto; height:var(--logo-height, 40px); filter:contrast(1.18); mix-blend-mode:multiply; }
+</style>
+<script>
+  function initLogoPicker() {
+    const root = document.querySelector<HTMLElement>('[data-logo-picker]');
+    const mark = document.querySelector<HTMLAnchorElement>('.site-header__mark');
+    if (!root || !mark || root.dataset.ready) return;
+    root.dataset.ready = 'true';
+    const buttons = [...root.querySelectorAll<HTMLButtonElement>('[data-logo]')];
+    const slider = root.querySelector<HTMLInputElement>('[data-logo-size]')!;
+    const status = root.querySelector<HTMLElement>('[data-logo-status]')!;
+    const params = new URLSearchParams(location.search);
+    const requestedSize = Number(params.get('size') ?? 40);
+    slider.value = String(Number.isFinite(requestedSize) ? Math.max(28, Math.min(52, requestedSize)) : 40);
+    let selected = buttons.some(b => b.dataset.logo === params.get('logo')) ? params.get('logo')! : '1';
+    function update() {
+      const button = buttons.find(b => b.dataset.logo === selected)!;
+      mark!.replaceChildren();
+      if (selected === 'text') {
+        mark!.textContent = 'Felicia Li';
+        delete mark!.dataset.logoPreview;
+      } else {
+        mark!.append(button.querySelector('svg')!.cloneNode(true));
+        mark!.dataset.logoPreview = selected;
+      }
+      mark!.setAttribute('aria-label', 'Felicia Li — Home');
+      mark!.style.setProperty('--logo-height', `${slider.value}px`);
+      buttons.forEach(b => b.setAttribute('aria-pressed', String(b === button)));
+      status.textContent = selected === 'text' ? 'Original text' : `Option ${selected}`;
+      root!.querySelector<HTMLOutputElement>('[data-size-output]')!.value = `${slider.value}px`;
+      const url = new URL(location.href);
+      url.searchParams.set('logo', selected);
+      url.searchParams.set('size', slider.value);
+      history.replaceState(history.state, '', url);
+    }
+    buttons.forEach(button => button.addEventListener('click', () => { selected = button.dataset.logo!; update(); }));
+    slider.addEventListener('input', update);
+    update();
+  }
+  initLogoPicker();
+  document.addEventListener('astro:page-load', initLogoPicker);
+</script>

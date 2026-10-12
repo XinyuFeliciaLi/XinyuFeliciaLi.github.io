@@ -11,7 +11,8 @@ import avatar from '../../assets/home/avatar.jpg';
 		I&rsquo;m Felicia
 	</p>
 	<h1 class="t-display">
-		A product designer<br />who puts people in control of technology
+		<span class="hero-copy__line"><span>A product designer</span></span>{' '}
+		<span class="hero-copy__line"><span>who puts people in control of technology</span></span>
 	</h1>
 	<p class="t-small">
 		Designing and shipping <strong>B2C products</strong> &amp; <strong>AI experiences</strong><br />
@@ -23,12 +24,41 @@ import avatar from '../../assets/home/avatar.jpg';
 	.hero-copy {
 		display: flex;
 		flex-direction: column;
-		gap: var(--space-4);
+		gap: calc(var(--space-4) * 2);
 	}
 
 	.hero-copy h1,
 	.hero-copy p {
 		margin: 0;
+	}
+
+	.hero-copy__line {
+		display: block;
+		overflow: clip;
+		padding-block: 0.08em;
+		margin-block: -0.08em;
+	}
+
+	.hero-copy__line > span { display: block; }
+
+	@media (prefers-reduced-motion: no-preference) {
+		.hero-copy__line > span {
+			animation: hero-line-reveal 850ms cubic-bezier(0.22, 1, 0.36, 1) both;
+			animation-delay: 180ms;
+		}
+		.hero-copy__line:nth-child(2) > span { animation-delay: 320ms; }
+		.hero-copy__hello { animation: hero-copy-reveal 650ms ease-out both; }
+		.hero-copy > .t-small { animation: hero-copy-reveal 700ms ease-out 500ms both; }
+	}
+
+	@keyframes hero-line-reveal {
+		from { transform: translateY(110%); opacity: 0; }
+		to { transform: translateY(0); opacity: 1; }
+	}
+
+	@keyframes hero-copy-reveal {
+		from { transform: translateY(12px); opacity: 0; }
+		to { transform: translateY(0); opacity: 1; }
 	}
 
 	.hero-copy__hello {

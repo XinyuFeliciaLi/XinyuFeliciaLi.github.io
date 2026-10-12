@@ -1,0 +1,38 @@
+---
+interface Props { title: string; slug: string; }
+const { title } = Astro.props;
+---
+
+<nav class="container container--prose breadcrumb" aria-label="Breadcrumb">
+	<ol>
+		<li><a data-project-navigation href="/projects/"><span class="mobile-label">All projects</span><span class="desktop-label">Projects</span></a></li>
+		<li class="breadcrumb-current"><svg class="separator" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 3 4 5-4 5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" /></svg><span aria-current="page">{title}</span></li>
+	</ol>
+</nav>
+
+<style>
+	.breadcrumb { padding-block: var(--space-6) var(--space-3); font: var(--type-small); font-size: calc(0.875rem * var(--fit-400) - 3px); opacity: 0.65; }
+	ol { display: flex; align-items: center; gap: 8px; list-style: none; margin: 0; padding: 0; }
+	li { display: flex; align-items: center; min-width: 0; }
+	a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: var(--color-ink); text-decoration: none; }
+	a:hover { text-decoration: underline; text-decoration-color: currentColor; text-underline-offset: 3px; }
+	.breadcrumb ~ :global(.case) { padding-top: 23px; }
+	.breadcrumb + :global(.case-section-nav) { margin-block: 12px; }
+	@media (min-width: 75rem) {
+		.breadcrumb + :global(.case-section-nav) { margin-block: 0; }
+	}
+	@media (min-width: 75rem) and (max-width: 87.499rem) {
+		.breadcrumb + :global(.case-section-nav--snapshots) { margin-block: 12px; }
+	}
+	a:focus-visible { outline: 2px solid currentColor; outline-offset: 5px; border-radius: 2px; }
+	.breadcrumb-current { display: flex; align-items: center; gap: 8px; color: var(--color-ink); }
+	[aria-current="page"] { font-weight: 600; }
+	.separator { width: 16px; height: 16px; flex: 0 0 auto; opacity: 0.65; }
+	.mobile-label { display: none; }
+	@media (max-width: 40rem) {
+		.breadcrumb { padding-block: var(--space-3) 6px; }
+		.breadcrumb ~ :global(.case) { padding-top: 16px; }
+		.desktop-label, .breadcrumb-current { display: none; }
+		.mobile-label { display: inline; }
+	}
+</style>

@@ -16,7 +16,7 @@ const { controls = true } = Astro.props;
 	</div>
 	{controls && <div class="morph__controls" role="group" aria-label="Form follows timing settings">
 		<label>Background <input type="range" min="0" max="100" value="97" data-setting="background" /></label>
-		<label>Motion speed <input type="range" min="20" max="200" value="100" data-setting="speed" /></label>
+		<label>Motion speed <input type="range" min="20" max="200" value="120" data-setting="speed" /></label>
 		<label>Shape reach <input type="range" min="20" max="55" value="31" data-setting="reach" /></label>
 	</div>}
 </div>
@@ -53,12 +53,17 @@ const { controls = true } = Astro.props;
 	/* No card: the text sits on the mint, and the grid leaves a clearing around it */
 	.morph__copy {
 		width: fit-content;
-		max-width: 38rem;
+		max-width: 100%;
 	}
 	.morph__controls { position: absolute; left: var(--space-6); right: var(--space-6); bottom: var(--space-6); display: flex; flex-wrap: wrap; gap: var(--space-3); }
 	.morph__controls label { display: flex; align-items: center; gap: var(--space-2); padding: var(--space-2) var(--space-3); background: #fff; border: 1px solid var(--color-line); border-radius: var(--radius-sm); font: var(--type-caption); }
 	.morph__controls input { width: 5rem; accent-color: var(--color-ink); }
-	@media (max-width: 40rem) { .morph[data-controls] .morph__content { padding-bottom: 10rem; } }
+	@media (max-width: 40rem) {
+		.morph { min-height: 0; }
+		.morph__content { padding: 7rem var(--space-4) 3.5rem; }
+		.morph__copy { max-width: 100%; }
+		.morph[data-controls] .morph__content { padding-bottom: 10rem; }
+	}
 </style>
 
 <script>
@@ -89,7 +94,7 @@ const { controls = true } = Astro.props;
 		let lastMove = -Infinity;
 		let phase = 0;
 		let lastFrame = 0;
-		const settings = { background: 97, speed: 100, reach: 31 };
+		const settings = { background: 97, speed: 120, reach: 31 };
 		const onInput = (event: Event) => {
 			const input = event.target as HTMLInputElement;
 			const key = input.dataset.setting as keyof typeof settings;
