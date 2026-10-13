@@ -14,14 +14,14 @@ const stats = [
 ];
 const experience = [
 	{ dates: 'Jun 2026 – Sep 2026', role: 'Product Designer (Part-Time)', company: 'Fortune Kids Inc.' },
-	{ dates: 'Nov 2024 – Apr 2026', role: 'UX/UI Designer', company: 'AlterStaff · Project AI2U' },
-	{ dates: 'Jun 2024 – Nov 2024', role: 'User Experience Designer Intern', company: 'BrightLake Inc' },
-	{ dates: 'Jan 2023 – May 2023', role: 'UX/UI Designer', company: 'Children’s Museum of Pittsburgh × CMU' },
+	{ dates: 'Nov 2024 – Apr 2026', role: 'UX/UI Designer', company: 'AlterStaff' },
+	{ dates: 'Jun 2024 – Nov 2024', role: 'User Experience Designer Intern', company: 'BrightLake Inc.' },
 	{ dates: 'Sep 2024 – Present', role: 'UX/UI Designer · Volunteer', company: 'American Red Cross' },
 ];
 const skillRows = [
-	['Contextual inquiry', 'Affinity mapping', 'Storyboarding', 'User journey mapping', 'Information architecture', 'Iconography', 'Graphic design'],
-	['Wireframing', 'Prototyping', 'Usability testing', 'Experience surveys', 'Site mapping', 'Think aloud protocols', 'Vibe coding'],
+	['Product Design', 'Interaction Design', 'Information Architecture', 'User Flows', 'Wireframing', 'Prototyping', 'Visual Design', 'Responsive Web Design', 'UI Components & Patterns'],
+	['User Research', 'Usability Testing', 'Research Synthesis', 'Cross-Functional Collaboration', 'UI Implementation', 'QA Testing', 'Agile Development'],
+	['Conversational UX', 'Voice & Text Interaction', 'Generative AI', 'AI-Assisted Prototyping', 'Mixed Reality'],
 ];
 const skillSections = [
 	{ id: 'skills', title: 'What skills I have', rows: skillRows },
@@ -31,18 +31,18 @@ const designTools = [
 	{ name: 'Illustrator', icon: 'illustrator' },
 	{ name: 'Photoshop', icon: 'photoshop' },
 	{ name: 'Miro', icon: 'miro' },
-	{ name: 'Lucidchart', icon: 'lucidchart' },
+	{ name: 'VS Code', icon: '' },
 	{ name: 'Cursor', icon: 'cursor' },
 	{ name: 'Unity', icon: 'unity' },
-	{ name: 'Unreal', icon: 'unreal' },
+	{ name: 'Unreal Engine', icon: 'unreal' },
 	{ name: 'Jira', icon: 'jira' },
 	{ name: 'Azure DevOps', icon: 'azure-devops' },
 ];
 // Match patterns and colors by skill family, not position in the marquee.
 const skillCategories = [
-	{ pattern: 'heart', color: colors[0], skills: ['Contextual inquiry', 'Affinity mapping', 'Usability testing', 'Experience surveys', 'Think aloud protocols'] },
-	{ pattern: 'star', color: colors[3], skills: ['Storyboarding', 'User journey mapping', 'Information architecture', 'Wireframing', 'Prototyping', 'Site mapping', 'Vibe coding'] },
-	{ pattern: 'flower', color: colors[2], skills: ['Iconography', 'Graphic design'] },
+	{ pattern: 'star', color: colors[3], skills: skillRows[0] },
+	{ pattern: 'heart', color: colors[0], skills: skillRows[1] },
+	{ pattern: 'flower', color: colors[2], skills: skillRows[2] },
 ];
 const skillStyle = Object.fromEntries(skillCategories.flatMap(category => category.skills.map(skill => [skill, category])));
 // Fit the hero flower to the same 20 × 20 visible bounds as the other shapes.
@@ -120,7 +120,7 @@ const flowerTransform = `translate(2 2) scale(${20 / flowerWidth} ${20 / flowerH
 			<h2 id="tools-heading">Tools I use</h2>
 			<ul class="tools-grid">
 				{designTools.map(tool => <li class="tool-card">
-					<span class="tool-icon"><img src={`/icons/tools/${tool.icon}.svg`} width="32" height="32" alt="" /></span>
+					<span class="tool-icon">{tool.icon ? <img src={`/icons/tools/${tool.icon}.svg`} width="32" height="32" alt="" /> : <span aria-hidden="true">&lt;/&gt;</span>}</span>
 					<span>{tool.name}</span>
 				</li>)}
 			</ul>
