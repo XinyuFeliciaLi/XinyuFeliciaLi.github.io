@@ -28,6 +28,16 @@ const { title, description = 'Felicia Li — senior product designer, UX/UI.', n
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=felicia-grey" />
 		<meta name="description" content={description} />
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={`${title} · Felicia Li`} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content="https://feliciali.com/og-image.jpg" />
+		<meta property="og:image:type" content="image/jpeg" />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="627" />
+		<meta property="og:image:alt" content="Felicia Li’s product design portfolio" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:image" content="https://feliciali.com/og-image.jpg" />
 		{noindex && <meta name="robots" content="noindex, nofollow" />}
 		<meta name="generator" content={Astro.generator} />
 		<title>{title} · Felicia Li</title>
